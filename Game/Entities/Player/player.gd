@@ -16,6 +16,7 @@ extends CharacterBody3D
 @onready var visuals:Node3D = $VisualControl
 @onready var head:Node3D = $VisualControl/sophia
 @onready var camera:Camera3D = $CameraPivot/Camera3D
+@onready var camera_pivot:Node3D = $CameraPivot
 var is_sprinting:bool = false
 var speed:float
 
@@ -48,17 +49,30 @@ func _physics_process(delta):
 		velocity.y = move_toward(velocity.y, terminal_fall_velocity, gravity * delta)
 	
 	move_and_slide()
+	
+	
+	
+#
+
 
 func _input(event:InputEvent):
 	if event is InputEventMouseMotion:
 		look_around(event.relative)
 		
 		
-func look_around(relative:Vector2):
-	rotate_y(-relative.x * mouse_sensitivity)
-	#rotation_degrees.y = clampf(rotation_degrees.y,-85,85)
-	head.rotate_x(relative.y * mouse_sensitivity)
-	head.rotation_degrees.x = clampf(head.rotation_degrees.x,-80,80)
+func look_around(relative:Vector2,_delta:float=1):
+	#camera_pivot.rotate_y(-relative.x * mouse_sensitivity)
+#
+	#camera_pivot.rotate_x(-relative.y * mouse_sensitivity)
+	#camera_pivot.rotation_degrees.x = clampf(camera_pivot.rotation_degrees.x,-60,60)
+	'''
+	above is a classic pitfall using rotate() instead of direct angle manipulation. 
+	rotating x or y would cause the following x/y to not be the same as before,
+	hence introducing unwanted z-axis rotation, as well as unintented behaviours
+	'''
+	camera_pivot.rotation.y += -relative.x * mouse_sensitivity
+	camera_pivot.rotation.x += -relative.y * mouse_sensitivity
+	camera_pivot.rotation_degrees.x = clampf(camera_pivot.rotation_degrees.x,-60,80)
 	
 	
 func _unhandled_key_input(event: InputEvent) -> void:
