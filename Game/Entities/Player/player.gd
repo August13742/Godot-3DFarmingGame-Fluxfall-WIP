@@ -13,9 +13,9 @@ extends CharacterBody3D
 @export var terminal_fall_velocity = -30.0
 @export var mouse_sensitivity:float = 0.005
 
-@onready var visuals:Node3D = $Visuals
-@onready var head:Node3D = $Visuals/sophia
-@onready var camera:Camera3D = $Visuals/sophia/Camera3D
+@onready var visuals:Node3D = $VisualControl
+@onready var head:Node3D = $VisualControl/sophia
+@onready var camera:Camera3D = $CameraPivot/Camera3D
 var is_sprinting:bool = false
 var speed:float
 

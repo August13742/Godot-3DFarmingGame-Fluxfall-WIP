@@ -15,12 +15,12 @@ script = ExtResource("1_lpyhk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83789, 0)
 shape = SubResource("CapsuleShape3D_25h4n")
 
-[node name="Visuals" type="Node3D" parent="."]
+[node name="VisualControl" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="sophia" parent="Visuals" instance=ExtResource("2_1du5w")]
+[node name="sophia" parent="VisualControl" instance=ExtResource("2_1du5w")]
 
-[node name="Skeleton3D" parent="Visuals/sophia/rig" index="0"]
+[node name="Skeleton3D" parent="VisualControl/sophia/rig" index="0"]
 bones/0/position = Vector3(-0.0251348, 0.49628, -0.00867664)
 bones/0/rotation = Quaternion(0.126528, -0.0582381, -0.00922971, 0.990209)
 bones/1/rotation = Quaternion(-0.0644765, 2.41677e-09, -4.12252e-09, 0.997919)
@@ -126,12 +126,14 @@ bones/91/rotation = Quaternion(-0.547551, -0.034745, -0.0538427, 0.834315)
 bones/92/position = Vector3(-1.14476e-08, 0.224088, 3.48135e-08)
 bones/92/rotation = Quaternion(-1.2239e-05, 0.950423, -0.31096, 3.30425e-06)
 
-[node name="Sophia" parent="Visuals/sophia/rig/Skeleton3D" index="0"]
+[node name="Sophia" parent="VisualControl/sophia/rig/Skeleton3D" index="0"]
 surface_material_override/1 = ExtResource("3_ulv0d")
 surface_material_override/2 = ExtResource("3_ulv0d")
 
-[node name="Camera3D" type="Camera3D" parent="Visuals/sophia"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.312355, 1.17426, 0.0612436)
-cull_mask = 1048574
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1294, 0)
 
-[editable path="Visuals/sophia"]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73152, 1.80842)
+
+[editable path="VisualControl/sophia"]
