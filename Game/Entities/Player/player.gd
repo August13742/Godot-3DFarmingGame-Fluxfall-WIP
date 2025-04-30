@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 @export var normal_speed:float = 10
 @export var sprint_speed:float = 15
 
@@ -22,8 +21,6 @@ var speed:float
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	
 
 var movespeed:float = normal_speed
 func _physics_process(delta):
@@ -50,10 +47,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	
-	
-#
-
 
 func _input(event:InputEvent):
 	if event is InputEventMouseMotion:

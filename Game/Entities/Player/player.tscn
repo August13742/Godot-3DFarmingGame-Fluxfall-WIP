@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs70xfn55ex4t"]
+[gd_scene load_steps=7 format=3 uid="uid://bs70xfn55ex4t"]
 
-[ext_resource type="Script" uid="uid://dn62ee8kgycxm" path="res://Game/Entities/Player/player.gd" id="1_lpyhk"]
+[ext_resource type="Script" uid="uid://bk08dm8dcokkj" path="res://Game/Entities/Player/player_controller.gd" id="1_ulv0d"]
 [ext_resource type="PackedScene" uid="uid://16iu10wxub40" path="res://addons/gdquest_sophia/model/sophia.glb" id="2_1du5w"]
+[ext_resource type="PackedScene" uid="uid://fmd6u3cipjbb" path="res://Game/Entities/Player/StateMachine/state_machine.tscn" id="2_5028t"]
 [ext_resource type="Material" uid="uid://dye01l0ct4fby" path="res://addons/gdquest_sophia/model/materials/eye_mat_override.tres" id="3_ulv0d"]
+[ext_resource type="Script" uid="uid://548p4hcvhqk0" path="res://Game/Entities/Player/3rd_person_camera.gd" id="5_5028t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25h4n"]
 radius = 0.4
 height = 1.74
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_lpyhk")
+script = ExtResource("1_ulv0d")
+state_machine_debug = true
+
+[node name="StateMachine" parent="." instance=ExtResource("2_5028t")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83789, 0)
@@ -132,6 +137,7 @@ surface_material_override/2 = ExtResource("3_ulv0d")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1294, 0)
+script = ExtResource("5_5028t")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73152, 1.80842)
