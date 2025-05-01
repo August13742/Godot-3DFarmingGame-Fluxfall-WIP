@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkpgqhu8go28h"]
+
+[ext_resource type="Script" uid="uid://548p4hcvhqk0" path="res://Game/Entities/Player/3rd_person_camera.gd" id="1_t5kuf"]
+
+[node name="CameraPivot" type="Node3D"]
+script = ExtResource("1_t5kuf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73152, 1.80842)
