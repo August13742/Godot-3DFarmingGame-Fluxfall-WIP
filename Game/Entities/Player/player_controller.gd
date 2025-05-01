@@ -9,7 +9,8 @@ extends CharacterBody3D
 @export var jump_force := 5.0
 @export var gravity := 9.8
 @export var terminal_fall_velocity := -30.0
-@export var mouse_sensitivity := 0.005
+
+@export_range(0.01,1,0.01) var mouse_sensitivity_percent = 0.8
 
 @onready var visuals := $VisualControl
 @onready var skin := $VisualControl/sophia

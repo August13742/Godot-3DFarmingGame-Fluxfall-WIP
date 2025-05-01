@@ -1,7 +1,13 @@
 extends Node3D
 class_name ThirdPersonCamera
 
-var mouse_sensitivity:float = 0.05
+var mouse_sensitivity:float = 0.35
+@export_range(0.01,1,0.01) var mouse_sensitivity_percent = 1 :
+	set(num):
+		mouse_sensitivity_percent = num
+		mouse_sensitivity *= num
+		mouse_sensitivity = clampf(mouse_sensitivity,0.0035,0.35)
+
 @onready var camera:Camera3D = $Camera3D
 @export var angular_acceleration = 4
 @onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
@@ -12,21 +18,32 @@ var mouse_sensitivity:float = 0.05
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.3
 @export var max_ray_t:int = 50
-
+@export var camera_acceleration_smoothing := 25
 @export var camera_raycast_debug:bool = false
+
+
 func _ready() -> void:
 	camera.position.z += camera_z_offset
 	camera.position.y += camera_y_offset
-	if "mouse_sensitivity" in target_entity:
-		mouse_sensitivity = target_entity.mouse_sensitivity
+
 	if "angular_acceleration" in target_entity:
 		angular_acceleration = target_entity.angular_acceleration
+	if "mouse_sensitivity_percent" in target_entity:
+		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
 
 
+var smoothed_mouse_delta := Vector2.ZERO
+var raw_mouse_delta := Vector2.ZERO
 
 func _input(event:InputEvent):
 	if event is InputEventMouseMotion:
-		look_around(event.relative)
+		raw_mouse_delta += event.relative
+
+
+func _process(delta: float) -> void:
+	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-delta * 20))
+	look_around(smoothed_mouse_delta, delta)
+	raw_mouse_delta = Vector2.ZERO
 
 
 func look_around(relative:Vector2,_delta:float=1):
@@ -39,19 +56,21 @@ func look_around(relative:Vector2,_delta:float=1):
 	rotating x or y would cause the following x/y to not be the same as before,
 	hence introducing unwanted z-axis rotation, as well as unintented behaviours
 	'''
-	rotation.y += -relative.x * mouse_sensitivity
-	rotation.x += -relative.y * mouse_sensitivity
+	rotation.y += -relative.x * mouse_sensitivity * _delta
+	rotation.x += -relative.y * mouse_sensitivity * _delta
 	rotation_degrees.x = clampf(rotation_degrees.x,-60,80)
 
 
-func _process(_delta: float) -> void:
-	position = target_entity.position
-	position.y += y_tracking_offset
+
+func _physics_process(_delta: float) -> void:
+	position = position.lerp(target_entity.position,1 - exp(-_delta * camera_acceleration_smoothing))
+	position.y = target_entity.position.y + y_tracking_offset
 
 
 	if target_entity.state_machine.current_state == target_entity.state_machine.states["Walk"] \
 	|| target_entity.state_machine.current_state == target_entity.state_machine.states["Sprint"]:
 		rotate_root_towards_cursor(_delta)
+
 
 func rotate_root_towards_cursor(_delta:float):
 	var mouse_position:Vector2 = get_viewport().get_mouse_position()
@@ -71,7 +90,7 @@ func rotate_root_towards_cursor(_delta:float):
 	if to_target.length_squared() < 0.001: return
 
 	# --- ROTATION LOGIC ---
-	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped due to model orientation
+	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped because model faces -z
 	var current_rotation:Vector3 = target_entity.rotation
 	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_acceleration * _delta)
 
