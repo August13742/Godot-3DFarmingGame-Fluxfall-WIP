@@ -3,12 +3,25 @@ class_name ThirdPersonCamera
 
 var mouse_sensitivity:float = 0.05
 @onready var camera:Camera3D = $Camera3D
-var rotation_speed = 3
+@export var angular_acceleration = 4
+@onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
 
+@export var camera_z_offset:float = 2
+## how high the camera floats above pivot
+@export var camera_y_offset:float = 0.5
+## how high pivot is above character, set this so that it's at the eye
+@export var y_tracking_offset:float = 1.3
+@export var max_ray_t:int = 50
 
+@export var camera_raycast_debug:bool = false
 func _ready() -> void:
-	if "mouse_sensitivity" in owner:
-		mouse_sensitivity = owner.mouse_sensitivity
+	camera.position.z += camera_z_offset
+	camera.position.y += camera_y_offset
+	if "mouse_sensitivity" in target_entity:
+		mouse_sensitivity = target_entity.mouse_sensitivity
+	if "angular_acceleration" in target_entity:
+		angular_acceleration = target_entity.angular_acceleration
+
 
 
 func _input(event:InputEvent):
@@ -32,34 +45,40 @@ func look_around(relative:Vector2,_delta:float=1):
 
 
 func _process(_delta: float) -> void:
-	if owner.state_machine.current_state == owner.state_machine.states["Walk"] \
-	|| owner.state_machine.current_state == owner.state_machine.states["Sprint"]:
-		print("working")
+	position = target_entity.position
+	position.y += y_tracking_offset
+
+
+	if target_entity.state_machine.current_state == target_entity.state_machine.states["Walk"] \
+	|| target_entity.state_machine.current_state == target_entity.state_machine.states["Sprint"]:
 		rotate_root_towards_cursor(_delta)
 
 func rotate_root_towards_cursor(_delta:float):
 	var mouse_position:Vector2 = get_viewport().get_mouse_position()
-	var ray_origin:Vector3 = camera.project_ray_origin(mouse_position) # get mouse position on screen in 3D space
+	var ray_origin:Vector3 = camera.project_ray_origin(mouse_position)
 	var ray_direction:Vector3 = camera.project_ray_normal(mouse_position)
 
-	# Define ground plane (y = transform.origin.y)
-	var ground_y:float = owner.global_position.y
-	if ray_direction.y == 0: return #avoid when ray is parallel to ground
+	var ground_y:float = target_entity.global_position.y
+	if ray_direction.y == 0: return
 
-	# intersect ray with plane
-
-	# how far along the ray need to go from its origin before it hits the ground plane
 	var t = (ground_y - ray_origin.y) / ray_direction.y
-
+	t = clamp(t, camera_z_offset+1, max_ray_t)
 	var intersection:Vector3 = ray_origin + ray_direction * t
 
-	# flattened direction from player to intersection
-	var to_target:Vector3 = intersection - owner.global_position
+	# Flattened direction
+	var to_target:Vector3 = intersection - target_entity.global_position
 	to_target.y = 0
-	if to_target.length_squared()<0.001: return
+	if to_target.length_squared() < 0.001: return
 
-	#rotate towards found direction
-	var target_rotation:float = atan2(to_target.x, to_target.z)
-	var current_rotation:Vector3 = owner.rotation
-	#owner.rotation.y = lerp_angle(current_rotation.y, -target_rotation, rotation_speed * _delta)
-	owner.rotation.y = target_rotation
+	# --- ROTATION LOGIC ---
+	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped due to model orientation
+	var current_rotation:Vector3 = target_entity.rotation
+	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_acceleration * _delta)
+
+	# --- DEBUG DRAWING ---
+	if camera_raycast_debug:
+		DebugDraw3D.draw_line(ray_origin, ray_origin + ray_direction * 5.0, Color.RED)
+		DebugDraw3D.draw_line(ray_origin, intersection, Color.YELLOW)
+		DebugDraw3D.draw_sphere(intersection, 0.1, Color.GREEN)
+		DebugDraw3D.draw_line(target_entity.global_position, intersection, Color.BLUE)
+		DebugDraw3D.draw_text(intersection + Vector3.UP * 0.3, "Intersection", 10,Color.WHITE)
