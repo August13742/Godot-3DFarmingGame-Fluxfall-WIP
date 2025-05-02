@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-@export var angular_acceleration:= 8
+@export var angular_velocity:= 8
 @export var normal_speed := 10.0
 @export var sprint_speed := 15.0
 @export var air_acceleration := 5.0

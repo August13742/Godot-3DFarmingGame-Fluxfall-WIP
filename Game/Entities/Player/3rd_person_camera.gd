@@ -2,15 +2,16 @@ extends Node3D
 class_name ThirdPersonCamera
 
 var mouse_sensitivity:float = 0.35
+@onready var camera:Camera3D = $Camera3D
+@onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
+
 @export_range(0.01,1,0.01) var mouse_sensitivity_percent = 1 :
 	set(num):
 		mouse_sensitivity_percent = num
 		mouse_sensitivity *= num
 		mouse_sensitivity = clampf(mouse_sensitivity,0.0035,0.35)
 
-@onready var camera:Camera3D = $Camera3D
-@export var angular_acceleration = 4
-@onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
+@export var angular_velocity = 4
 
 @export var camera_z_offset:float = 2
 ## how high the camera floats above pivot
@@ -26,8 +27,8 @@ func _ready() -> void:
 	camera.position.z += camera_z_offset
 	camera.position.y += camera_y_offset
 
-	if "angular_acceleration" in target_entity:
-		angular_acceleration = target_entity.angular_acceleration
+	if "angular_velocity" in target_entity:
+		angular_velocity = target_entity.angular_velocity
 	if "mouse_sensitivity_percent" in target_entity:
 		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
 
@@ -92,7 +93,7 @@ func rotate_root_towards_cursor(_delta:float):
 	# --- ROTATION LOGIC ---
 	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped because model faces -z
 	var current_rotation:Vector3 = target_entity.rotation
-	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_acceleration * _delta)
+	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_velocity * _delta)
 
 	# --- DEBUG DRAWING ---
 	if camera_raycast_debug:
@@ -100,4 +101,3 @@ func rotate_root_towards_cursor(_delta:float):
 		DebugDraw3D.draw_line(ray_origin, intersection, Color.YELLOW)
 		DebugDraw3D.draw_sphere(intersection, 0.1, Color.GREEN)
 		DebugDraw3D.draw_line(target_entity.global_position, intersection, Color.BLUE)
-		DebugDraw3D.draw_text(intersection + Vector3.UP * 0.3, "Intersection", 10,Color.WHITE)
