@@ -12,7 +12,6 @@ height = 1.74
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_ulv0d")
-state_machine_debug = true
 
 [node name="StateMachine" parent="." instance=ExtResource("2_5028t")]
 

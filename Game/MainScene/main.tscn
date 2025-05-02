@@ -82,6 +82,8 @@ environment = SubResource("Environment_n8j1b")
 
 [node name="Player" parent="StageController/Island" instance=ExtResource("4_ypbn1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6.26512)
+state_machine_debug = false
 
 [node name="MainCamera" parent="StageController/Island" instance=ExtResource("5_kcaes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 6.26512)
+camera_raycast_debug = true

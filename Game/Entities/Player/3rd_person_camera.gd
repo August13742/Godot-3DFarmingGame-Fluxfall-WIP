@@ -19,7 +19,7 @@ var mouse_sensitivity:float = 0.35
 @export var camera_y_offset:float = 0.5
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.3
-@export var max_ray_length:int = 25
+@export var max_ray_length:int = 10
 @export var camera_acceleration_smoothing := 25
 @export var camera_raycast_debug:bool = false
 
@@ -65,7 +65,8 @@ func look_around(relative:Vector2,_delta:float=1):
 
 
 func _physics_process(_delta: float) -> void:
-	position = position.lerp(target_entity.position,1 - exp(-_delta * camera_acceleration_smoothing))
+	position = target_entity.position
+	#position = position.lerp(target_entity.position,1 - exp(-_delta * camera_acceleration_smoothing))
 	position.y = target_entity.position.y + y_tracking_offset
 
 
@@ -87,11 +88,12 @@ func rotate_root_towards_cursor(_delta:float):
 
 
 
-	var t := (ground_y - ray_origin.y) / ray_direction.y
+	var t:float = (ground_y - ray_origin.y) / ray_direction.y
 	if t < 0 or ray_direction.y == 0:
 		# fallback: project forward to a virtual plane
 		t = max(camera_z_offset + 4, max_ray_length)  # pick a stable fallback depth
 
+	t = clampf(t,camera_z_offset + 4,max_ray_length)
 	var intersection := ray_origin + ray_direction * t
 
 
