@@ -89,9 +89,6 @@ func rotate_root_towards_cursor(_delta:float):
 
 
 	var t:float = (ground_y - ray_origin.y) / ray_direction.y
-	if t < 0 or ray_direction.y == 0:
-		# fallback: project forward to a virtual plane
-		t = max(camera_z_offset + 4, max_ray_length)  # pick a stable fallback depth
 
 	t = clampf(t,camera_z_offset + 4,max_ray_length)
 	var intersection := ray_origin + ray_direction * t
