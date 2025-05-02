@@ -2,8 +2,9 @@ extends Node3D
 class_name ThirdPersonCamera
 
 var mouse_sensitivity:float = 0.35
-@onready var camera:Camera3D = $Camera3D
+@onready var camera:Camera3D = $%Camera3D
 @onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
+
 
 @export_range(0.01,1,0.01) var mouse_sensitivity_percent = 1 :
 	set(num):
@@ -18,7 +19,7 @@ var mouse_sensitivity:float = 0.35
 @export var camera_y_offset:float = 0.5
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.3
-@export var max_ray_t:int = 50
+@export var max_ray_length:int = 25
 @export var camera_acceleration_smoothing := 25
 @export var camera_raycast_debug:bool = false
 
@@ -59,7 +60,7 @@ func look_around(relative:Vector2,_delta:float=1):
 	'''
 	rotation.y += -relative.x * mouse_sensitivity * _delta
 	rotation.x += -relative.y * mouse_sensitivity * _delta
-	rotation_degrees.x = clampf(rotation_degrees.x,-60,80)
+	rotation_degrees.x = clampf(rotation_degrees.x,-70,75)
 
 
 
@@ -75,20 +76,31 @@ func _physics_process(_delta: float) -> void:
 
 func rotate_root_towards_cursor(_delta:float):
 	var mouse_position:Vector2 = get_viewport().get_mouse_position()
+
 	var ray_origin:Vector3 = camera.project_ray_origin(mouse_position)
+	ray_origin.y += 0.5
 	var ray_direction:Vector3 = camera.project_ray_normal(mouse_position)
+	if ray_direction.y ==  0:
+		return # too flat, skip rotation
 
 	var ground_y:float = target_entity.global_position.y
-	if ray_direction.y == 0: return
 
-	var t = (ground_y - ray_origin.y) / ray_direction.y
-	t = clamp(t, camera_z_offset+1, max_ray_t)
-	var intersection:Vector3 = ray_origin + ray_direction * t
+
+
+	var t := (ground_y - ray_origin.y) / ray_direction.y
+	if t < 0 or ray_direction.y == 0:
+		# fallback: project forward to a virtual plane
+		t = max(camera_z_offset + 4, max_ray_length)  # pick a stable fallback depth
+
+	var intersection := ray_origin + ray_direction * t
+
 
 	# Flattened direction
 	var to_target:Vector3 = intersection - target_entity.global_position
 	to_target.y = 0
-	if to_target.length_squared() < 0.001: return
+	if to_target.length_squared() < 0.005:
+
+		return
 
 	# --- ROTATION LOGIC ---
 	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped because model faces -z

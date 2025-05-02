@@ -71,6 +71,7 @@ interact={
 
 3d_render/layer_1="Player"
 3d_render/layer_2="Terrain"
+3d_physics/layer_1="Terrain"
 
 [physics]
 
