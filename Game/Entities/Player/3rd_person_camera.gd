@@ -102,7 +102,7 @@ func rotate_root_towards_cursor(_delta:float):
 		return
 
 	# --- ROTATION LOGIC ---
-	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flipped because model faces -z
+	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flip to - if model faces -z
 	var current_rotation:Vector3 = target_entity.rotation
 	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_velocity * _delta)
 

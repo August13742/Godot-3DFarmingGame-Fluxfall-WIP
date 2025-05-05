@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://fmd6u3cipjbb"]
+
+[ext_resource type="Script" uid="uid://coabvsfsfkmum" path="res://Game/Entities/Player/StateMachine/state_machine.gd" id="1_xjd8p"]
+[ext_resource type="Script" uid="uid://kamrrfw1svxy" path="res://Game/Entities/Player/StateMachine/idle_state.gd" id="2_lu68w"]
+[ext_resource type="Script" uid="uid://c7cqn48lyfi1m" path="res://Game/Entities/Player/StateMachine/walk_state.gd" id="3_hkyvv"]
+[ext_resource type="Script" uid="uid://br43q2eo82fmp" path="res://Game/Entities/Player/StateMachine/sprint_state.gd" id="4_i0kva"]
+[ext_resource type="Script" uid="uid://ct26c11unmfiu" path="res://Game/Entities/Player/StateMachine/airbourne_state.gd" id="5_layjx"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_xjd8p")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_lu68w")
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource("3_hkyvv")
+
+[node name="Sprint" type="Node" parent="."]
+script = ExtResource("4_i0kva")
+
+[node name="Airbourne" type="Node" parent="."]
+script = ExtResource("5_layjx")

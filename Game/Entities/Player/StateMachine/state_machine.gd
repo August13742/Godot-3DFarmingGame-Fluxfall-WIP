@@ -13,6 +13,10 @@ func _ready():
 	states["Sprint"] = $Sprint
 	states["Airbourne"] = $Airbourne
 
+	for state in states.values():
+		print(state)
+		state.set_root(root_entity)
+		
 	change_state.call_deferred("Idle")
 
 

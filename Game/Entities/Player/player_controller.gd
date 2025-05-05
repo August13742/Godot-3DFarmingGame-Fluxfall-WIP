@@ -13,12 +13,12 @@ extends CharacterBody3D
 @export_range(0.01,1,0.01) var mouse_sensitivity_percent = 0.8
 
 @onready var visuals := $VisualControl
-@onready var skin := $VisualControl/sophia
+@onready var skin := $VisualControl/Mannequin
 
 @onready var state_machine := $StateMachine
 @export var state_machine_debug:bool = false
 
-@onready var animation_player:AnimationPlayer = $VisualControl/sophia/AnimationPlayer
+@onready var animation_player:AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
