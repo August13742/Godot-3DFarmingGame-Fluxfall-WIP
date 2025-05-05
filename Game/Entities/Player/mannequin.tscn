@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0k0eagqggd47"]
 
-[ext_resource type="PackedScene" uid="uid://bmogmkqsnib37" path="res://Game/AnimationLibrary_Godot.glb" id="1_6eftw"]
+[ext_resource type="PackedScene" uid="uid://bmogmkqsnib37" path="res://Assets/AnimationLibrary_Godot.glb" id="1_15krj"]
 
-[node name="Mannequin" instance=ExtResource("1_6eftw")]
+[node name="Mannequin" instance=ExtResource("1_15krj")]
 
 [node name="Skeleton3D" parent="Rig" index="0"]
 bones/0/rotation = Quaternion(-0.707107, 0, 0, 0.707107)

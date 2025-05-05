@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bmogmkqsnib37"
-path="res://.godot/imported/AnimationLibrary_Godot.glb-0ee79010bdc750bdf2ebdb8056e0b783.scn"
+path="res://.godot/imported/AnimationLibrary_Godot.glb-038aacfbd94c8155546fcf655b51f06d.scn"
 
 [deps]
 
-source_file="res://Game/AnimationLibrary_Godot.glb"
-dest_files=["res://.godot/imported/AnimationLibrary_Godot.glb-0ee79010bdc750bdf2ebdb8056e0b783.scn"]
+source_file="res://Assets/AnimationLibrary_Godot.glb"
+dest_files=["res://.godot/imported/AnimationLibrary_Godot.glb-038aacfbd94c8155546fcf655b51f06d.scn"]
 
 [params]
 
@@ -41,8 +41,8 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Game/AnimationLibrary_Godot_Mannequin.res",
-"save_to_file/path": "uid://n040kidsfhal"
+"save_to_file/fallback_path": "res://Assets/AnimationLibrary_Godot_Mannequin.res",
+"save_to_file/path": "uid://cxmtir8h2im7t"
 }
 }
 }

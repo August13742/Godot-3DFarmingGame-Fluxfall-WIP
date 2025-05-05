@@ -27,7 +27,7 @@ project/assembly_name="3D_survival"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdquest_model_viewer_3d/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
