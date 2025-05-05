@@ -35,4 +35,4 @@ func update(delta):
 	root_entity.move_and_slide()
 	
 func exit():
-	root_entity.animation_player.speed_scale = 0.75
+	root_entity.animation_player.speed_scale = 1
