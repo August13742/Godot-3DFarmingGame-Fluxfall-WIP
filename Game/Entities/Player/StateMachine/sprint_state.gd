@@ -6,7 +6,7 @@ class_name SprintState
 
 func enter():
 	root_entity = owner.root_entity
-	root_entity.animation_player.play("Sprint_Enter",1)
+	root_entity.animation_player.play("Sprint_Enter",0.25)
 	root_entity.animation_player.queue("Sprint")
 
 	if root_entity.state_machine_debug:
