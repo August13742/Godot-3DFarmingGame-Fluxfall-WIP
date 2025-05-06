@@ -88,10 +88,16 @@ func _physics_process(_delta: float) -> void:
 
 
 func get_lookat_direction() -> Vector3:
-	var mouse_position:Vector2 = get_viewport().get_mouse_position()
+	#var mouse_position:Vector2 = get_viewport().get_mouse_position()
 
-	var ray_origin:Vector3 = camera.project_ray_origin(mouse_position)
-	var ray_direction:Vector3 = camera.project_ray_normal(mouse_position)
+	#var ray_origin:Vector3 = camera.project_ray_origin(mouse_position)
+	#var ray_direction:Vector3 = camera.project_ray_normal(mouse_position)
+	var screen_center = get_viewport().get_visible_rect().size / 2
+	var ray_origin:Vector3 = camera.project_ray_origin(screen_center)
+	var ray_direction:Vector3 = camera.project_ray_normal(screen_center)
+	
+	
+	
 	if ray_direction.y ==  0:
 		return Vector3.ZERO 	# too flat, skip rotation
 
@@ -122,14 +128,14 @@ func get_lookat_direction() -> Vector3:
 		
 func rotate_head_ray(to_target: Vector3, _delta: float):
 	var ray = target_entity.interaction_ray_cast
-	var tgt = target_entity.global_position + to_target
-	var direction = tgt - ray.global_position
+	var target = target_entity.global_position + to_target
+	var direction = target - ray.global_position
 
 	if abs(direction.normalized().dot(Vector3.UP)) > 0.999:
 		# Too vertical, skip to prevent twist
 		return
 
-	ray.look_at(tgt, Vector3.UP)
+	ray.look_at(target, Vector3.UP)
 
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
 	if to_target == Vector3.ZERO:
