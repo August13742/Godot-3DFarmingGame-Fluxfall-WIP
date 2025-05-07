@@ -29,7 +29,7 @@ var mouse_sensitivity:float = 0.35
 
 func _ready() -> void:
 	$SpringArm3D.position += Vector3(camera_x_offset,camera_y_offset,camera_z_offset)
-	
+
 	if "angular_velocity" in target_entity:
 		angular_velocity = target_entity.angular_velocity
 	if "mouse_sensitivity_percent" in target_entity:
@@ -73,13 +73,13 @@ func _physics_process(_delta: float) -> void:
 
 	direction_to_look_at = get_lookat_direction()
 	rotate_head_ray(direction_to_look_at,_delta)
-	
+
 	if target_entity.state_machine.current_state == target_entity.state_machine.states["Walk"] \
 	|| target_entity.state_machine.current_state == target_entity.state_machine.states["Sprint"]:
 		var flat_input_direction = Vector2(
 			Input.get_action_strength("move_forward")-Input.get_action_strength("move_backward"),
 			Input.get_action_strength("move_right")-Input.get_action_strength("move_left")).normalized()
-			
+
 		var current_yaw = target_entity.visuals.rotation.y
 		var target_yaw = atan2(flat_input_direction.y, -flat_input_direction.x)
 		target_entity.visuals.rotation.y = lerp_angle(current_yaw, target_yaw, angular_velocity * _delta)
@@ -95,9 +95,9 @@ func get_lookat_direction() -> Vector3:
 	var screen_center = get_viewport().get_visible_rect().size / 2
 	var ray_origin:Vector3 = camera.project_ray_origin(screen_center)
 	var ray_direction:Vector3 = camera.project_ray_normal(screen_center)
-	
-	
-	
+
+
+
 	if ray_direction.y ==  0:
 		return Vector3.ZERO 	# too flat, skip rotation
 
@@ -113,7 +113,7 @@ func get_lookat_direction() -> Vector3:
 
 	# Flattened direction
 	var to_target:Vector3 = intersection - target_entity.global_position
-	
+
 	if Vector3(to_target.x, 0, to_target.z).length_squared() < 0.005:
 
 		return Vector3.ZERO
@@ -123,9 +123,9 @@ func get_lookat_direction() -> Vector3:
 		DebugDraw3D.draw_line(ray_origin, intersection, Color.YELLOW)
 		DebugDraw3D.draw_sphere(intersection, 0.1, Color.GREEN)
 		DebugDraw3D.draw_line(target_entity.global_position, intersection, Color.BLUE)
-		
+
 	return to_target
-		
+
 func rotate_head_ray(to_target: Vector3, _delta: float):
 	var ray = target_entity.interaction_ray_cast
 	var target = target_entity.global_position + to_target
@@ -139,12 +139,11 @@ func rotate_head_ray(to_target: Vector3, _delta: float):
 
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
 	if to_target == Vector3.ZERO:
-		return 
+		return
 
 	# --- ROTATION LOGIC ---
 
 	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flip to - if model faces -z
 	var current_rotation:Vector3 = target_entity.rotation
-	
+
 	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_velocity * _delta)
-	

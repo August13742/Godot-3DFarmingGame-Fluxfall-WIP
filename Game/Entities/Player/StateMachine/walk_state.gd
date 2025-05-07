@@ -2,11 +2,11 @@ extends State
 class_name WalkState
 
 
-#var player:CharacterBody3D
+
 
 func enter():
-	root_entity.animation_player.play("Walk",0.5)
-	root_entity.animation_player.speed_scale = 0.75
+	animation_player.play("Walk",0.5)
+	animation_player.speed_scale = 0.75
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering WALK")
 
@@ -33,6 +33,6 @@ func update(delta):
 
 	root_entity.velocity.y = -0.01  # stick to ground
 	root_entity.move_and_slide()
-	
+
 func exit():
-	root_entity.animation_player.speed_scale = 1
+	animation_player.speed_scale = 1

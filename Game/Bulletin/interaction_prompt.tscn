@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvivjx2b5ig3l"]
+
+[ext_resource type="Script" uid="uid://c0ggbx8t0n1nq" path="res://Game/Bulletin/interaction_prompt.gd" id="1_0cul7"]
+
+[node name="InteractionPrompt" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cul7")
+metadata/_custom_type_script = "uid://b1s7w8f67xn8j"
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 68.0
+offset_right = 144.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

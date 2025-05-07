@@ -14,8 +14,9 @@ func _ready():
 	states["Airbourne"] = $Airbourne
 
 	for state in states.values():
-		state.set_root(root_entity)
-		
+		state.call_deferred("set_root",root_entity)
+
+
 	change_state.call_deferred("Idle")
 
 

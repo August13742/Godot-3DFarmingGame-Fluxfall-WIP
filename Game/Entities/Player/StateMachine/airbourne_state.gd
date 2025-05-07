@@ -2,16 +2,14 @@ extends State
 class_name AirbourneState
 
 
-#var root_entity:CharacterBody3D
+
 
 func enter():
-	root_entity = owner.root_entity
 
+	animation_player.play("Jump_Start")
+	animation_player.animation_set_next("Jump_Start","Jump")
+	animation_player.animation_set_next("Jump","Jump_Land")
 
-	root_entity.animation_player.play("Jump_Start")
-	root_entity.animation_player.animation_set_next("Jump_Start","Jump")
-	root_entity.animation_player.animation_set_next("Jump","Jump_Land")
-		
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering Airbourne")
 
@@ -28,12 +26,12 @@ func update(delta):
 	root_entity.move_and_slide()
 
 	if root_entity.is_on_floor():
-		root_entity.animation_player.play("Jump_Land")
+		animation_player.play("Jump_Land")
 		if input_dir.length() > 0:
 			owner.change_state("Sprint" if Input.is_action_pressed("sprint") else "Walk")
 		else:
 			owner.change_state("Idle")
-			
+
 func can_jump() -> bool:
 	return false  # disable jumping when airborne
 

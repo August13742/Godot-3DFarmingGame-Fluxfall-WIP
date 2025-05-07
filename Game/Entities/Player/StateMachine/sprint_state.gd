@@ -2,12 +2,11 @@ extends State
 class_name SprintState
 
 
-#var player:CharacterBody3D
 
 func enter():
-	root_entity = owner.root_entity
-	root_entity.animation_player.play("Sprint_Enter",0.25)
-	root_entity.animation_player.queue("Sprint")
+
+	animation_player.play("Sprint_Enter",0.25)
+	animation_player.queue("Sprint")
 
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering SPRINT")
@@ -16,12 +15,12 @@ var transition_to_walk_timer:Timer= null
 
 func update(delta):
 	var input_dir:Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	
+
 	if input_dir.length() == 0:
 		if transition_to_walk_timer:
 			transition_to_walk_timer.queue_free()
 			transition_to_walk_timer = null
-		root_entity.animation_player.play("Sprint_Exit")
+		animation_player.play("Sprint_Exit")
 		owner.change_state("Idle")
 		return
 
