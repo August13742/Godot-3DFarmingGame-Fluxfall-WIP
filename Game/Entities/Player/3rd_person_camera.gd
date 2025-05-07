@@ -137,6 +137,7 @@ func rotate_head_ray(to_target: Vector3, _delta: float):
 
 	ray.look_at(target, Vector3.UP)
 
+
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
 	if to_target == Vector3.ZERO:
 		return
