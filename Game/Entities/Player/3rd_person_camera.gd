@@ -22,7 +22,7 @@ var mouse_sensitivity:float = 0.35
 @export var camera_y_offset:float = 0.5
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.8
-@export var max_ray_length:int = 10
+@export var max_ray_length:int = 5
 @export var camera_acceleration_smoothing := 25
 @export var camera_raycast_debug:bool = false
 
@@ -101,14 +101,16 @@ func get_lookat_direction() -> Vector3:
 	if ray_direction.y ==  0:
 		return Vector3.ZERO 	# too flat, skip rotation
 
-	var ground_y:float = target_entity.global_position.y
+	#var ground_y:float = target_entity.global_position.y
 
 
 
-	var t:float = (ground_y - ray_origin.y) / ray_direction.y
+	#var t:float = (ground_y - ray_origin.y) / ray_direction.y
 
-	t = clampf(t,camera_z_offset + 4,max_ray_length)
-	var intersection := ray_origin + ray_direction * t
+	#t = clampf(t,camera_z_offset + 4,max_ray_length)
+	# since we don't care about if the intersection hits the ground or not,  t is not needed
+	var intersection := ray_origin + ray_direction * 5
+
 
 
 	# Flattened direction
@@ -125,6 +127,8 @@ func get_lookat_direction() -> Vector3:
 		DebugDraw3D.draw_line(target_entity.global_position, intersection, Color.BLUE)
 
 	return to_target
+
+
 
 func rotate_head_ray(to_target: Vector3, _delta: float):
 	var ray = target_entity.interaction_ray_cast
