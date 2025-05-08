@@ -1,39 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd3bxonrcb2c2"]
+[gd_scene load_steps=4 format=3 uid="uid://bd3bxonrcb2c2"]
 
 [ext_resource type="Script" uid="uid://bg55jtlhd2rqv" path="res://terrain_mesh.gd" id="1_1c2jm"]
-[ext_resource type="PackedScene" path="res://SavedMeshScene13.tscn" id="2_1c2jm"]
-[ext_resource type="Shader" uid="uid://dmwo2goh4ood" path="res://procedural_mesh.gdshader" id="3_4oy4p"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_78a8s"]
-render_priority = 0
-shader = ExtResource("3_4oy4p")
-shader_parameter/colour0 = Vector4(0, 0, 0, 0)
-shader_parameter/colour1 = Vector4(0, 0, 0, 0)
-shader_parameter/colour2 = Vector4(0, 0, 0, 0)
-shader_parameter/colour3 = Vector4(0, 0, 0, 0)
-shader_parameter/colour4 = Vector4(0, 0, 0, 0)
-shader_parameter/colour5 = Vector4(0, 0, 0, 0)
-shader_parameter/colour6 = Vector4(0, 0, 0, 0)
-shader_parameter/threshold0 = 0.0
-shader_parameter/threshold1 = 0.0
-shader_parameter/threshold2 = 0.0
-shader_parameter/threshold3 = 0.0
-shader_parameter/threshold4 = 0.0
-shader_parameter/threshold5 = 0.0
-shader_parameter/threshold6 = 0.0
-shader_parameter/sharpness0 = 0.0
-shader_parameter/sharpness1 = 0.0
-shader_parameter/sharpness2 = 0.0
-shader_parameter/sharpness3 = 0.0
-shader_parameter/sharpness4 = 0.0
-shader_parameter/sharpness5 = 0.0
-shader_parameter/sharpness6 = 0.0
-shader_parameter/layer_count = 0
-shader_parameter/max_height = 0.0
+[ext_resource type="Script" uid="uid://c8mlfk3w1ioiv" path="res://static_body_3d.gd" id="1_me6q0"]
+[ext_resource type="PackedScene" path="res://test.tscn" id="2_1c2jm"]
 
 [node name="TerrainMesh" type="Node3D"]
-script = ExtResource("1_1c2jm")
+script = ExtResource("1_me6q0")
 
-[node name="Mesh" parent="." instance=ExtResource("2_1c2jm")]
-layers = 2
-material_override = SubResource("ShaderMaterial_78a8s")
+[node name="MeshInstance3D" parent="." instance=ExtResource("2_1c2jm")]
+script = ExtResource("1_1c2jm")

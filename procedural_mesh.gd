@@ -78,8 +78,10 @@ func generate_mesh():
 			#else:
 				#mesh_index += 1
 
-	var noise_counter:int = 0
-	var height_counter:int = 0
+	var height_min:float = 0
+	var height_max:float = 0
+	var height_sum:float = 0
+	var ctr:int = 0
 	for y in range(0,border_size,simplification_increment):
 		for x in range(0,border_size,simplification_increment):
 			var percent = Vector2(
@@ -93,10 +95,13 @@ func generate_mesh():
 				top_left_z - percent.y * mesh_size_unsimplified)
 			var noise_value:float = get_noise_normalised(pos.x,pos.z)
 			var height = height_curve.sample(noise_value) * height_multiplier
-			if noise_value == 0:
-				noise_counter+=1
-			if height == 0:
-				height_counter+=1
+			
+			if height > height_max:
+				height_max = height
+			elif height < height_min:
+				height_min = height
+			height_sum += height
+			ctr+=1
 			pos.y = height
 			vertices.append(pos)
 			uvs.append(percent)
@@ -105,7 +110,7 @@ func generate_mesh():
 			st.set_uv(percent)
 			st.add_vertex(pos)
 			mesh_index += 1
-	printt(noise_counter, height_counter)
+	printt(height_max, height_min, height_sum/ctr)
 	for y in range(0,border_size - simplification_increment,simplification_increment):
 		for x in range(0,border_size - simplification_increment,simplification_increment):
 			var a = index_map[Vector2i(x,y)] # 0,0
@@ -133,7 +138,7 @@ func generate_mesh():
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(new_scene)
 
-	var error = ResourceSaver.save(packed_scene,"res://SavedMeshScene13.tscn")
+	var error = ResourceSaver.save(packed_scene,"res://test1.tscn")
 	if error != OK:
 		print("Failed to save mesh scene:", error)
 	else:
