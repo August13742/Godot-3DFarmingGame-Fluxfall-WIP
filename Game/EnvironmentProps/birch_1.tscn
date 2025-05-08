@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://becbt2x1mr2ro"]
+
+[ext_resource type="PackedScene" uid="uid://ve0io78qwt4f" path="res://Assets/Models/Environment/Birch_3.gltf" id="1_50i1v"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_50i1v"]
+height = 8.0
+radius = 0.4
+
+[node name="Birch_3" instance=ExtResource("1_50i1v")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.73788, 0)
+shape = SubResource("CylinderShape3D_50i1v")

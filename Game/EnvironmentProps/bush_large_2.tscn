@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cacmmsh17l0vf"]
+
+[ext_resource type="PackedScene" uid="uid://ceqoxecsrpwic" path="res://Assets/Models/Environment/Bush_Large.gltf" id="1_wbyxb"]
+
+[node name="Bush_Large2" instance=ExtResource("1_wbyxb")]

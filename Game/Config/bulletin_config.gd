@@ -1,5 +1,6 @@
 class_name BulletinConfig
 
+## usually this is called "billboard" but since that's a property in Control Nodes, using Bulletin Instead
 enum Keys {
 	InteractionPrompt,
 }

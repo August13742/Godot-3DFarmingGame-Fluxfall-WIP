@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpacbdkmsf8k7"]
+
+[ext_resource type="PackedScene" uid="uid://33rjc3j86c8i" path="res://Assets/Models/Environment/Bush_Large_Flowers.gltf" id="1_nwc68"]
+
+[node name="Bush_Large_Flowers2" instance=ExtResource("1_nwc68")]
