@@ -95,7 +95,7 @@ func generate_mesh():
 				top_left_z - percent.y * mesh_size_unsimplified)
 			var noise_value:float = get_noise_normalised(pos.x,pos.z)
 			var height = height_curve.sample(noise_value) * height_multiplier
-			
+
 			if height > height_max:
 				height_max = height
 			elif height < height_min:

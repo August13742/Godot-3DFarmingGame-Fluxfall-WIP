@@ -35,7 +35,7 @@ uniform float sharpness6;
 
 uniform int layer_count = 7;
 uniform float max_height = 40.0;
-uniform float scale = 3;
+uniform float scale = 0.1;
 
 varying vec3 world_pos;
 varying vec3 local_pos;
@@ -117,6 +117,7 @@ vec3 layer_debug_color(int i) {
 	return vec3(1.0, 0.0, 1.0); // Magenta - Unknown
 }
 
+
 void fragment() {
     float height = local_pos.y / max_height;
     vec3 norm = normalize(NORMAL);
@@ -126,18 +127,23 @@ void fragment() {
     float total_weight = 0.0;
 
     for (int i = 0; i < layer_count; i++) {
-        float t = get_threshold(i);
-        float s = get_sharpness(i)*0.5;
-        float w = smoothstep(t - s, t + s, height);
-
-        vec4 layer_col = get_layer_color(i, local_pos, norm);
-        if (layer_col.a == 0.0) {
-            layer_col = vec4(1.0, 0.0, 1.0, 1.0); // debug magenta
-        }
-
+		//float height_start = (i == 0) ? get_threshold(i-1):0.0;
+		float height_start = get_threshold(i);
+		float height_end = (i < layer_count-1) ? get_threshold(i+1):1.0;
+		float blend = get_sharpness(i);
+		
+		float w_in = smoothstep(height_start-blend, height_start, height); // fade in
+		float w_out = 1.0 - smoothstep(height_end,height_end+blend, height); // fade out
+		float w = clamp(w_in*w_out,0.0,1.0);
+		
+		vec4 layer_col = get_layer_color(i,local_pos,norm);
+		layer_col.a = 1.0;
+		
 		layer_col.rgb = pow(layer_col.rgb, vec3(1.5)); // boosts midtones
-		final_color.rgb += layer_col.rgb * w;
-        total_weight += w;
+		
+		final_color.rgb += layer_col.rgb*w;
+		total_weight += w;
+		
     }
 
     if (total_weight > 0.0) {
