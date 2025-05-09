@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dras1fyas3gah"]
+
+[ext_resource type="Texture2D" uid="uid://brvs63xyheagy" path="res://Assets/textures/item_icons/plant.png" id="1_v7u3t"]
+[ext_resource type="Script" uid="uid://bwtsq8kxvu2kp" path="res://Items/item_resource.gd" id="2_v7u3t"]
+
+[resource]
+script = ExtResource("2_v7u3t")
+item_id = "plant"
+display_name = "Plant"
+icon = ExtResource("1_v7u3t")
+stack_size = 99
+metadata/_custom_type_script = "uid://bwtsq8kxvu2kp"

@@ -10,7 +10,7 @@ func emit_BUL_create_bulletin(key:int, prompt:String):
 func emit_BUL_destroy_bulletin(key:int):
 	BUL_destroy_bulletin.emit(key)
 
-signal ITEM_picked_up(node:Node)
+signal INV_try_pick_up_item(item_key:ItemDB.Keys,follow_up:Callable)
 
-func emit_ITEM_picked_up(node:Node):
-	ITEM_picked_up.emit(node)
+func emit_INV_try_pick_up_item(item_key:ItemDB.Keys,follow_up:Callable):
+	INV_try_pick_up_item.emit(item_key,follow_up)
