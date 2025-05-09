@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TerrainData" load_steps=2 format=3 uid="uid://0wqylrnsnsvy"]
+
+[ext_resource type="Script" uid="uid://lgfeu3qvchks" path="res://ProceduralTerrain/TerrainData/terrain_data.gd" id="1_e2why"]
+
+[resource]
+script = ExtResource("1_e2why")
+vertex_positions = PackedVector3Array()
+triangle_vertices_indexes = PackedVector3Array()
