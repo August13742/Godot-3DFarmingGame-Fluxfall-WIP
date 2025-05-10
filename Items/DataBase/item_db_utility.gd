@@ -13,3 +13,8 @@ func get_stack_size(key:ItemDB.Keys)->int:
 
 func get_item_name(key:ItemDB.Keys)->String:
 	return get_item_resource(key).display_name
+
+func get_item_texture(key)->Texture2D:
+	if key is ItemDB.Keys:
+		return get_item_resource(key).icon
+	return null

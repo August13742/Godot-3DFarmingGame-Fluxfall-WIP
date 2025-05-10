@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://fmd6u3cipjbb" path="res://Game/Entities/Player/StateMachine/state_machine.tscn" id="2_5028t"]
 [ext_resource type="PackedScene" uid="uid://c0k0eagqggd47" path="res://Game/Entities/Player/mannequin.tscn" id="3_1du5w"]
 [ext_resource type="Script" uid="uid://6el3nq2lfoqx" path="res://Game/Entities/Player/interaction_ray_cast.gd" id="4_ulv0d"]
-[ext_resource type="PackedScene" uid="uid://ds4jsprk6qhrw" path="res://InventorySystem/inventory_manager.tscn" id="5_5028t"]
+[ext_resource type="PackedScene" uid="uid://ds4jsprk6qhrw" path="res://InventorySystem/inventory_component.tscn" id="5_5028t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25h4n"]
 radius = 0.4
@@ -52,8 +52,6 @@ visible = false
 shape = SubResource("BoxShape3D_ulv0d")
 debug_color = Color(0, 0.643276, 0.302963, 0.42)
 
-[node name="Managers" type="Node" parent="."]
-
-[node name="InventoryManager" parent="Managers" instance=ExtResource("5_5028t")]
+[node name="InventoryComponent" parent="." instance=ExtResource("5_5028t")]
 
 [editable path="VisualControl/Mannequin"]

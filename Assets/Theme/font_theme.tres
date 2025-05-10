@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6sqkai50xa1m"]
+
+[ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="1_b3rxb"]
+
+[resource]
+default_font = ExtResource("1_b3rxb")
+default_font_size = 20

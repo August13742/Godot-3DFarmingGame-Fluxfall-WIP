@@ -61,7 +61,7 @@ shadow_enabled = true
 environment = SubResource("Environment_n8j1b")
 
 [node name="Player" parent="." instance=ExtResource("4_vbqht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13209, -0.0338593, -36.0918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13209, -0.0338593, -13.3752)
 normal_speed = 3.0
 sprint_speed = 6.0
 

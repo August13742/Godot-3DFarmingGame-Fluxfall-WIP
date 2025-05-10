@@ -7,7 +7,7 @@ class_name Pickuppable
 
 func start_interaction() -> void:
 	EventSystem.emit_INV_try_pick_up_item(item_key,destroy_self)
-	
+
 
 
 func destroy_self() -> void:

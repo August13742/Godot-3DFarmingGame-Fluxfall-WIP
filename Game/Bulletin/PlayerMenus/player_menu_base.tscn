@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://q81mp7mnrdap"]
+
+[ext_resource type="Texture2D" uid="uid://c34km7qys3bo4" path="res://Assets/textures/panelInset_beige.png" id="1_8g0vi"]
+[ext_resource type="Texture2D" uid="uid://cs33jqwlnbqwa" path="res://Assets/textures/panel_brown.png" id="1_cwcp5"]
+[ext_resource type="Texture2D" uid="uid://dtexhiyqi1ct0" path="res://Assets/textures/cross.png" id="2_04557"]
+[ext_resource type="Script" uid="uid://c0b1h36or3m7l" path="res://InventorySystem/UI/inventory_grid.gd" id="2_cwcp5"]
+[ext_resource type="Texture2D" uid="uid://ba2wsc4qryw3w" path="res://Assets/textures/panelInset_brown.png" id="3_tv4ds"]
+[ext_resource type="Script" uid="uid://070oy1mtlntl" path="res://Game/Bulletin/PlayerMenus/close_button.gd" id="4_tv4ds"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwcp5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0a0m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbyy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbewt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y25g5"]
+
+[node name="PlayerMenuBase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1856.0
+offset_bottom = 1016.0
+texture = ExtResource("1_cwcp5")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1856.0
+offset_bottom = 1016.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+split_offset = 600
+dragger_visibility = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/MarginContainer/HBoxContainer/VSplitContainer"]
+layout_mode = 2
+texture = ExtResource("1_8g0vi")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 48
+patch_margin_bottom = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/HBoxContainer/VSplitContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="InventoryGrid" type="GridContainer" parent="MarginContainer2/MarginContainer/HBoxContainer/VSplitContainer/NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 8
+script = ExtResource("2_cwcp5")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer2/MarginContainer/HBoxContainer/VSplitContainer"]
+layout_mode = 2
+texture = ExtResource("1_8g0vi")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 48
+patch_margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="CloseButton" type="Button" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cwcp5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a0a0m")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bmbyy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gbewt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y25g5")
+icon = ExtResource("2_04557")
+expand_icon = true
+script = ExtResource("4_tv4ds")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_8g0vi")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 48
+patch_margin_bottom = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("3_tv4ds")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 48
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect/MarginContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1

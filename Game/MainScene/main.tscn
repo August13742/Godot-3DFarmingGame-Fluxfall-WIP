@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmpehjugcnqvw"]
+[gd_scene load_steps=5 format=3 uid="uid://cmpehjugcnqvw"]
 
 [ext_resource type="Script" uid="uid://14ahspcs02nm" path="res://Game/MainScene/stage_controller.gd" id="1_ypbn1"]
+[ext_resource type="Script" uid="uid://c861adxenmhwu" path="res://Game/MainScene/ui_layer.gd" id="2_ypbn1"]
 [ext_resource type="PackedScene" uid="uid://7tvgd0t26wxq" path="res://UI/HUD/hud.tscn" id="9_n8j1b"]
 [ext_resource type="Script" uid="uid://dfs47o0tniw4t" path="res://Managers/bulletin_controller.gd" id="10_fw86m"]
 
@@ -10,6 +11,7 @@
 script = ExtResource("1_ypbn1")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_ypbn1")
 
 [node name="HUDController" type="Node" parent="UILayer"]
 

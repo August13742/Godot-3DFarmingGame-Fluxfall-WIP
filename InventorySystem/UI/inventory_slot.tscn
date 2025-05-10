@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8ig8nq7ir5ki"]
+
+[ext_resource type="Texture2D" uid="uid://cs33jqwlnbqwa" path="res://Assets/textures/panel_brown.png" id="1_f83qd"]
+[ext_resource type="Script" uid="uid://do1mhl4c4ouoa" path="res://InventorySystem/UI/inventory_slot_ui.gd" id="2_j0jip"]
+[ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="4_ch3ee"]
+[ext_resource type="Theme" uid="uid://b6sqkai50xa1m" path="res://Assets/Theme/font_theme.tres" id="4_jci3p"]
+
+[node name="InventorySlot" type="TextureRect"]
+custom_minimum_size = Vector2(96, 96)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_f83qd")
+expand_mode = 1
+script = ExtResource("2_j0jip")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Counter" type="Label" parent="MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_jci3p")
+theme_override_fonts/font = ExtResource("4_ch3ee")
+text = "error"
+horizontal_alignment = 1
+vertical_alignment = 1
