@@ -74,8 +74,8 @@ func _physics_process(_delta: float) -> void:
 	direction_to_look_at = get_lookat_direction()
 	rotate_head_ray(direction_to_look_at,_delta)
 
-	if target_entity.state_machine.current_state == target_entity.state_machine.states["Walk"] \
-	|| target_entity.state_machine.current_state == target_entity.state_machine.states["Sprint"]:
+	if target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Walk] \
+	|| target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Sprint]:
 		var flat_input_direction = Vector2(
 			Input.get_action_strength("move_forward")-Input.get_action_strength("move_backward"),
 			Input.get_action_strength("move_right")-Input.get_action_strength("move_left")).normalized()

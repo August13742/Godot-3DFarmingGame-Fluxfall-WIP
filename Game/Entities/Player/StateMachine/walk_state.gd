@@ -14,13 +14,13 @@ func enter():
 func update(delta):
 	var input_dir:Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	if input_dir.length() == 0:
-		owner.change_state("Idle")
+		owner.change_state(StateMachine.Idle)
 		return
 	if Input.is_action_pressed("sprint"):
-		owner.change_state("Sprint")
+		owner.change_state(StateMachine.Sprint)
 		return
 	if !root_entity.is_on_floor():
-		owner.change_state("Airbourne")
+		owner.change_state(StateMachine.Airbourne)
 		return
 
 

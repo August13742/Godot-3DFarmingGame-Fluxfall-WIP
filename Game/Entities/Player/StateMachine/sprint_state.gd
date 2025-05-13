@@ -21,7 +21,7 @@ func update(delta):
 			transition_to_walk_timer.queue_free()
 			transition_to_walk_timer = null
 		animation_player.play("Sprint_Exit")
-		owner.change_state("Idle")
+		owner.change_state(StateMachine.Idle)
 		return
 
 	if !Input.is_action_pressed("sprint"):
@@ -41,7 +41,7 @@ func update(delta):
 		if transition_to_walk_timer:
 			transition_to_walk_timer.queue_free()
 			transition_to_walk_timer = null
-		owner.change_state("Airbourne")
+		owner.change_state(StateMachine.Airbourne)
 		return
 
 	var accel:float = root_entity.ground_acceleration
@@ -55,4 +55,4 @@ func update(delta):
 
 func _on_sprint_release_timeout():
 	if is_instance_valid(owner):
-		owner.change_state("Walk")
+		owner.change_state(StateMachine.Walk)

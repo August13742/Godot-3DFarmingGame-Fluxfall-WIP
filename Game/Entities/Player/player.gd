@@ -24,7 +24,7 @@ func _ready() -> void:
 
 var movespeed:float = normal_speed
 func _physics_process(delta):
-	movespeed = sprint_speed if Input.is_action_pressed("sprint") else normal_speed
+	movespeed = sprint_speed if Input.is_action_pressed(StateMachine.Sprint) else normal_speed
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var target_velocity = transform.basis * Vector3(input_dir.x, 0, input_dir.y) * movespeed

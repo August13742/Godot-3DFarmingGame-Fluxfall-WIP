@@ -28,9 +28,9 @@ func update(delta):
 	if root_entity.is_on_floor():
 		animation_player.play("Jump_Land")
 		if input_dir.length() > 0:
-			owner.change_state("Sprint" if Input.is_action_pressed("sprint") else "Walk")
+			owner.change_state(StateMachine.Sprint if Input.is_action_pressed("sprint") else StateMachine.Walk)
 		else:
-			owner.change_state("Idle")
+			owner.change_state(StateMachine.Idle)
 
 func can_jump() -> bool:
 	return false  # disable jumping when airborne

@@ -16,7 +16,7 @@ func enter():
 			animation_player.queue("Idle")
 	else:
 		animation_player.call_deferred("play", "Idle",0.5)
-	#(animation_player as AnimationPlayer).play("Idle",1.0)
+	#(animation_player as AnimationPlayer).play(StateMachine.Idle,1.0)
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering IDLE")
 
@@ -26,11 +26,11 @@ func update(_delta:float):
 	if input_dir.length() > 0:
 		if Input.is_action_pressed("sprint"):
 
-			owner.change_state("Sprint")
+			owner.change_state(StateMachine.Sprint)
 		else:
-			owner.change_state("Walk")
+			owner.change_state(StateMachine.Walk)
 	if !root_entity.is_on_floor():
-		owner.change_state("Airbourne")
+		owner.change_state(StateMachine.Airbourne)
 
 
 

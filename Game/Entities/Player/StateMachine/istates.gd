@@ -29,12 +29,12 @@ func can_jump() -> bool:
 		#match event.action:
 			#"jump":
 				#jump()
-			#"sprint":
+			#StateMachine.Sprint:
 				#start_sprint()
 
 func jump():
 	root_entity.velocity.y = root_entity.jump_force
-	root_entity.state_machine.change_state("Airbourne")
+	root_entity.state_machine.change_state(StateMachine.Airbourne)
 
 func set_root(entity: Node3D) -> void:
 	root_entity = entity
