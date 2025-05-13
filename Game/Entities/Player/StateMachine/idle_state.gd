@@ -9,13 +9,10 @@ func enter():
 	root_entity.velocity.z = 0
 
 	var current_animation:String = animation_player.current_animation if animation_player != null else ""
-	if current_animation != "":
-		if animation_player.get_animation(current_animation).loop_mode == 1:
-			animation_player.play("Idle",0.5)
-		else:
+	if current_animation == "Jump_Land":
 			animation_player.queue("Idle")
 	else:
-		animation_player.call_deferred("play", "Idle",0.5)
+		animation_player.play("Idle",0.5)
 	#(animation_player as AnimationPlayer).play(StateMachine.Idle,1.0)
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering IDLE")

@@ -26,7 +26,7 @@ func update(delta):
 	root_entity.move_and_slide()
 
 	if root_entity.is_on_floor():
-		animation_player.play("Jump_Land")
+		animation_player.play("Jump_Land",0.5)
 		if input_dir.length() > 0:
 			owner.change_state(StateMachine.Sprint if Input.is_action_pressed("sprint") else StateMachine.Walk)
 		else:
