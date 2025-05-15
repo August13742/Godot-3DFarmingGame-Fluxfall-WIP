@@ -119,12 +119,9 @@ func get_lookat_direction() -> Vector3:
 	if Vector3(to_target.x, 0, to_target.z).length_squared() < 0.005:
 
 		return Vector3.ZERO
-	# --- DEBUG DRAWING ---
+	## --- DEBUG DRAWING ---
 	if camera_raycast_debug:
-		DebugDraw3D.draw_line(ray_origin, ray_origin + ray_direction * 5.0, Color.RED)
-		DebugDraw3D.draw_line(ray_origin, intersection, Color.YELLOW)
-		DebugDraw3D.draw_sphere(intersection, 0.1, Color.GREEN)
-		DebugDraw3D.draw_line(target_entity.global_position, intersection, Color.BLUE)
+		pass
 
 	return to_target
 
