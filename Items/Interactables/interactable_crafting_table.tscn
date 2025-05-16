@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce7x24023mjjs"]
+
+[ext_resource type="Script" uid="uid://ceedrseh8lfi1" path="res://Items/Interactables/interactable_crafting_table.gd" id="1_cxe03"]
+[ext_resource type="Script" uid="uid://bcnixc518q8ix" path="res://Items/Interactables/interactable.gd" id="1_e3ksw"]
+[ext_resource type="PackedScene" uid="uid://douxgd0o6vl2h" path="res://Assets/meshes/tree_stump.tscn" id="2_ggnog"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxe03"]
+radius = 0.35
+
+[node name="InteractableTemplate" type="Node3D"]
+script = ExtResource("1_cxe03")
+
+[node name="Interactable" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_e3ksw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_cxe03")
+debug_color = Color(0.7, 0, 0.0116665, 0.682353)
+
+[node name="TreeStump" parent="Interactable" instance=ExtResource("2_ggnog")]

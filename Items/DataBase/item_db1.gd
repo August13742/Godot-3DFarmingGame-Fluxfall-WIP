@@ -24,4 +24,3 @@ enum Craftables {
 const CRAFTABLES: Dictionary = {
 	Craftables.Rope: Keys.Rope,
 }
-

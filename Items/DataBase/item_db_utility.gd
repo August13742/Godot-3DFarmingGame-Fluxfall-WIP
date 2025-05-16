@@ -21,3 +21,7 @@ func get_item_name(key:ItemDB.Keys)->String:
 func get_item_texture(key:ItemDB.Keys)->Texture2D:
 	var loaded_item:ItemResource = get_item_resource(key)
 	return null if loaded_item == null else get_item_resource(key).icon
+
+
+func get_craftable_recipe(Key:ItemDB.Craftables):
+	pass

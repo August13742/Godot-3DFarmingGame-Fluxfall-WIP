@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cmrqvuf56i3p" path="res://Assets/meshes/terrain.tscn" id="1_dt106"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="4_vbqht"]
 [ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="5_4x32u"]
-[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Items/Interactables/pickuppable_stick.tscn" id="6_8lcsj"]
-[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Items/Interactables/pickuppable_stone.tscn" id="7_kd3vq"]
-[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Items/Interactables/pickuppable_plant.tscn" id="8_amx5f"]
+[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Items/Interactables/Pickuppable/pickuppable_stick.tscn" id="6_8lcsj"]
+[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Items/Interactables/Pickuppable/pickuppable_stone.tscn" id="7_kd3vq"]
+[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Items/Interactables/Pickuppable/pickuppable_plant.tscn" id="8_amx5f"]
 [ext_resource type="PackedScene" uid="uid://becbt2x1mr2ro" path="res://Game/EnvironmentProps/birch_1.tscn" id="8_ld765"]
 [ext_resource type="PackedScene" uid="uid://bpacbdkmsf8k7" path="res://Game/EnvironmentProps/bush_large_flowers_2.tscn" id="9_2iky2"]
 

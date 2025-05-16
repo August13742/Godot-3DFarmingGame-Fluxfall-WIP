@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CraftableResource" load_steps=3 format=3 uid="uid://dlaqpyf4i4m72"]
+
+[ext_resource type="Script" uid="uid://dxv1fvj1jg56l" path="res://CraftingSystem/CraftableResources/craftable_resource.gd" id="1_0xuam"]
+[ext_resource type="Texture2D" uid="uid://7unlo2pvpffj" path="res://Assets/textures/item_icons/rope.png" id="1_qmou7"]
+
+[resource]
+script = ExtResource("1_0xuam")
+required_material = Dictionary[int, int]({})
+item_id = "rope"
+display_name = "rope"
+tags = Array[int]([1])
+description = "test"
+icon = ExtResource("1_qmou7")
+stack_size = 99
+metadata/_custom_type_script = "uid://dxv1fvj1jg56l"

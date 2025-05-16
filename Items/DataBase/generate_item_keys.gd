@@ -1,41 +1,72 @@
 @tool
 extends EditorScript
 
-func _run():
-	var header := "## AUTO-GENERATED FILE. DO NOT EDIT.\n"
-	header += "class_name ItemDB\n\n"
-	var key_output := "enum Keys {\n\tNULL,\n"
-	var path_output := "const PATHS:Dictionary = {\n\t0: null,\n"
-	var dir := DirAccess.open("res://Items/Resources/")
-	if not dir:
-		push_error("Directory not found: res://Items/Resources/")
-		return
 
-	var index := 1
+var header := "## AUTO-GENERATED FILE. DO NOT EDIT.\n"
+
+
+var key_enum := "enum Keys {\n\tNULL,\n"
+var path_dict := "const PATHS: Dictionary = {\n\t0: null,\n"
+
+var craftable_enum := "enum Craftables {\n"
+var craftable_map := "const CRAFTABLES: Dictionary = {\n"
+
+var index := 1
+var craftable_index := 0
+
+
+func _run():
+	header += "class_name Item1DB\n\n"
+
+
+	process_dir("res://Items/Resources")
+	key_enum += "}\n\n"
+	path_dict += "}\n\n"
+	craftable_enum += "}\n\n"
+	craftable_map += "}\n\n"
+
+	var full_output := header + key_enum + path_dict + craftable_enum + craftable_map
+
+	var f := FileAccess.open("res://Items/DataBase/item_db.gd", FileAccess.WRITE)
+	f.store_string(full_output)
+	f.close()
+
+	print_debug("✔ Generated %d item keys, %d craftables." % [index, craftable_index])
+
+
+func process_dir(path: String):
+	var dir := DirAccess.open(path)
+	if not dir:
+		push_error("Directory not found: %s" % path)
+		return
 	dir.list_dir_begin()
-	var file_name := dir.get_next()
+	var file_name = dir.get_next()
 	while file_name != "":
-		if file_name.ends_with(".tres") and not dir.current_is_dir():
-			var path = "res://Items/Resources/" + file_name
-			var resource:= load(path)
+		if file_name.begins_with("."):
+			file_name = dir.get_next()
+			continue
+		var full_path = path + "/" + file_name
+		if dir.current_is_dir():
+			process_dir(full_path)
+		elif file_name.ends_with(".tres"):
+			var resource := load(full_path)
+			var id
 			if resource is ItemResource:
-				var id = resource.item_id
+				id = resource.item_id
 				if id == "":
 					push_warning("Item resource '%s' has no item_id" % file_name)
 				else:
-					key_output += "\t%s,\n" % [id.to_pascal_case()]
-					path_output += "\t%d: \"%s\",\n"%[index,path]
+					var key_name = id.to_pascal_case()
+					key_enum += "\t%s,\n" % key_name
+					path_dict += "\t%d: \"%s\",\n" % [index, full_path]
+
+					if resource is CraftableResource:
+						craftable_enum += "\t%s,\n" % key_name
+						craftable_map += "\tCraftables.%s: Keys.%s,\n" % [key_name, key_name]
+						craftable_index += 1
+
 					index += 1
 			else:
 				push_warning("File '%s' is not a valid ItemResource" % file_name)
 		file_name = dir.get_next()
 	dir.list_dir_end()
-
-	key_output += "}\n\n\n"
-	path_output += "}\n\n"
-
-	var f := FileAccess.open("res://Items/DataBase/item_db.gd", FileAccess.WRITE)
-	f.store_string(header+key_output+path_output)
-	f.close()
-
-	print_debug("✔ ItemKeys generation complete with [%d] Keys."%index)

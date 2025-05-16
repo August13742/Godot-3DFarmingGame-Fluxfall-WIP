@@ -7,6 +7,8 @@
 script = ExtResource("2_v7u3t")
 item_id = "plant"
 display_name = "Plant"
+tags = Array[int]([1])
+description = ""
 icon = ExtResource("1_v7u3t")
 stack_size = null
 metadata/_custom_type_script = "uid://bwtsq8kxvu2kp"

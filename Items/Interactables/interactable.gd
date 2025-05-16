@@ -6,4 +6,4 @@ class_name Interactable
 
 
 func start_interaction() -> void:
-	pass
+	EventSystem.emit_INT_begin_interaction()

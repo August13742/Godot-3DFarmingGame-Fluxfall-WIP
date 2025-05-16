@@ -19,3 +19,9 @@ func emit_INV_try_pick_up_item(item_key:ItemDB.Keys,follow_up:Callable):
 
 func emit_INV_item_pickup_successful(slot:InventorySlot):
 	INV_item_pickup_successful.emit(slot)
+
+
+#signal INT_begin_interaction(station_type,follow_up:Callable)
+signal INT_begin_interaction()
+func emit_INT_begin_interaction():
+	INT_begin_interaction.emit()
