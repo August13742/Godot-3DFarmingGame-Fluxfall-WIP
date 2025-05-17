@@ -10,7 +10,7 @@
 [node name="StageController" type="Node" parent="."]
 script = ExtResource("1_ypbn1")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("2_ypbn1")
 
 [node name="HUDController" type="Node" parent="UILayer"]

@@ -16,7 +16,7 @@ var craftable_index := 0
 
 
 func _run():
-	header += "class_name Item1DB\n\n"
+	header += "class_name ItemDB\n\n"
 
 
 	process_dir("res://Items/Resources")

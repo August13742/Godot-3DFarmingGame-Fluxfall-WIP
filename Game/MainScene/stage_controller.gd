@@ -2,7 +2,7 @@ extends Node
 class_name StageController
 
 func _ready() -> void:
-	change_stage(StageConfig.Keys.Island)
+	change_stage(StageConfig.Keys.Test)
 
 
 func change_stage(key:StageConfig.Keys)->void:

@@ -11,22 +11,18 @@ func _ready():
 	_initiate.call_deferred()
 
 func _initiate():
-	target_entity = get_tree().get_first_node_in_group("player")
-	target_inventory = target_entity.get_node_or_null("InventoryComponent")
-	if target_inventory == null:
-		print_debug("[Debug/Referencing]: Target does not have InventoryComponent")
+	var inventory = InventoryManager.player_inventory
+	if inventory == null:
+		print_debug("[Debug/Referencing]: Player inventory not yet registered.")
 		return
 
-	inventory_size = target_inventory.inventory_size
-
+	inventory_size = inventory.inventory_size
 	for i in range(inventory_size):
 		var inventory_slot_scene:InventorySlotUI = inventory_slot_ui.instantiate()
-		self.add_child(inventory_slot_scene)
+		add_child(inventory_slot_scene)
 
-		## connect UI and Node
-		inventory_slot_scene.connected_inventory_slot = target_inventory.inventory[i]
-		target_inventory.inventory[i].connected_inventory_scene = inventory_slot_scene
-
+		inventory_slot_scene.connected_inventory_slot = inventory.inventory[i]
+		inventory.inventory[i].connected_inventory_scene = inventory_slot_scene
 
 		update_texture_and_count.call_deferred(inventory_slot_scene)
 

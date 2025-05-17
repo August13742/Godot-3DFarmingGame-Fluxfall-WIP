@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8ialetfpouwl"]
+
+[ext_resource type="Texture2D" uid="uid://c34km7qys3bo4" path="res://Assets/textures/panelInset_beige.png" id="1_dworc"]
+[ext_resource type="PackedScene" uid="uid://df0q2yifj6pdv" path="res://CraftingSystem/crafting_slot.tscn" id="2_m16xd"]
+[ext_resource type="Texture2D" uid="uid://b71t38xsnos0a" path="res://Assets/textures/panel_blue.png" id="3_nggs5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vcb26"]
+texture = ExtResource("3_nggs5")
+
+[node name="LowerMarginContainer2" type="MarginContainer"]
+size_flags_vertical = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_dworc")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CraftingSlot" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_m16xd")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 32
+
+[node name="CraftButton" type="Button" parent="MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_vcb26")
+text = "Craft"

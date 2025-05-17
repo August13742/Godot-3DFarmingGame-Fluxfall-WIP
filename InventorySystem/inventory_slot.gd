@@ -8,7 +8,4 @@ var connected_inventory_scene:InventorySlotUI = null
 
 
 func is_empty() -> bool:
-	if item_key == ItemDB.Keys.NULL:
-		count = 0
-		return true
-	return false
+	return item_key == ItemDB.Keys.NULL

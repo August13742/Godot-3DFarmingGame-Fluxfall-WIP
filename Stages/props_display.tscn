@@ -208,17 +208,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.428578, 0)
 [node name="PickuppablePlant2" parent="Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29874, 0.031348, -1.23855)
 
+[node name="PickuppablePlant3" parent="Interactables" instance=ExtResource("6_nd6yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85918, 0.031348, -9.20019)
+
+[node name="PickuppablePlant4" parent="Interactables" instance=ExtResource("6_nd6yq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50406, 0.031348, -9.20019)
+
 [node name="PickuppablePlant" parent="Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(0.999993, 0, -0.00368264, 0, 1, 0, 0.00368264, 0, 0.999993, -0.889578, 0.031348, 1.30561)
 
 [node name="PickuppableStone2" parent="Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.40681, 0.0534393, 1.40293)
 
+[node name="PickuppableStone3" parent="Interactables" instance=ExtResource("7_rbk52")]
+transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.22871, 0.0534393, -9.26231)
+
+[node name="PickuppableStone4" parent="Interactables" instance=ExtResource("7_rbk52")]
+transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 2.93466, 0.0534393, -9.26231)
+
 [node name="PickuppableStone" parent="Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0534393, 2)
 
 [node name="PickuppableStick2" parent="Interactables" instance=ExtResource("8_scymu")]
 transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.898448, 0.05, 0.226701)
+
+[node name="PickuppableStick3" parent="Interactables" instance=ExtResource("8_scymu")]
+transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 2.53618, 0.05, -9.54105)
 
 [node name="PickuppableStick" parent="Interactables" instance=ExtResource("8_scymu")]
 transform = Transform3D(0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, 0.671863, -1.96435, 0.05, 1.90137)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CraftableResource" load_steps=3 format=3 uid="uid://c3vkbjc54ekwc"]
+
+[ext_resource type="Texture2D" uid="uid://dol8vj5oghpfn" path="res://Assets/textures/item_icons/pickaxe.png" id="1_mk4gk"]
+[ext_resource type="Script" uid="uid://dxv1fvj1jg56l" path="res://CraftingSystem/craftable_resource.gd" id="2_m4kab"]
+
+[resource]
+script = ExtResource("2_m4kab")
+required_material = Dictionary[int, int]({
+1: 1,
+4: 1,
+5: 2
+})
+item_id = "pickaxe"
+display_name = "pickaxe"
+tags = Array[int]([0])
+description = "a pickaxe for test"
+icon = ExtResource("1_mk4gk")
+stack_size = 99
+metadata/_custom_type_script = "uid://dxv1fvj1jg56l"
