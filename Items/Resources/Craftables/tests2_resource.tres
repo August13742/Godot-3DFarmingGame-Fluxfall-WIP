@@ -5,13 +5,13 @@
 
 [resource]
 script = ExtResource("2_m4kab")
-required_material = Dictionary[int, int]({
-1: 1,
-4: 1,
-5: 2
+required_material = Dictionary[StringName, int]({
+&"rope": 1,
+&"stick": 1,
+&"stone": 2
 })
 item_id = "pickaxe"
-display_name = "pickaxe"
+display_name = "Pickaxe"
 tags = Array[int]([0])
 description = "a pickaxe for test"
 icon = ExtResource("1_mk4gk")

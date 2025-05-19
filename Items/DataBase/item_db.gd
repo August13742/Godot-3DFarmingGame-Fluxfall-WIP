@@ -10,21 +10,24 @@ enum Keys {
 	Stone,
 }
 
-const PATHS: Dictionary = {
-	0: null,
-	1: "res://Items/Resources/Craftables/tests1_resource.tres",
-	2: "res://Items/Resources/Craftables/tests2_resource.tres",
-	3: "res://Items/Resources/plant_resource.tres",
-	4: "res://Items/Resources/stick_resource.tres",
-	5: "res://Items/Resources/stone_resource.tres",
+const ITEM_IDS: Dictionary = {
+	Keys.NULL: null,
+	Keys.Rope:"rope",
+	Keys.Pickaxe:"pickaxe",
+	Keys.Plant:"plant",
+	Keys.Stick:"stick",
+	Keys.Stone:"stone",
 }
 
-enum Craftables {
-	Rope,
-	Pickaxe,
+const PATHS: Dictionary = {
+	"rope": "res://Items/Resources/Craftables/tests1_resource.tres",
+	"pickaxe": "res://Items/Resources/Craftables/tests2_resource.tres",
+	"plant": "res://Items/Resources/plant_resource.tres",
+	"stick": "res://Items/Resources/stick_resource.tres",
+	"stone": "res://Items/Resources/stone_resource.tres",
 }
 
 const CRAFTABLES: Dictionary = {
-	Craftables.Rope: Keys.Rope,
-	Craftables.Pickaxe: Keys.Pickaxe,
+	"rope": PATHS["rope"],
+	"pickaxe": PATHS["pickaxe"],
 }

@@ -9,4 +9,4 @@ class_name CraftableResource
 #@export var stack_size:int = 99
 
 
-@export var required_material:Dictionary[ItemDB.Keys,int]
+@export var required_material:Dictionary[StringName,int]

@@ -6,9 +6,9 @@ var header := "## AUTO-GENERATED FILE. DO NOT EDIT.\n"
 
 
 var key_enum := "enum Keys {\n\tNULL,\n"
-var path_dict := "const PATHS: Dictionary = {\n\t0: null,\n"
+var path_dict := "const PATHS: Dictionary = {\n"
+var enum_string_mapping := "const ITEM_IDS: Dictionary = {\n\tKeys.NULL: null,\n"
 
-var craftable_enum := "enum Craftables {\n"
 var craftable_map := "const CRAFTABLES: Dictionary = {\n"
 
 var index := 1
@@ -21,11 +21,11 @@ func _run():
 
 	process_dir("res://Items/Resources")
 	key_enum += "}\n\n"
+	enum_string_mapping += "}\n\n"
 	path_dict += "}\n\n"
-	craftable_enum += "}\n\n"
 	craftable_map += "}\n\n"
 
-	var full_output := header + key_enum + path_dict + craftable_enum + craftable_map
+	var full_output := header + key_enum + enum_string_mapping + path_dict + craftable_map
 
 	var f := FileAccess.open("res://Items/DataBase/item_db.gd", FileAccess.WRITE)
 	f.store_string(full_output)
@@ -58,11 +58,11 @@ func process_dir(path: String):
 				else:
 					var key_name = id.to_pascal_case()
 					key_enum += "\t%s,\n" % key_name
-					path_dict += "\t%d: \"%s\",\n" % [index, full_path]
+					enum_string_mapping += "\tKeys.%s:\"%s\",\n"%[key_name,id]
+					path_dict += "\t\"%s\": \"%s\",\n" % [id, full_path]
 
 					if resource is CraftableResource:
-						craftable_enum += "\t%s,\n" % key_name
-						craftable_map += "\tCraftables.%s: Keys.%s,\n" % [key_name, key_name]
+						craftable_map += "\t\"%s\": PATHS[\"%s\"],\n" % [id, id]
 						craftable_index += 1
 
 					index += 1

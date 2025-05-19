@@ -28,13 +28,13 @@ func _initiate():
 
 
 func update_texture_and_count(inventory_slot_scene:InventorySlotUI):
-	var texture:Texture2D = ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_key)
+	var texture:Texture2D = ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_id)
 	if texture == null:
 		inventory_slot_scene.slot_counter_label.text = ""
 		return
 
 	inventory_slot_scene.texture = \
-			ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_key)
+			ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_id)
 
 	inventory_slot_scene.slot_counter_label.text = str(inventory_slot_scene.connected_inventory_slot.count)
 

@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("2_5sj17")
-required_material = Dictionary[int, int]({
-3: 2
+required_material = Dictionary[StringName, int]({
+&"plant": 2
 })
 item_id = "rope"
-display_name = "rope"
+display_name = "Rope"
 tags = Array[int]([1])
 description = "test"
 icon = ExtResource("1_725ib")
