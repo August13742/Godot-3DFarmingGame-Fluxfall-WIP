@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba0063ywoomvr"]
+
+[ext_resource type="PackedScene" uid="uid://cmrqvuf56i3p" path="res://Assets/meshes/terrain.tscn" id="1_25i4k"]
+[ext_resource type="PackedScene" uid="uid://2iikt4w7bc4m" path="res://spatial_partitioning.tscn" id="2_bnvd4"]
+[ext_resource type="ArrayMesh" uid="uid://dpjgmuj3rkm7r" path="res://terrain_mesh.res" id="3_l0dhf"]
+[ext_resource type="PackedScene" uid="uid://cd17x7clb1bfx" path="res://grass_maker.tscn" id="4_bnvd4"]
+[ext_resource type="ArrayMesh" uid="uid://d1t65rbw8mhob" path="res://Shaders/Grass/grass_mesh.res" id="5_l0dhf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Terrain" parent="." instance=ExtResource("1_25i4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 48.9536, 0)
+
+[node name="SpatialPartitioning" parent="." instance=ExtResource("2_bnvd4")]
+target_mesh = ExtResource("3_l0dhf")
+
+[node name="GrassMaker" parent="." instance=ExtResource("4_bnvd4")]
+multi_mesh_mesh = ExtResource("5_l0dhf")

@@ -89,7 +89,8 @@ func craft_item(target_item: StringName) -> bool:
 			if slot.item_id == item_id:
 				owned_count += slot.count
 		if owned_count < required_amt:
-			print("Not enough %s to craft %s" % [ItemDBUtility.get_item_name(item_id), ItemDBUtility.get_item_name(target_item)])
+			print("Not enough %s to craft %s" % [ItemDBUtility.get_item_name(item_id),
+			ItemDBUtility.get_item_name(target_item)])
 			return false  # Insufficient materials
 
 	# Remove required materials

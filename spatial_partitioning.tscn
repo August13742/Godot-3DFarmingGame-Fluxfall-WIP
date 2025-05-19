@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2iikt4w7bc4m"]
+
+[ext_resource type="Script" uid="uid://tnvd2mx75vb2" path="res://spatial_partitioning.gd" id="1_02t0w"]
+
+[node name="SpatialPartitioning" type="Node"]
+script = ExtResource("1_02t0w")
