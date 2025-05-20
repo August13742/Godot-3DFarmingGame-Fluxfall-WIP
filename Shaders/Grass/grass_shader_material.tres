@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bm3i4ub665khr"]
 
-[ext_resource type="Shader" uid="uid://qluioj84rrxq" path="res://grass.gdshader" id="1_qyjmf"]
+[ext_resource type="Shader" path="res://grass.gdshader" id="1_qyjmf"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nn42n"]
 frequency = 0.0042
@@ -13,14 +13,14 @@ noise = SubResource("FastNoiseLite_nn42n")
 [resource]
 render_priority = 0
 shader = ExtResource("1_qyjmf")
-shader_parameter/top_color = Color(0.696622, 0.149284, 0.314516, 1)
+shader_parameter/top_color = Color(0.77, 0.1617, 0.34419, 1)
 shader_parameter/bottom_color = Color(0.176471, 0.333333, 0.0941176, 1)
 shader_parameter/ambient_occlusion_factor = 0.34
 shader_parameter/specular_strength = 0.4
 shader_parameter/player_displacement_strength = 0.4
 shader_parameter/player_displacement_size = 1.0
 shader_parameter/wind_direction = Vector3(0.4, -0.3, 0.81)
-shader_parameter/wind_strength = 0.4
+shader_parameter/wind_strength = 0.5
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_h28ac")
 shader_parameter/wind_noise_size = 0.05
 shader_parameter/wind_noise_speed = 0.1

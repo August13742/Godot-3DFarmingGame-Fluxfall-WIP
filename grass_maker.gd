@@ -5,7 +5,7 @@ extends Node3D
 @export var multi_mesh_mesh: ArrayMesh
 @onready var spatial_partitioning: SpatialPartitioning = $"../SpatialPartitioning"
 @onready var target_terrain_mesh: MeshInstance3D = $"../StaticBody3D/Terrain"
-var camera: Camera3D 
+var camera: Camera3D
 @export var cull_distance := 80
 @onready var _cull_distance:= cull_distance*cull_distance
 @export var grass_shader_material := preload("uid://bm3i4ub665khr")
@@ -33,12 +33,12 @@ func _ready() -> void:
 		mm_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON if cast_shadow else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		mm.mesh = multi_mesh_mesh
 		add_child(mm_instance)
-		
+
 		## culling
 		mm_instance.set_meta("world_center", chunk_origin_global + Vector3(chunk_size * 0.5, 0, chunk_size * 0.5))
 		mm_instance.set_meta("bounding_radius", chunk_size * 0.75)  # or tighter fit if needed
-		
-		
+
+
 		for i in range(GRASS_PER_REGION):
 			var local_x = randf() * chunk_size
 			var local_z = randf() * chunk_size
@@ -50,13 +50,13 @@ func _ready() -> void:
 
 			var xf = Transform3D().translated(Vector3(local_x, local_y, local_z))
 			mm.set_instance_transform(i, xf)
-			
+
 	_late_init.call_deferred()
 
 func _late_init()->void:
 	camera = get_viewport().get_camera_3d()
 
-	
+
 func _process(_delta: float) -> void:
 	if camera == null:
 		return
@@ -68,8 +68,8 @@ func _process(_delta: float) -> void:
 		var center: Vector3 = mm.get_meta("world_center")
 		var dist := camera.global_transform.origin.distance_squared_to(center)
 		mm.visible = dist < _cull_distance
-		
-		
+
+
 func sample_height_raycast(x: float, z: float) -> float:
 	var aabb = spatial_partitioning.aabb
 	var from = Vector3(x, aabb.position.y + aabb.size.y + 10.0, z)
