@@ -12,7 +12,6 @@ var current_minute: int
 
 
 var _last_ui_minute: int = -1
-const UI_UPDATE_INTERVAL_MINUTES := 10
 
 signal update_timer_ui(hour: int, minute: int, day: int)
 
@@ -20,7 +19,6 @@ func _process(_delta: float) -> void:
 	# Decompose time
 	current_hour = floori(game_time)
 	current_minute = floori((game_time - current_hour) * 60)
-
 	# Only emit if minute is a multiple of 10 and not already emitted
 	if current_minute % 10 == 0 and current_minute != _last_ui_minute:
 		_last_ui_minute = current_minute
