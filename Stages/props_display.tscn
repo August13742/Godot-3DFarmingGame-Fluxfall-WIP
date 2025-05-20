@@ -167,7 +167,7 @@ shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.0
 shader_parameter/clouds_blur = 0.25
 shader_parameter/stars_texture = ExtResource("5_n55d4")
-shader_parameter/stars_speed = 0.5
+shader_parameter/stars_speed = 1.0
 shader_parameter/overwritten_time = 0.0
 
 [sub_resource type="Sky" id="Sky_s0ywd"]
@@ -182,6 +182,8 @@ ssao_enabled = true
 ssao_radius = 0.8
 sdfgi_enabled = true
 sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.5
+sdfgi_energy = 0.8
 glow_enabled = true
 volumetric_fog_density = 0.01
 adjustment_enabled = true
@@ -201,7 +203,7 @@ script = ExtResource("2_yw2k5")
 metadata/_edit_lock_ = true
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26759, -1.90207, 1.78723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26759, -4.99145, 1.78723)
 layers = 2
 material_override = ExtResource("2_nn42n")
 mesh = SubResource("PlaneMesh_hox20")
@@ -634,8 +636,8 @@ multi_mesh_mesh = ExtResource("129_fo3st")
 
 [node name="StellarBodyPivot" type="Node3D" parent="."]
 script = ExtResource("129_eues7")
+day_time = 6.0
 use_day_time_for_shader = true
-time_scale = 0.083
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
 
