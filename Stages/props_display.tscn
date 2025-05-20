@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://cjnhanlw5kn5k"]
+[gd_scene load_steps=137 format=3 uid="uid://cjnhanlw5kn5k"]
 
 [ext_resource type="PackedScene" uid="uid://cmrqvuf56i3p" path="res://Assets/meshes/terrain.tscn" id="1_i33uq"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="2_ifwko"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bpacbdkmsf8k7" path="res://Game/EnvironmentProps/bush_large_flowers_2.tscn" id="4_2vi28"]
 [ext_resource type="Shader" uid="uid://gdm3yu5u1h2j" path="res://sky.gdshader" id="4_yw2k5"]
 [ext_resource type="PackedScene" uid="uid://becbt2x1mr2ro" path="res://Game/EnvironmentProps/birch_1.tscn" id="5_mucb1"]
+[ext_resource type="Texture2D" uid="uid://dmh2rvoy6nw2n" path="res://DayNightSystem/stars.png" id="5_n55d4"]
 [ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Items/Interactables/Pickuppable/pickuppable_plant.tscn" id="6_nd6yq"]
 [ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Items/Interactables/Pickuppable/pickuppable_stone.tscn" id="7_rbk52"]
 [ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Items/Interactables/Pickuppable/pickuppable_stick.tscn" id="8_scymu"]
@@ -165,7 +166,8 @@ shader_parameter/clouds_cutoff = 0.3
 shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.0
 shader_parameter/clouds_blur = 0.25
-shader_parameter/stars_speed = 1.0
+shader_parameter/stars_texture = ExtResource("5_n55d4")
+shader_parameter/stars_speed = 0.5
 shader_parameter/overwritten_time = 0.0
 
 [sub_resource type="Sky" id="Sky_s0ywd"]
