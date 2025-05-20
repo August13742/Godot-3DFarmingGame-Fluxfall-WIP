@@ -3,6 +3,8 @@ extends Node
 var game_time:float = 6. ## init state is 6 am
 var time_speed:int = 120 ## 5 minute = 1 game hour
 var time_elapsed:float= 0.
+var current_date:int = 1
+var total_days_in_a_cycle:int = 365
 
 func _process(delta):
 	var scaled_delta_time:float = delta * time_speed
