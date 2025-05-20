@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 EventSystem="*res://Game/EventSystem.gd"
 ItemDBUtility="*res://Items/DataBase/item_db_utility.gd"
 InventoryManager="*res://InventorySystem/inventory_manager.gd"
+TimeManager="*res://DayNightSystem/TimeManager.gd"
 
 [display]
 

@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var chunk_size: int = 64
-@export var GRASS_PER_REGION: int = 1024
+@export var GRASS_PER_REGION: int = 10240
 @export var multi_mesh_mesh: ArrayMesh
 @onready var spatial_partitioning: SpatialPartitioning = $"../SpatialPartitioning"
 @onready var target_terrain_mesh: MeshInstance3D = $"../StaticBody3D/Terrain"
@@ -34,7 +34,7 @@ func _ready() -> void:
 		mm.mesh = multi_mesh_mesh
 		add_child(mm_instance)
 
-		## culling
+		## culling set up for potential frustum culling, not used currently, and probably isn't needed here
 		mm_instance.set_meta("world_center", chunk_origin_global + Vector3(chunk_size * 0.5, 0, chunk_size * 0.5))
 		mm_instance.set_meta("bounding_radius", chunk_size * 0.75)  # or tighter fit if needed
 
