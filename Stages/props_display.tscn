@@ -203,7 +203,7 @@ script = ExtResource("2_yw2k5")
 metadata/_edit_lock_ = true
 
 [node name="Water" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26759, -4.99145, 1.78723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26759, -1.43684, 1.78723)
 layers = 2
 material_override = ExtResource("2_nn42n")
 mesh = SubResource("PlaneMesh_hox20")
@@ -638,6 +638,7 @@ multi_mesh_mesh = ExtResource("129_fo3st")
 script = ExtResource("129_eues7")
 day_time = 6.0
 use_day_time_for_shader = true
+time_scale = 7200.0
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
 

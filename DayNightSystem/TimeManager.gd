@@ -1,19 +1,32 @@
 extends Node
 
-var game_time:float = 6. ## init state is 6 am
-var time_speed:int = 120 ## 5 minute = 1 game hour
-var time_elapsed:float= 0.
-var current_date:int = 1
-var total_days_in_a_cycle:int = 365
 
-func _process(delta):
-	var scaled_delta_time:float = delta * time_speed
-	time_elapsed += scaled_delta_time
-	game_time = fmod((game_time + scaled_delta_time/60),24.)
+## Assumes `game_time` is updated externally each frame.
 
-	if time_elapsed >= 10.:
-		_update_timer_UI()
+var game_time: float = 6.0 # External input: current game time in hours (0–24)
+var current_date: int = 1
+var total_days_in_a_cycle: int = 365
 
-func _update_timer_UI():
-	time_elapsed = 0
+var current_hour: int
+var current_minute: int
+
+
+var _last_ui_minute: int = -1
+const UI_UPDATE_INTERVAL_MINUTES := 10
+
+signal update_timer_ui(hour: int, minute: int, day: int)
+
+func _process(_delta: float) -> void:
+	# Decompose time
+	current_hour = floori(game_time)
+	current_minute = floori((game_time - current_hour) * 60)
+
+	# Only emit if minute is a multiple of 10 and not already emitted
+	if current_minute % 10 == 0 and current_minute != _last_ui_minute:
+		_last_ui_minute = current_minute
+		update_timer_ui.emit(current_hour, current_minute, current_date)
+
+
+func _on_minute_changed() -> void:
+	# React to minute change, e.g., for simulation logic
 	pass

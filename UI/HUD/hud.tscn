@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7tvgd0t26wxq"]
+[gd_scene load_steps=4 format=3 uid="uid://7tvgd0t26wxq"]
 
 [ext_resource type="Texture2D" uid="uid://ce8tvt14ws0rr" path="res://Assets/UI/Arrows.png" id="1_ia7gp"]
+[ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="2_te8l2"]
+[ext_resource type="Script" uid="uid://vgvxekc2vleo" path="res://UI/HUD/time_UI.gd" id="3_qdh7y"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -26,3 +28,25 @@ size_flags_vertical = 4
 texture = ExtResource("1_ia7gp")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1920.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+
+[node name="Time" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_te8l2")
+theme_override_font_sizes/font_size = 40
+text = "06:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_qdh7y")

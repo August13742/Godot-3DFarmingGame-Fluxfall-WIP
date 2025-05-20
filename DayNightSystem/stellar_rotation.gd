@@ -55,11 +55,10 @@ const DAYS_IN_YEAR : int = 365
 	set( value ) :
 		use_day_time_for_shader = value
 		_update_shader()
-## Multiplier of the elapsed time in the running game.
-## If 0.0 - day time will not be changed automatically.
-## If 1.0 - one hour will take one second.
+
+
 ## time_scale: in-game seconds per real second
-@export_range( 0.0, 100.0, 0.01 ) var time_scale : float = 60.0
+@export_range( 0.0, 7200.0, 0.01 ) var time_scale : float = 60.0
 
 ## If 0, the value will set from the sun object, but as the script runs in the editor, it may set the wrong value, so it is best to set it manually.
 @export_range( 0.0, 10.0, 0.01 ) var sun_base_enegry : float = 0.0 :
@@ -92,15 +91,12 @@ func _ready() -> void :
 	_update()
 
 func _process(delta: float) -> void:
-
 	var scaled_hours = delta * time_scale / 3600.0  # Convert seconds → hours
-	day_time += scaled_hours
-	if day_time >= 24.0:
-		day_time -= 24.0
-		day_of_year += 1
-		if day_of_year > DAYS_IN_YEAR:
-			day_of_year = 1
-	_update()
+	day_time += scaled_hours  # triggers setter
+	TimeManager.game_time = day_time
+	TimeManager.current_date = day_of_year
+
+
 
 func _update() -> void :
 	_update_sun()
