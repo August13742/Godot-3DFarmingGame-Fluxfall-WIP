@@ -195,6 +195,7 @@ adjustment_saturation = 0.95
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_ypbn1")
 
 [node name="Terrain" parent="StaticBody3D" instance=ExtResource("1_i33uq")]
@@ -629,10 +630,12 @@ transform = Transform3D(0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, 0.671863, 
 [node name="SpatialPartitioning" parent="." node_paths=PackedStringArray("target_terrain_mesh") instance=ExtResource("126_eues7")]
 target_terrain_mesh = NodePath("../StaticBody3D/Terrain")
 target_mesh = ExtResource("127_yw2k5")
+chunk_size = 32
 
 [node name="GrassMaker" parent="." instance=ExtResource("128_n55d4")]
-GRASS_PER_REGION = 20480
+GRASS_PER_REGION = 5120
 multi_mesh_mesh = ExtResource("129_fo3st")
+cast_shadow = false
 
 [node name="StellarBodyPivot" type="Node3D" parent="."]
 script = ExtResource("129_eues7")

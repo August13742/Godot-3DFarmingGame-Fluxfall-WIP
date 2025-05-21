@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var chunk_size: int = 64
+var chunk_size: int
 @export var GRASS_PER_REGION: int = 10240
 @export var multi_mesh_mesh: ArrayMesh
 @onready var spatial_partitioning: SpatialPartitioning = $"../SpatialPartitioning"

@@ -91,6 +91,14 @@ open_inventory={
 
 3d/physics_engine="Jolt Physics"
 
+[rendering]
+
+lights_and_shadows/directional_shadow/size.mobile=1024
+global_illumination/gi/use_half_resolution=true
+scaling_3d/mode=2
+mesh_lod/lod_change/threshold_pixels=2.0
+lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=3
+
 [shader_globals]
 
 wind_intensity={
