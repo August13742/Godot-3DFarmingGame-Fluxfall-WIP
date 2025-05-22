@@ -639,7 +639,8 @@ cast_shadow = false
 
 [node name="StellarBodyPivot" type="Node3D" parent="."]
 script = ExtResource("129_eues7")
-day_time = 6.0
+day_time = 9.0
+clouds_cutoff = 0.5
 use_day_time_for_shader = true
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1

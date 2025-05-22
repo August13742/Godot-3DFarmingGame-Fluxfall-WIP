@@ -7,20 +7,21 @@ frequency = 0.0042
 fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h28ac"]
+in_3d_space = true
 seamless = true
 noise = SubResource("FastNoiseLite_nn42n")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_qyjmf")
-shader_parameter/top_color = Color(0.77, 0.1617, 0.34419, 1)
+shader_parameter/top_color = Color(0.337255, 0.321569, 0.670588, 1)
 shader_parameter/bottom_color = Color(0.176471, 0.333333, 0.0941176, 1)
-shader_parameter/ambient_occlusion_factor = 0.34
+shader_parameter/ambient_occlusion_factor = 0.3
 shader_parameter/specular_strength = 0.4
 shader_parameter/player_displacement_strength = 0.4
 shader_parameter/player_displacement_size = 1.0
 shader_parameter/wind_direction = Vector3(0.4, -0.3, 0.81)
-shader_parameter/wind_strength = 0.5
+shader_parameter/wind_strength = 0.35
 shader_parameter/wind_noise = SubResource("NoiseTexture2D_h28ac")
 shader_parameter/wind_noise_size = 0.05
 shader_parameter/wind_noise_speed = 0.1

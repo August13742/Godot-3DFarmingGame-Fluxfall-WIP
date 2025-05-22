@@ -3,7 +3,6 @@
 [ext_resource type="Shader" uid="uid://bbqku1eu2ganf" path="res://Shaders/water/ocean.gdshader" id="1_xwlr2"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eyp26"]
-noise_type = 0
 frequency = 0.011
 fractal_octaves = 2
 
@@ -52,7 +51,7 @@ shader_parameter/fresnel_color = Color(0, 0.572549, 0.717647, 1)
 shader_parameter/roughness = 1.0
 shader_parameter/specular = 0.25
 shader_parameter/depth_distance = 50.0
-shader_parameter/beers_law = 4.2
+shader_parameter/beers_law = 1.0
 shader_parameter/displacement_strength = 0.2
 shader_parameter/displacement_scroll_speed = 0.1
 shader_parameter/displacement_scroll_offset = Vector2(-0.2, 0.3)
