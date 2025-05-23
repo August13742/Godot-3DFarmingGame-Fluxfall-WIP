@@ -34,7 +34,7 @@ project/assembly_name="3D_survival"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
