@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0f5pkoncrqki"]
+
+[ext_resource type="PackedScene" uid="uid://ivfhgtder5o" path="res://CropSystem/crop_bed.glb" id="1_5bk3s"]
+[ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
+[ext_resource type="PackedScene" uid="uid://3ky7ph3iwslh" path="res://CropSystem/tomato.tscn" id="3_vheoy"]
+
+[node name="CropBed" type="Node3D"]
+script = ExtResource("2_64rtf")
+
+[node name="crop_bed" parent="." instance=ExtResource("1_5bk3s")]
+
+[node name="CropPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285098, 0)
+
+[node name="tomato" parent="CropPivot" instance=ExtResource("3_vheoy")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

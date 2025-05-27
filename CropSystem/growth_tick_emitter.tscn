@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doxoimixlbpq"]
+
+[ext_resource type="Script" uid="uid://f4xkt8ggst51" path="res://CropSystem/growth_tick_emitter.gd" id="1_8c8lq"]
+
+[node name="GrowthTickEmitter" type="Node"]
+script = ExtResource("1_8c8lq")

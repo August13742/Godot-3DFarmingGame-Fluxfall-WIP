@@ -1,0 +1,50 @@
+extends Node
+
+class_name Crop
+
+## How many stages the visual of the crop changes
+@export var actual_stages:int = 4
+## fake stages for shrinking growth time variance
+@export var stages_for_calculation:int = 40
+## chance for growth per growth_tick
+@export var growth_chance:float = 0.75
+
+@onready var crop_pivot:Node3D = $%CropPivot
+@onready var crop:Node3D =crop_pivot.get_child(0)
+
+@warning_ignore("integer_division")
+var stages_per_visual_change:int = stages_for_calculation / actual_stages
+
+enum Stages{
+	Seed,
+	Stage1,
+	Stage2,
+	Stage3,
+	Harvestable
+}
+
+@export var models:Array[Mesh]
+
+
+var current_stage:Stages = Stages.Seed
+var current_calculation_stage:int = 0
+
+func _ready() -> void:
+	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
+
+
+func grow()->void:
+	current_calculation_stage += 1
+	var target_stage:int = floori(current_calculation_stage/(stages_per_visual_change as float))
+	if target_stage != (current_stage as int):
+		print("scale changed")
+		current_stage = target_stage as Stages
+		crop_pivot.scale = Vector3.ONE * target_stage
+
+func _on_growth_tick_emitted()->void:
+	print("growth tick received")
+	if current_stage == Stages.Harvestable: return
+
+	if randf()<growth_chance:
+		print("growing, stage: %d"%current_calculation_stage)
+		grow()

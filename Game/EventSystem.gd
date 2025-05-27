@@ -1,6 +1,6 @@
 extends Node
 
-
+## Billboard System
 signal BUL_create_bulletin(key:int, prompt:String)
 signal BUL_destroy_bulletin(key:int)
 
@@ -10,8 +10,13 @@ func emit_BUL_create_bulletin(key:int, prompt:String):
 func emit_BUL_destroy_bulletin(key:int):
 	BUL_destroy_bulletin.emit(key)
 
+## Crop System
+signal CROP_growth_tick_emitted
+func emit_CROP_growth_tick_emitted():
+	print("emitting growth tick")
+	CROP_growth_tick_emitted.emit()
 
-
+## Inventory System
 signal INV_try_pick_up_item(item_id:StringName,follow_up:Callable)
 signal INV_item_pickup_successful(slot:InventorySlot)
 func emit_INV_try_pick_up_item(item_id:StringName,follow_up:Callable):

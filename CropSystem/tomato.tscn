@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ky7ph3iwslh"]
+
+[ext_resource type="PackedScene" uid="uid://cwymrjisgcgko" path="res://CropSystem/tomato.glb" id="1_50wa8"]
+
+[node name="tomato" instance=ExtResource("1_50wa8")]
+
+[node name="球" parent="." index="0"]
+metadata/_edit_lock_ = true
+
+[node name="平面" parent="." index="1"]
+metadata/_edit_lock_ = true
+
+[node name="円柱" parent="." index="2"]
+metadata/_edit_lock_ = true
+
+[node name="トーラス" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="平面_001" parent="." index="4"]
+metadata/_edit_lock_ = true
+
+[node name="平面_002" parent="." index="5"]
+metadata/_edit_lock_ = true
+
+[node name="平面_003" parent="." index="6"]
+metadata/_edit_lock_ = true
+
+[node name="平面_004" parent="." index="7"]
+metadata/_edit_lock_ = true
+
+[node name="平面_005" parent="." index="8"]
+metadata/_edit_lock_ = true
+
+[node name="平面_006" parent="." index="9"]
+metadata/_edit_lock_ = true
