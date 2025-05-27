@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0f5pkoncrqki"]
+[gd_scene load_steps=6 format=3 uid="uid://b0f5pkoncrqki"]
 
 [ext_resource type="PackedScene" uid="uid://ivfhgtder5o" path="res://CropSystem/crop_bed.glb" id="1_5bk3s"]
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
 [ext_resource type="PackedScene" uid="uid://3ky7ph3iwslh" path="res://CropSystem/tomato.tscn" id="3_vheoy"]
+[ext_resource type="Script" uid="uid://hr1u5nhfrdm" path="res://Items/Interactables/Pickuppable/pickuppable.gd" id="4_uy331"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rrrv5"]
+radius = 0.2
 
 [node name="CropBed" type="Node3D"]
 script = ExtResource("2_64rtf")
@@ -15,3 +19,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285098, 0)
 
 [node name="tomato" parent="CropPivot" instance=ExtResource("3_vheoy")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Pickuppable" type="Area3D" parent="CropPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285098, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_uy331")
+item_id = &"tomato"
+prompt = "Harvest"
+metadata/_custom_type_script = "uid://hr1u5nhfrdm"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CropPivot/Pickuppable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("SphereShape3D_rrrv5")
+disabled = true

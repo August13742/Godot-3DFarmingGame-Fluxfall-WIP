@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://76vc4sqid3bk"]
+
+[ext_resource type="Texture2D" uid="uid://bbkka5m1a3we6" path="res://Assets/tomato_icon.jpg" id="1_udx8b"]
+[ext_resource type="Script" uid="uid://bwtsq8kxvu2kp" path="res://Items/item_resource.gd" id="2_7qmnw"]
+
+[resource]
+script = ExtResource("2_7qmnw")
+item_id = "tomato"
+display_name = "Tomato"
+tags = Array[int]([1])
+description = "A Tomato"
+icon = ExtResource("1_udx8b")
+stack_size = null
+metadata/_custom_type_script = "uid://bwtsq8kxvu2kp"

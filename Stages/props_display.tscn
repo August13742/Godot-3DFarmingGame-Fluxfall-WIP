@@ -634,6 +634,7 @@ target_mesh = ExtResource("127_yw2k5")
 chunk_size = 32
 
 [node name="GrassMaker" parent="." instance=ExtResource("128_n55d4")]
+visible = false
 GRASS_PER_REGION = 5120
 multi_mesh_mesh = ExtResource("129_fo3st")
 cast_shadow = false
@@ -669,5 +670,20 @@ metadata/_edit_lock_ = true
 
 [node name="CropBed" parent="." instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="." instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="." instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="." instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="." instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="." instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [editable path="MainCamera"]

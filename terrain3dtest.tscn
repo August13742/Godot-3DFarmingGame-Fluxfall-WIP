@@ -1,4 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw36r1ypwxmke"]
+[gd_scene load_steps=18 format=3 uid="uid://cw36r1ypwxmke"]
+
+[ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="1_a4crs"]
+[ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="1_qq21w"]
+[ext_resource type="Texture2D" uid="uid://c2r8cifj4m6n3" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="2_a4crs"]
+[ext_resource type="Texture2D" uid="uid://ba1vjpgsbjua7" path="res://Terrain_Materials/Dirt/Ground048_normal_roughness.dds" id="3_0uybd"]
+[ext_resource type="Texture2D" uid="uid://c27afct02t7tq" path="res://Terrain_Materials/Grass/Grass005_alb_ht.dds" id="4_8edsv"]
+[ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="5_pys7j"]
+[ext_resource type="Texture2D" uid="uid://r21lskxrmu4d" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="6_jm4cn"]
+[ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="7_fao1t"]
 
 [sub_resource type="Gradient" id="Gradient_lf3yh"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -43,35 +52,42 @@ _shader_parameters = {
 &"projection_threshold": 0.8,
 &"world_space_normal_blend": true
 }
-show_checkered = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o62b7"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
+world_background = 0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_8ekew"]
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_o62b7")
+name = "Grass"
+scene_file = ExtResource("1_qq21w")
+material_override = ExtResource("1_a4crs")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_nnh03"]
+name = "Dirt"
+albedo_texture = ExtResource("2_a4crs")
+normal_texture = ExtResource("3_0uybd")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gth70"]
+name = "Grass"
+id = 1
+albedo_texture = ExtResource("4_8edsv")
+normal_texture = ExtResource("5_pys7j")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_etj82"]
+name = "Rock"
+id = 2
+albedo_texture = ExtResource("6_jm4cn")
+normal_texture = ExtResource("7_fao1t")
+
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_wdtrn"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_8ekew")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_nnh03"), SubResource("Terrain3DTextureAsset_gth70"), SubResource("Terrain3DTextureAsset_etj82")])
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
-data_directory = "res://Terrain3Ddata"
+data_directory = "res://Terrain3D_Data"
 material = SubResource("Terrain3DMaterial_88s1a")
 assets = SubResource("Terrain3DAssets_wdtrn")
-show_checkered = true
 top_level = true
 metadata/_edit_lock_ = true

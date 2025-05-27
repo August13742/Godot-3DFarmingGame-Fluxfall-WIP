@@ -8,6 +8,7 @@ enum Keys {
 	Plant,
 	Stick,
 	Stone,
+	Tomato,
 }
 
 const ITEM_IDS: Dictionary = {
@@ -17,6 +18,7 @@ const ITEM_IDS: Dictionary = {
 	Keys.Plant:"plant",
 	Keys.Stick:"stick",
 	Keys.Stone:"stone",
+	Keys.Tomato:"tomato",
 }
 
 const PATHS: Dictionary = {
@@ -25,6 +27,7 @@ const PATHS: Dictionary = {
 	"plant": "res://Items/Resources/plant_resource.tres",
 	"stick": "res://Items/Resources/stick_resource.tres",
 	"stone": "res://Items/Resources/stone_resource.tres",
+	"tomato": "res://Items/Resources/tomato_resource.tres",
 }
 
 const CRAFTABLES: Dictionary = {
