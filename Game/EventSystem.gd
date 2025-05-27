@@ -13,7 +13,6 @@ func emit_BUL_destroy_bulletin(key:int):
 ## Crop System
 signal CROP_growth_tick_emitted
 func emit_CROP_growth_tick_emitted():
-	print("emitting growth tick")
 	CROP_growth_tick_emitted.emit()
 
 ## Inventory System

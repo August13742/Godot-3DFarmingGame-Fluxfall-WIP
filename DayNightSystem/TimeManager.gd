@@ -1,5 +1,5 @@
 extends Node
-
+## AUTOLOAD
 
 ## Assumes `game_time` is updated externally each frame.
 
@@ -14,22 +14,26 @@ var growth_tick_manager:PackedScene = preload("uid://doxoimixlbpq")
 var _last_ui_minute: int = -1
 
 signal update_timer_ui(hour: int, minute: int, day: int)
-signal time_changed
+signal minute_changed
 
 func _ready() -> void:
-	time_changed.connect(_on_time_changed)
 	var growth_tick_manager_scene:Node = growth_tick_manager.instantiate()
 	self.add_child(growth_tick_manager_scene)
 
+var previous_minute:int = 0
 func _process(_delta: float) -> void:
-	# Decompose time
 	current_hour = floori(game_time)
 	current_minute = floori((game_time - current_hour) * 60)
-	# Only emit if minute is a multiple of 10 and not already emitted
-	if current_minute % 10 == 0 and current_minute != _last_ui_minute:
-		_last_ui_minute = current_minute
-		update_timer_ui.emit(current_hour, current_minute, current_date)
-		time_changed.emit()
 
-func _on_time_changed()->void:
-	pass
+	## dealing with high time scale skipping minutes
+	var skipped = (current_minute - previous_minute + 60) % 60
+	for i in range(1, skipped + 1):
+		var minute = (previous_minute + i) % 60
+		minute_changed.emit()
+
+		# Emit update every 10 minutes
+		if minute % 10 == 0:
+			_last_ui_minute = minute
+			update_timer_ui.emit(current_hour, minute, current_date)
+
+	previous_minute = current_minute

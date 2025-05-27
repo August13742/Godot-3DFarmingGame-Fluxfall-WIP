@@ -10,6 +10,7 @@ radius = 0.2
 
 [node name="CropBed" type="Node3D"]
 script = ExtResource("2_64rtf")
+stages_for_calculation = 400
 
 [node name="crop_bed" parent="." instance=ExtResource("1_5bk3s")]
 

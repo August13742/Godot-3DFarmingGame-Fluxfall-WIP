@@ -647,6 +647,7 @@ use_day_time_for_shader = true
 time_scale = 3600.0
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
+metadata/_edit_lock_ = true
 
 [node name="Sun" type="DirectionalLight3D" parent="StellarBodyPivot"]
 unique_name_in_owner = true
@@ -668,22 +669,193 @@ shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 metadata/_edit_lock_ = true
 
-[node name="CropBed" parent="." instance=ExtResource("132_fo3st")]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, 0, 0)
+
+[node name="CropBed" parent="Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="." instance=ExtResource("132_fo3st")]
+[node name="CropBed2" parent="Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="." instance=ExtResource("132_fo3st")]
+[node name="CropBed3" parent="Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="." instance=ExtResource("132_fo3st")]
+[node name="CropBed4" parent="Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="." instance=ExtResource("132_fo3st")]
+[node name="CropBed5" parent="Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="." instance=ExtResource("132_fo3st")]
+[node name="CropBed6" parent="Node3D" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, 0, 0)
+
+[node name="CropBed" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D2" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, 0, 5.14528)
+
+[node name="CropBed" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D3" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, 0, 5.14528)
+
+[node name="CropBed" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D4" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, 0, 10.3225)
+
+[node name="CropBed" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D5" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, 0, 10.3225)
+
+[node name="CropBed" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D6" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, 0, 10.3225)
+
+[node name="CropBed" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D7" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, 0, 5.02493)
+
+[node name="CropBed" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D8" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+
+[node name="Node3D9" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, 0, 0.0987892)
+
+[node name="CropBed" parent="Node3D9" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+
+[node name="CropBed2" parent="Node3D9" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+
+[node name="CropBed3" parent="Node3D9" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+
+[node name="CropBed4" parent="Node3D9" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+
+[node name="CropBed5" parent="Node3D9" instance=ExtResource("132_fo3st")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+
+[node name="CropBed6" parent="Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [editable path="MainCamera"]

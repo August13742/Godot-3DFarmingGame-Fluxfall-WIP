@@ -1,4 +1,6 @@
 extends Node
+## child of AUTOLOAD
+
 
 ## with time_scale of 60 this equates to 1 real life seconds per check (I = 60)
 @export var tick_interval:int = 1
@@ -9,7 +11,7 @@ func _ready() -> void:
 	late_init.call_deferred()
 
 func late_init()->void:
-	TimeManager.time_changed.connect(_on_time_changed)
+	TimeManager.minute_changed.connect(_on_time_changed)
 
 
 func _on_time_changed():
@@ -17,10 +19,8 @@ func _on_time_changed():
 	if interval_counter >= tick_interval:
 		interval_counter = 0
 		if attempt_growth_tick():
-
 			EventSystem.emit_CROP_growth_tick_emitted()
 
 
 func attempt_growth_tick()->bool:
-	print("attempting growth tick")
 	return true if randf()<tick_chance else false

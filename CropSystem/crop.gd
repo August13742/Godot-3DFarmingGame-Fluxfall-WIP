@@ -38,16 +38,13 @@ func grow()->void:
 	current_calculation_stage += 1
 	var target_stage:int = floori(current_calculation_stage/(stages_per_visual_change as float))
 	if target_stage != (current_stage as int):
-		print("scale changed")
 		current_stage = target_stage as Stages
 		if current_stage == Stages.Harvestable:
 			collision.disabled = false
 		crop_pivot.scale = Vector3.ONE * target_stage
 
 func _on_growth_tick_emitted()->void:
-	print("growth tick received")
 	if current_stage == Stages.Harvestable: return
 
 	if randf()<growth_chance:
-		print("growing, stage: %d"%current_calculation_stage)
 		grow()
