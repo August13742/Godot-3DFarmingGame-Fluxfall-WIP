@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://gqd858l1d1ha"]
+
+[ext_resource type="Script" uid="uid://ehcqsb03jf4g" path="res://DayNightSystem/stellar_rotation.gd" id="1_40agr"]
+[ext_resource type="Shader" uid="uid://gdm3yu5u1h2j" path="res://sky.gdshader" id="2_i8yjr"]
+[ext_resource type="Texture2D" uid="uid://dmh2rvoy6nw2n" path="res://DayNightSystem/stars.png" id="3_o7jgt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n55d4"]
+shader = ExtResource("2_i8yjr")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 1.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_texture = ExtResource("3_o7jgt")
+shader_parameter/stars_speed = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_s0ywd"]
+sky_material = SubResource("ShaderMaterial_n55d4")
+
+[sub_resource type="Environment" id="Environment_n8j1b"]
+background_mode = 2
+sky = SubResource("Sky_s0ywd")
+ambient_light_color = Color(0.41, 0.891833, 1, 1)
+ambient_light_sky_contribution = 0.5
+ssao_enabled = true
+ssao_radius = 0.8
+sdfgi_enabled = true
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.5
+sdfgi_energy = 0.8
+glow_enabled = true
+volumetric_fog_density = 0.01
+adjustment_enabled = true
+adjustment_saturation = 0.95
+
+[node name="StellarBodyPivot" type="Node3D"]
+script = ExtResource("1_40agr")
+day_time = 9.0
+clouds_cutoff = 0.5
+use_day_time_for_shader = true
+sun_base_enegry = 1.0
+moon_base_enegry = 0.1
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+environment = SubResource("Environment_n8j1b")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
+layers = 2
+light_energy = 0.0
+shadow_enabled = true
+shadow_opacity = 0.75
+shadow_blur = 5.0
+metadata/_edit_lock_ = true
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
+layers = 2
+light_color = Color(1, 1, 0.6, 1)
+light_energy = 0.0
+shadow_enabled = true
+shadow_opacity = 0.25
+shadow_blur = 5.0
+directional_shadow_fade_start = 0.1
+metadata/_edit_lock_ = true

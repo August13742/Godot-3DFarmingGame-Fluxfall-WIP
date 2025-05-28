@@ -1,13 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw36r1ypwxmke"]
+[gd_scene load_steps=23 format=3 uid="uid://cw36r1ypwxmke"]
 
 [ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="1_a4crs"]
 [ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="1_qq21w"]
-[ext_resource type="Texture2D" uid="uid://c2r8cifj4m6n3" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="2_a4crs"]
+[ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="2_a4crs"]
 [ext_resource type="Texture2D" uid="uid://ba1vjpgsbjua7" path="res://Terrain_Materials/Dirt/Ground048_normal_roughness.dds" id="3_0uybd"]
-[ext_resource type="Texture2D" uid="uid://c27afct02t7tq" path="res://Terrain_Materials/Grass/Grass005_alb_ht.dds" id="4_8edsv"]
+[ext_resource type="PackedScene" uid="uid://4ytrg5h5rgj1" path="res://Assets/Models/Environment/TwistedTree_1.gltf" id="3_jm4cn"]
+[ext_resource type="Texture2D" uid="uid://dll5d1vyoxju0" path="res://Terrain_Materials/Grass/Grass005_alb_ht.dds" id="4_8edsv"]
 [ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="5_pys7j"]
-[ext_resource type="Texture2D" uid="uid://r21lskxrmu4d" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="6_jm4cn"]
+[ext_resource type="Texture2D" uid="uid://doc7pta1n3v4m" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="6_jm4cn"]
 [ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="7_fao1t"]
+[ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="9_8edsv"]
+[ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="10_pys7j"]
+[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://stellar_body_pivot.tscn" id="11_pys7j"]
 
 [sub_resource type="Gradient" id="Gradient_lf3yh"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -62,6 +66,15 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_fao1t"]
+name = "Tree1"
+id = 1
+scene_file = ExtResource("3_jm4cn")
+density = 0.01
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_nnh03"]
 name = "Dirt"
 albedo_texture = ExtResource("2_a4crs")
@@ -80,7 +93,7 @@ albedo_texture = ExtResource("6_jm4cn")
 normal_texture = ExtResource("7_fao1t")
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_wdtrn"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_8ekew")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_8ekew"), SubResource("Terrain3DMeshAsset_fao1t")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_nnh03"), SubResource("Terrain3DTextureAsset_gth70"), SubResource("Terrain3DTextureAsset_etj82")])
 
 [node name="Node3D" type="Node3D"]
@@ -91,3 +104,16 @@ material = SubResource("Terrain3DMaterial_88s1a")
 assets = SubResource("Terrain3DAssets_wdtrn")
 top_level = true
 metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("9_8edsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.9113, 5.54795, 0)
+normal_speed = 3.0
+sprint_speed = 6.0
+
+[node name="CameraPivot" parent="." instance=ExtResource("10_pys7j")]
+camera_x_offset = 0.0
+camera_z_offset = 0.0
+camera_y_offset = 0.0
+
+[node name="StellarBodyPivot" parent="." instance=ExtResource("11_pys7j")]
+time_scale = 600.0
