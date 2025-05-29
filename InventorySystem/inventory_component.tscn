@@ -4,3 +4,4 @@
 
 [node name="InventoryComponent" type="Node"]
 script = ExtResource("1_dow5u")
+inventory_size = 40

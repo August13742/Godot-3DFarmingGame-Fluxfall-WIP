@@ -1,9 +1,16 @@
-extends Interactable
+extends Area3D
 class_name Pickuppable
 
 
 @export var item_id: StringName
 @onready var parent:Node3D = get_parent()
+
+@export var prompt := "interact"
+#
+#
+#func start_interaction() -> void:
+	#EventSystem.emit_INT_begin_interaction()
+
 
 func start_interaction() -> void:
 	EventSystem.emit_INV_try_pick_up_item(item_id,destroy_self)

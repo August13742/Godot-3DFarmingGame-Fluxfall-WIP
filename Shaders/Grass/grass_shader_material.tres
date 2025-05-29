@@ -7,6 +7,7 @@ frequency = 0.0042
 fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h28ac"]
+resource_local_to_scene = true
 in_3d_space = true
 seamless = true
 noise = SubResource("FastNoiseLite_nn42n")
@@ -14,7 +15,7 @@ noise = SubResource("FastNoiseLite_nn42n")
 [resource]
 render_priority = 0
 shader = ExtResource("1_qyjmf")
-shader_parameter/top_color = Color(0.337255, 0.321569, 0.670588, 1)
+shader_parameter/top_color = Color(0.333333, 0.321569, 0.670588, 1)
 shader_parameter/bottom_color = Color(0.176471, 0.333333, 0.0941176, 1)
 shader_parameter/ambient_occlusion_factor = 0.3
 shader_parameter/specular_strength = 0.4

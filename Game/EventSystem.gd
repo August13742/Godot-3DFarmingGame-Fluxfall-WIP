@@ -26,6 +26,13 @@ func emit_INV_item_pickup_successful(slot:InventorySlot):
 
 
 #signal INT_begin_interaction(station_type,follow_up:Callable)
-signal INT_begin_interaction()
-func emit_INT_begin_interaction():
-	INT_begin_interaction.emit()
+signal INT_begin_interaction(follow_up:Callable)
+func emit_INT_begin_interaction(follow_up:Callable=do_nothing):
+	INT_begin_interaction.emit(follow_up)
+func do_nothing():
+	pass
+
+## Game Events
+signal GAME_NEW_DAY
+func emit_GAME_NEW_DAY():
+	GAME_NEW_DAY.emit()

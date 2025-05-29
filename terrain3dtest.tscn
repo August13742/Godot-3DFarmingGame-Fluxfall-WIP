@@ -77,6 +77,7 @@ lod0_range = 128.0
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_nnh03"]
 name = "Dirt"
+albedo_color = Color(0.52, 0.52, 0.52, 1)
 albedo_texture = ExtResource("2_a4crs")
 normal_texture = ExtResource("3_0uybd")
 
@@ -102,6 +103,7 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 data_directory = "res://Terrain3D_Data"
 material = SubResource("Terrain3DMaterial_88s1a")
 assets = SubResource("Terrain3DAssets_wdtrn")
+collision_mask = 0
 top_level = true
 metadata/_edit_lock_ = true
 

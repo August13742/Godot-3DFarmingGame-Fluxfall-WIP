@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0f5pkoncrqki"]
+[gd_scene load_steps=8 format=3 uid="uid://b0f5pkoncrqki"]
 
 [ext_resource type="PackedScene" uid="uid://ivfhgtder5o" path="res://CropSystem/crop_bed.glb" id="1_5bk3s"]
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
+[ext_resource type="PackedScene" uid="uid://uooh2w6v16yq" path="res://CropSystem/hydration_component.tscn" id="2_rrrv5"]
 [ext_resource type="PackedScene" uid="uid://3ky7ph3iwslh" path="res://CropSystem/tomato.tscn" id="3_vheoy"]
 [ext_resource type="Script" uid="uid://hr1u5nhfrdm" path="res://Items/Interactables/Pickuppable/pickuppable.gd" id="4_uy331"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ghvx"]
+radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rrrv5"]
 radius = 0.2
@@ -11,6 +15,12 @@ radius = 0.2
 [node name="CropBed" type="Node3D"]
 script = ExtResource("2_64rtf")
 stages_for_calculation = 400
+
+[node name="HydrationComponent" parent="." instance=ExtResource("2_rrrv5")]
+unique_name_in_owner = true
+
+[node name="HydrationCollision" parent="HydrationComponent" index="0"]
+shape = SubResource("SphereShape3D_3ghvx")
 
 [node name="crop_bed" parent="." instance=ExtResource("1_5bk3s")]
 
@@ -30,7 +40,10 @@ item_id = &"tomato"
 prompt = "Harvest"
 metadata/_custom_type_script = "uid://hr1u5nhfrdm"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CropPivot/Pickuppable"]
+[node name="HarvestCollision" type="CollisionShape3D" parent="CropPivot/Pickuppable"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("SphereShape3D_rrrv5")
 disabled = true
+
+[editable path="HydrationComponent"]
