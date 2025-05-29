@@ -577,7 +577,6 @@ target_mesh = ExtResource("127_yw2k5")
 chunk_size = 32
 
 [node name="GrassMaker" parent="." instance=ExtResource("128_n55d4")]
-visible = false
 GRASS_PER_REGION = 5120
 multi_mesh_mesh = ExtResource("129_fo3st")
 cast_shadow = false
