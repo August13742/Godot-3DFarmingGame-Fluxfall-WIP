@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://gqd858l1d1ha"]
 
 [ext_resource type="Script" uid="uid://ehcqsb03jf4g" path="res://DayNightSystem/stellar_rotation.gd" id="1_40agr"]
-[ext_resource type="Shader" uid="uid://gdm3yu5u1h2j" path="res://sky.gdshader" id="2_i8yjr"]
+[ext_resource type="Shader" uid="uid://co4ukculuyym7" path="res://DayNightSystem/sky.gdshader" id="2_i8yjr"]
 [ext_resource type="Texture2D" uid="uid://dmh2rvoy6nw2n" path="res://DayNightSystem/stars.png" id="3_o7jgt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n55d4"]
@@ -28,7 +28,7 @@ shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
 shader_parameter/clouds_speed = 1.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_cutoff = 0.5
 shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.0
 shader_parameter/clouds_blur = 0.25

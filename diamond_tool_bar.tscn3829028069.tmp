@@ -1,16 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxap4c7uoshob"]
+[gd_scene load_steps=3 format=3 uid="uid://cxap4c7uoshob"]
 
 [ext_resource type="PackedScene" uid="uid://d41o7nb7ev2k" path="res://diamond_panel.tscn" id="1_1bqwm"]
 [ext_resource type="Script" uid="uid://c3t2ktouooj42" path="res://diamond_tool_bar.gd" id="1_gvnc6"]
-[ext_resource type="Texture2D" uid="uid://dydx25cmde8xs" path="res://UI/Assets/iron_tools/icon_185.png" id="3_700bh"]
-[ext_resource type="Texture2D" uid="uid://blru5u3gpaqib" path="res://UI/Assets/icon_103.png" id="4_rcar5"]
-[ext_resource type="Texture2D" uid="uid://dyid6itl2eny7" path="res://UI/Assets/iron_tools/icon_190.png" id="5_awmn7"]
 
 [node name="DiamondToolBar" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_gvnc6")
-highlight_colour = Color(0.111322, 0.309255, 1, 1)
+highlight_colour = Color(0, 0.545098, 0, 0.533333)
 
 [node name="Top" parent="." instance=ExtResource("1_1bqwm")]
 layout_mode = 1
@@ -18,9 +15,6 @@ anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
 grow_vertical = 1
-
-[node name="Content" parent="Top/Panel/ContentMargin" index="0"]
-texture = ExtResource("3_700bh")
 
 [node name="Right" parent="." instance=ExtResource("1_1bqwm")]
 layout_mode = 1
@@ -30,9 +24,6 @@ anchor_bottom = 0.0
 grow_vertical = 1
 rotation = 1.5708
 
-[node name="Content" parent="Right/Panel/ContentMargin" index="0"]
-texture = ExtResource("4_rcar5")
-
 [node name="Bottom" parent="." instance=ExtResource("1_1bqwm")]
 layout_mode = 1
 anchors_preset = 0
@@ -41,9 +32,6 @@ anchor_bottom = 0.0
 grow_vertical = 1
 rotation = 3.14159
 
-[node name="Content" parent="Bottom/Panel/ContentMargin" index="0"]
-texture = ExtResource("5_awmn7")
-
 [node name="Left" parent="." instance=ExtResource("1_1bqwm")]
 layout_mode = 1
 anchors_preset = 0
@@ -51,8 +39,3 @@ anchor_top = 0.0
 anchor_bottom = 0.0
 grow_vertical = 1
 rotation = 4.71239
-
-[editable path="Top"]
-[editable path="Right"]
-[editable path="Bottom"]
-[editable path="Left"]

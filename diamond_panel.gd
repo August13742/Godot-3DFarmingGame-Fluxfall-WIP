@@ -3,7 +3,7 @@ extends Control
 
 @onready var content_slot:TextureRect = $%Content
 @onready var content_margin_container:MarginContainer = $%ContentMargin
-
+@onready var panel:TextureRect = $%Panel
 
 func _ready() -> void:
 	_late_init.call_deferred()

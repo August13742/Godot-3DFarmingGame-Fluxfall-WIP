@@ -44,4 +44,3 @@ Please see [CONTRIBUTING.md](https://github.com/TokisanGames/Terrain3D/blob/main
 ## License
 
 This addon has been released under the [MIT License](https://github.com/TokisanGames/Terrain3D/blob/main/LICENSE.txt).
-
