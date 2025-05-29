@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://uooh2w6v16yq"]
 
-[ext_resource type="Script" uid="uid://ckyiyohjck4vk" path="res://hydration_component.gd" id="1_l6vne"]
+[ext_resource type="Script" uid="uid://ckyiyohjck4vk" path="res://CropSystem/hydration_component.gd" id="1_l6vne"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_l6vne"]
 radius = 1.0

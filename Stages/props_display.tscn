@@ -124,11 +124,11 @@
 [ext_resource type="PackedScene" uid="uid://ppvpppcuqrun" path="res://Assets/Models/Environment/TwistedTree_3.gltf" id="119_evynk"]
 [ext_resource type="PackedScene" uid="uid://ciqkt0uh3k5r8" path="res://Assets/Models/Environment/TwistedTree_4.gltf" id="120_tnwd6"]
 [ext_resource type="PackedScene" uid="uid://bmnwfrpxs1lto" path="res://Assets/Models/Environment/TwistedTree_5.gltf" id="121_r1c1m"]
-[ext_resource type="PackedScene" uid="uid://2iikt4w7bc4m" path="res://spatial_partitioning.tscn" id="126_eues7"]
+[ext_resource type="PackedScene" uid="uid://2iikt4w7bc4m" path="res://ProceduralTerrain/spatial_partitioning.tscn" id="126_eues7"]
 [ext_resource type="ArrayMesh" uid="uid://ct10286bd6sq3" path="res://terrain_mesh.res" id="127_yw2k5"]
-[ext_resource type="PackedScene" uid="uid://cd17x7clb1bfx" path="res://grass_maker.tscn" id="128_n55d4"]
+[ext_resource type="PackedScene" uid="uid://cd17x7clb1bfx" path="res://ProceduralTerrain/grass_maker.tscn" id="128_n55d4"]
 [ext_resource type="ArrayMesh" uid="uid://d1t65rbw8mhob" path="res://Shaders/Grass/grass_mesh.res" id="129_fo3st"]
-[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://stellar_body_pivot.tscn" id="129_yw2k5"]
+[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ypbn1"]
@@ -138,6 +138,9 @@ data = PackedVector3Array(142.68, -5, -142.685, 150, -5, -150, 150, -5, -142.685
 size = Vector2(750, 750)
 
 [node name="Island" type="Node"]
+
+[node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
+time_scale = 7200.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_mask = 0
@@ -580,9 +583,6 @@ chunk_size = 32
 GRASS_PER_REGION = 5120
 multi_mesh_mesh = ExtResource("129_fo3st")
 cast_shadow = false
-
-[node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
-time_scale = 7200.0
 
 [node name="CropBeds_Test" type="Node3D" parent="."]
 

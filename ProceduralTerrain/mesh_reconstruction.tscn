@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://08lo6v0lauy"]
 
-[ext_resource type="Script" uid="uid://uk4ycf7vx3lr" path="res://mesh_reconstruction.gd" id="1_svlop"]
+[ext_resource type="Script" uid="uid://uk4ycf7vx3lr" path="res://ProceduralTerrain/mesh_reconstruction.gd" id="1_svlop"]
 
 [node name="MeshReconstruction" type="Node3D"]
 

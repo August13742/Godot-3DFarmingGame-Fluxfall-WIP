@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="7_fao1t"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="9_8edsv"]
 [ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="10_pys7j"]
-[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://stellar_body_pivot.tscn" id="11_pys7j"]
+[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="11_pys7j"]
 
 [sub_resource type="Gradient" id="Gradient_lf3yh"]
 offsets = PackedFloat32Array(0.2, 1)
