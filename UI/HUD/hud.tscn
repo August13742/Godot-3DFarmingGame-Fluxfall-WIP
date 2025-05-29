@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://7tvgd0t26wxq"]
+[gd_scene load_steps=5 format=3 uid="uid://7tvgd0t26wxq"]
 
-[ext_resource type="Texture2D" uid="uid://ce8tvt14ws0rr" path="res://Assets/UI/Arrows.png" id="1_ia7gp"]
+[ext_resource type="PackedScene" uid="uid://cdob3jc1pevtb" path="res://UI/HUD/crosshair.tscn" id="1_qdh7y"]
 [ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="2_te8l2"]
 [ext_resource type="Script" uid="uid://vgvxekc2vleo" path="res://UI/HUD/time_UI.gd" id="3_qdh7y"]
+[ext_resource type="PackedScene" uid="uid://cxap4c7uoshob" path="res://diamond_tool_bar.tscn" id="4_qdh7y"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -14,20 +15,20 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -42.0
+offset_right = 64.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Crosshair" type="TextureRect" parent="MarginContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Crosshair" parent="MarginContainer" instance=ExtResource("1_qdh7y")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("1_ia7gp")
-expand_mode = 4
-stretch_mode = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -50,3 +51,17 @@ text = "06:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_qdh7y")
+
+[node name="ToolBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 850
+
+[node name="DiamondToolBar" parent="ToolBar" instance=ExtResource("4_qdh7y")]
+layout_mode = 2
+metadata/_edit_lock_ = true

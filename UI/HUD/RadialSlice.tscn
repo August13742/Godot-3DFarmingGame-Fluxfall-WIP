@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c71j4ytruatoe"]
+
+[ext_resource type="Script" uid="uid://b2dgmsewkl74f" path="res://RadialSlices.gd" id="1_ahna7"]
+
+[node name="RadialSlice" type="Node2D"]
+script = ExtResource("1_ahna7")

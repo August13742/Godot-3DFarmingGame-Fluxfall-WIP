@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://d41o7nb7ev2k"]
+
+[ext_resource type="Script" uid="uid://bcnpsuko7omm7" path="res://diamond_panel.gd" id="1_epg7c"]
+[ext_resource type="Texture2D" uid="uid://cfw2sa6eqs1bu" path="res://UI/Assets/panel_minimal.png" id="1_xieyy"]
+[ext_resource type="Texture2D" uid="uid://dk5oohr7lgy1q" path="res://Assets/tomato_icon.png" id="2_2kwp0"]
+
+[node name="DiamondPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 0.5)
+size_flags_vertical = 0
+script = ExtResource("1_epg7c")
+
+[node name="Panel" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = -130.0
+offset_bottom = -130.0
+rotation = 0.785398
+texture = ExtResource("1_xieyy")
+
+[node name="ContentMargin" type="MarginContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(46, 46)
+metadata/_edit_lock_ = true
+
+[node name="Content" type="TextureRect" parent="Panel/ContentMargin"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("2_2kwp0")
+expand_mode = 3
+metadata/_edit_lock_ = true

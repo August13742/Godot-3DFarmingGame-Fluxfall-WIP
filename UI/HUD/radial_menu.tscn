@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfjoenobjlt75"]
+
+[ext_resource type="Script" uid="uid://dd3qjr0app5bw" path="res://radial_menu.gd" id="1_b8wh6"]
+
+[node name="RadialMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -40.0
+offset_right = -60.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b8wh6")
+background_colour = Color(0.26, 0.26, 0.26, 1)
+line_colour = Color(0.61, 0.61, 0.61, 1)
+inner_radius = 80
+line_width = 3
+outer_colour = Color(0.82, 0.82, 0.82, 1)
+options = 5
+degree_offset = 45.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 62.225
+offset_top = 62.225
+offset_right = 102.225
+offset_bottom = 102.225

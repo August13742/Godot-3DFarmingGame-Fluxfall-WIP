@@ -140,8 +140,7 @@ size = Vector2(750, 750)
 
 [node name="Island" type="Node"]
 
-[node name="SingletonExports" parent="." instance=ExtResource("1_n55d4")]
-time_scale = 7200
+[node name="SingletonExportConfigurator" parent="." instance=ExtResource("1_n55d4")]
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
