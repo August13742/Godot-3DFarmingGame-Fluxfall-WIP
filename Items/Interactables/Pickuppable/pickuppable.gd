@@ -1,11 +1,11 @@
-extends Area3D
+extends Interactable
 class_name Pickuppable
 
 
 @export var item_id: StringName
 @onready var parent:Node3D = get_parent()
 
-@export var prompt := "interact"
+
 #
 #
 #func start_interaction() -> void:

@@ -56,7 +56,8 @@ func _on_growth_tick_emitted()->void:
 
 func _reset_hydration_on_day_changed():
 	hydrated = false
-	hydration_component.collision_on()
+	if current_stage != Stages.Harvestable:
+		hydration_component.collision_on()
 
 func _on_hydrate():
 	hydrated = true
