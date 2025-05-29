@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkk0bvhxvt070"]
+
+[ext_resource type="PackedScene" uid="uid://crscujh0mfl01" path="res://Assets/meshes/tent.tscn" id="1_powop"]
+[ext_resource type="Script" uid="uid://kdaq3x8p7klc" path="res://CropSystem/bed_temp.gd" id="1_v1kms"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v1kms"]
+radius = 1.5
+
+[node name="Bed" type="Area3D"]
+script = ExtResource("1_v1kms")
+
+[node name="Tent" parent="." instance=ExtResource("1_powop")]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.997904, 0.0647065, 0, -0.0647065, 0.997904, 0, 0, 0, 1, 0, 1, 0.023)
+shape = SubResource("CylinderShape3D_v1kms")

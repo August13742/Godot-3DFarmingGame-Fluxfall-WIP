@@ -15,16 +15,16 @@ var mouse_sensitivity:float = 0.35
 @export var angular_velocity = 4
 
 ## how to the right or left is the camera
-@export var camera_x_offset:float = 10
+@export var camera_x_offset:float = 0
 ## how far behind is the camera
-@export var camera_z_offset:float = 2
+@export var camera_z_offset:float = 0
 ## how high the camera floats above pivot
-@export var camera_y_offset:float = 0.5
+@export var camera_y_offset:float = 0
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.8
 @export var max_ray_length:int = 5
 @export var camera_acceleration_smoothing := 25
-@export var camera_raycast_debug:bool = false
+@export var debug_raycast:bool = false
 
 
 func _ready() -> void:
@@ -120,7 +120,7 @@ func get_lookat_direction() -> Vector3:
 
 		return Vector3.ZERO
 	## --- DEBUG DRAWING ---
-	if camera_raycast_debug:
+	if debug_raycast:
 		pass
 
 	return to_target

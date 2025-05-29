@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name StellarBodyRotation
 
 ## This is not a simulation of the actual model but only a extremely simplified version.
 
@@ -11,13 +11,8 @@ const DAYS_IN_YEAR : int = 365
 @export_range( 0.0, HOURS_IN_DAY, 0.0001 ) var day_time : float = 0.0 :
 	set( value ) :
 		day_time = value
-		if day_time < 0.0 :
-			day_time += HOURS_IN_DAY
-			day_of_year -= 1
-		elif day_time > HOURS_IN_DAY :
-			day_time -= HOURS_IN_DAY
-			day_of_year += 1
 		_update()
+
 @export_range( -90.0, 90.0, 0.01 ) var latitude : float = 0 :
 	set( value ) :
 		latitude = value
@@ -76,6 +71,8 @@ const DAYS_IN_YEAR : int = 365
 @onready var moon : DirectionalLight3D = $%Moon
 
 func _ready() -> void :
+	TimeManager.stellar_body_rotation_component = self
+
 	if is_instance_valid( sun ) :
 		sun.position = Vector3( 0.0, 0.0, 0.0 )
 		sun.rotation = Vector3( 0.0, 0.0, 0.0 )
@@ -90,11 +87,11 @@ func _ready() -> void :
 			moon_base_enegry = moon.light_energy
 	_update()
 
-func _process(delta: float) -> void:
-	var scaled_hours = delta * time_scale / 3600.0  # Convert seconds → hours
-	day_time += scaled_hours  # triggers setter
-	TimeManager.game_time = day_time
-	TimeManager.current_date = day_of_year
+#func _process(delta: float) -> void:
+	#var scaled_hours = delta * time_scale / 3600.0  # Convert seconds → hours
+	#day_time += scaled_hours  # triggers setter
+	#TimeManager.game_time = day_time
+	#TimeManager.current_date = day_of_year
 
 
 

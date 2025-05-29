@@ -36,6 +36,12 @@ project/assembly_name="3D_survival"
 
 enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray"
+}
+
 [input]
 
 move_left={
