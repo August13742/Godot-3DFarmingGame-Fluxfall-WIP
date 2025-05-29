@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdx24tp2iaxsg"]
+
+[ext_resource type="Script" uid="uid://bepnvlqestp0e" path="res://singleton_exports.gd" id="1_l475v"]
+
+[node name="SingletonExportConfigurator" type="Node"]
+script = ExtResource("1_l475v")

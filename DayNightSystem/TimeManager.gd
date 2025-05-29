@@ -4,6 +4,9 @@ extends Node
 
 const HOURS_IN_DAY : float = 24.0
 const DAYS_IN_YEAR : int = 365
+
+
+## technically unsafe because setter is recursive, but it works in godot
 @export_range( 0.0, HOURS_IN_DAY, 0.0001 ) var day_time : float = 0.0 :
 	set( value ) :
 		day_time = value
@@ -22,8 +25,8 @@ const DAYS_IN_YEAR : int = 365
 		if stellar_body_rotation_component != null:
 			stellar_body_rotation_component.day_of_year = day_of_year
 
-@export var time_scale:int = 7200
-@export var start_hour:int = 9
+@export var time_scale:int = 60
+
 var stellar_body_rotation_component:StellarBodyRotation = null
 
 
@@ -43,7 +46,7 @@ func _ready() -> void:
 	late_init()
 
 func late_init():
-	day_time = start_hour
+	pass
 
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=133 format=3 uid="uid://cjnhanlw5kn5k"]
+[gd_scene load_steps=134 format=3 uid="uid://cjnhanlw5kn5k"]
 
 [ext_resource type="PackedScene" uid="uid://cmrqvuf56i3p" path="res://Assets/meshes/terrain.tscn" id="1_i33uq"]
+[ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://singleton_exports.tscn" id="1_n55d4"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="2_ifwko"]
 [ext_resource type="Material" uid="uid://cr8yf6r3utjih" path="res://Shaders/water/water_mat.tres" id="2_nn42n"]
 [ext_resource type="Script" uid="uid://cds3x6ggj8oi" path="res://Assets/meshes/terrain.gd" id="2_yw2k5"]
@@ -138,6 +139,9 @@ data = PackedVector3Array(142.68, -5, -142.685, 150, -5, -150, 150, -5, -142.685
 size = Vector2(750, 750)
 
 [node name="Island" type="Node"]
+
+[node name="SingletonExports" parent="." instance=ExtResource("1_n55d4")]
+time_scale = 7200
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
