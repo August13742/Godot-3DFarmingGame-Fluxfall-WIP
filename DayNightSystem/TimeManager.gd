@@ -54,7 +54,7 @@ var previous_day:int = 0
 var date_changed:bool = false
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
 	var scaled_hours = _delta * time_scale / 3600.0  # Convert seconds → hours
 	day_time += scaled_hours  # triggers setter
