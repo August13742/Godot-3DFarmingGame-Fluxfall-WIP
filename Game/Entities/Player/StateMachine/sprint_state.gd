@@ -14,7 +14,7 @@ func enter():
 var transition_to_walk_timer:Timer= null
 
 func update(delta):
-	var input_dir:Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_dir:Vector2 = root_entity.current_input_direction
 
 	if input_dir.length() == 0:
 		if transition_to_walk_timer:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=134 format=3 uid="uid://cjnhanlw5kn5k"]
+[gd_scene load_steps=135 format=3 uid="uid://cjnhanlw5kn5k"]
 
+[ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_fo3st"]
 [ext_resource type="PackedScene" uid="uid://cmrqvuf56i3p" path="res://Assets/meshes/terrain.tscn" id="1_i33uq"]
 [ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://singleton_exports.tscn" id="1_n55d4"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="2_ifwko"]
@@ -139,10 +140,11 @@ data = PackedVector3Array(142.68, -5, -142.685, 150, -5, -150, 150, -5, -142.685
 size = Vector2(750, 750)
 
 [node name="Island" type="Node"]
+script = ExtResource("1_fo3st")
 
 [node name="SingletonExportConfigurator" parent="." instance=ExtResource("1_n55d4")]
 day_of_year = 360
-time_scale = 7200
+time_scale = 360
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
