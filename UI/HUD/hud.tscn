@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7tvgd0t26wxq"]
+[gd_scene load_steps=7 format=3 uid="uid://7tvgd0t26wxq"]
 
 [ext_resource type="PackedScene" uid="uid://cdob3jc1pevtb" path="res://UI/HUD/crosshair.tscn" id="1_qdh7y"]
 [ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="2_te8l2"]
 [ext_resource type="Script" uid="uid://vgvxekc2vleo" path="res://UI/HUD/time_UI.gd" id="3_qdh7y"]
 [ext_resource type="PackedScene" uid="uid://cxap4c7uoshob" path="res://diamond_tool_bar.tscn" id="4_qdh7y"]
 [ext_resource type="PackedScene" uid="uid://bfjoenobjlt75" path="res://UI/HUD/radial_menu.tscn" id="5_radol"]
+[ext_resource type="Script" uid="uid://dgxmmfklxktjn" path="res://UI/HUD/coordinate.gd" id="6_dhie7"]
 
 [node name="HUD" type="Control"]
 process_mode = 3
@@ -80,3 +81,17 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+
+[node name="Coordinate" type="Label" parent="MarginContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0,0,0"
+script = ExtResource("6_dhie7")

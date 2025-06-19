@@ -27,6 +27,13 @@ var mouse_sensitivity:float = 0.35
 @export var debug_raycast:bool = false
 
 
+# Variables to store raycast debug data
+var ray_origin_debug: Vector3 = Vector3.ZERO
+var ray_end_debug: Vector3 = Vector3.ZERO
+var intersection_point_debug: Vector3 = Vector3.ZERO
+var look_direction_debug: Vector3 = Vector3.ZERO
+
+
 func _ready() -> void:
 	$SpringArm3D.position += Vector3(camera_x_offset,camera_y_offset,camera_z_offset)
 
@@ -35,7 +42,6 @@ func _ready() -> void:
 	if "mouse_sensitivity_percent" in target_entity:
 		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
 
-
 var smoothed_mouse_delta := Vector2.ZERO
 var raw_mouse_delta := Vector2.ZERO
 
@@ -43,32 +49,19 @@ func _input(event:InputEvent):
 	if event is InputEventMouseMotion:
 		raw_mouse_delta += event.relative
 
-
-func _process(delta: float) -> void:
-	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-delta * 20))
-	look_around(smoothed_mouse_delta, delta)
-	raw_mouse_delta = Vector2.ZERO
-
-
 func look_around(relative:Vector2,_delta:float=1):
-	#camera_pivot.rotate_y(-relative.x * mouse_sensitivity)
-#
-	#camera_pivot.rotate_x(-relative.y * mouse_sensitivity)
-	#camera_pivot.rotation_degrees.x = clampf(camera_pivot.rotation_degrees.x,-60,60)
-	'''
-	above is a classic pitfall using rotate() instead of direct angle manipulation.
-	rotating x or y would cause the following x/y to not be the same as before,
-	hence introducing unwanted z-axis rotation, as well as unintented behaviours
-	'''
 	rotation.y += -relative.x * mouse_sensitivity * _delta
 	rotation.x += -relative.y * mouse_sensitivity * _delta
 	rotation_degrees.x = clampf(rotation_degrees.x,-70,75)
 
-
 var direction_to_look_at:Vector3 = Vector3.ZERO
 func _physics_process(_delta: float) -> void:
+
+	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-_delta * 20))
+	look_around(smoothed_mouse_delta, _delta)
+	raw_mouse_delta = Vector2.ZERO
+
 	position = target_entity.position
-	#position = position.lerp(target_entity.position,1 - exp(-_delta * camera_acceleration_smoothing))
 	position.y = target_entity.position.y + y_tracking_offset
 
 	direction_to_look_at = get_lookat_direction()
@@ -76,76 +69,62 @@ func _physics_process(_delta: float) -> void:
 
 	if target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Walk] \
 	|| target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Sprint]:
-		var flat_input_direction = Vector2(
-			Input.get_action_strength("move_forward")-Input.get_action_strength("move_backward"),
-			Input.get_action_strength("move_right")-Input.get_action_strength("move_left")).normalized()
-
-		var current_yaw = target_entity.visuals.rotation.y
-		var target_yaw = atan2(flat_input_direction.y, -flat_input_direction.x)
-		target_entity.visuals.rotation.y = lerp_angle(current_yaw, target_yaw, angular_velocity * _delta)
-
+		var current_input:Vector2 = target_entity.current_input_direction
+		var current_visual_yaw:float = target_entity.skin.rotation.y
+		var target_visual_yaw:float = atan2(-current_input.x,-current_input.y)
+		target_entity.skin.rotation.y = lerp_angle(current_visual_yaw, target_visual_yaw, angular_velocity * _delta)
 		rotate_root_towards_cursor(direction_to_look_at,_delta)
 
-
-func get_lookat_direction() -> Vector3:
-	#var mouse_position:Vector2 = get_viewport().get_mouse_position()
-
-	#var ray_origin:Vector3 = camera.project_ray_origin(mouse_position)
-	#var ray_direction:Vector3 = camera.project_ray_normal(mouse_position)
-	var screen_center = get_viewport().get_visible_rect().size / 2
-	var ray_origin:Vector3 = camera.project_ray_origin(screen_center)
-	var ray_direction:Vector3 = camera.project_ray_normal(screen_center)
-
-
-
-	if ray_direction.y ==  0:
-		return Vector3.ZERO 	# too flat, skip rotation
-
-	#var ground_y:float = target_entity.global_position.y
-
-
-
-	#var t:float = (ground_y - ray_origin.y) / ray_direction.y
-
-	#t = clampf(t,camera_z_offset + 4,max_ray_length)
-	# since we don't care about if the intersection hits the ground or not,  t is not needed
-	var intersection := ray_origin + ray_direction * 5
-
-
-
-	# Flattened direction
-	var to_target:Vector3 = intersection - target_entity.global_position
-
-	if Vector3(to_target.x, 0, to_target.z).length_squared() < 0.005:
-
-		return Vector3.ZERO
-	## --- DEBUG DRAWING ---
+	# --- Debug Drawing
 	if debug_raycast:
-		pass
 
-	return to_target
-
-
-
-func rotate_head_ray(to_target: Vector3, _delta: float):
-	var ray = target_entity.interaction_ray_cast
-	var target = target_entity.global_position + to_target
-	var direction = target - ray.global_position
-
-	if abs(direction.normalized().dot(Vector3.UP)) > 0.999:
-		# Too vertical, skip to prevent twist
-		return
-
-	ray.look_at(target, Vector3.UP)
+		DebugDraw3D.draw_line(target_entity.global_position, target_entity.global_position + look_direction_debug, Color.GREEN)
+		DebugDraw3D.draw_sphere(intersection_point_debug, 0.1, Color.BLUE)
 
 
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
 	if to_target == Vector3.ZERO:
 		return
 
-	# --- ROTATION LOGIC ---
-
-	var target_rotation:float = atan2(-to_target.x, -to_target.z) # flip to - if model faces -z
+	var target_rotation:float = atan2(-to_target.x, -to_target.z) ## = atan2(-z,x) + pi/2, since model default 90 (facing -z, 0 rad is +X)
 	var current_rotation:Vector3 = target_entity.rotation
 
 	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_velocity * _delta)
+
+func get_lookat_direction() -> Vector3:
+	var screen_center = get_viewport().get_visible_rect().size / 2
+	var ray_origin:Vector3 = camera.project_ray_origin(screen_center)
+	var ray_direction:Vector3 = camera.project_ray_normal(screen_center)
+
+	# Store for debugging
+	ray_origin_debug = ray_origin
+	ray_end_debug = ray_origin + ray_direction * max_ray_length
+
+	if ray_direction.y == 0:
+		return Vector3.ZERO
+
+	var intersection := ray_origin + ray_direction * max_ray_length
+
+	# Store for debugging
+	intersection_point_debug = intersection
+
+	var to_target:Vector3 = intersection - target_entity.global_position
+
+	if Vector3(to_target.x, 0, to_target.z).length_squared() < 0.005:
+		look_direction_debug = Vector3.ZERO # Ensure debug variable is also reset
+		return Vector3.ZERO
+
+	look_direction_debug = to_target # Store for debugging
+
+	return to_target
+
+func rotate_head_ray(to_target: Vector3, _delta: float):
+	var ray = target_entity.interaction_ray_cast
+	var target = target_entity.global_position + to_target
+
+	var direction = target - ray.global_position
+
+	if abs(direction.normalized().dot(Vector3.UP)) > 0.999:
+		return
+
+	ray.look_at(target, Vector3.UP)

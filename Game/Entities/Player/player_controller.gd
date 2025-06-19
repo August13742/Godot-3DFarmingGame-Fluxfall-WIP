@@ -22,11 +22,13 @@ extends CharacterBody3D
 @onready var head:Node3D = $VisualControl/Mannequin/Head
 @onready var interaction_ray_cast: RayCast3D = $VisualControl/Mannequin/Head/InteractionRayCast
 
+var current_input_direction:Vector2 = Vector2.ZERO
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
+	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
 
 func _input(event):
