@@ -26,7 +26,6 @@ const DAYS_IN_YEAR : int = 365
 			stellar_body_rotation_component.day_of_year = day_of_year
 
 @export var time_scale:int = 60
-
 var stellar_body_rotation_component:StellarBodyRotation = null
 
 

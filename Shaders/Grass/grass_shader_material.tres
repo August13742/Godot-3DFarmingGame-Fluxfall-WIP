@@ -15,7 +15,7 @@ noise = SubResource("FastNoiseLite_nn42n")
 [resource]
 render_priority = 0
 shader = ExtResource("1_qyjmf")
-shader_parameter/top_color = Color(0.490667, 0.48, 0.8, 1)
+shader_parameter/top_color = Color(0.490196, 0.478431, 0.8, 1)
 shader_parameter/bottom_color = Color(0.176471, 0.333333, 0.0941176, 1)
 shader_parameter/ambient_occlusion_factor = 0.3
 shader_parameter/specular_strength = 0.4

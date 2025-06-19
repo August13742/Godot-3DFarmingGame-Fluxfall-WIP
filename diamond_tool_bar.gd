@@ -16,7 +16,7 @@ func _ready():
 	# Connect the signal from the radial menu to a method in this script
 	_late_init.call_deferred()
 		# It's good practice to ensure the radial_menu node exists and has the signal
-		
+
 func _late_init()->void:
 	radial_menu = owner.get_node("RadialMenu")
 
@@ -25,7 +25,7 @@ func _late_init()->void:
 	control_index_mapped = [bottom,left,top,right]
 
 
-				
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_toolbar"):
 		is_selected = true
@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 		radial_menu.visible = true
 		if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
+
 	elif event.is_action_released("select_toolbar"):
 		is_selected = false
 		scale_to(Vector2.ONE, 0.1)
@@ -41,11 +41,11 @@ func _input(event: InputEvent) -> void:
 		radial_menu.visible = false
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
+
 		if selected_index!=-1:
 			control_index_mapped[selected_index].panel.self_modulate = highlight_colour
 			control_index_mapped[selected_index].scale = Vector2.ONE*1.2
-			
+
 			if previous_index != -1:
 				control_index_mapped[previous_index].panel.self_modulate = Color.WHITE
 				control_index_mapped[previous_index].scale = Vector2.ONE
@@ -56,7 +56,7 @@ func _input(event: InputEvent) -> void:
 				control.scale = Vector2.ONE
 		get_tree().paused = false
 	if event is InputEventMouseMotion and is_selected:
-		
+
 		var local_mouse_pos = radial_menu.get_local_mouse_position() # Get mouse position relative to the radial menu
 		# Pass the local mouse position to the radial menu for selection logic
 		if radial_menu:
@@ -68,8 +68,8 @@ var selected_index:int = -1
 var previous_index:int = -1
 func _on_radial_menu_option_selected(index: int, _name: String) -> void:
 		selected_index = index
-		
-		
+
+
 
 
 func scale_to(target_scale: Vector2, duration: float) -> void:

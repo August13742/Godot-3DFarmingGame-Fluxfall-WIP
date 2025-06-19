@@ -126,6 +126,7 @@ select_toolbar={
 
 lights_and_shadows/directional_shadow/size.mobile=1024
 global_illumination/gi/use_half_resolution=true
+anti_aliasing/quality/screen_space_aa=2
 mesh_lod/lod_change/threshold_pixels=2.0
 lights_and_shadows/positional_shadow/atlas_quadrant_3_subdiv=3
 

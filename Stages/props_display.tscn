@@ -141,6 +141,8 @@ size = Vector2(750, 750)
 [node name="Island" type="Node"]
 
 [node name="SingletonExportConfigurator" parent="." instance=ExtResource("1_n55d4")]
+day_of_year = 360
+time_scale = 7200
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
@@ -163,7 +165,7 @@ material_override = ExtResource("2_nn42n")
 mesh = SubResource("PlaneMesh_hox20")
 
 [node name="Player" parent="." instance=ExtResource("2_ifwko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.13209, -0.0338593, -13.3752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58872986, 0.08657074, -14.214718)
 normal_speed = 3.0
 sprint_speed = 6.0
 

@@ -19,7 +19,7 @@ const ICON_SIZE := Vector2(32,32)
 @export var highlight_inner_radius_decrease: float = 10.0
 @export var highlight_line_colour: Color = Color.WHITE
 @export var highlight_outer_slice_colour: Color = Color.YELLOW
-@export var highlight_inner_slice_colour: Color = Color.BLUE  
+@export var highlight_inner_slice_colour: Color = Color.BLUE
 @export var highlight_line_width_increase: float = 2.0
 @export var highlight_duration: float = 0.15 # Tween duration
 
@@ -50,7 +50,7 @@ func _ready():
 		_animated_line_width_start.append(float(line_width))
 		_animated_line_width_end.append(float(line_width))
 	queue_redraw()
-	
+
 func _draw():
 	var offset := ICON_SIZE / 2.0
 	draw_circle(Vector2.ZERO, outer_radius, background_colour)
@@ -102,8 +102,8 @@ func _draw():
 			draw_arc(Vector2.ZERO, current_outer_radius, start_rads, end_rads, 256, current_outer_slice_colour, _animated_line_width_start[i], false)
 			# Draw the inner arc for the current slice.
 			draw_arc(Vector2.ZERO, current_inner_radius, start_rads, end_rads, 256, current_inner_slice_colour, _animated_line_width_start[i], false)
-			
-			
+
+
 # --- Setter functions for array elements (for Tweening) ---
 func set_animated_outer_radius_at_index(value: float, index: int):
 	if index >= 0 and index < _animated_outer_radius.size():
@@ -134,7 +134,7 @@ func set_animated_line_width_at_index(value: float, index: int):
 	if index >= 0 and index < _animated_line_width.size():
 		_animated_line_width[index] = value
 		queue_redraw()
-		
+
 func set_animated_line_width_start_at_index(value: float, index: int):
 	if index >= 0 and index < _animated_line_width_start.size():
 		_animated_line_width_start[index] = value
@@ -178,7 +178,7 @@ func update_selection(local_mouse_pos: Vector2):
 
 		if _current_hovered_option_index != -1:
 			# Apply highlight to the newly selected option
-			highlight_slice(_current_hovered_option_index) 
+			highlight_slice(_current_hovered_option_index)
 
 			var option_names = ["Bottom", "Left", "Top", "Right"] # Assuming 4 options
 			if _current_hovered_option_index < option_names.size():
@@ -194,7 +194,7 @@ func _get_slice_tween(index: int) -> Tween:
 	var tween_key = "slice_tween_" + str(index)
 	if _tweening_properties.has(tween_key) and _tweening_properties[tween_key] != null:
 		_tweening_properties[tween_key].kill() # Stop existing tween
-	
+
 	var new_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	_tweening_properties[tween_key] = new_tween
 	return new_tween

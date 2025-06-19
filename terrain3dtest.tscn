@@ -108,14 +108,11 @@ top_level = true
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("9_8edsv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.9113, 5.54795, 0)
-normal_speed = 3.0
-sprint_speed = 6.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5659, 59.0554, -201.562)
+normal_speed = 20.0
+sprint_speed = 50.0
 
 [node name="CameraPivot" parent="." instance=ExtResource("10_pys7j")]
-camera_x_offset = 0.0
-camera_z_offset = 0.0
-camera_y_offset = 0.0
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("11_pys7j")]
 time_scale = 600.0
