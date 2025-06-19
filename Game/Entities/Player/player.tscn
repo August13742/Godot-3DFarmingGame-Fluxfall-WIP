@@ -82,6 +82,11 @@ bones/50/rotation = Quaternion(0.036587782, -0.00013113832, -4.8057423e-06, 0.99
 bones/51/rotation = Quaternion(-0.5290725, -0.00032816397, 0.00034344767, 0.8485765)
 bones/52/rotation = Quaternion(-0.00013704962, 0.9643068, -0.26478705, -0.0004994379)
 
+[node name="HandAttackment" type="BoneAttachment3D" parent="VisualControl/Mannequin/Rig/Skeleton3D" index="1"]
+transform = Transform3D(-1.4766249e-07, -0.11980744, -0.99279666, 0.9999997, -7.703811e-07, -7.00853e-08, -7.022183e-07, -0.9927969, 0.119807504, 0.82693815, 1.9928875, 0.090847455)
+bone_name = "DEF-hand.R"
+bone_idx = 29
+
 [node name="Head" type="Node3D" parent="VisualControl/Mannequin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69998, 0)
 

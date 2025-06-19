@@ -77,9 +77,7 @@ func _physics_process(_delta: float) -> void:
 
 	# --- Debug Drawing
 	if debug_raycast:
-
-		DebugDraw3D.draw_line(target_entity.global_position, target_entity.global_position + look_direction_debug, Color.GREEN)
-		DebugDraw3D.draw_sphere(intersection_point_debug, 0.1, Color.BLUE)
+		pass
 
 
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
