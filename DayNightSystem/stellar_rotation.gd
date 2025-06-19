@@ -87,7 +87,7 @@ func _ready() -> void :
 			moon_base_enegry = moon.light_energy
 	_update()
 
-#func _process(delta: float) -> void:
+#func _physics_process(delta: float) -> void:
 	#var scaled_hours = delta * time_scale / 3600.0  # Convert seconds → hours
 	#day_time += scaled_hours  # triggers setter
 	#TimeManager.game_time = day_time

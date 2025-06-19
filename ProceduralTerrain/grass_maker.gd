@@ -57,8 +57,10 @@ func _late_init()->void:
 	camera = get_viewport().get_camera_3d()
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if camera == null:
+		camera = get_viewport().get_camera_3d()
+		print("camera is null")
 		return
 
 	for mm in get_children():
