@@ -3,7 +3,7 @@ class_name HydrationComponent
 
 @onready var collision:CollisionShape3D = $%HydrationCollision
 signal hydrate
-func start_interaction() -> void:
+func start_interaction(_source:Node3D = null) -> void:
 	hydrate.emit()
 
 

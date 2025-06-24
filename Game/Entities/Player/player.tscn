@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs70xfn55ex4t"]
+[gd_scene load_steps=10 format=3 uid="uid://bs70xfn55ex4t"]
 
 [ext_resource type="Script" uid="uid://bk08dm8dcokkj" path="res://Game/Entities/Player/player_controller.gd" id="1_ulv0d"]
 [ext_resource type="PackedScene" uid="uid://fmd6u3cipjbb" path="res://Game/Entities/Player/StateMachine/state_machine.tscn" id="2_5028t"]
 [ext_resource type="PackedScene" uid="uid://bvj76v0txbyyy" path="res://animation_library.tscn" id="3_5028t"]
 [ext_resource type="Script" uid="uid://6el3nq2lfoqx" path="res://Game/Entities/Player/interaction_ray_cast.gd" id="4_ulv0d"]
+[ext_resource type="Script" uid="uid://bkcls2qk618ib" path="res://Game/Entities/Player/force_vector_ray.gd" id="5_70t3k"]
 [ext_resource type="PackedScene" uid="uid://ds4jsprk6qhrw" path="res://InventorySystem/inventory_component.tscn" id="5_5028t"]
+[ext_resource type="Script" uid="uid://cssvpv7eq7dla" path="res://Game/Entities/Player/head_ray_manager.gd" id="6_unle2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25h4n"]
 radius = 0.4
@@ -82,15 +84,32 @@ bones/50/rotation = Quaternion(0.036587782, -0.00013113832, -4.8057423e-06, 0.99
 bones/51/rotation = Quaternion(-0.5290725, -0.00032816397, 0.00034344767, 0.8485765)
 bones/52/rotation = Quaternion(-0.00013704962, 0.9643068, -0.26478705, -0.0004994379)
 
-[node name="HandAttackment" type="BoneAttachment3D" parent="VisualControl/Mannequin/Rig/Skeleton3D" index="1"]
+[node name="RHandAttachment" type="BoneAttachment3D" parent="VisualControl/Mannequin/Rig/Skeleton3D" index="1"]
 transform = Transform3D(7.148515e-07, 0.99999976, 8.195639e-08, 0.9999997, -7.7038123e-07, -7.0085306e-08, -6.246786e-08, 1.7881393e-07, -0.9999995, 0.73889995, 1.4408001, 0.065400206)
 bone_name = "DEF-hand.R"
 bone_idx = 29
 
+[node name="RightHand" type="Node3D" parent="VisualControl/Mannequin/Rig/Skeleton3D/RHandAttachment"]
+unique_name_in_owner = true
+transform = Transform3D(7.7038175e-07, 1.0000004, -7.0085306e-08, 1.0000002, -7.148519e-07, 8.19565e-08, 1.7881402e-07, -6.246804e-08, -1.0000005, -0.027760386, 0.07098138, 0.06540025)
+
 [node name="Head" type="Node3D" parent="VisualControl/Mannequin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69998, 0)
 
-[node name="InteractionRayCast" type="RayCast3D" parent="VisualControl/Mannequin/Head"]
+[node name="HeadRayManager" type="Node3D" parent="VisualControl/Mannequin/Head"]
+unique_name_in_owner = true
+script = ExtResource("6_unle2")
+
+[node name="ForceVectorRay" type="RayCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
+target_position = Vector3(0, 0, -10)
+collision_mask = 4
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+script = ExtResource("5_70t3k")
+
+[node name="InteractionRayCast" type="RayCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
+enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 4
 collide_with_areas = true

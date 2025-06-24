@@ -32,6 +32,7 @@ func emit_INT_begin_interaction(follow_up:Callable=do_nothing):
 func do_nothing():
 	pass
 
+
 ## Game Events
 signal GAME_NEW_DAY
 func emit_GAME_NEW_DAY():

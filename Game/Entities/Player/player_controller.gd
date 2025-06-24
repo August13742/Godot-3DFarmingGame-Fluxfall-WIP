@@ -20,8 +20,7 @@ extends CharacterBody3D
 
 @onready var animation_player:AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
 @onready var head:Node3D = $VisualControl/Mannequin/Head
-@onready var interaction_ray_cast: RayCast3D = $VisualControl/Mannequin/Head/InteractionRayCast
-
+@onready var right_hand:Node3D = %RightHand
 var current_input_direction:Vector2 = Vector2.ZERO
 
 func _ready():
@@ -30,7 +29,8 @@ func _ready():
 func _physics_process(delta):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
-	interaction_ray_cast.check_interaction()
+
+
 
 func _input(event):
 	state_machine.handle_input(event)

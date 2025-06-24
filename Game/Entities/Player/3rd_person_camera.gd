@@ -117,7 +117,7 @@ func get_lookat_direction() -> Vector3:
 	return to_target
 
 func rotate_head_ray(to_target: Vector3, _delta: float):
-	var ray = target_entity.interaction_ray_cast
+	var ray = target_entity.head
 	var target = target_entity.global_position + to_target
 
 	var direction = target - ray.global_position
