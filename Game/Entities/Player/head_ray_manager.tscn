@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccy6epwfg4apg"]
+
+[ext_resource type="Script" uid="uid://cssvpv7eq7dla" path="res://Game/Entities/Player/head_ray_manager.gd" id="1_iehsp"]
+[ext_resource type="Script" uid="uid://bkcls2qk618ib" path="res://Game/Entities/Player/force_vector_ray.gd" id="2_vtcpm"]
+[ext_resource type="Script" uid="uid://6el3nq2lfoqx" path="res://Game/Entities/Player/interaction_ray_cast.gd" id="3_ur0p0"]
+
+[node name="HeadRayManager" type="Node3D"]
+script = ExtResource("1_iehsp")
+
+[node name="ForceVectorRay" type="RayCast3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 4
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+script = ExtResource("2_vtcpm")
+
+[node name="InteractionRayCast" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+collide_with_areas = true
+debug_shape_custom_color = Color(0.7, 0, 0, 1)
+debug_shape_thickness = 3
+script = ExtResource("3_ur0p0")

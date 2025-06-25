@@ -1,7 +1,7 @@
 extends Node3D
 class_name HeadRayManager
 
-@onready var force_vector_ray:RayCast3D = $ForceVectorRay
+@onready var force_vector_ray:ShapeCast3D = $ForceVector
 @onready var interaction_ray:RayCast3D = $InteractionRayCast
 var force_enabled:bool = true
 

@@ -1,1 +1,4 @@
 1. day does not reset when exceeding 1 year (365 days)
+
+Camera Raycast if too long causes near object to not fit in crosshair, but
+if too short, causes far object to not fit in crosshair

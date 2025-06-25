@@ -22,7 +22,7 @@ var mouse_sensitivity:float = 0.35
 @export var camera_y_offset:float = 0
 ## how high pivot is above character, set this so that it's at the eye
 @export var y_tracking_offset:float = 1.8
-@export var max_ray_length:int = 5
+@export var max_ray_length:int = 100
 @export var camera_acceleration_smoothing := 25
 @export var debug_raycast:bool = false
 
@@ -115,6 +115,10 @@ func get_lookat_direction() -> Vector3:
 	look_direction_debug = to_target # Store for debugging
 
 	return to_target
+
+
+
+
 
 func rotate_head_ray(to_target: Vector3, _delta: float):
 	var ray = target_entity.head

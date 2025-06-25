@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs70xfn55ex4t"]
+[gd_scene load_steps=11 format=3 uid="uid://bs70xfn55ex4t"]
 
 [ext_resource type="Script" uid="uid://bk08dm8dcokkj" path="res://Game/Entities/Player/player_controller.gd" id="1_ulv0d"]
 [ext_resource type="PackedScene" uid="uid://fmd6u3cipjbb" path="res://Game/Entities/Player/StateMachine/state_machine.tscn" id="2_5028t"]
@@ -11,6 +11,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_25h4n"]
 radius = 0.4
 height = 1.74
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_unle2"]
+radius = 0.12
+height = 100.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ulv0d"]
 size = Vector3(1, 1.8, 0.8)
@@ -100,15 +104,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69998, 0)
 unique_name_in_owner = true
 script = ExtResource("6_unle2")
 
-[node name="ForceVectorRay" type="RayCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
-target_position = Vector3(0, 0, -10)
+[node name="ForceVector" type="ShapeCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_unle2")
+target_position = Vector3(0, 50, 0)
+max_results = 1
 collision_mask = 4
 collide_with_areas = true
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
+debug_shape_custom_color = Color(0, 0, 0.99215686, 1)
 script = ExtResource("5_70t3k")
 
 [node name="InteractionRayCast" type="RayCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
+visible = false
 enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 4

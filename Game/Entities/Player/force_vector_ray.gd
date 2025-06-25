@@ -1,4 +1,4 @@
-extends RayCast3D
+extends ShapeCast3D
 class_name ForceVectorRay
 
 var source:Node3D
@@ -14,18 +14,18 @@ func _late_init()->void:
 
 func check_interaction() -> void:
 	if is_colliding():
-		var collider := get_collider()
+		var collider := get_collider(0)
 		if !(collider is Interactable): return
 
 		if Input.is_action_just_pressed("force"):
 
 			if collider is Interactable:
-				get_collider().start_interaction(source)
+				collider.start_interaction(source)
 
 		elif Input.is_action_just_pressed("interact"):
 
 			if collider is Interactable:
-				get_collider().start_interaction()
+				collider.start_interaction()
 
 		if !is_hitting:
 			is_hitting = true
