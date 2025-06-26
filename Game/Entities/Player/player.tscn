@@ -116,7 +116,6 @@ script = ExtResource("5_70t3k")
 
 [node name="InteractionRayCast" type="RayCast3D" parent="VisualControl/Mannequin/Head/HeadRayManager"]
 visible = false
-enabled = false
 target_position = Vector3(0, 0, -2)
 collision_mask = 4
 collide_with_areas = true
