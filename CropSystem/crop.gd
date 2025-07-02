@@ -15,7 +15,11 @@ class_name Crop
 
 @onready var hydration_component:HydrationComponent = $%HydrationComponent
 var stages_per_visual_change:int
-var hydrated:bool = false
+@export var always_hydrated:bool = false
+var hydrated:bool = false:
+	set(_a):
+		if always_hydrated:
+			hydrated = true
 
 enum Stages{
 	Seed,
