@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d41o7nb7ev2k"]
 
-[ext_resource type="Script" uid="uid://bcnpsuko7omm7" path="res://diamond_panel.gd" id="1_epg7c"]
+[ext_resource type="Script" uid="uid://bcnpsuko7omm7" path="res://UI/DiamondPanel/diamond_panel.gd" id="1_epg7c"]
 [ext_resource type="Texture2D" uid="uid://cfw2sa6eqs1bu" path="res://UI/Assets/panel_minimal.png" id="1_xieyy"]
 [ext_resource type="Texture2D" uid="uid://2loaw0w4iy21" path="res://UI/Assets/iron_tools/icon_189.png" id="3_epg7c"]
 
