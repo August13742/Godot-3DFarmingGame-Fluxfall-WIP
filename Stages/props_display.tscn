@@ -1,7 +1,7 @@
 [gd_scene load_steps=129 format=3 uid="uid://cjnhanlw5kn5k"]
 
 [ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_fo3st"]
-[ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://singleton_exports.tscn" id="1_n55d4"]
+[ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://singleton_param_manager.tscn" id="1_n55d4"]
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="2_ifwko"]
 [ext_resource type="Material" uid="uid://cr8yf6r3utjih" path="res://Shaders/water/water_mat.tres" id="2_nn42n"]
 [ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="3_i4xcx"]
@@ -134,7 +134,7 @@ size = Vector2(750, 750)
 [node name="Island" type="Node"]
 script = ExtResource("1_fo3st")
 
-[node name="SingletonExportConfigurator" parent="." instance=ExtResource("1_n55d4")]
+[node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 

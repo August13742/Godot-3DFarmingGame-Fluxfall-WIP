@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwnipfmy0dbp7"]
 
-[ext_resource type="Script" uid="uid://b2dgmsewkl74f" path="res://radial_slices.gd" id="1_jmdx6"]
-[ext_resource type="Script" uid="uid://dgwf7hf0yqcar" path="res://radial_menu_outline.gd" id="2_a2u0o"]
+[ext_resource type="Script" uid="uid://b2dgmsewkl74f" path="res://UI/RadialMenu/radial_slices.gd" id="1_jmdx6"]
+[ext_resource type="Script" uid="uid://dgwf7hf0yqcar" path="res://UI/RadialMenu/radial_menu_outline.gd" id="2_a2u0o"]
 
 [sub_resource type="GDScript" id="GDScript_a2u0o"]
 
