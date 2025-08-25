@@ -7,9 +7,9 @@ frequency = 0.011
 fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_grv7g"]
+noise = SubResource("FastNoiseLite_eyp26")
 seamless = true
 seamless_blend_skirt = 0.2
-noise = SubResource("FastNoiseLite_eyp26")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nk01l"]
 noise_type = 2
@@ -18,9 +18,9 @@ frequency = 0.0173
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gd420"]
+noise = SubResource("FastNoiseLite_nk01l")
 seamless = true
 seamless_blend_skirt = 0.325
-noise = SubResource("FastNoiseLite_nk01l")
 
 [sub_resource type="Gradient" id="Gradient_i6w4f"]
 offsets = PackedFloat32Array(0, 0.0836013)
@@ -36,11 +36,11 @@ fractal_lacunarity = 1.74
 fractal_gain = 0.38
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dowuo"]
-seamless = true
-seamless_blend_skirt = 0.12
-as_normal_map = true
-bump_strength = 9.0
 noise = SubResource("FastNoiseLite_1qqoi")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.12
+bump_strength = 9.0
 
 [resource]
 render_priority = 0

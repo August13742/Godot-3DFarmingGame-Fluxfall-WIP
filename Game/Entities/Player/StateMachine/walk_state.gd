@@ -1,12 +1,20 @@
 extends State
 class_name WalkState
 
+@onready var locomotion_blend: AnimationTree = $"../../VisualControl/Mannequin/LocomotionBlend"
 
 
 
 func enter():
-	animation_player.play("Walk",0.5)
-	animation_player.speed_scale = 0.75
+	#animation_player.play("Walk",0.5)
+	#animation_player.speed_scale = 0.75
+	var anim_tween:Tween = create_tween()
+	anim_tween.tween_method(
+		func(val:float):
+			locomotion_blend.set(&"parameters/blend_position",val),
+			locomotion_blend.get(&"parameters/blend_position"),
+			0.,.5)
+	
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering WALK")
 

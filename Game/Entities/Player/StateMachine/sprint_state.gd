@@ -1,12 +1,19 @@
 extends State
 class_name SprintState
 
+@onready var locomotion_blend: AnimationTree = $"../../VisualControl/Mannequin/LocomotionBlend"
 
 
 func enter():
 
-	animation_player.play("Sprint_Enter",0.25)
-	animation_player.queue("Sprint")
+	#animation_player.play("Sprint_Enter",0.25)
+	#animation_player.queue("Sprint")
+	var anim_tween:Tween = create_tween()
+	anim_tween.tween_method(
+		func(val:float):
+			locomotion_blend.set(&"parameters/blend_position",val),
+			locomotion_blend.get(&"parameters/blend_position"),
+			1.,.5)
 
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering SPRINT")

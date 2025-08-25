@@ -8,9 +8,9 @@ fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h28ac"]
 resource_local_to_scene = true
-in_3d_space = true
-seamless = true
 noise = SubResource("FastNoiseLite_nn42n")
+seamless = true
+in_3d_space = true
 
 [resource]
 render_priority = 0
