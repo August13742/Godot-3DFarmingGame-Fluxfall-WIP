@@ -135,6 +135,7 @@ size = Vector2(750, 750)
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
+time_scale = 3600
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 

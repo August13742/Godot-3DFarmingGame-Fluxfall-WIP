@@ -1,17 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://d44meequbbvu"]
+[gd_scene load_steps=4 format=4 uid="uid://d44meequbbvu"]
 
 [ext_resource type="Script" uid="uid://r3ornj2ngdd3" path="res://CropSystem/billboard_plants.gd" id="1_5ocrg"]
-[ext_resource type="Texture2D" uid="uid://de2p7k50jth2m" path="res://CropSystem/TomatoAssets/tomato_fullgrown.png" id="1_dqpdo"]
 [ext_resource type="Script" uid="uid://cjsa6mr7amku5" path="res://CropSystem/ImposterMeshBuilter.gd" id="2_nwop4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikmqn"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("1_dqpdo")
-billboard_keep_scale = true
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ikmqn"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_y6um0"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAA="),
@@ -24,47 +16,14 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAvwAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAPwAAgD8AAAAAAAAAvwAAgD8AAAAAAAAAPwAAAAAuvTuzAAAAvwAAAAAuvTszAAAAvwAAgD8uvTszAAAAPwAAgD8uvTuzLr27MgAAAAAAAAA/Lr27sgAAAAAAAAC/Lr27sgAAgD8AAAC/Lr27MgAAgD8AAAA/Lt7MsQAAAAAAAAC/Lt7MMQAAAAAAAAA/Lt7MMQAAgD8AAAA/Lt7MsQAAgD8AAAC///////9/AID//////38AgP//////fwCA//////9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgAAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/////f/9//7////9//3//v////3//f/+/////f/9//78=")
 }]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6um0"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("1_dqpdo")
-
-[sub_resource type="QuadMesh" id="QuadMesh_51deg"]
-
 [node name="BillboardPlants" type="Node3D"]
 script = ExtResource("1_5ocrg")
 
 [node name="Visuals" type="Node3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -0.35, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
-[node name="Mesh1" type="MeshInstance3D" parent="Visuals"]
-material_override = SubResource("StandardMaterial3D_ikmqn")
-mesh = SubResource("ArrayMesh_ikmqn")
+[node name="ImposterMesh" type="MeshInstance3D" parent="Visuals"]
+mesh = SubResource("ArrayMesh_y6um0")
 skeleton = NodePath("../..")
 script = ExtResource("2_nwop4")
 height = 1.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49553537, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_y6um0")
-mesh = SubResource("QuadMesh_51deg")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.49553537, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_y6um0")
-mesh = SubResource("QuadMesh_51deg")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visuals"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.49553537, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_y6um0")
-mesh = SubResource("QuadMesh_51deg")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Visuals"]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0.49553537, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_y6um0")
-mesh = SubResource("QuadMesh_51deg")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de2p7k50jth2m"
-path.s3tc="res://.godot/imported/tomato_fullgrown.png-7d63647559650865bbf0ff90c2cd371b.s3tc.ctex"
+uid="uid://dnbnklyai6ydd"
+path.s3tc="res://.godot/imported/tomato_harvestable.png-9e55f7940701f2387e30978369550048.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://CropSystem/TomatoAssets/tomato_fullgrown.png"
-dest_files=["res://.godot/imported/tomato_fullgrown.png-7d63647559650865bbf0ff90c2cd371b.s3tc.ctex"]
+source_file="res://CropSystem/TomatoAssets/tomato_harvestable.png"
+dest_files=["res://.godot/imported/tomato_harvestable.png-9e55f7940701f2387e30978369550048.s3tc.ctex"]
 
 [params]
 
