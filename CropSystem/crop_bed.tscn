@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://ivfhgtder5o" path="res://CropSystem/crop_bed.glb" id="1_5bk3s"]
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
 [ext_resource type="PackedScene" uid="uid://uooh2w6v16yq" path="res://CropSystem/hydration_component.tscn" id="2_rrrv5"]
-[ext_resource type="PackedScene" uid="uid://3ky7ph3iwslh" path="res://CropSystem/tomato.tscn" id="3_vheoy"]
+[ext_resource type="PackedScene" uid="uid://d44meequbbvu" path="res://CropSystem/billboard_plants.tscn" id="4_rrrv5"]
 [ext_resource type="Script" uid="uid://hr1u5nhfrdm" path="res://Items/Interactables/Pickuppable/pickuppable.gd" id="4_uy331"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ghvx"]
 radius = 1.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_rrrv5"]
-radius = 0.2
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rrrv5"]
+radius = 1.0
 
 [node name="CropBed" type="Node3D"]
 script = ExtResource("2_64rtf")
@@ -28,8 +28,7 @@ shape = SubResource("SphereShape3D_3ghvx")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285098, 0)
 
-[node name="tomato" parent="CropPivot" instance=ExtResource("3_vheoy")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="BillboardPlants" parent="CropPivot" instance=ExtResource("4_rrrv5")]
 
 [node name="Pickuppable" type="Area3D" parent="CropPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285098, 0)
@@ -42,8 +41,9 @@ metadata/_custom_type_script = "uid://hr1u5nhfrdm"
 
 [node name="HarvestCollision" type="CollisionShape3D" parent="CropPivot/Pickuppable"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-shape = SubResource("SphereShape3D_rrrv5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2752843, 0)
+shape = SubResource("CapsuleShape3D_rrrv5")
 disabled = true
+debug_color = Color(0.61, 0, 0, 1)
 
 [editable path="HydrationComponent"]

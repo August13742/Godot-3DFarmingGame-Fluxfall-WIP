@@ -8,7 +8,7 @@ Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk.
 
 ### Item & Inventory & Crafting System with Automatic Database Generation
 ![Demo](demo_gifs/inventory_crafting_demo.gif)
-### Functional 3rd Person Action RPG Camera & State-Machine Based Player Control 
+### Functional 3rd Person Action RPG Camera & State-Machine Based Player Control
 Using Raycast & Shapecast
 
 ![Demo](demo_gifs/player_control_demo.gif)
@@ -25,10 +25,10 @@ mean = $\frac{S}{p}$
 
 variance = $\frac{S(1-p)}{p^2}$
 
-by separating visual stages and computation stages, variance and mean can be fine-tuned. 
+by separating visual stages and computation stages, variance and mean can be fine-tuned.
 
-For example: 
-Growth Tick (GT) Check happens every 10 in-game Minute with probability. 
+For example:
+Growth Tick (GT) Check happens every 10 in-game Minute with probability.
 if GT && hydrated && (rand()<= growth_chance) then stage ++, if stage satisfices Visual change, then change model.
 
 
@@ -38,5 +38,4 @@ since the system is implemented based on in-game time, Sleep can be achieved by 
 1. QTE & Cutscene
 2. Terrains and Environments (Main Field, Main Town, etc.)
 3. Combat System with 2~3 Mobs and 1 boss
-4. Smart Helper NPCs 
-
+4. Smart Helper NPCs

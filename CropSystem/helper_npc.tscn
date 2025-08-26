@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp5sfiqbhpt7j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0ycrr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dyd5"]
+albedo_color = Color(0.44412497, 0.3685, 0.55, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_v2sy7"]
+radius = 0.1
+height = 0.2
+
+[node name="HelperNPC" type="Node3D"]
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visual"]
+mesh = SubResource("CapsuleMesh_0ycrr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0dyd5")
+
+[node name="Head" type="MeshInstance3D" parent="Visual/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.5, -0.45)
+mesh = SubResource("SphereMesh_v2sy7")
+
+[node name="Head2" type="MeshInstance3D" parent="Visual/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, -0.45)
+mesh = SubResource("SphereMesh_v2sy7")

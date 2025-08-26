@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BillboardPlant" load_steps=7 format=3 uid="uid://dkkc66nhl0nwn"]
+
+[ext_resource type="Script" uid="uid://clnxvwrwrc84d" path="res://CropSystem/billboard_plant_resource.gd" id="1_3wjkq"]
+[ext_resource type="Texture2D" uid="uid://b1xdakiac3f7f" path="res://CropSystem/WheatAssets/wheat_harvestable.png" id="1_yqpmh"]
+[ext_resource type="Texture2D" uid="uid://duq30oo7oy1ik" path="res://CropSystem/WheatAssets/wheat_seed.png" id="3_e1d0t"]
+[ext_resource type="Texture2D" uid="uid://c0pyeeres3v5e" path="res://CropSystem/WheatAssets/wheat_1.png" id="4_r2878"]
+[ext_resource type="Texture2D" uid="uid://ddml6rt6b43qb" path="res://CropSystem/WheatAssets/wheat_2.png" id="5_bbe80"]
+[ext_resource type="Texture2D" uid="uid://cgt6asoie2w62" path="res://CropSystem/WheatAssets/wheat_3.png" id="6_liroo"]
+
+[resource]
+script = ExtResource("1_3wjkq")
+seed_texture = ExtResource("3_e1d0t")
+stage1_texture = ExtResource("4_r2878")
+stage2_texture = ExtResource("5_bbe80")
+stage3_texture = ExtResource("6_liroo")
+harvestable_texture = ExtResource("1_yqpmh")
+metadata/_custom_type_script = "uid://clnxvwrwrc84d"
