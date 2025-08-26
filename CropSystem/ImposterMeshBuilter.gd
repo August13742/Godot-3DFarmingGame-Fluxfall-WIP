@@ -2,7 +2,7 @@
 extends MeshInstance3D
 
 @export_range(0.05, 5.0, 0.01) var half_width := 0.5 : set = _set_half_width
-@export_range(0.10, 10.0, 0.01) var height := 1.6    : set = _set_height
+@export_range(0.10, 10.0, 0.01) var height := 1.0    : set = _set_height
 @export_enum("2-way", "4-way") var cross := 1        : set = _set_cross
 @export var generate_in_editor := true               : set = _set_generate
 

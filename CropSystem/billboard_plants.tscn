@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://r3ornj2ngdd3" path="res://CropSystem/billboard_plants.gd" id="1_5ocrg"]
 [ext_resource type="Script" uid="uid://cjsa6mr7amku5" path="res://CropSystem/ImposterMeshBuilter.gd" id="2_nwop4"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_y6um0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_nwop4"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAA="),
@@ -20,10 +20,9 @@ _surfaces = [{
 script = ExtResource("1_5ocrg")
 
 [node name="Visuals" type="Node3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="ImposterMesh" type="MeshInstance3D" parent="Visuals"]
-mesh = SubResource("ArrayMesh_y6um0")
+mesh = SubResource("ArrayMesh_nwop4")
 skeleton = NodePath("../..")
 script = ExtResource("2_nwop4")
-height = 1.0

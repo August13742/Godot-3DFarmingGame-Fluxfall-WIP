@@ -60,12 +60,12 @@ func _on_growth_tick_emitted()->void:
 func apply_billboard_stage(mesh_ins: MeshInstance3D, plant_res: BillboardPlantResource, stage: int, base_height: float = 1.0) -> void:
 	var p := plant_res.get_stage_params(stage, base_height)
 	var mat := mesh_ins.get_active_material(0)
+
 	if mat == null or not (mat is ShaderMaterial):
-		# attach a fresh ShaderMaterial using the shader above
 		mat = ShaderMaterial.new()
 		mat.shader = preload("uid://bj6xhasqh07b7")
 		mesh_ins.set_surface_override_material(0, mat)
-	# make this instance’s material unique so uniforms don’t affect others
+
 	if not mat.resource_local_to_scene:
 		mat = mat.duplicate()
 		mat.resource_local_to_scene = true
@@ -73,8 +73,8 @@ func apply_billboard_stage(mesh_ins: MeshInstance3D, plant_res: BillboardPlantRe
 
 	mat.set_shader_parameter("albedo_tex", plant_res.textures[stage])
 	mat.set_shader_parameter("uv_rect", p["uv_rect"])
-	mat.set_shader_parameter("y_offset", p["y_offset"])
-	mat.set_shader_parameter("height_scale", p["height_scale"])
+	mat.set_shader_parameter("scale_factor", p["scale_factor"])
+	mat.set_shader_parameter("vertical_offset", p["vertical_offset"])
 
 func _reset_hydration_on_day_changed():
 	hydrated = false
