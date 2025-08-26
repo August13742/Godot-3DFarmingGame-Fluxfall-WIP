@@ -3,12 +3,12 @@ class_name SprintState
 
 @onready var locomotion_blend: AnimationTree = $"../../VisualControl/Mannequin/LocomotionBlend"
 
-
+var anim_tween:Tween
 func enter():
 
 	#animation_player.play("Sprint_Enter",0.25)
 	#animation_player.queue("Sprint")
-	var anim_tween:Tween = create_tween()
+	anim_tween = create_tween()
 	anim_tween.tween_method(
 		func(val:float):
 			locomotion_blend.set(&"parameters/blend_position",val),
@@ -63,3 +63,6 @@ func update(delta):
 func _on_sprint_release_timeout():
 	if is_instance_valid(owner):
 		owner.change_state(StateMachine.Walk)
+
+func exit():
+	anim_tween.stop()
