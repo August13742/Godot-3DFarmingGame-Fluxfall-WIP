@@ -2,12 +2,12 @@
 extends Resource
 class_name BillboardPlantResource
 
-@export var textures:Dictionary[Crop.Stage,CompressedTexture2D] = {
-	Crop.Stage.Seed:null,
-	Crop.Stage.Stage1:null,
-	Crop.Stage.Stage2:null,
-	Crop.Stage.Stage3:null,
-	Crop.Stage.Harvestable:null
+@export var textures:Dictionary[CropBed.Stage,CompressedTexture2D] = {
+	CropBed.Stage.Seed:null,
+	CropBed.Stage.Stage1:null,
+	CropBed.Stage.Stage2:null,
+	CropBed.Stage.Stage3:null,
+	CropBed.Stage.Harvestable:null
 }
 
 @export_range(0.0, 1.0, 0.01) var alpha_thresh := 0.10 : set = _set_thresh

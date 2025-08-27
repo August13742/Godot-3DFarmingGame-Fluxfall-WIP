@@ -1,6 +1,6 @@
 extends Node
 
-class_name Crop
+class_name CropBed
 
 ## How many stages the visual of the crop changes
 @export var actual_stages:int = 4
@@ -9,9 +9,9 @@ class_name Crop
 ## chance for growth per growth_tick
 @export var growth_chance:float = 0.75
 
-@onready var crop_pivot:Node3D = $%CropPivot
-@onready var crop:BillboardPlant =crop_pivot.get_child(0)
-@onready var harvest_collision:CollisionShape3D = $%HarvestCollision
+@onready var crop_component:Node3D = $%CropComponent
+@onready var crop:BillboardPlant =crop_component.billboard_plants
+@onready var harvest_collision:CollisionShape3D = crop_component.harvest_collision
 
 @onready var hydration_component:HydrationComponent = $%HydrationComponent
 var stages_per_visual_change:int
