@@ -18,7 +18,8 @@ extends CharacterBody3D
 @onready var state_machine := $StateMachine
 @export var state_machine_debug:bool = false
 
-@onready var animation_player:AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
+@onready var state_machine_animator:AnimationNodeStateMachinePlayback= %AnimationTree.get("parameters/Locomotion/playback")
+
 @onready var head:Node3D = $VisualControl/Mannequin/Head
 @onready var right_hand:Node3D = %RightHand
 var current_input_direction:Vector2 = Vector2.ZERO
