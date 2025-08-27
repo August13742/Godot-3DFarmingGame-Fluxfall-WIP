@@ -8,6 +8,7 @@ class_name CropBed
 @export var stages_for_calculation:int = 40
 ## chance for growth per growth_tick
 @export var growth_chance:float = 0.75
+@onready var crop_bed_model: CropBedModel = %CropBedModel
 
 @onready var crop_component:Node3D = $%CropComponent
 @onready var crop:BillboardPlant =crop_component.billboard_plants
@@ -15,11 +16,13 @@ class_name CropBed
 
 @onready var hydration_component:HydrationComponent = $%HydrationComponent
 var stages_per_visual_change:int
-@export var always_hydrated:bool = true
-var hydrated:bool = true:
+@export var always_hydrated:bool = false
+var hydrated:bool = false:
 	set(_a):
 		if always_hydrated:
 			hydrated = true
+
+
 
 enum Stage{
 	Seed,
@@ -29,17 +32,26 @@ enum Stage{
 	Harvestable
 }
 
+var seeded:bool = false
 var current_stage:Stage = Stage.Seed
 var current_calculation_stage:int = 0
 var can_harvest:bool = false
-func _ready() -> void:
-	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
-	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
+func _ready() -> void:
 	@warning_ignore("integer_division")
 	stages_per_visual_change = floori(stages_for_calculation / actual_stages)
-	hydration_component.hydrate.connect(_on_hydrate)
+	
+	
+	if crop_component.crop_resource != null:
+		seeded = true
+		
+		EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
+		EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
+		hydration_component.hydrate.connect(_on_hydrate)
+		crop_component.visible = false
+
+	
 	apply_billboard_stage(crop.imposter_mesh,crop.billboard_resource,current_stage)
 
 func grow()->void:
@@ -78,9 +90,14 @@ func apply_billboard_stage(mesh_ins: MeshInstance3D, plant_res: BillboardPlantRe
 
 func _reset_hydration_on_day_changed():
 	hydrated = false
+	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_dry
 	if current_stage != Stage.Harvestable:
 		hydration_component.collision_on()
 
 func _on_hydrate():
 	hydrated = true
+	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_wet
+	print(crop_bed_model.dirt_material)
+	print(crop_bed_model.dirt_material.albedo_color)
+	print("hydrated")
 	hydration_component.collision_off()

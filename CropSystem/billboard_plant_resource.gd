@@ -11,10 +11,9 @@ class_name BillboardPlantResource
 }
 
 @export_range(0.0, 1.0, 0.01) var alpha_thresh := 0.10 : set = _set_thresh
-@export var recompute_now := false : set = _set_recompute
-
 # Minimum scale to ensure visibility
 @export_range(0.05, 2.0, 0.05) var min_visible_scale := 0.05
+@export_tool_button("Recompute Data") var recompute_action:Callable = _recompute_all
 # Baked data
 @export var uv_rect_by_stage: Dictionary = {}
 @export var scale_factors_by_stage: Dictionary = {}
@@ -24,11 +23,6 @@ func _set_thresh(v: float) -> void:
 	alpha_thresh = v
 	if Engine.is_editor_hint():
 		_recompute_all()
-
-func _set_recompute(v: bool) -> void:
-	if v and Engine.is_editor_hint():
-		_recompute_all()
-	recompute_now = false
 
 func _recompute_all() -> void:
 	print("Recomputing billboard data...")

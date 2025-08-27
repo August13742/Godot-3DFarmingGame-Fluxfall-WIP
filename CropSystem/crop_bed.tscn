@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0f5pkoncrqki"]
 
-[ext_resource type="PackedScene" uid="uid://ivfhgtder5o" path="res://CropSystem/crop_bed.glb" id="1_5bk3s"]
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
 [ext_resource type="PackedScene" uid="uid://uooh2w6v16yq" path="res://CropSystem/hydration_component.tscn" id="2_rrrv5"]
+[ext_resource type="PackedScene" uid="uid://bp3svrusb6s0p" path="res://CropSystem/crop_bed_model.tscn" id="3_uy331"]
 [ext_resource type="PackedScene" uid="uid://x7u82qm4da14" path="res://CropSystem/CropComponent.tscn" id="4_uy331"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ghvx"]
@@ -18,11 +18,16 @@ unique_name_in_owner = true
 [node name="HydrationCollision" parent="HydrationComponent" index="0"]
 shape = SubResource("SphereShape3D_3ghvx")
 
-[node name="crop_bed" parent="." instance=ExtResource("1_5bk3s")]
+[node name="CropBedModel" parent="." instance=ExtResource("3_uy331")]
+unique_name_in_owner = true
+
+[node name="Dirt" parent="CropBedModel" index="1"]
+surface_material_override/0 = null
 
 [node name="CropComponent" parent="." instance=ExtResource("4_uy331")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285098, 0)
 
 [editable path="HydrationComponent"]
+[editable path="CropBedModel"]
 [editable path="CropComponent"]

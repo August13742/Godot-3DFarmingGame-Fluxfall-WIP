@@ -126,7 +126,7 @@
 [ext_resource type="PackedScene" uid="uid://bmnwfrpxs1lto" path="res://Assets/Models/Environment/TwistedTree_5.gltf" id="121_r1c1m"]
 [ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
-[ext_resource type="PackedScene" uid="uid://cw36r1ypwxmke" path="res://terrain3dtest.tscn" id="133_2q52e"]
+[ext_resource type="PackedScene" path="res://terrain3dtest.tscn" id="133_2q52e"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hox20"]
 size = Vector2(750, 750)
@@ -135,7 +135,6 @@ size = Vector2(750, 750)
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
-time_scale = 3600
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
@@ -205,7 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6336, 0.400636, 14.1658)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1783, 0.210662, 11.6022)
 
 [node name="CherryBlossom_22" parent="EnvironmentalProps" instance=ExtResource("19_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0031, 2.5842283, -5.43623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0031, -0.0972147, -5.43623)
 
 [node name="CherryBlossom_32" parent="EnvironmentalProps" instance=ExtResource("20_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.429169, -0.0972147, -10.3396)

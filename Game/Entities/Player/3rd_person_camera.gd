@@ -41,9 +41,7 @@ func _ready() -> void:
 		angular_velocity = target_entity.angular_velocity
 	if "mouse_sensitivity_percent" in target_entity:
 		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
-	
-	position = target_entity.position
-	position.y = target_entity.position.y + y_tracking_offset
+
 	
 var smoothed_mouse_delta := Vector2.ZERO
 var raw_mouse_delta := Vector2.ZERO
