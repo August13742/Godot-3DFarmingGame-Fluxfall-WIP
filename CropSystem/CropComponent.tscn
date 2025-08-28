@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpnfkt34xkabq" path="res://CropSystem/crop_component.gd" id="1_0kyct"]
 [ext_resource type="PackedScene" uid="uid://d44meequbbvu" path="res://CropSystem/billboard_plants.tscn" id="1_krfxo"]
 [ext_resource type="Resource" uid="uid://duk3u8alhl1xl" path="res://CropSystem/TomatoAssets/tomato_resource.tres" id="2_0kyct"]
-[ext_resource type="Script" uid="uid://hr1u5nhfrdm" path="res://Items/Interactables/Pickuppable/pickuppable.gd" id="3_2uplm"]
+[ext_resource type="Script" uid="uid://hr1u5nhfrdm" path="res://Interactables/Pickuppable/pickuppable.gd" id="3_2uplm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rrrv5"]
 radius = 1.0

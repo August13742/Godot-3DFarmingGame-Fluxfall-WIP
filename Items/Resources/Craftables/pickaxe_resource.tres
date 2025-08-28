@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://c3vkbjc54ekwc"]
+
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_0o3fp"]
+[ext_resource type="Texture2D" uid="uid://dol8vj5oghpfn" path="res://Assets/textures/item_icons/pickaxe.png" id="1_mk4gk"]
+[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/ItemCapabilities/crafting_capability.gd" id="2_660te"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="4_1bytg"]
+
+[sub_resource type="Resource" id="Resource_ky0nh"]
+script = ExtResource("2_660te")
+required_materials = Dictionary[StringName, int]({
+&"rope": 1,
+&"stick": 1,
+&"stone": 3
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[resource]
+script = ExtResource("4_1bytg")
+id = &"pickaxe"
+display_name = "Pickaxe"
+icon = ExtResource("1_mk4gk")
+description = null
+capabilities = Array[ExtResource("1_0o3fp")]([SubResource("Resource_ky0nh")])
+metadata/_custom_type_script = "uid://dxv1fvj1jg56l"

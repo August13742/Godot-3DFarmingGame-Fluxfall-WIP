@@ -1,11 +1,11 @@
-extends RefCounted
 class_name InventorySlot
+extends RefCounted
 
-
-var item_id:StringName = &"null"
-var count:int = 0
-var connected_inventory_scene:InventorySlotUI = null
-
+var item_instance: ItemInstance = null
+var connected_inventory_scene: InventorySlotUI = null
 
 func is_empty() -> bool:
-	return item_id == &"null"
+	return item_instance == null
+
+func clear():
+	item_instance = null

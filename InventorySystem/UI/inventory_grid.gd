@@ -4,6 +4,7 @@ class_name InventoryGrid
 @export var inventory_slot_ui:PackedScene = preload("uid://c8ig8nq7ir5ki")
 @export var inventory_size = 28
 @export var target_entity:Node
+@export var show_empty_slots:bool = true
 var target_inventory:InventoryComponent
 
 func _ready():
@@ -20,24 +21,35 @@ func _initiate():
 	for i in range(inventory_size):
 		var inventory_slot_scene:InventorySlotUI = inventory_slot_ui.instantiate()
 		add_child(inventory_slot_scene)
-
 		inventory_slot_scene.connected_inventory_slot = inventory.inventory[i]
 		inventory.inventory[i].connected_inventory_scene = inventory_slot_scene
 
 		update_texture_and_count.call_deferred(inventory_slot_scene)
 
 
-func update_texture_and_count(inventory_slot_scene:InventorySlotUI):
-	var texture:Texture2D = ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_id)
-	if texture == null:
+func update_texture_and_count(inventory_slot_scene: InventorySlotUI):
+	var inventory_slot_data: InventorySlot = inventory_slot_scene.connected_inventory_slot
+	
+	if inventory_slot_data.is_empty():
+		if !show_empty_slots:
+			inventory_slot_scene.texture = null
 		inventory_slot_scene.slot_counter_label.text = ""
 		return
 
-	inventory_slot_scene.texture = \
-			ItemDBUtility.get_item_texture(inventory_slot_scene.connected_inventory_slot.item_id)
+	var instance: ItemInstance = inventory_slot_data.item_instance
+	var template: ItemResource = ItemRegistry.get_by_id(instance.id)
 
-	inventory_slot_scene.slot_counter_label.text = str(inventory_slot_scene.connected_inventory_slot.count)
+	if not template:
+		push_error("Inventory UI: Could not find template for item ID: %s" % instance.id)
+		return
 
+	inventory_slot_scene.texture = template.icon
+	
+	# Show count only if greater than 1
+	if instance.count > 1:
+		inventory_slot_scene.slot_counter_label.text = str(instance.count)
+	else:
+		inventory_slot_scene.slot_counter_label.text = ""
 
-func _on_item_pickup_successful(slot:InventorySlot):
+func _on_item_pickup_successful(slot: InventorySlot):
 	update_texture_and_count(slot.connected_inventory_scene)

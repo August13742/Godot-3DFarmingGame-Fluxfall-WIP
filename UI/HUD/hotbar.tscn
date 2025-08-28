@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bk3n3ppughlk1"]
 
-[ext_resource type="PackedScene" uid="uid://c8ig8nq7ir5ki" path="res://InventorySystem/UI/inventory_slot.tscn" id="1_yjw8o"]
+[ext_resource type="PackedScene" uid="uid://c8ig8nq7ir5ki" path="res://InventorySystem/UI/inventory_slot_ui.tscn" id="1_yjw8o"]
 
 [node name="Hotbar" type="Control"]
 layout_mode = 3

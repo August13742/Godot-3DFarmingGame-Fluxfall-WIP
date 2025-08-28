@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Game/Entities/Player/player.tscn" id="2_ifwko"]
 [ext_resource type="Material" uid="uid://cr8yf6r3utjih" path="res://Shaders/water/water_mat.tres" id="2_nn42n"]
 [ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="3_i4xcx"]
-[ext_resource type="PackedScene" uid="uid://ce7x24023mjjs" path="res://Items/Interactables/interactable_crafting_table.tscn" id="3_obi5q"]
+[ext_resource type="PackedScene" uid="uid://ce7x24023mjjs" path="res://Interactables/interactable_crafting_table.tscn" id="3_obi5q"]
 [ext_resource type="PackedScene" uid="uid://bpacbdkmsf8k7" path="res://Game/EnvironmentProps/bush_large_flowers_2.tscn" id="4_2vi28"]
 [ext_resource type="PackedScene" uid="uid://becbt2x1mr2ro" path="res://Game/EnvironmentProps/birch_1.tscn" id="5_mucb1"]
-[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Items/Interactables/Pickuppable/pickuppable_plant.tscn" id="6_nd6yq"]
-[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Items/Interactables/Pickuppable/pickuppable_stone.tscn" id="7_rbk52"]
-[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Items/Interactables/Pickuppable/pickuppable_stick.tscn" id="8_scymu"]
+[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Interactables/Pickuppable/pickuppable_plant.tscn" id="6_nd6yq"]
+[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Interactables/Pickuppable/pickuppable_stone.tscn" id="7_rbk52"]
+[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Interactables/Pickuppable/pickuppable_stick.tscn" id="8_scymu"]
 [ext_resource type="PackedScene" uid="uid://cfkpjgdom7uf4" path="res://Assets/Models/Environment/Birch_2.gltf" id="9_5rbcv"]
 [ext_resource type="PackedScene" uid="uid://ve0io78qwt4f" path="res://Assets/Models/Environment/Birch_3.gltf" id="10_obi5q"]
 [ext_resource type="PackedScene" uid="uid://dsc3vco2pwesw" path="res://Assets/Models/Environment/Birch_4.gltf" id="11_6ontf"]
@@ -152,7 +152,7 @@ normal_speed = 1.5
 sprint_speed = 3.0
 
 [node name="InteractableTemplate" parent="." instance=ExtResource("3_obi5q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96436, 3.1745303, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96436, 5.0999875, -11.765766)
 
 [node name="MainCamera" parent="." instance=ExtResource("3_i4xcx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6.265)
@@ -525,39 +525,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3218, -0.913315, -36.0373
 transform = Transform3D(1, 0, 0, 0, 1, -0.000907571, 0, 0.000907571, 1, -3.02995, -0.4426868, -28.6183)
 
 [node name="Interactables" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.332806, 0.56373405)
 
 [node name="PickuppablePlant2" parent="Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29874, 2.9148512, -16.826696)
 
 [node name="PickuppablePlant3" parent="Interactables" instance=ExtResource("6_nd6yq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85918, 2.962507, -24.788338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3429427, 2.9625068, -13.940466)
 
 [node name="PickuppablePlant4" parent="Interactables" instance=ExtResource("6_nd6yq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.50406, 2.939614, -24.788338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.814172, 2.9396138, -12.603548)
 
 [node name="PickuppablePlant" parent="Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(0.999993, 0, -0.00368264, 0, 1, 0, 0.00368264, 0, 0.999993, -0.889578, 2.7528336, -14.282537)
 
 [node name="PickuppableStone2" parent="Interactables" instance=ExtResource("7_rbk52")]
-transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.40681, 3.0389874, -14.185217)
+transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.40681, 2.7206225, -14.185217)
 
 [node name="PickuppableStone3" parent="Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.22871, 2.878913, -24.850456)
 
 [node name="PickuppableStone4" parent="Interactables" instance=ExtResource("7_rbk52")]
-transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 2.93466, 2.8603258, -24.850456)
+transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 2.2769318, 2.8603258, -13.938454)
 
 [node name="PickuppableStone" parent="Interactables" instance=ExtResource("7_rbk52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.892308, -13.588147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.72059, -13.588147)
 
 [node name="PickuppableStick2" parent="Interactables" instance=ExtResource("8_scymu")]
-transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.898448, 2.864083, -15.361446)
+transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.898448, 2.717165, -15.361446)
 
 [node name="PickuppableStick3" parent="Interactables" instance=ExtResource("8_scymu")]
-transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 2.53618, 2.8279612, -25.129196)
+transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.39488554, 2.8279614, -16.497902)
 
 [node name="PickuppableStick" parent="Interactables" instance=ExtResource("8_scymu")]
-transform = Transform3D(0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, 0.671863, -1.96435, 2.717199, -13.686777)
+transform = Transform3D(0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, 0.671863, -1.96435, 2.7170916, -13.686777)
 
 [node name="CropBeds_Test" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.585886, 0)

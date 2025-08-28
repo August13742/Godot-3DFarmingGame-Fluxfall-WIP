@@ -12,102 +12,101 @@ class_name CraftingMenu
 @onready var craft_button: Button = %CraftButton
 @export var crafting_slot_scene:PackedScene = preload("uid://df0q2yifj6pdv")
 
-var item_cache:Array[CraftableResource] = []
-var key_cache:Array[StringName] = []
+var item_cache: Array[ItemResource] = []
+
 func _ready() -> void:
-	## change target enum for unlocked recipe instead of everything
-	for craftable in ItemDB.CRAFTABLES:
-		var craftable_item:CraftableResource = load(ItemDB.CRAFTABLES[craftable])
 
-		craftables_list.add_item(craftable_item.display_name,craftable_item.icon)
-		item_cache.append(craftable_item)
-		key_cache.append(craftable)
+	for item_id in ItemRegistry.by_id:
+		var item_resource: ItemResource = ItemRegistry.get_by_id(item_id)
 
-
+		if item_resource and item_resource.has_capability(CraftingCapability):
+			craftables_list.add_item(item_resource.display_name, item_resource.icon)
+			item_cache.append(item_resource)
 
 	craftables_list.item_selected.connect(_on_craftable_selected)
 	craft_button.pressed.connect(_on_button_pressed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 
-var can_craft:bool = false
-var current_item:int
-var current_craft:StringName
-func _on_craftable_selected(index:int):
-	# Clear previous slots
+var can_craft: bool = false
+var current_craft_resource: ItemResource = null # Store the full resource
+
+func _on_craftable_selected(index: int):
+
 	for child in crafting_slot_container.get_children():
 		child.queue_free()
-	current_item = index
-	var craftable_item = item_cache[index]
-	current_craft = key_cache[index]
+	
+	current_craft_resource = item_cache[index]
 
-	target_item_icon.texture = craftable_item.icon
-	item_name.text = craftable_item.display_name
-	item_description.text = craftable_item.description
+	target_item_icon.texture = current_craft_resource.icon
+	item_name.text = current_craft_resource.display_name
+	item_description.text = current_craft_resource.description
 
-	var can_craft_all = true  # Assume true, invalidate if any are missing
+	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player"))
+	if not player_inventory:
+		push_error("CraftingMenu: Player inventory not found.")
+		craft_button.disabled = true
+		return
 
-	for item_id in craftable_item.required_material.keys():
-		var required_amt = craftable_item.required_material[item_id]
-		var resource = ItemDBUtility.get_item_resource(item_id)
+	var crafting_cap: CraftingCapability = current_craft_resource.get_capability(CraftingCapability)
+	if not crafting_cap:
+		push_error("Item '%s' is in crafting list but has no CraftingCap." % current_craft_resource.id)
+		return
+
+	var can_craft_all = true # Assume true, invalidate if any are missing
+
+	for material_id in crafting_cap.required_materials:
+		var required_amt = crafting_cap.required_materials[material_id]
+		var material_resource: ItemResource = ItemRegistry.get_by_id(material_id)
+		if not material_resource:
+			push_warning("Invalid material ID '%s' in recipe for '%s'" % [material_id, current_craft_resource.id])
+			continue
+
 		var crafting_slot = crafting_slot_scene.instantiate()
 		crafting_slot_container.add_child(crafting_slot)
-		crafting_slot.icon.texture = resource.icon
+		crafting_slot.icon.texture = material_resource.icon
 
-		# Count total owned for this material
-		var owned_count = 0
-		for slot in InventoryManager.get_inventory(get_tree().get_first_node_in_group("player")).inventory:
-			if slot.item_id == item_id:
-				owned_count += slot.count
+		var owned_count = player_inventory.get_item_count(material_id)
 
 		crafting_slot.count.text = "%d / %d" % [owned_count, required_amt]
 		if owned_count < required_amt:
-			crafting_slot.count.add_theme_color_override("font_color", Color(1,0,0))
+			crafting_slot.count.add_theme_color_override("font_color", Color.FIREBRICK)
 			can_craft_all = false
 
 	can_craft = can_craft_all
 	craft_button.disabled = not can_craft_all
 
 func _on_button_pressed():
-	if can_craft and craft_item(current_craft):
+	if can_craft and craft_item():
 		print("Crafted successfully!")
+		# Refresh the view to show updated material counts
+		_on_craftable_selected(craftables_list.get_selected_items()[0])
 	else:
 		print("Craft failed.")
 
-func craft_item(target_item: StringName) -> bool:
-	var craftable_item = ItemDBUtility.get_item_resource(target_item)
-	if not craftable_item:
-		push_error("Invalid craftable item key: %s" % str(target_item))
-		return false
+func craft_item() -> bool:
+	if not current_craft_resource: return false
+	
+	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player"))
+	var crafting_cap: CraftingCapability = current_craft_resource.get_capability(CraftingCapability)
 
-	# verify have enough of each required material
-	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player")).inventory
-	for item_id in craftable_item.required_material.keys():
-		var required_amt = craftable_item.required_material[item_id]
-		var owned_count = 0
-		for slot in player_inventory:
-			if slot.item_id == item_id:
-				owned_count += slot.count
-		if owned_count < required_amt:
-			print("Not enough %s to craft %s" % [ItemDBUtility.get_item_name(item_id),
-			ItemDBUtility.get_item_name(target_item)])
-			return false  # Insufficient materials
+	# This pre-check is technically redundant if `can_craft` is trusted, but it's safe.
+	for material_id in crafting_cap.required_materials:
+		var required_amt = crafting_cap.required_materials[material_id]
+		if player_inventory.get_item_count(material_id) < required_amt:
+			return false # Failsafe check
 
-	# Remove required materials
-	for item_id in craftable_item.required_material.keys():
-		var required_amt = craftable_item.required_material[item_id]
-		var removed = InventoryManager.remove_item_from_inventory(player_inventory,item_id, required_amt)
-		if removed < required_amt:
-			push_error("Material removal failed for %s" % ItemDBUtility.get_item_name(item_id))
-			return false
+	# Remove required materials using the inventory's own logic.
+	for material_id in crafting_cap.required_materials:
+		var required_amt = crafting_cap.required_materials[material_id]
+		player_inventory.remove_item(material_id, required_amt)
 
-	# Add the crafted item(s)
-	var add_result = InventoryManager.add_item_to_inventory(player_inventory, target_item, 1) # Assume craft yields 1
+	# Add the crafted item.
+	var add_result = player_inventory.add_item(current_craft_resource.id, 1) # Assumes crafting yields 1
 	if add_result != 0:
-		push_warning("Crafted item could not be fully added to inventory (inventory full).")
-		## add Optional here: Drop item in world, etc.
+		push_warning("Inventory full. Crafted item was not added.")
+		# Optional: Drop item in world here.
 
-	_on_craftable_selected(current_item) ## refreshes page
 	return true
 
 func _exit_tree() -> void:

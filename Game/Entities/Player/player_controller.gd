@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name PlayerController
 
 @export var angular_velocity:= 8
 @export var normal_speed := 10.0

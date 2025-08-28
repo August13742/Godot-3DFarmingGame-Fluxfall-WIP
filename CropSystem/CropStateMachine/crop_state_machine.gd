@@ -27,7 +27,6 @@ func change_state(state_key: StringName) -> void:
 		current_state.exit()
 	current_state = states[state_key]
 	current_state.enter()
-	print_debug(state_key)
 
 # --- Delegate all events to the current state ---
 func on_growth_tick() -> void: current_state.on_growth_tick()
