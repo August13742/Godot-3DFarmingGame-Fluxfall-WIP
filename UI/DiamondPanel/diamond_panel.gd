@@ -10,4 +10,4 @@ func _ready() -> void:
 
 func _late_init()->void:
 	content_margin_container.rotation_degrees = -(self.rotation_degrees + 45)
-	print("Self rotation:", self.rotation, " | Compensation:", -(self.rotation + 45))
+	#print("Self rotation:", self.rotation, " | Compensation:", -(self.rotation + 45))

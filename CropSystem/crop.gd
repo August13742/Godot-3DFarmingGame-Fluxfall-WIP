@@ -1,68 +1,104 @@
-extends Node
+extends Node3D
+class_name CropBed
 
-class_name Crop
+#region Data & Properties
+## How many visual stages the crop has.
+@export var actual_stages: int = 4
+## Internal stages for finer growth calculation.
+@export var stages_for_calculation: int = 40
+## Chance for growth per growth_tick.
+@export var growth_chance: float = 0.75
+## For debugging: forces the bed to always be hydrated.
+@export var always_hydrated: bool = false
 
-## How many stages the visual of the crop changes
-@export var actual_stages:int = 4
-## fake stages for shrinking growth time variance
-@export var stages_for_calculation:int = 40
-## chance for growth per growth_tick
-@export var growth_chance:float = 0.75
-
-@onready var crop_pivot:Node3D = $%CropPivot
-@onready var crop:Node3D =crop_pivot.get_child(0)
-@onready var harvest_collision:CollisionShape3D = $%HarvestCollision
-
-@onready var hydration_component:HydrationComponent = $%HydrationComponent
-var stages_per_visual_change:int
-@export var always_hydrated:bool = false
-var hydrated:bool = false:
-	set(_a):
+# --- State Data (managed by states, stored here) ---
+var hydrated: bool = false:
+	set(value):
+		hydrated = value
 		if always_hydrated:
 			hydrated = true
+var crop_resource: BillboardPlantResource
+var current_stage: Stage = Stage.Seed
+var current_calculation_stage: int = 0
+var stages_per_visual_change: int
+#endregion
 
-enum Stages{
-	Seed,
-	Stage1,
-	Stage2,
-	Stage3,
-	Harvestable
-}
+#region Node References
+@onready var crop_bed_model: CropBedModel = %CropBedModel
+@onready var crop_component: Node3D = %CropComponent
+@onready var crop: BillboardPlant = crop_component.billboard_plants
+@onready var harvest_collision: CollisionShape3D = crop_component.harvest_collision
+@onready var hydration_component: HydrationComponent = %HydrationComponent
+#endregion
 
-@export var models:Array[Mesh]
+enum Stage { Seed, Stage1, Stage2, Stage3, Harvestable }
+var machine: CropStateMachine
 
-
-var current_stage:Stages = Stages.Seed
-var current_calculation_stage:int = 0
-var can_harvest:bool = false
 func _ready() -> void:
+	# This calculation is context-specific, so it stays here.
+	@warning_ignore("integer_division")
+	stages_per_visual_change = max(1, floori(stages_for_calculation / max(1, actual_stages)))
+	
+	# Initialize the state machine and give it a reference to this context.
+	machine = CropStateMachine.new()
+	machine.initialise(self)
+
+	# Connect signals once. They will be delegated to the machine.
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
-
-	@warning_ignore("integer_division")
-	stages_per_visual_change = stages_for_calculation / actual_stages
 	hydration_component.hydrate.connect(_on_hydrate)
 
-func grow()->void:
-	current_calculation_stage += 1
-	var target_stage:int = floori(current_calculation_stage/(stages_per_visual_change as float))
-	if target_stage != (current_stage as int):
-		current_stage = target_stage as Stages
-		if current_stage == Stages.Harvestable:
-			harvest_collision.disabled = false
-		crop_pivot.scale = Vector3.ONE * target_stage
+#region Public API (for Player/NPCs)
+func plant(seed_resource: BillboardPlantResource) -> void:
+	machine.on_plant(seed_resource)
 
-func _on_growth_tick_emitted()->void:
-	if current_stage == Stages.Harvestable: return
+func harvest() -> void:
+	machine.on_harvest()
+#endregion
 
-	if randf()<growth_chance && hydrated:
-		grow()
+#region Signal Handlers (delegated to machine)
+func _on_growth_tick_emitted() -> void:
+	machine.on_growth_tick()
+
+func _on_hydrate() -> void:
+	self.hydrated = true
+	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_wet
+	hydration_component.collision_off()
+	machine.on_hydrate()
 
 func _reset_hydration_on_day_changed():
-	hydrated = false
-	if current_stage != Stages.Harvestable:
-		hydration_component.collision_on()
+	self.hydrated = false
+	if not crop_bed_model.dirt_material.resource_local_to_scene:
+		crop_bed_model.dirt_material = crop_bed_model.dirt_material.duplicate(true)
+	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_wet
+	# Let the current state decide how to react to a new day.
+	machine.on_new_day()
+#endregion
 
-func _on_hydrate():
-	hydrated = true
-	hydration_component.collision_off()
+#region Utility Functions (callable by states)
+func apply_billboard_stage(plant_res: BillboardPlantResource, stage: int) -> void:
+
+	if not plant_res.has_stage(stage): return
+	
+	if not is_instance_valid(plant_res) or not is_instance_valid(crop):
+		return
+		
+	var mesh_ins = crop.imposter_mesh
+	if not mesh_ins: return
+	var p := plant_res.get_stage_params(stage)
+	var mat := mesh_ins.get_active_material(0)
+
+	if not (mat is ShaderMaterial):
+		mat = ShaderMaterial.new()
+		mat.shader = preload("uid://bj6xhasqh07b7")
+		mesh_ins.set_surface_override_material(0, mat)
+
+	if not mat.resource_local_to_scene:
+		mat = mat.duplicate(true)
+		mesh_ins.set_surface_override_material(0, mat)
+
+	mat.set_shader_parameter("albedo_tex", plant_res.textures[stage])
+	mat.set_shader_parameter("uv_rect", p["uv_rect"])
+	mat.set_shader_parameter("scale_factor", p["scale_factor"])
+	mat.set_shader_parameter("vertical_offset", p["vertical_offset"])
+#endregion

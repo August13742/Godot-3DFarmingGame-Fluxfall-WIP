@@ -4,7 +4,8 @@ extends Node
 
 #var blocked_actions: Set[String] = {}
 var root_entity:Node3D
-var animation_player:AnimationPlayer
+var state_machine_animator:AnimationNodeStateMachinePlayback
+
 func enter():
 	pass
 
@@ -38,4 +39,4 @@ func jump():
 
 func set_root(entity: Node3D) -> void:
 	root_entity = entity
-	animation_player = root_entity.animation_player
+	state_machine_animator = root_entity.state_machine_animator

@@ -1,14 +1,11 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://76vc4sqid3bk"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://76vc4sqid3bk"]
 
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_7qmnw"]
 [ext_resource type="Texture2D" uid="uid://dk5oohr7lgy1q" path="res://Assets/tomato_icon.png" id="1_udx8b"]
-[ext_resource type="Script" uid="uid://bwtsq8kxvu2kp" path="res://Items/item_resource.gd" id="2_7qmnw"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="3_y24pb"]
 
 [resource]
-script = ExtResource("2_7qmnw")
-item_id = "tomato"
+script = ExtResource("3_y24pb")
+id = &"tomato"
 display_name = "Tomato"
-tags = Array[int]([1])
-description = "A Tomato"
 icon = ExtResource("1_udx8b")
-stack_size = null
-metadata/_custom_type_script = "uid://bwtsq8kxvu2kp"

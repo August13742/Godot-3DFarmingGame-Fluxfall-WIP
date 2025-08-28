@@ -1,14 +1,11 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dras1fyas3gah"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://dras1fyas3gah"]
 
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_qls68"]
 [ext_resource type="Texture2D" uid="uid://brvs63xyheagy" path="res://Assets/textures/item_icons/plant.png" id="1_v7u3t"]
-[ext_resource type="Script" uid="uid://bwtsq8kxvu2kp" path="res://Items/item_resource.gd" id="2_v7u3t"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="3_i2cka"]
 
 [resource]
-script = ExtResource("2_v7u3t")
-item_id = "plant"
+script = ExtResource("3_i2cka")
+id = &"plant"
 display_name = "Plant"
-tags = Array[int]([1])
-description = ""
 icon = ExtResource("1_v7u3t")
-stack_size = null
-metadata/_custom_type_script = "uid://bwtsq8kxvu2kp"

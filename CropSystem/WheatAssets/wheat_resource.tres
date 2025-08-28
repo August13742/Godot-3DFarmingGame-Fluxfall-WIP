@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BillboardPlantResource" load_steps=7 format=3 uid="uid://dkkc66nhl0nwn"]
+
+[ext_resource type="Script" uid="uid://clnxvwrwrc84d" path="res://CropSystem/billboard_plant_resource.gd" id="1_3wjkq"]
+[ext_resource type="Texture2D" uid="uid://b1xdakiac3f7f" path="res://CropSystem/WheatAssets/wheat_harvestable.png" id="1_yqpmh"]
+[ext_resource type="Texture2D" uid="uid://duq30oo7oy1ik" path="res://CropSystem/WheatAssets/wheat_seed.png" id="3_e1d0t"]
+[ext_resource type="Texture2D" uid="uid://c0pyeeres3v5e" path="res://CropSystem/WheatAssets/wheat_1.png" id="4_r2878"]
+[ext_resource type="Texture2D" uid="uid://ddml6rt6b43qb" path="res://CropSystem/WheatAssets/wheat_2.png" id="5_bbe80"]
+[ext_resource type="Texture2D" uid="uid://cgt6asoie2w62" path="res://CropSystem/WheatAssets/wheat_3.png" id="6_liroo"]
+
+[resource]
+script = ExtResource("1_3wjkq")
+textures = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("3_e1d0t"),
+1: ExtResource("4_r2878"),
+2: ExtResource("5_bbe80"),
+3: ExtResource("6_liroo"),
+4: ExtResource("1_yqpmh")
+})
+uv_rect_by_stage = {
+0: Rect2(0.43164063, 0.39746094, 0.11035156, 0.20605469),
+1: Rect2(0.37109375, 0.15820313, 0.27148438, 0.68066406),
+2: Rect2(0.36132813, 0.15332031, 0.26464844, 0.7236328),
+3: Rect2(0.35253906, 0.06542969, 0.29492188, 0.8720703),
+4: Rect2(0.3232422, 0.15527344, 0.3701172, 0.7050781)
+}
+scale_factors_by_stage = {
+0: 0.23628219484882418,
+1: 0.780515117581187,
+2: 0.8297872340425532,
+3: 1.0,
+4: 0.8085106382978723
+}
+vertical_offsets_by_stage = {
+0: -0.00048828125,
+1: 0.0014648438,
+2: -0.015136719,
+3: -0.0014648438,
+4: -0.0078125
+}
+metadata/_custom_type_script = "uid://clnxvwrwrc84d"

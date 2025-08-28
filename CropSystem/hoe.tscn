@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcdc52sg22fux"]
+
+[ext_resource type="PackedScene" uid="uid://cw6j77o4yxc60" path="res://Assets/memberMade/hoe.glb" id="1_1n8wf"]
+
+[node name="Hoe" type="Node3D"]
+
+[node name="hoe" parent="." instance=ExtResource("1_1n8wf")]
+transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 0, 0.4, 0)

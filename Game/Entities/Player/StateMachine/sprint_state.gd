@@ -1,48 +1,26 @@
 extends State
 class_name SprintState
 
-
-
 func enter():
-
-	animation_player.play("Sprint_Enter",0.25)
-	animation_player.queue("Sprint")
-
+	state_machine_animator.travel(&"Sprint")
 	if root_entity.state_machine_debug:
 		print("[Debug/States]: Entering SPRINT")
-
-var transition_to_walk_timer:Timer= null
 
 func update(delta):
 	var input_dir:Vector2 = root_entity.current_input_direction
 
 	if input_dir.length() == 0:
-		if transition_to_walk_timer:
-			transition_to_walk_timer.queue_free()
-			transition_to_walk_timer = null
-		animation_player.play("Sprint_Exit")
 		owner.change_state(StateMachine.Idle)
 		return
 
 	if !Input.is_action_pressed("sprint"):
-		if transition_to_walk_timer == null:
-			transition_to_walk_timer = Timer.new()
-			transition_to_walk_timer.wait_time = 0.5
-			transition_to_walk_timer.one_shot = true
-			transition_to_walk_timer.timeout.connect(_on_sprint_release_timeout)
-			add_child(transition_to_walk_timer)
-			transition_to_walk_timer.start()
-	else:
-		if transition_to_walk_timer:
-			transition_to_walk_timer.queue_free()
-			transition_to_walk_timer = null
+		owner.change_state(StateMachine.Walk)
+		return
 
 	if !root_entity.is_on_floor():
-		if transition_to_walk_timer:
-			transition_to_walk_timer.queue_free()
-			transition_to_walk_timer = null
 		owner.change_state(StateMachine.Airbourne)
 		return
+
 
 	var accel:float = root_entity.ground_acceleration
 	var speed:float = root_entity.sprint_speed
@@ -52,7 +30,3 @@ func update(delta):
 
 	root_entity.velocity.y = -0.01
 	root_entity.move_and_slide()
-
-func _on_sprint_release_timeout():
-	if is_instance_valid(owner):
-		owner.change_state(StateMachine.Walk)

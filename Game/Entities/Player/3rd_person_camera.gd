@@ -42,6 +42,7 @@ func _ready() -> void:
 	if "mouse_sensitivity_percent" in target_entity:
 		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
 
+	
 var smoothed_mouse_delta := Vector2.ZERO
 var raw_mouse_delta := Vector2.ZERO
 

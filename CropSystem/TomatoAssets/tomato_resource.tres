@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="BillboardPlantResource" load_steps=7 format=3 uid="uid://duk3u8alhl1xl"]
+
+[ext_resource type="Script" uid="uid://clnxvwrwrc84d" path="res://CropSystem/billboard_plant_resource.gd" id="1_0radq"]
+[ext_resource type="Texture2D" uid="uid://bgqgqh1vvyjem" path="res://CropSystem/TomatoAssets/tomato_seed.png" id="2_pcs0c"]
+[ext_resource type="Texture2D" uid="uid://bt65bgujducff" path="res://CropSystem/TomatoAssets/tomato_1.png" id="3_xoaus"]
+[ext_resource type="Texture2D" uid="uid://be8kgfcoji32" path="res://CropSystem/TomatoAssets/tomato_2.png" id="4_xkggq"]
+[ext_resource type="Texture2D" uid="uid://wkr56a3o0nlb" path="res://CropSystem/TomatoAssets/tomato_3.png" id="5_yoc6u"]
+[ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="6_j2wst"]
+
+[resource]
+script = ExtResource("1_0radq")
+textures = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("2_pcs0c"),
+1: ExtResource("3_xoaus"),
+2: ExtResource("4_xkggq"),
+3: ExtResource("5_yoc6u"),
+4: ExtResource("6_j2wst")
+})
+uv_rect_by_stage = {
+0: Rect2(0.4482422, 0.4638672, 0.10253906, 0.07128906),
+1: Rect2(0.3876953, 0.2685547, 0.23925781, 0.4736328),
+2: Rect2(0.29101563, 0.11328125, 0.4267578, 0.78808594),
+3: Rect2(0.26757813, 0.047851563, 0.4580078, 0.89941406),
+4: Rect2(0.22265625, 0.060546875, 0.5546875, 0.87890625)
+}
+scale_factors_by_stage = {
+0: 0.07926167209554831,
+1: 0.5266015200868621,
+2: 0.8762214983713354,
+3: 1.0,
+4: 0.977198697068404
+}
+vertical_offsets_by_stage = {
+0: 0.00048828125,
+1: -0.0053710938,
+2: -0.0073242188,
+3: 0.0024414063,
+4: 0.0
+}
+metadata/_custom_type_script = "uid://clnxvwrwrc84d"

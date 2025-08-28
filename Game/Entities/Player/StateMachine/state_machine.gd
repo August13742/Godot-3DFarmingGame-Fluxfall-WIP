@@ -27,6 +27,9 @@ func _ready():
 
 
 
+
+
+
 func change_state(state: int):
 	if current_state:
 		current_state.exit()

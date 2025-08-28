@@ -1,0 +1,2 @@
+extends ICropState
+class_name CropHarvestableState 
