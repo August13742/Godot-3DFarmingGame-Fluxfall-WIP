@@ -1,12 +1,12 @@
 # Fluxfall - Prologue (WIP)
 
-My second game ever, currently under development. (Made Public for Internship / Job Application)
+My second game ever(or maybe not a game, just game systems), currently under development. (Made Public for Internship / Job Application)
 
 Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk.
 
 ## What's here:
 
-### Item & Inventory & Crafting System with Automatic Database Generation
+### Item & Inventory & Crafting System with Automatic Database Generation (Capability-Based Architecture)
 ![Demo](demo_gifs/inventory_crafting_demo.gif)
 ### Functional 3rd Person Action RPG Camera & State-Machine Based Player Control
 Using Raycast & Shapecast
@@ -29,10 +29,10 @@ by separating visual stages and computation stages, variance and mean can be fin
 
 For example:
 Growth Tick (GT) Check happens every 10 in-game Minute with probability.
-if GT && hydrated && (rand()<= growth_chance) then stage ++, if stage satisfices Visual change, then change model.
+if GT && hydrated && (rand()<= growth_chance) then stage ++, if stage satisfies Visual change, then change model.
 
 
-since the system is implemented based on in-game time, Sleep can be achieved by simpling tweaking the Time Scale.
+since the system is implemented based on in-game time, Sleep can be achieved by simply tweaking the Time Scale.
 
 ### To do:
 1. QTE & Cutscene
