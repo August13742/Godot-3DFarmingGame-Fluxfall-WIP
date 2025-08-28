@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0f5pkoncrqki"]
+[gd_scene load_steps=7 format=3 uid="uid://b0f5pkoncrqki"]
 
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
 [ext_resource type="PackedScene" uid="uid://uooh2w6v16yq" path="res://CropSystem/hydration_component.tscn" id="2_rrrv5"]
@@ -7,6 +7,10 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ghvx"]
 radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy331"]
+resource_local_to_scene = true
+albedo_color = Color(0.4, 0.20784314, 0.16078432, 1)
 
 [node name="CropBed" type="Node3D"]
 script = ExtResource("2_64rtf")
@@ -22,11 +26,10 @@ shape = SubResource("SphereShape3D_3ghvx")
 unique_name_in_owner = true
 
 [node name="Dirt" parent="CropBedModel" index="1"]
-surface_material_override/0 = null
+surface_material_override/0 = SubResource("StandardMaterial3D_uy331")
 
 [node name="CropComponent" parent="." instance=ExtResource("4_uy331")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285098, 0)
 
 [editable path="HydrationComponent"]
 [editable path="CropBedModel"]

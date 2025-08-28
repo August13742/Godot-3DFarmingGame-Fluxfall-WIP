@@ -8,7 +8,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rrrv5"]
 radius = 1.0
 
-[node name="CropPivot" type="Node3D"]
+[node name="CropComponent" type="Node3D"]
 script = ExtResource("1_0kyct")
 
 [node name="BillboardPlants" parent="." instance=ExtResource("1_krfxo")]

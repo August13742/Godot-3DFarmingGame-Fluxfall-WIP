@@ -126,7 +126,7 @@
 [ext_resource type="PackedScene" uid="uid://bmnwfrpxs1lto" path="res://Assets/Models/Environment/TwistedTree_5.gltf" id="121_r1c1m"]
 [ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
-[ext_resource type="PackedScene" path="res://terrain3dtest.tscn" id="133_2q52e"]
+[ext_resource type="PackedScene" uid="uid://cw36r1ypwxmke" path="res://terrain3dtest.tscn" id="133_2q52e"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hox20"]
 size = Vector2(750, 750)
@@ -135,6 +135,7 @@ size = Vector2(750, 750)
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
+time_scale = 3600
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 

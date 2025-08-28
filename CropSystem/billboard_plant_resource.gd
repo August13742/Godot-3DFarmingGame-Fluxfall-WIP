@@ -90,7 +90,7 @@ func _recompute_all() -> void:
 			  " Scale Factor=", scale_factor,
 			  " Vertical Offset=", vertical_offset)
 
-func get_stage_params(stage: int, base_height: float) -> Dictionary:
+func get_stage_params(stage: int, base_height: float = 1.0) -> Dictionary:
 	var uv :Rect2= uv_rect_by_stage.get(stage, Rect2(0,0,1,1))
 	var scale_factor :float= scale_factors_by_stage.get(stage, 1.0)
 	var vertical_offset :float= vertical_offsets_by_stage.get(stage, 0.0)
