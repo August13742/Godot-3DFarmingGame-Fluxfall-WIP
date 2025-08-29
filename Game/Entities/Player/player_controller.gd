@@ -22,6 +22,10 @@ class_name PlayerController
 
 @onready var head:Node3D = $VisualControl/Mannequin/Head
 @onready var right_hand:Node3D = %RightHand
+
+@onready var toolbar: ToolbarComponent = $ToolbarComponent
+
+
 var current_input_direction:Vector2 = Vector2.ZERO
 
 func _ready():
@@ -30,9 +34,16 @@ func _ready():
 func _physics_process(delta):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
-
-
-
+	
+var active_item_id: StringName = &""
+#region Diamond Tool Bar API
+func get_active_item_id() -> StringName:
+	var active_item: ItemInstance = toolbar.get_active_item()
+	if active_item:
+		return active_item.id
+	return &"" # bare hands
+#endregion
+	
 func _input(event):
 	state_machine.handle_input(event)
 

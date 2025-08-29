@@ -7,3 +7,6 @@ class_name Interactable
 
 func start_interaction(_source:Node3D = null) -> void:
 	EventSystem.emit_INT_begin_interaction()
+	
+func update_prompt(_source: Node = null) -> void:
+	pass

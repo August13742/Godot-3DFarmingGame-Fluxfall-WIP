@@ -9,6 +9,7 @@
 
 [resource]
 script = ExtResource("1_0radq")
+harvest_yield_id = &"tomato"
 textures = Dictionary[int, CompressedTexture2D]({
 0: ExtResource("2_pcs0c"),
 1: ExtResource("3_xoaus"),
@@ -28,7 +29,7 @@ scale_factors_by_stage = {
 1: 0.5266015200868621,
 2: 0.8762214983713354,
 3: 1.0,
-4: 0.977198697068404
+4: 0.9771986970684039
 }
 vertical_offsets_by_stage = {
 0: 0.00048828125,

@@ -8,6 +8,9 @@ func _input(event: InputEvent) -> void:
 		if player_menu_scene == null:
 			player_menu_scene = player_menu.instantiate()
 			self.add_child(player_menu_scene)
+			get_tree().paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
-
+			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			player_menu_scene.queue_free()

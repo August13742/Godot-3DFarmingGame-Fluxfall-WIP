@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7tvgd0t26wxq"]
+[gd_scene load_steps=8 format=3 uid="uid://7tvgd0t26wxq"]
 
 [ext_resource type="PackedScene" uid="uid://cdob3jc1pevtb" path="res://UI/HUD/crosshair.tscn" id="1_qdh7y"]
 [ext_resource type="FontFile" uid="uid://tddda2joxxxj" path="res://Assets/Theme/Feijoada-Regular.ttf" id="2_te8l2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxap4c7uoshob" path="res://UI/DiamondPanel/diamond_tool_bar.tscn" id="4_qdh7y"]
 [ext_resource type="PackedScene" uid="uid://bfjoenobjlt75" path="res://UI/HUD/radial_menu.tscn" id="5_radol"]
 [ext_resource type="Script" uid="uid://dgxmmfklxktjn" path="res://UI/HUD/coordinate.gd" id="6_dhie7"]
+[ext_resource type="PackedScene" uid="uid://bk3n3ppughlk1" path="res://UI/HUD/hotbar.tscn" id="7_s83ig"]
 
 [node name="HUD" type="Control"]
 process_mode = 3
@@ -97,3 +98,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0,0,0"
 script = ExtResource("6_dhie7")
+
+[node name="HotbarContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Hotbar" parent="HotbarContainer" instance=ExtResource("7_s83ig")]
+layout_mode = 2

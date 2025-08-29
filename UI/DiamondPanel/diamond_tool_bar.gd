@@ -7,8 +7,8 @@ extends Control
 
 @export var highlight_colour:Color
 
-@onready var radial_menu: Node # Assuming your RadialMenu node is named 'RadialMenu'
-
+@onready var radial_menu: Node
+@onready var toolbar: ToolbarComponent = get_tree().get_first_node_in_group("player").get_node("ToolbarComponent")
 var current_tween: Tween = null
 var is_selected:bool = false
 var control_index_mapped:Array[Control] = []
@@ -66,8 +66,12 @@ func _input(event: InputEvent) -> void:
 # This method will be called when the radial menu emits the 'option_selected' signal
 var selected_index:int = -1
 var previous_index:int = -1
+
 func _on_radial_menu_option_selected(index: int, _name: String) -> void:
-		selected_index = index
+	selected_index = index
+	
+	if toolbar:
+		toolbar.set_active_slot(index)
 
 
 

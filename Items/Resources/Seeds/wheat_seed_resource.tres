@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://cjqib3gqi3dwq"]
+
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_pergx"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="2_8gjq0"]
+[ext_resource type="Resource" uid="uid://dkkc66nhl0nwn" path="res://CropSystem/WheatAssets/wheat_resource.tres" id="2_evtr8"]
+[ext_resource type="Script" uid="uid://de8cj314mun1f" path="res://Items/ItemCapabilities/seed_capability.gd" id="3_dtsxi"]
+[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/ItemCapabilities/crafting_capability.gd" id="4_dtsxi"]
+[ext_resource type="Texture2D" uid="uid://dpukygl2leq38" path="res://Assets/textures/wheat_seed.png" id="4_wbrda"]
+
+[sub_resource type="Resource" id="Resource_0uqgm"]
+script = ExtResource("3_dtsxi")
+plant_resource = ExtResource("2_evtr8")
+metadata/_custom_type_script = "uid://de8cj314mun1f"
+
+[sub_resource type="Resource" id="Resource_wbrda"]
+script = ExtResource("4_dtsxi")
+required_materials = Dictionary[StringName, int]({
+&"plant": 0
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[resource]
+script = ExtResource("2_8gjq0")
+id = &"wheat_seed"
+display_name = "Wheat Seed"
+icon = ExtResource("4_wbrda")
+description = null
+capabilities = Array[ExtResource("1_pergx")]([SubResource("Resource_0uqgm"), SubResource("Resource_wbrda")])
+metadata/_custom_type_script = "uid://b2xj7qh8w38lo"

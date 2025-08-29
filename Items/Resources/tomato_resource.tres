@@ -9,3 +9,4 @@ script = ExtResource("3_y24pb")
 id = &"tomato"
 display_name = "Tomato"
 icon = ExtResource("1_udx8b")
+description = null

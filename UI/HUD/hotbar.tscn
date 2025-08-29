@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk3n3ppughlk1"]
+[gd_scene load_steps=3 format=3 uid="uid://bk3n3ppughlk1"]
 
+[ext_resource type="Script" uid="uid://bycj2y0f5a4gc" path="res://UI/HUD/hotbar_controller.gd" id="1_bm5vr"]
 [ext_resource type="PackedScene" uid="uid://c8ig8nq7ir5ki" path="res://InventorySystem/UI/inventory_slot_ui.tscn" id="1_yjw8o"]
 
 [node name="Hotbar" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bm5vr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
