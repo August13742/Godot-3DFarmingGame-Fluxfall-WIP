@@ -2,6 +2,8 @@
 extends Resource
 class_name BillboardPlantResource
 
+@export var harvest_yield_id: StringName
+@export var harvest_yield_amount:int = 3
 @export var textures:Dictionary[CropBed.Stage,CompressedTexture2D] = {
 	CropBed.Stage.Seed:null,
 	CropBed.Stage.Stage1:null,
@@ -19,6 +21,7 @@ class_name BillboardPlantResource
 @export var scale_factors_by_stage: Dictionary = {}
 @export var vertical_offsets_by_stage: Dictionary = {}
 
+#region Automation
 func _set_thresh(v: float) -> void:
 	alpha_thresh = v
 	if Engine.is_editor_hint():
@@ -100,3 +103,7 @@ func get_stage_params(stage: int, base_height: float = 1.0) -> Dictionary:
 		"scale_factor": scale_factor * base_height,
 		"vertical_offset": vertical_offset * base_height
 	}
+#endregion
+#region Public API
+func has_stage_texture(stage:CropBed.Stage)->bool:
+	return textures.get(stage) != null

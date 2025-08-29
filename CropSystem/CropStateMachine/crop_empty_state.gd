@@ -7,8 +7,7 @@ func enter() -> void:
 	crop_bed.crop_resource = null
 	crop_bed.current_calculation_stage = 0
 	crop_bed.current_stage = CropBed.Stage.Seed
-	crop_bed.harvest_collision.disabled = true
-	crop_bed.hydration_component.collision_on()
+
 
 func on_plant(new_crop_resource: BillboardPlantResource) -> void:
 	if new_crop_resource:

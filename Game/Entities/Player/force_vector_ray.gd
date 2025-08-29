@@ -11,27 +11,38 @@ func _ready() -> void:
 func _late_init()->void:
 	source = owner.right_hand
 
+var last_prompt_text := ""
 
 func check_interaction() -> void:
 	if is_colliding():
-		var collider := get_collider(0)
-		if !(collider is Interactable): return
+		var collider = get_collider(0)
+		if not (collider is Interactable):
+			# We are hitting something, but it's not interactable.
+			# Clear the prompt if it was showing before.
+			if last_prompt_text != "":
+				last_prompt_text = ""
+				EventSystem.emit_BUL_destroy_bulletin(BulletinConfig.Keys.InteractionPrompt)
+			return
 
-		if Input.is_action_just_pressed("force"):
+		var interactable: Interactable = collider
 
-			if collider is Interactable:
-				collider.start_interaction(source)
+		# 1. Tell the interactable to update its internal prompt based on our state.
+		interactable.update_prompt(owner) # 'owner' is the PlayerController
 
-		elif Input.is_action_just_pressed("interact"):
+		var new_prompt := interactable.prompt
 
-			if collider is Interactable:
-				collider.start_interaction()
+		# 3. If the prompt text has changed, update UI.
+		if new_prompt != last_prompt_text:
+			last_prompt_text = new_prompt
+			if new_prompt == "":
+				EventSystem.emit_BUL_destroy_bulletin(BulletinConfig.Keys.InteractionPrompt)
+			else:
+				EventSystem.emit_BUL_create_bulletin(BulletinConfig.Keys.InteractionPrompt, new_prompt)
 
-		if !is_hitting:
-			is_hitting = true
-			EventSystem.emit_BUL_create_bulletin(BulletinConfig.Keys.InteractionPrompt, collider.prompt)
-			# connected by UILayer:bulletin controller
+		if Input.is_action_just_pressed("interact"):
+			interactable.start_interaction(owner)
 
-	elif is_hitting:
-		is_hitting = false
-		EventSystem.emit_BUL_destroy_bulletin(BulletinConfig.Keys.InteractionPrompt)
+	else:
+		if last_prompt_text != "":
+			last_prompt_text = ""
+			EventSystem.emit_BUL_destroy_bulletin(BulletinConfig.Keys.InteractionPrompt)

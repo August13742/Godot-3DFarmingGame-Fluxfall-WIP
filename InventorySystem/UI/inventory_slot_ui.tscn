@@ -27,6 +27,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="ItemIcon" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 2
 expand_mode = 1
 

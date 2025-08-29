@@ -14,7 +14,7 @@ func _ready():
 	inventory.resize(inventory_size)
 	for i in inventory_size:
 		inventory[i] = InventorySlot.new()
-
+		inventory[i].parent_inventory = self 
 	InventoryManager.register_inventory(owner, self)
 
 ## @experimental does not handle if inventory is too full
@@ -26,13 +26,14 @@ func _on_try_to_pick_up_item(item_id:StringName, destroy_pickuppable:Callable) -
 	destroy_pickuppable.call()
 
 
-func get_free_slots()->bool:
+func count_free_slots()->int:
 	var free:=0
 	for slot in inventory:
 		if slot.is_empty():
 			free +=1
 	return free
-
+	
+	
 ## @experimental does not handle if inventory is too full
 func add_item(item_id: StringName, amount: int = 1) -> int:
 	var remaining := amount
@@ -110,3 +111,11 @@ func get_item_count(item_id: StringName) -> int:
 	
 func update_inventory(slot:InventorySlot):
 	EventSystem.emit_INV_item_pickup_successful(slot)
+	
+func get_first_item_with_capability(capability_script) -> ItemInstance:
+	for slot in inventory:
+		if not slot.is_empty():
+			var item_template = ItemRegistry.get_by_id(slot.item_instance.id)
+			if item_template and item_template.has_capability(capability_script):
+				return slot.item_instance # Found one.
+	return null # No item with this capability was found.

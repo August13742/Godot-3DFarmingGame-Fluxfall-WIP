@@ -1,0 +1,2 @@
+extends ItemCapability
+class_name WateringCapability

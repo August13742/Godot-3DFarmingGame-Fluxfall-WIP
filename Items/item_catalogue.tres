@@ -1,15 +1,19 @@
-[gd_resource type="Resource" script_class="ItemCatalogue" load_steps=9 format=3 uid="uid://racjysve07av"]
+[gd_resource type="Resource" script_class="ItemCatalogue" load_steps=13 format=3 uid="uid://racjysve07av"]
 
 [ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="1_ou82y"]
-[ext_resource type="Resource" uid="uid://dras1fyas3gah" path="res://items/Resources/plant_resource.tres" id="2_imsde"]
+[ext_resource type="Resource" uid="uid://dras1fyas3gah" path="res://items/Resources/plant_resource.tres" id="2_fit5i"]
 [ext_resource type="Script" uid="uid://c76ecor5naqet" path="res://Items/item_catalogue.gd" id="2_wkyno"]
-[ext_resource type="Resource" uid="uid://crbcvbm238xjk" path="res://items/Resources/stick_resource.tres" id="3_pg7s2"]
-[ext_resource type="Resource" uid="uid://cpl0hrf61etdu" path="res://items/Resources/stone_resource.tres" id="4_cvxem"]
-[ext_resource type="Resource" uid="uid://76vc4sqid3bk" path="res://items/Resources/tomato_resource.tres" id="5_egb5b"]
-[ext_resource type="Resource" uid="uid://c3vkbjc54ekwc" path="res://items/Resources/Craftables/pickaxe_resource.tres" id="6_fit5i"]
-[ext_resource type="Resource" uid="uid://k5c7o6xt7cas" path="res://items/Resources/Craftables/rope_resource.tres" id="7_pldf7"]
+[ext_resource type="Resource" uid="uid://crbcvbm238xjk" path="res://items/Resources/stick_resource.tres" id="3_pldf7"]
+[ext_resource type="Resource" uid="uid://cpl0hrf61etdu" path="res://items/Resources/stone_resource.tres" id="4_hyqs3"]
+[ext_resource type="Resource" uid="uid://76vc4sqid3bk" path="res://items/Resources/tomato_resource.tres" id="5_w4jvl"]
+[ext_resource type="Resource" uid="uid://c4lptmqqnh17o" path="res://items/Resources/wheat_resource.tres" id="6_xo54j"]
+[ext_resource type="Resource" uid="uid://c3vkbjc54ekwc" path="res://items/Resources/Craftables/pickaxe_resource.tres" id="7_uxekm"]
+[ext_resource type="Resource" uid="uid://k5c7o6xt7cas" path="res://items/Resources/Craftables/rope_resource.tres" id="8_owbcs"]
+[ext_resource type="Resource" uid="uid://d2k6g5xn2cpdj" path="res://items/Resources/Seeds/tomato_seed_resource.tres" id="9_ubxrb"]
+[ext_resource type="Resource" uid="uid://cjqib3gqi3dwq" path="res://items/Resources/Seeds/wheat_seed_resource.tres" id="10_v8tv5"]
+[ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://items/Resources/Watering/watering_can_resource.tres" id="11_omgvi"]
 
 [resource]
 script = ExtResource("2_wkyno")
-items = Array[ExtResource("1_ou82y")]([ExtResource("2_imsde"), ExtResource("3_pg7s2"), ExtResource("4_cvxem"), ExtResource("5_egb5b"), ExtResource("6_fit5i"), ExtResource("7_pldf7")])
+items = Array[ExtResource("1_ou82y")]([ExtResource("2_fit5i"), ExtResource("3_pldf7"), ExtResource("4_hyqs3"), ExtResource("5_w4jvl"), ExtResource("6_xo54j"), ExtResource("7_uxekm"), ExtResource("8_owbcs"), ExtResource("9_ubxrb"), ExtResource("10_v8tv5"), ExtResource("11_omgvi")])
 metadata/_custom_type_script = "uid://c76ecor5naqet"

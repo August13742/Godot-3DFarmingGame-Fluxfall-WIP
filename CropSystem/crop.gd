@@ -1,4 +1,4 @@
-extends Node3D
+extends Interactable
 class_name CropBed
 
 #region Data & Properties
@@ -27,26 +27,25 @@ var stages_per_visual_change: int
 @onready var crop_bed_model: CropBedModel = %CropBedModel
 @onready var crop_component: Node3D = %CropComponent
 @onready var crop: BillboardPlant = crop_component.billboard_plants
-@onready var harvest_collision: CollisionShape3D = crop_component.harvest_collision
-@onready var hydration_component: HydrationComponent = %HydrationComponent
+# --- DELETED REFERENCES ---
+# @onready var harvest_collision: CollisionShape3D = crop_component.harvest_collision
+# @onready var hydration_component: HydrationComponent = %HydrationComponent
 #endregion
 
 enum Stage { Seed, Stage1, Stage2, Stage3, Harvestable }
 var machine: CropStateMachine
 
 func _ready() -> void:
-	# This calculation is context-specific, so it stays here.
 	@warning_ignore("integer_division")
 	stages_per_visual_change = max(1, floori(stages_for_calculation / max(1, actual_stages)))
 	
-	# Initialize the state machine and give it a reference to this context.
 	machine = CropStateMachine.new()
 	machine.initialise(self)
 
 	# Connect signals once. They will be delegated to the machine.
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
-	hydration_component.hydrate.connect(_on_hydrate)
+
 
 #region Public API (for Player/NPCs)
 func plant(seed_resource: BillboardPlantResource) -> void:
@@ -60,25 +59,25 @@ func harvest() -> void:
 func _on_growth_tick_emitted() -> void:
 	machine.on_growth_tick()
 
-func _on_hydrate() -> void:
+func _try_to_hydrate() -> void:
+	if hydrated: return
+	
 	self.hydrated = true
-	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_wet
-	hydration_component.collision_off()
+	crop_bed_model.update_dirt_appearance(true)
 	machine.on_hydrate()
+
 
 func _reset_hydration_on_day_changed():
 	self.hydrated = false
-	if not crop_bed_model.dirt_material.resource_local_to_scene:
-		crop_bed_model.dirt_material = crop_bed_model.dirt_material.duplicate(true)
-	crop_bed_model.dirt_material.albedo_color = crop_bed_model.dirt_colour_wet
-	# Let the current state decide how to react to a new day.
+	crop_bed_model.update_dirt_appearance(false)
 	machine.on_new_day()
+
 #endregion
 
 #region Utility Functions (callable by states)
 func apply_billboard_stage(plant_res: BillboardPlantResource, stage: int) -> void:
 
-	if not plant_res.has_stage(stage): return
+	if not plant_res.has_stage_texture(stage): return
 	
 	if not is_instance_valid(plant_res) or not is_instance_valid(crop):
 		return
@@ -101,4 +100,105 @@ func apply_billboard_stage(plant_res: BillboardPlantResource, stage: int) -> voi
 	mat.set_shader_parameter("uv_rect", p["uv_rect"])
 	mat.set_shader_parameter("scale_factor", p["scale_factor"])
 	mat.set_shader_parameter("vertical_offset", p["vertical_offset"])
+	
+func update_prompt(source: Node = null) -> void:
+	var current_prompt = ""
+	if not source or not source.has_method("get_active_item_id"):
+		self.prompt = ""
+		return
+		
+	var active_item_id: StringName = source.get_active_item_id()
+	var active_item_template: ItemResource = ItemRegistry.get_by_id(active_item_id)
+
+
+	# Priority 1: Check for specific tool interactions.
+	if active_item_template:
+		if active_item_template.has_capability(WateringCapability) and not hydrated:
+			current_prompt = "Water"
+		elif active_item_template.has_capability(SeedCapability) and machine.current_state is CropEmptyState:
+			current_prompt = "Plant %s" % active_item_template.display_name
+	
+	# Priority 2: Check for default actions if no tool-based prompt was set.
+	if current_prompt == "" and machine.current_state is CropHarvestableState:
+		var yield_id = crop_resource.harvest_yield_id
+		var yield_item_template: ItemResource = ItemRegistry.get_by_id(yield_id)
+		
+		if yield_item_template:
+			# We found the item, so use its display name.
+			current_prompt = "Harvest %s" % yield_item_template.display_name
+		else:
+			# Fallback in case the ID is invalid.
+			current_prompt = "Harvest"
+			
+	self.prompt = current_prompt
+
+
+# helper function to check for any seed in the inventory.
+func _inventory_has_seeds(inventory: InventoryComponent) -> bool:
+	for slot in inventory.inventory:
+		if not slot.is_empty():
+			var item_template = ItemRegistry.get_by_id(slot.item_instance.id)
+			if item_template and item_template.has_capability(SeedCapability):
+				return true # Found at least one seed.
+	return false # No seeds found.
+#endregion
+
+#region Interaction
+func start_interaction(source: Node = null) -> void:
+	#print("Interaction started...") # DEBUG
+	if not source or not source.has_method("get_active_item_id"): return
+
+	var inventory: InventoryComponent = InventoryManager.get_inventory(source)
+	if not inventory: return
+	
+	var active_item_id: StringName = source.get_active_item_id()
+	var active_item_template: ItemResource = ItemRegistry.get_by_id(active_item_id)
+	#print("...Source: %s, Active Item ID: '%s'" % [source.name, active_item_id]) # DEBUG
+
+	if active_item_template:
+		#print("...Active item template is valid: %s" % active_item_template.id) # DEBUG
+		if active_item_template.has_capability(WateringCapability):
+			_try_to_hydrate()
+			return
+		elif active_item_template.has_capability(SeedCapability) and machine.current_state is CropEmptyState:
+			#print("...Attempting to plant.") # DEBUG
+			_try_to_plant(inventory, active_item_template)
+			return
+			
+	# Priority 2: If no specific tool was used, check for default contextual actions.
+	if machine.current_state is CropHarvestableState:
+		#print("...Attempting to harvest.") # DEBUG
+		_try_to_harvest(inventory)
+		return
+	#print("...No valid action found.")
+# --- Private Helper for Planting ---
+func _try_to_plant(inventory: InventoryComponent, seed_template: ItemResource):
+	var seed_cap: SeedCapability = seed_template.get_capability(SeedCapability)
+	if not seed_cap or not seed_cap.plant_resource:
+		push_error("Seed item %s has a faulty SeedCapability." % seed_template.id)
+		return
+		
+	var plant_res = seed_cap.plant_resource
+	machine.on_plant(plant_res)
+
+	if not machine.current_state is CropEmptyState:
+		inventory.remove_item(seed_template.id, 1)
+
+
+# --- Private Helper for Harvesting (now just needs inventory) ---
+func _try_to_harvest(inventory: InventoryComponent):
+	if not "harvest_yield_id" in crop_resource:
+		push_error("Crop resource '%s' is missing harvest_yield_id." % crop_resource.resource_path)
+		return
+	
+	var yield_id = crop_resource.harvest_yield_id
+	var yield_amount = crop_resource.get("harvest_yield_amount")
+	if yield_amount == null: yield_amount = 1
+
+	var remaining = inventory.add_item(yield_id, yield_amount)
+	
+	if remaining == 0:
+		machine.on_harvest()
+	else:
+		print("Inventory is full, cannot harvest.")
 #endregion

@@ -7,15 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://ba2wsc4qryw3w" path="res://Assets/textures/panelInset_brown.png" id="3_tv4ds"]
 [ext_resource type="Script" uid="uid://070oy1mtlntl" path="res://Game/Bulletin/PlayerMenus/close_button.gd" id="4_tv4ds"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwcp5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0a0m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbyy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y25g5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbewt"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y25g5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bmbyy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0a0m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwcp5"]
 
 [node name="PlayerMenuBase" type="Control"]
 layout_mode = 3
@@ -104,11 +104,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cwcp5")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_a0a0m")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bmbyy")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_gbewt")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y25g5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gbewt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bmbyy")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a0a0m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cwcp5")
 icon = ExtResource("2_04557")
 expand_icon = true
 script = ExtResource("4_tv4ds")

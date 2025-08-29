@@ -5,7 +5,7 @@ var inventories: Dictionary = {}
 ## A direct reference to the player's inventory for convenient access.
 var player_inventory: InventoryComponent = null
 
-
+signal request_refresh
 ## Registers an inventory component and connects to its owner's exit signal. Should be called automatically by Inventory Component
 func register_inventory(target: Node, inventory: InventoryComponent):
 	var target_id = target.get_instance_id()
@@ -38,3 +38,19 @@ func _on_target_exiting(target_id: int):
 		if player_inventory and player_inventory.owner.get_instance_id() == target_id:
 			player_inventory = null
 		print("Unregistered inventory for target ID: %s" % target_id)
+		
+func swap_items(source_inv, source_idx: int, target_inv, target_idx: int):
+	if not source_inv or not target_inv:
+		print("tried to swap but inv is null")
+		return
+
+	# Get the item instances from the source and target slots.
+	var source_item = source_inv.inventory[source_idx].item_instance
+	var target_item = target_inv.inventory[target_idx].item_instance
+
+	# Swap the item instances.
+	source_inv.inventory[source_idx].item_instance = target_item
+	target_inv.inventory[target_idx].item_instance = source_item
+	
+	request_refresh.emit(source_inv.inventory[source_idx])
+	request_refresh.emit(target_inv.inventory[target_idx])

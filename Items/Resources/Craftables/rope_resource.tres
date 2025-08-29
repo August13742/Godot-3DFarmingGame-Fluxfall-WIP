@@ -19,4 +19,3 @@ display_name = "Rope"
 icon = ExtResource("1_725ib")
 description = null
 capabilities = Array[ExtResource("1_jxctk")]([SubResource("Resource_pva4j")])
-metadata/_custom_type_script = "uid://dxv1fvj1jg56l"

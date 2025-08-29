@@ -11,6 +11,7 @@
 script = ExtResource("1_ypbn1")
 
 [node name="UILayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
+process_mode = 3
 script = ExtResource("2_ypbn1")
 
 [node name="HUDController" type="Node" parent="UILayer"]
