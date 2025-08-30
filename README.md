@@ -2,10 +2,11 @@
 
 My second game ever(or maybe not a game, just game systems), currently under development. (Made Public for Internship / Job Application)
 
-Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk.
+Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk. 
 
 ## What's here:
-
+### Farming Automation with Helper NPCs (blackboard + Utility Scoring Task Allocation)
+![Demo](demo_gifs/fluxfall_npc_demo1.gif)
 ### Item & Inventory & Crafting System with Automatic Database Generation (Capability-Based Architecture)
 ![Demo](demo_gifs/inventory_crafting_demo.gif)
 ### Functional 3rd Person Action RPG Camera & State-Machine Based Player Control
@@ -38,4 +39,4 @@ since the system is implemented based on in-game time, Sleep can be achieved by 
 1. QTE & Cutscene
 2. Terrains and Environments (Main Field, Main Town, etc.)
 3. Combat System with 2~3 Mobs and 1 boss
-4. Smart Helper NPCs
+4. Improve Worker System
