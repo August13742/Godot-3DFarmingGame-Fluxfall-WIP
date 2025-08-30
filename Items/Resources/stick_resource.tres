@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://crbcvbm238xjk"]
 
 [ext_resource type="Texture2D" uid="uid://bftavlc128n04" path="res://Assets/textures/item_icons/stick.png" id="1_nesti"]
-[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_q8rn7"]
-[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="2_nesti"]
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_q8rn7"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="2_nesti"]
 
 [resource]
 script = ExtResource("2_nesti")

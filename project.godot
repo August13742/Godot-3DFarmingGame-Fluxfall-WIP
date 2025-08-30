@@ -16,13 +16,18 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[augusts_item_system]
+
+database/source_directory="res://Items/Resources"
+database/catalogue_save_path="res://Items/_Generated/item_catalogue.tres"
+
 [autoload]
 
 EventSystem="*res://Game/EventSystem.gd"
 InventoryManager="*res://InventorySystem/Singleton/inventory_manager.gd"
 TimeManager="*res://DayNightSystem/TimeManager.gd"
-ItemRegistry="*res://Items/Singleton/item_registry.gd"
 JobBoard="*res://FarmerNPC/Singleton/job_board.gd"
+ItemDatabase="*res://addons/augusts_item_system/item_database.gd"
 
 [debug]
 
@@ -43,7 +48,7 @@ project/assembly_name="3D_survival"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/augusts_item_system/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 

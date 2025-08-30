@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://c3vkbjc54ekwc"]
 
-[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_0o3fp"]
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_0o3fp"]
 [ext_resource type="Texture2D" uid="uid://dol8vj5oghpfn" path="res://Assets/textures/item_icons/pickaxe.png" id="1_mk4gk"]
-[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/ItemCapabilities/crafting_capability.gd" id="2_660te"]
-[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="4_1bytg"]
+[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/_ItemCapabilities/crafting_capability.gd" id="2_660te"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="4_1bytg"]
 
 [sub_resource type="Resource" id="Resource_ky0nh"]
 script = ExtResource("2_660te")

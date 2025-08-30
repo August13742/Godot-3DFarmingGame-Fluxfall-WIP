@@ -37,7 +37,7 @@ func count_free_slots()->int:
 ## @experimental does not handle if inventory is too full
 func add_item(item_id: StringName, amount: int = 1) -> int:
 	var remaining := amount
-	var template: ItemResource = ItemRegistry.get_by_id(item_id)
+	var template: ItemResource = ItemDatabase.get_item_by_id(item_id)
 	if not template:
 		push_error("Inventory: Attempted to add invalid item ID: %s" % item_id)
 		return remaining # Return the full amount, as nothing was added.
@@ -115,7 +115,7 @@ func update_inventory(slot:InventorySlot):
 func get_first_item_with_capability(capability_script) -> ItemInstance:
 	for slot in inventory:
 		if not slot.is_empty():
-			var item_template = ItemRegistry.get_by_id(slot.item_instance.id)
+			var item_template = ItemDatabase.get_item_by_id(slot.item_instance.id)
 			if item_template and item_template.has_capability(capability_script):
 				return slot.item_instance # Found one.
 	return null # No item with this capability was found.

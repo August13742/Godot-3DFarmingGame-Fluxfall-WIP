@@ -61,7 +61,7 @@ func update_slot_visuals(ui_slot: InventorySlotUI):
 		return
 		
 	var instance = data_slot.item_instance
-	var template = ItemRegistry.get_by_id(instance.id)
+	var template = ItemDatabase.get_item_by_id(instance.id)
 	
 	ui_slot.item_icon.texture = template.icon
 	ui_slot.slot_counter_label.text = str(instance.count) if instance.count > 1 else ""

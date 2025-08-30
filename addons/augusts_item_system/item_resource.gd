@@ -13,4 +13,5 @@ class_name ItemResource
 func get_capability(T_script):
 	for c in capabilities: if c != null and c.get_script() == T_script: return c
 	return null
+
 func has_capability(T_script): return get_capability(T_script) != null

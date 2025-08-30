@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://deunxenvooidu"]
 
-[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://Items/ItemCapabilities/item_capability.gd" id="1_oqccc"]
-[ext_resource type="Script" uid="uid://cgu1ie6e0u5sn" path="res://Items/ItemCapabilities/watering_capability.gd" id="2_3hdbr"]
-[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://Items/item_resource.gd" id="2_xgeod"]
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_oqccc"]
+[ext_resource type="Script" uid="uid://cgu1ie6e0u5sn" path="res://Items/_ItemCapabilities/watering_capability.gd" id="2_3hdbr"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="2_xgeod"]
 [ext_resource type="Texture2D" uid="uid://blru5u3gpaqib" path="res://UI/Assets/icon_103.png" id="3_wevhq"]
 
 [sub_resource type="Resource" id="Resource_u6q2h"]

@@ -39,7 +39,7 @@ func update_texture_and_count(inventory_slot_scene: InventorySlotUI):
 		return
 
 	var instance: ItemInstance = inventory_slot_data.item_instance
-	var template: ItemResource = ItemRegistry.get_by_id(instance.id)
+	var template: ItemResource = ItemDatabase.get_item_by_id(instance.id)
 
 	if not template:
 		push_error("Inventory UI: Could not find template for item ID: %s" % instance.id)

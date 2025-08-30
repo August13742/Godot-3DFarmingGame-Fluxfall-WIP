@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="ItemCatalogue" load_steps=24 format=3 uid="uid://b58f4m84mgtlu"]
+
+[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/_ItemCapabilities/crafting_capability.gd" id="1_00018"]
+[ext_resource type="Resource" uid="uid://duk3u8alhl1xl" path="res://CropSystem/TomatoAssets/tomato_resource.tres" id="2_fqbji"]
+[ext_resource type="Script" uid="uid://de8cj314mun1f" path="res://Items/_ItemCapabilities/seed_capability.gd" id="3_d0k37"]
+[ext_resource type="Resource" uid="uid://dkkc66nhl0nwn" path="res://CropSystem/WheatAssets/wheat_resource.tres" id="4_o05e0"]
+[ext_resource type="Script" uid="uid://cgu1ie6e0u5sn" path="res://Items/_ItemCapabilities/watering_capability.gd" id="5_sufuf"]
+[ext_resource type="Resource" uid="uid://dras1fyas3gah" path="res://Items/Resources/plant_resource.tres" id="6_hia8p"]
+[ext_resource type="Resource" uid="uid://crbcvbm238xjk" path="res://Items/Resources/stick_resource.tres" id="7_x12bv"]
+[ext_resource type="Resource" uid="uid://cpl0hrf61etdu" path="res://Items/Resources/stone_resource.tres" id="8_sgl58"]
+[ext_resource type="Resource" uid="uid://76vc4sqid3bk" path="res://Items/Resources/tomato_resource.tres" id="9_usupk"]
+[ext_resource type="Resource" uid="uid://c4lptmqqnh17o" path="res://Items/Resources/wheat_resource.tres" id="10_8rdy2"]
+[ext_resource type="Resource" uid="uid://c3vkbjc54ekwc" path="res://Items/Resources/Craftables/pickaxe_resource.tres" id="11_a2k3m"]
+[ext_resource type="Resource" uid="uid://k5c7o6xt7cas" path="res://Items/Resources/Craftables/rope_resource.tres" id="12_3qhj6"]
+[ext_resource type="Resource" uid="uid://d2k6g5xn2cpdj" path="res://Items/Resources/Seeds/tomato_seed_resource.tres" id="13_uxj2b"]
+[ext_resource type="Resource" uid="uid://cjqib3gqi3dwq" path="res://Items/Resources/Seeds/wheat_seed_resource.tres" id="14_tgva1"]
+[ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://Items/Resources/Watering/watering_can_resource.tres" id="15_vdxjv"]
+[ext_resource type="Script" uid="uid://c76ecor5naqet" path="res://addons/augusts_item_system/item_catalogue.gd" id="16_hk4lf"]
+
+[sub_resource type="Resource" id="Resource_ky0nh"]
+script = ExtResource("1_00018")
+required_materials = Dictionary[StringName, int]({
+&"rope": 1,
+&"stick": 1,
+&"stone": 3
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[sub_resource type="Resource" id="Resource_pva4j"]
+script = ExtResource("1_00018")
+required_materials = Dictionary[StringName, int]({
+&"plant": 2
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[sub_resource type="Resource" id="Resource_u3qjr"]
+script = ExtResource("1_00018")
+required_materials = Dictionary[StringName, int]({
+&"plant": 0
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[sub_resource type="Resource" id="Resource_wbrda"]
+script = ExtResource("1_00018")
+required_materials = Dictionary[StringName, int]({
+&"plant": 0
+})
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
+
+[sub_resource type="Resource" id="Resource_rf3jr"]
+script = ExtResource("3_d0k37")
+plant_resource = ExtResource("2_fqbji")
+metadata/_custom_type_script = "uid://de8cj314mun1f"
+
+[sub_resource type="Resource" id="Resource_0uqgm"]
+script = ExtResource("3_d0k37")
+plant_resource = ExtResource("4_o05e0")
+metadata/_custom_type_script = "uid://de8cj314mun1f"
+
+[sub_resource type="Resource" id="Resource_u6q2h"]
+script = ExtResource("5_sufuf")
+metadata/_custom_type_script = "uid://cgu1ie6e0u5sn"
+
+[resource]
+script = ExtResource("16_hk4lf")
+items_by_id = {
+&"pickaxe": ExtResource("11_a2k3m"),
+&"plant": ExtResource("6_hia8p"),
+&"rope": ExtResource("12_3qhj6"),
+&"stick": ExtResource("7_x12bv"),
+&"stone": ExtResource("8_sgl58"),
+&"tomato": ExtResource("9_usupk"),
+&"tomato_seed": ExtResource("13_uxj2b"),
+&"watering_can": ExtResource("15_vdxjv"),
+&"wheat": ExtResource("10_8rdy2"),
+&"wheat_seed": ExtResource("14_tgva1")
+}
+capabilities_by_script_path = {
+"res://Items/_ItemCapabilities/crafting_capability.gd": {
+&"pickaxe": SubResource("Resource_ky0nh"),
+&"rope": SubResource("Resource_pva4j"),
+&"tomato_seed": SubResource("Resource_u3qjr"),
+&"wheat_seed": SubResource("Resource_wbrda")
+},
+"res://Items/_ItemCapabilities/seed_capability.gd": {
+&"tomato_seed": SubResource("Resource_rf3jr"),
+&"wheat_seed": SubResource("Resource_0uqgm")
+},
+"res://Items/_ItemCapabilities/watering_capability.gd": {
+&"watering_can": SubResource("Resource_u6q2h")
+}
+}

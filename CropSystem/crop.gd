@@ -108,7 +108,7 @@ func update_prompt(source: Node = null) -> void:
 		return
 
 	var active_item_id: StringName = source.get_active_item_id()
-	var active_item_template: ItemResource = ItemRegistry.get_by_id(active_item_id)
+	var active_item_template: ItemResource = ItemDatabase.get_item_by_id(active_item_id)
 
 
 	# Priority 1: Check for specific tool interactions.
@@ -121,7 +121,7 @@ func update_prompt(source: Node = null) -> void:
 	# Priority 2: Check for default actions if no tool-based prompt was set.
 	if current_prompt == "" and machine.current_state is CropHarvestableState:
 		var yield_id = crop_resource.harvest_yield_id
-		var yield_item_template: ItemResource = ItemRegistry.get_by_id(yield_id)
+		var yield_item_template: ItemResource = ItemDatabase.get_item_by_id(yield_id)
 
 		if yield_item_template:
 			# We found the item, so use its display name.
@@ -137,7 +137,7 @@ func update_prompt(source: Node = null) -> void:
 func _inventory_has_seeds(inventory: InventoryComponent) -> bool:
 	for slot in inventory.inventory:
 		if not slot.is_empty():
-			var item_template = ItemRegistry.get_by_id(slot.item_instance.id)
+			var item_template = ItemDatabase.get_item_by_id(slot.item_instance.id)
 			if item_template and item_template.has_capability(SeedCapability):
 				return true # Found at least one seed.
 	return false # No seeds found.
@@ -152,7 +152,7 @@ func start_interaction(source: Node = null) -> void:
 	if not inventory: return
 
 	var active_item_id: StringName = source.get_active_item_id()
-	var active_item_template: ItemResource = ItemRegistry.get_by_id(active_item_id)
+	var active_item_template: ItemResource = ItemDatabase.get_item_by_id(active_item_id)
 	#print("...Source: %s, Active Item ID: '%s'" % [source.name, active_item_id]) # DEBUG
 
 	if active_item_template:
@@ -185,7 +185,7 @@ func _try_to_plant(inventory: InventoryComponent, seed_template: ItemResource):
 		inventory.remove_item(seed_template.id, 1)
 
 
-# --- Private Helper for Harvesting (now just needs inventory) ---
+# --- Private Helper for Harvesting ---
 func _try_to_harvest(inventory: InventoryComponent):
 	if not "harvest_yield_id" in crop_resource:
 		push_error("Crop resource '%s' is missing harvest_yield_id." % crop_resource.resource_path)

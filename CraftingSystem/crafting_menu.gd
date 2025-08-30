@@ -16,8 +16,8 @@ var item_cache: Array[ItemResource] = []
 
 func _ready() -> void:
 
-	for item_id in ItemRegistry.by_id:
-		var item_resource: ItemResource = ItemRegistry.get_by_id(item_id)
+	for item_id in ItemDatabase.items_by_id:
+		var item_resource: ItemResource = ItemDatabase.get_item_by_id(item_id)
 
 		if item_resource and item_resource.has_capability(CraftingCapability):
 			craftables_list.add_item(item_resource.display_name, item_resource.icon)
@@ -57,7 +57,7 @@ func _on_craftable_selected(index: int):
 
 	for material_id in crafting_cap.required_materials:
 		var required_amt = crafting_cap.required_materials[material_id]
-		var material_resource: ItemResource = ItemRegistry.get_by_id(material_id)
+		var material_resource: ItemResource = ItemDatabase.get_item_by_id(material_id)
 		if not material_resource:
 			push_warning("Invalid material ID '%s' in recipe for '%s'" % [material_id, current_craft_resource.id])
 			continue
