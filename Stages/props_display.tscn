@@ -239,7 +239,7 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
-time_scale = 3600
+time_scale = 1800
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
@@ -1457,9 +1457,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 script = ExtResource("138_x6kdt")
 
 [node name="FarmWorkers" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.864296, -16.95425)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.95425)
 
 [node name="FarmWorkerFemale" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale11" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale12" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale13" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale14" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale15" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale16" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale17" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale18" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale19" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
+speed = 3.5
+rotation_speed = 5.0
+
+[node name="FarmWorkerFemale20" parent="FarmWorkers" instance=ExtResource("131_n55d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
 speed = 3.5
 rotation_speed = 5.0

@@ -35,7 +35,7 @@ func _on_craftable_selected(index: int):
 
 	for child in crafting_slot_container.get_children():
 		child.queue_free()
-	
+
 	current_craft_resource = item_cache[index]
 
 	target_item_icon.texture = current_craft_resource.icon
@@ -86,7 +86,7 @@ func _on_button_pressed():
 
 func craft_item() -> bool:
 	if not current_craft_resource: return false
-	
+
 	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player"))
 	var crafting_cap: CraftingCapability = current_craft_resource.get_capability(CraftingCapability)
 

@@ -69,7 +69,7 @@ var previous_index:int = -1
 
 func _on_radial_menu_option_selected(index: int, _name: String) -> void:
 	selected_index = index
-	
+
 	if toolbar:
 		toolbar.set_active_slot(index)
 

@@ -14,7 +14,7 @@ func _ready():
 	inventory.resize(inventory_size)
 	for i in inventory_size:
 		inventory[i] = InventorySlot.new()
-		inventory[i].parent_inventory = self 
+		inventory[i].parent_inventory = self
 	InventoryManager.register_inventory(owner, self)
 
 ## @experimental does not handle if inventory is too full
@@ -32,8 +32,8 @@ func count_free_slots()->int:
 		if slot.is_empty():
 			free +=1
 	return free
-	
-	
+
+
 ## @experimental does not handle if inventory is too full
 func add_item(item_id: StringName, amount: int = 1) -> int:
 	var remaining := amount
@@ -62,7 +62,7 @@ func add_item(item_id: StringName, amount: int = 1) -> int:
 			if slot.is_empty():
 				var new_instance := ItemInstance.new()
 				new_instance.id = item_id
-				
+
 				var can_add:int = min(remaining, max_stack)
 				new_instance.count = can_add
 				remaining -= can_add
@@ -71,7 +71,7 @@ func add_item(item_id: StringName, amount: int = 1) -> int:
 				update_inventory(slot)
 				if remaining == 0:
 					return 0
-	
+
 	# If items still remain, the inventory is full.
 	return remaining
 
@@ -99,19 +99,19 @@ func remove_item(item_id: StringName, amount: int = 1) -> int:
 
 			if to_remove == 0:
 				break
-	
+
 	return removed_count # Return how many were actually removed.
-	
+
 func get_item_count(item_id: StringName) -> int:
 	var total_count := 0
 	for slot in inventory:
 		if not slot.is_empty() and slot.item_instance.id == item_id:
 			total_count += slot.item_instance.count
 	return total_count
-	
+
 func update_inventory(slot:InventorySlot):
 	EventSystem.emit_INV_item_pickup_successful(slot)
-	
+
 func get_first_item_with_capability(capability_script) -> ItemInstance:
 	for slot in inventory:
 		if not slot.is_empty():

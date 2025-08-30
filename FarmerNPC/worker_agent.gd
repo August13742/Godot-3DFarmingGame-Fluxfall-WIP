@@ -19,7 +19,7 @@ var state: StringName:
 		# Don't do anything if the state isn't actually changing.
 		if _state == new_state:
 			return
-		
+
 		# --- EXIT LOGIC (Optional) ---
 		# Logic for leaving the OLD state (_state) would go here.
 		# match _state:
@@ -43,7 +43,7 @@ var tasks: Dictionary = {
 }
 
 func _ready():
-	
+
 	nav.radius = 0.35                       # ≈ capsule radius; too small = corner bumper cars
 	nav.path_desired_distance = 0.35        # skip to next corner sooner
 	nav.target_desired_distance = 0.60      # stop before jamming into the bed edge
@@ -53,15 +53,15 @@ func _ready():
 	nav.neighbor_distance = 2.0             # who to consider
 	nav.max_neighbors = 8
 	nav.time_horizon = 1.2                  # anticipate near-future collisions
-	nav.avoidance_priority = 0.5 
+	nav.avoidance_priority = 0.5
 	nav.velocity_computed.connect(_on_velocity_computed)
 	inventory = InventoryManager.get_inventory(self)
 	_add_debug_items()
 	# Wait one frame before allowing the agent to start working.
 	animation_state_machine = animation_tree.get("parameters/StateMachine/playback")
-	
+
 	call_deferred("_initialise_agent")
-	
+
 func _on_state_entered(new_state: StringName):
 	if not animation_state_machine: return
 
@@ -69,7 +69,7 @@ func _on_state_entered(new_state: StringName):
 		&"idle", &"validate":
 			# Travel to the "Idle" animation state in your AnimationTree.
 			animation_state_machine.travel("Idle")
-		
+
 		&"move":
 			# Travel to the "Move" animation state.
 			animation_state_machine.travel("Move")
@@ -87,16 +87,16 @@ func _add_debug_items()->void:
 	inventory.add_item(&"wheat_seed",99)
 
 func _physics_process(delta):
-		
+
 	match state:
 		&"idle":
 			# Guard clause: Don't do anything until the agent is initialised.
 			if not is_ready: return
-			
+
 			current_job = JobBoard.try_reserve_best(worker_id,global_position)
 			if current_job:
 				state = &"validate"
-		
+
 		&"validate":
 			var task := _task()
 			if task and task.can_execute(self, current_job):
@@ -105,7 +105,7 @@ func _physics_process(delta):
 					_set_nav_target(bed.global_transform.origin)
 					state = &"move"
 				else:
-					print("[Worker %d] Validate: FAILED. can_execute() returned false." % worker_id) 
+					print("[Worker %d] Validate: FAILED. can_execute() returned false." % worker_id)
 					JobBoard.release(current_job)
 					current_job = null
 					state = &"idle"
@@ -156,7 +156,7 @@ func _move_step(delta):
 		var jitter := Vector3(randf() - 0.5, 0, randf() - 0.5).normalized() * 0.4
 		_set_nav_target(goal + jitter)
 		_stuck_time = 0.0
-		
+
 func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	# keep gravity
 	velocity.x = safe_velocity.x
@@ -164,7 +164,7 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	if not is_on_floor(): velocity.y -= 10.0 * get_physics_process_delta_time()
 	else: velocity.y = 0.0
 	move_and_slide()
-	
+
 func _set_nav_target(target_pos: Vector3):
 	var map_rid = get_world_3d().get_navigation_map()
 	var closest_point_on_mesh = NavigationServer3D.map_get_closest_point(map_rid, target_pos)

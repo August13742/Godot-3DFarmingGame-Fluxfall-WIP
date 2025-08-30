@@ -24,6 +24,10 @@ TimeManager="*res://DayNightSystem/TimeManager.gd"
 ItemRegistry="*res://Items/Singleton/item_registry.gd"
 JobBoard="*res://FarmerNPC/Singleton/job_board.gd"
 
+[debug]
+
+gdscript/warnings/integer_division=0
+
 [debug_draw_3d]
 
 settings/addon_root_folder="res://addons/debug_draw_3d"
@@ -181,7 +185,6 @@ hotbar_0={
 [physics]
 
 3d/physics_engine="Jolt Physics"
-common/physics_interpolation=true
 
 [rendering]
 

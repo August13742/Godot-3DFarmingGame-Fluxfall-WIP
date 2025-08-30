@@ -34,7 +34,7 @@ func _ready():
 func _physics_process(delta):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
-	
+
 var active_item_id: StringName = &""
 #region Diamond Tool Bar API
 func get_active_item_id() -> StringName:
@@ -43,7 +43,7 @@ func get_active_item_id() -> StringName:
 		return active_item.id
 	return &"" # bare hands
 #endregion
-	
+
 func _input(event):
 	state_machine.handle_input(event)
 

@@ -7,7 +7,7 @@ func enter():
 	root_entity.velocity.x = 0
 	root_entity.velocity.z = 0
 	state_machine_animator.travel(&"Idle")
-	
+
 
 
 func update(_delta:float):
