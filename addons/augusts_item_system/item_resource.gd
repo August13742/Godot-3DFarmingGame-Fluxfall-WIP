@@ -5,7 +5,7 @@ class_name ItemResource
 @export var display_name: String
 @export var icon: CompressedTexture2D
 @export var stack_size: int = 99
-@export var description:String = "just a humble %s."%display_name
+@export_multiline var description:String = "just a humble %s."%display_name
 @export var tags: PackedStringArray
 @export var capabilities: Array[ItemCapability]
 

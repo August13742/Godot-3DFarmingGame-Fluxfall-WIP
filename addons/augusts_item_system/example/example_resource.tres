@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://4nampw643864"]
+
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_yot8g"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="2_npbfl"]
+[ext_resource type="Texture2D" uid="uid://cxbl2d1wcae31" path="res://addons/augusts_item_system/icons/icon_parchment.png" id="2_tlynj"]
+[ext_resource type="Script" uid="uid://1vdvv7nw65x1" path="res://addons/augusts_item_system/example/crafting_capability.gd" id="2_vwx8y"]
+
+[sub_resource type="Resource" id="Resource_e0am7"]
+script = ExtResource("2_vwx8y")
+metadata/_custom_type_script = "uid://1vdvv7nw65x1"
+
+[resource]
+script = ExtResource("2_npbfl")
+id = &"example"
+display_name = "Sir Example"
+icon = ExtResource("2_tlynj")
+description = "This is how you can use this plugin to make items.
+																-August13742"
+tags = PackedStringArray("Example")
+capabilities = Array[ExtResource("1_yot8g")]([SubResource("Resource_e0am7")])
+metadata/_custom_type_script = "uid://b2xj7qh8w38lo"
