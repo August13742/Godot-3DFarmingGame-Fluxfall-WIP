@@ -21,14 +21,14 @@ func _enter_tree():
 	add_autoload_singleton(ITEM_DATABASE_SINGLETON_NAME, ITEM_DATABASE_SCRIPT_PATH)
 
 	# --- Register Custom Types ---
-	add_custom_type("ItemResource", "Resource", 
-	preload(ADDON_BASE_PATH+"/item_resource.gd"), 
+	add_custom_type("ItemResource", "Resource",
+	preload(ADDON_BASE_PATH+"/item_resource.gd"),
 	preload(ADDON_BASE_PATH+"/icons/icon_parchment.png"))
-	add_custom_type("ItemCapability", "Resource", 
+	add_custom_type("ItemCapability", "Resource",
 	preload(ADDON_BASE_PATH+"/item_capability.gd"),
 	preload(ADDON_BASE_PATH+"/icons/icon_gear.png")
 	)
-	
+
 	add_tool_menu_item("Item System/Rebuild Catalogue", _on_rebuild)
 
 
@@ -45,7 +45,7 @@ func _exit_tree():
 func _define_project_setting(name: String, default_value, type: int, hint: int = PROPERTY_HINT_NONE, hint_string: String = ""):
 	if not ProjectSettings.has_setting(name):
 		ProjectSettings.set_setting(name, default_value)
-	
+
 	var setting_info = {
 		"name": name,
 		"type": type,
@@ -65,10 +65,10 @@ func _on_rebuild():
 		return
 
 	var temp_db_instance = db_script.new()
-	
+
 	var editor_root = EditorInterface.get_editor_main_screen()
 	editor_root.add_child(temp_db_instance)
-	
+
 	temp_db_instance._force_build_and_save_catalogue()
 	temp_db_instance.queue_free()
 

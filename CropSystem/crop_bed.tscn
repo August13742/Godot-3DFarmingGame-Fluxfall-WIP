@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://bj6xhasqh07b7" path="res://CropSystem/billboard_plants_shader.gdshader" id="6_j5n5o"]
 [ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="7_fpqqt"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_j5n5o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_3ghvx"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAA="),
@@ -55,7 +55,7 @@ script = ExtResource("3_rrrv5")
 
 [node name="ImposterMesh" parent="CropComponent/BillboardPlants/Visuals" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00045609474, -0.0011228919, 0.0008109808)
-mesh = SubResource("ArrayMesh_j5n5o")
+mesh = SubResource("ArrayMesh_3ghvx")
 surface_material_override/0 = SubResource("ShaderMaterial_e686v")
 
 [node name="CropBedCollision" type="CollisionShape3D" parent="."]
