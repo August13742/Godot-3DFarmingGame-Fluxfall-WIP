@@ -12,6 +12,6 @@ offset_bottom = 40.0
 
 [node name="ToastPresenter" parent="." instance=ExtResource("1_7t3f4")]
 offset_left = 64.0
-offset_top = 550.0
+offset_top = 500.0
 offset_right = 64.0
-offset_bottom = 550.0
+offset_bottom = 500.0
