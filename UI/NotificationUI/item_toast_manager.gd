@@ -7,7 +7,7 @@ class_name ItemToastManager
 @export_range(1,5,1) var max_visible:int = 3
 @export var lifetimes := {0:2.0, 1:2.5, 2:3.0, 3:4.0} ##severity:lifetime_sec 
 @export var rate_min_gap_ms:= 120
-@export var coalesce_window_sec:float = .25
+@export var coalesce_window_sec:float = .25 ## same toasts within window are merged
 
 var _queue:Array[Dictionary] = []
 var _active: Array[ItemToast] = []
