@@ -19,6 +19,7 @@ var _pending_by_key := {}# key -> {
 func _enter_tree() -> void:
 	if NotificationSystem && "item_toast_manager" in NotificationSystem :
 		NotificationSystem.item_toast_manager = self
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func post(item_name:String, quantity:int, severity:=1, icon:CompressedTexture2D=null, key:StringName=&""):
 	var now := Time.get_ticks_msec()
@@ -38,18 +39,25 @@ func post(item_name:String, quantity:int, severity:=1, icon:CompressedTexture2D=
 func _register_pending(key:StringName, item_name:String, quantity:int, sev:int, icon:CompressedTexture2D, stamp:int) -> void:
 	var slot = _pending_by_key.get(key)
 	if slot == null:
-		slot = {&"total_qty": 0, &"last_ms": stamp, &"item_name": item_name, &"severity": sev, &"icon": icon}
+		slot = {&"total_qty": 0, &"item_name": item_name, &"severity": sev, &"icon": icon}
 		_pending_by_key[key] = slot
-		_flush_pending_later(key, stamp)  # schedule once per new slot
+	
 	slot[&"total_qty"] += quantity
 	slot[&"last_ms"] = stamp
-	_pending_by_key[key] = slot
+	_pending_by_key[key] = slot# redundant if slot is a reference (Dictionary), but explicit for clarity.
+	
+func _process(_delta: float) -> void:
+	if _pending_by_key.is_empty():
+		return
 
-func _flush_pending_later(key:StringName, stamp:int) -> void:
-	var timer := get_tree().create_timer(coalesce_window_sec)
-	timer.timeout.connect(func ():
+	var now_ms := Time.get_ticks_msec()
+	var coalesce_window_ms := int(coalesce_window_sec * 1000)
+	
+	# Iterate over a copy of the keys, as we will be modifying the dictionary.
+	for key in _pending_by_key.keys():
 		var slot = _pending_by_key.get(key)
-		if slot and slot[&"last_ms"] == stamp:
+		if now_ms - slot[&"last_ms"] > coalesce_window_ms:
+			# This slot has expired, flush
 			var msg_text := "%s × %d" % [slot[&"item_name"], slot[&"total_qty"]]
 			var msg := {
 				&"text": msg_text,
@@ -57,10 +65,10 @@ func _flush_pending_later(key:StringName, stamp:int) -> void:
 				&"icon": slot[&"icon"],
 				&"key": key
 			}
-			_pending_by_key.erase(key)
 			_queue.append(msg)
-			_try_spawn()
-	)
+			_pending_by_key.erase(key)
+			_try_spawn() # Attempt to show the new toast immediately.
+
 
 func _try_spawn():
 	while _queue.size() > 0 and _active.size() < max_visible:
