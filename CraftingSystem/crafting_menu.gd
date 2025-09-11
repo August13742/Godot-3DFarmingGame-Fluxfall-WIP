@@ -13,7 +13,7 @@ class_name CraftingMenu
 @export var crafting_slot_scene:PackedScene = preload("uid://df0q2yifj6pdv")
 
 var item_cache: Array[ItemResource] = []
-
+var player_inventory:InventoryComponent
 func _ready() -> void:
 
 	for item_id in ItemDatabase.items_by_id:
@@ -26,6 +26,7 @@ func _ready() -> void:
 	craftables_list.item_selected.connect(_on_craftable_selected)
 	craft_button.pressed.connect(_on_button_pressed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group(&"player"))
 	get_tree().paused = true
 
 var can_craft: bool = false
@@ -42,7 +43,6 @@ func _on_craftable_selected(index: int):
 	item_name.text = current_craft_resource.display_name
 	item_description.text = current_craft_resource.description
 
-	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player"))
 	if not player_inventory:
 		push_error("CraftingMenu: Player inventory not found.")
 		craft_button.disabled = true
@@ -87,7 +87,6 @@ func _on_button_pressed():
 func craft_item() -> bool:
 	if not current_craft_resource: return false
 
-	var player_inventory = InventoryManager.get_inventory(get_tree().get_first_node_in_group("player"))
 	var crafting_cap: CraftingCapability = current_craft_resource.get_capability(CraftingCapability)
 
 	# This pre-check is technically redundant if `can_craft` is trusted, but it's safe.

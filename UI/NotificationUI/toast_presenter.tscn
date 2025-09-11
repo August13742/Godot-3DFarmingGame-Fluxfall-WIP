@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cksg17nbtptl0"]
+
+[ext_resource type="Script" uid="uid://4sqvcghxyvv6" path="res://UI/NotificationUI/item_toast_manager.gd" id="1_3fdi0"]
+
+[node name="ToastPresenter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3fdi0")
+
+[node name="ToastContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

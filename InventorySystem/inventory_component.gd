@@ -8,7 +8,8 @@ var inventory:Array[InventorySlot] = []
 
 
 func _enter_tree() -> void:
-	EventSystem.INV_try_pick_up_item.connect(_on_try_to_pick_up_item)
+	if owner.is_in_group(&"player"):
+		EventSystem.INV_try_pick_up_item.connect(_on_try_to_pick_up_item)
 
 func _ready():
 	inventory.resize(inventory_size)
@@ -19,7 +20,10 @@ func _ready():
 
 ## @experimental does not handle if inventory is too full
 func _on_try_to_pick_up_item(item_id:StringName, destroy_pickuppable:Callable) -> void:
-	if add_item(item_id) != 0:
+	var amount := 1
+	var remaining := add_item(item_id, amount)
+	var added := amount - remaining
+	if added <= 0:
 		print("Inventory is Too FULL")
 		return
 
@@ -33,6 +37,10 @@ func count_free_slots()->int:
 			free +=1
 	return free
 
+func _push_item_notification(item_id:StringName,added:int):
+	var tmpl: ItemResource = ItemDatabase.get_item_by_id(item_id)
+	var key := StringName("loot:" + String(item_id))
+	NotificationSystem.item_added(tmpl.display_name, added, 1, tmpl.icon, key)
 
 ## @experimental does not handle if inventory is too full
 func add_item(item_id: StringName, amount: int = 1) -> int:
@@ -54,6 +62,7 @@ func add_item(item_id: StringName, amount: int = 1) -> int:
 				remaining -= can_add
 				update_inventory(slot)
 				if remaining == 0:
+					_push_item_notification(item_id,can_add)
 					return 0
 
 	# Second pass: fill empty slots.
@@ -70,6 +79,7 @@ func add_item(item_id: StringName, amount: int = 1) -> int:
 				slot.item_instance = new_instance
 				update_inventory(slot)
 				if remaining == 0:
+					_push_item_notification(item_id,can_add)
 					return 0
 
 	# If items still remain, the inventory is full.

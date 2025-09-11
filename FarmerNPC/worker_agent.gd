@@ -21,7 +21,6 @@ var state: StringName:
 			return
 
 		# --- EXIT LOGIC (Optional) ---
-		# Logic for leaving the OLD state (_state) would go here.
 		# match _state:
 		#     &"move":
 		#         print("Exiting move state.")
@@ -29,11 +28,10 @@ var state: StringName:
 		_state = new_state
 
 		# --- ENTER LOGIC ---
-		# Logic for entering the NEW state (_state) goes here.
 		_on_state_entered(_state)
 var inventory: InventoryComponent
 var active_item_id: StringName = &""
-var is_ready := false # The new "ready flag"
+var is_ready := false
 var animation_state_machine:AnimationNodeStateMachinePlayback
 # task registry
 var tasks: Dictionary = {
@@ -44,7 +42,7 @@ var tasks: Dictionary = {
 
 func _ready():
 
-	nav.radius = 0.35                       # ≈ capsule radius; too small = corner bumper cars
+	nav.radius = 0.35                       # ~= capsule radius; too small = corner bumper cars
 	nav.path_desired_distance = 0.35        # skip to next corner sooner
 	nav.target_desired_distance = 0.60      # stop before jamming into the bed edge
 
@@ -67,11 +65,9 @@ func _on_state_entered(new_state: StringName):
 
 	match new_state:
 		&"idle", &"validate":
-			# Travel to the "Idle" animation state in your AnimationTree.
 			animation_state_machine.travel("Idle")
 
 		&"move":
-			# Travel to the "Move" animation state.
 			animation_state_machine.travel("Move")
 
 		&"execute":

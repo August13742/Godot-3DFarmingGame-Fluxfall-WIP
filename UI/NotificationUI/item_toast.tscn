@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm61nq1l7oqsg"]
+
+[ext_resource type="Texture2D" uid="uid://cfw2sa6eqs1bu" path="res://UI/Assets/panel_minimal.png" id="1_l18a3"]
+[ext_resource type="Script" uid="uid://bhr218uni17u7" path="res://UI/NotificationUI/item_toast.gd" id="1_mf73n"]
+
+[sub_resource type="Gradient" id="Gradient_mf73n"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(0, 0, 0, 0.7058824, 0, 0, 0, 0.3137255, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cds26"]
+gradient = SubResource("Gradient_mf73n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_31lke"]
+texture = SubResource("GradientTexture1D_cds26")
+
+[node name="ItemToast" type="PanelContainer"]
+custom_minimum_size = Vector2(160, 80)
+offset_right = 199.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_31lke")
+script = ExtResource("1_mf73n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_l18a3")
+expand_mode = 2
+
+[node name="MessageLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "item_name × 99"
