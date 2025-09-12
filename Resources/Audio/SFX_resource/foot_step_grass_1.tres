@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SFXResource" load_steps=3 format=3 uid="uid://dfcetxf5f4wbs"]
+
+[ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="1_6ymgt"]
+[ext_resource type="AudioStream" uid="uid://cxson13uiidu" path="res://Assets/Audio/SFX/footstep_grass/Barefoot Grass footsteps 1.wav" id="2_lklg7"]
+
+[resource]
+script = ExtResource("1_6ymgt")
+event_name = &"footstep"
+stream = ExtResource("2_lklg7")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"

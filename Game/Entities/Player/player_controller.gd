@@ -17,6 +17,7 @@ class_name PlayerController
 
 @onready var state_machine := $StateMachine
 @export var state_machine_debug:bool = false
+@onready var animation_player: AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
 
 @onready var state_machine_animator:AnimationNodeStateMachinePlayback= %AnimationTree.get("parameters/Locomotion/playback")
 
@@ -24,7 +25,8 @@ class_name PlayerController
 @onready var right_hand:Node3D = %RightHand
 
 @onready var toolbar: ToolbarComponent = $ToolbarComponent
-
+@export_category("Audio")
+@export var footstep_sfx_playlist:SFXPlaylistResource
 
 var current_input_direction:Vector2 = Vector2.ZERO
 
@@ -34,6 +36,8 @@ func _ready():
 func _physics_process(delta):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
+	print(animation_player.get_root_motion_position())
+
 
 var active_item_id: StringName = &""
 #region Diamond Tool Bar API
@@ -44,6 +48,10 @@ func get_active_item_id() -> StringName:
 	return &"" # bare hands
 #endregion
 
+#region Animation Audio Link
+func _on_foot_down()->void:
+	AudioManager.play_sfx_random(footstep_sfx_playlist,.3)
+#endregion
 func _input(event):
 	state_machine.handle_input(event)
 

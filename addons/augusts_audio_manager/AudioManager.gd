@@ -61,9 +61,7 @@ func _process(_delta: float) -> void:
 			
 func _exit_tree():
 	for p in _looping_sfx_players.values():
-		if is_instance_valid(p):
-			p.stop()
-			p.queue_free()
+		if is_instance_valid(p): p.stop(); p.queue_free()
 	_looping_sfx_players.clear()
 	if is_instance_valid(_poly_player): _poly_player.stop()
 	if is_instance_valid(_music_a): _music_a.stop()
@@ -136,30 +134,48 @@ static func _force_music_loop(stream: AudioStream, should_loop: bool) -> AudioSt
 #endregion
 
 #region Public API - High Level (Resource-Based)
-## The primary method for playing a sound effect.
-## Dispatches to the appropriate low-level player based on the resource properties. [br][br]
+## The primary method for playing a sound effect from a resource.
+## [param volume_scale]: A multiplier for the resource's base volume.
 ## [b]Returns:[/b] The voice ID if a tracked one-shot is played, otherwise -1.
-func play_sfx(resource: SFXResource) -> int:
+func play_sfx(resource: SFXResource, volume_scale := 1.0) -> int:
 	if not resource or not resource.stream:
 		push_warning("[AudioManager] play_sfx called with an invalid resource.")
 		return -1
 
+	var final_volume = resource.volume_linear * volume_scale
 	if resource.loop:
-		play_sfx_loop(
-			resource.event_name,
-			resource.stream,
-			resource.volume_linear,
-			resource.pitch_scale
-		)
-		return -1 # Looping players don't have a polyphonic voice_id
+		play_sfx_loop(resource.event_name, resource.stream, final_volume, resource.pitch_scale)
+		return -1
 	else:
-		return play_sfx_one_shot(
-			resource.stream,
-			resource.volume_linear,
-			resource.pitch_scale,
-			resource.event_name,
-			resource.track_finish
-		)
+		return play_sfx_one_shot(resource.stream, final_volume, resource.pitch_scale, resource.event_name, resource.track_finish)
+
+## Plays a random one-shot SFX from an array of resources.
+## Applies optional volume and pitch jitter to the selected resource's base values.
+func play_sfx_random(playlist:SFXPlaylistResource, volume_scale := 1.0, pitch_jitter := 0.0, vol_jitter := 0.0) -> int:
+	if playlist.sfx_resources.is_empty(): return -1
+	
+	var resource: SFXResource = playlist.sfx_resources.pick_random()
+	if not resource or not resource.stream:
+		push_warning("[AudioManager] play_sfx_random picked an invalid resource.")
+		return -1
+
+	var final_pitch = resource.pitch_scale * randf_range(1.0 - pitch_jitter, 1.0 + pitch_jitter)
+	var final_volume = resource.volume_linear * volume_scale * randf_range(1.0 - vol_jitter, 1.0 + vol_jitter)
+
+	return play_sfx_one_shot(resource.stream, final_volume, final_pitch, resource.event_name, resource.track_finish)
+
+## Plays a positional one-shot SFX from a resource.
+func play_sfx_at_position(resource: SFXResource, pos: Vector2, volume_scale := 1.0):
+	if not resource or not resource.stream:
+		push_warning("[AudioManager] play_sfx_at_position called with an invalid resource.")
+		return
+
+	if resource.loop:
+		push_warning("[AudioManager] Looping SFX cannot be played positionally. Use a standard Node2D with an AudioStreamPlayer2D for this.")
+		return
+
+	var final_volume = resource.volume_linear * volume_scale
+	play_sfx_at_position_from_stream(resource.stream, pos, final_volume, resource.pitch_scale)
 
 ## Stops a looping SFX using its resource definition.
 func stop_sfx(resource: SFXResource, fade_out_s := 0.0):
@@ -168,10 +184,7 @@ func stop_sfx(resource: SFXResource, fade_out_s := 0.0):
 #endregion
 
 #region Public API - Low Level (Parameter-Based)
-## (Low-Level) Plays a one-shot SFX. Prefer using the resource-based play_sfx().[br]
-## [param event_name]: An optional name passed to the sfx_finished signal for identification.[br]
-## [param track_finish]: If true, sfx_finished will be emitted when the sound completes.[br][br]
-## [b]Returns:[/b] The voice ID ([int]) for this specific playback instance.
+## (Low-Level) Plays a one-shot SFX. Prefer using the resource-based play_sfx().
 func play_sfx_one_shot(stream: AudioStream, volume_linear := 1.0, pitch_scale := 1.0, event_name: StringName = &"__anonymous__", track_finish := false) -> int:
 	var params = _clamp_params(volume_linear, pitch_scale, true)
 	var pb := _poly()
@@ -189,12 +202,13 @@ func play_sfx_one_shot(stream: AudioStream, volume_linear := 1.0, pitch_scale :=
 	return voice_id
 
 ## (Low-Level) Plays a random SFX from a list with optional jitter.
-func play_sfx_random(streams: Array[AudioStream], event_name: StringName = &"__anonymous__", base_vol := 1.0, base_pitch := 1.0, pitch_jitter := 0.05, vol_jitter := 0.0, track_finish := false) -> int:
+func play_sfx_random_from_streams(streams: Array[AudioStream], event_name: StringName = &"__anonymous__", base_vol := 1.0, base_pitch := 1.0, pitch_jitter := 0.05, vol_jitter := 0.0, track_finish := false) -> int:
 	if streams.is_empty(): return -1
 	var s: AudioStream = streams.pick_random()
 	var p := base_pitch * randf_range(1.0 - pitch_jitter, 1.0 + pitch_jitter)
 	var v := base_vol   * randf_range(1.0 - vol_jitter,   1.0 + vol_jitter)
 	return play_sfx_one_shot(s, v, p, event_name, track_finish)
+
 
 ## (Low-Level) Starts or replaces a named looping SFX.
 func play_sfx_loop(event_name: StringName, stream: AudioStream, volume_linear := 1.0, pitch_scale := 1.0):
@@ -231,7 +245,7 @@ func stop_looped_sfx(event_name: StringName, fade_out_s := 0.0):
 		callback.call()
 
 ## (Low-Level) Plays a positional one-shot SFX (2D).
-func play_sfx_at_position(stream: AudioStream, pos: Vector2, volume_linear := 1.0, pitch_scale := 1.0):
+func play_sfx_at_position_from_stream(stream: AudioStream, pos: Vector2, volume_linear := 1.0, pitch_scale := 1.0):
 	if not enable_spatial_api:
 		play_sfx_one_shot(stream, volume_linear, pitch_scale)
 		return
@@ -250,32 +264,33 @@ func play_sfx_at_position(stream: AudioStream, pos: Vector2, volume_linear := 1.
 
 #region Public API - Music
 ## The primary method for playing a music track from a resource.
-## Handles crossfading from any currently playing track.
-func play_music(resource: MusicResource, fade_override_s := -1.0, start_position_s := 0.0):
+## [param volume_scale]: A multiplier for the resource's base volume.
+func play_music(resource: MusicResource, volume_scale := 1.0, fade_override_s := -1.0, start_position_s := 0.0):
 	if not resource or not resource.stream:
 		push_warning("[AudioManager] play_music called with an invalid resource.")
 		return
 
 	_current_music_resource = resource
 	var fade_duration = resource.fade_in_s if fade_override_s < 0.0 else fade_override_s
+	var final_volume = resource.volume_linear * volume_scale
 	
 	_crossfade_to_stream(
 		resource.stream,
 		resource.loop,
-		resource.volume_linear,
+		final_volume,
 		fade_duration,
 		start_position_s
 	)
 
 ## Plays a track from a playlist resource, respecting its playback mode.
-func play_playlist(playlist: MusicPlaylistResource, fade_override_s := -1.0, start_position_s := 0.0):
+func play_playlist(playlist: MusicPlaylistResource, volume_scale := 1.0, fade_override_s := -1.0, start_position_s := 0.0):
 	if not playlist or playlist.tracks.is_empty():
 		push_warning("[AudioManager] play_playlist called with an invalid playlist.")
 		return
 	
 	var next_track := playlist.get_next_track()
 	if next_track:
-		play_music(next_track, fade_override_s, start_position_s)
+		play_music(next_track, volume_scale, fade_override_s, start_position_s)
 
 ## (Low-Level) The core crossfade logic. Called by the high-level functions.
 func _crossfade_to_stream(stream: AudioStream, loop: bool, target_vol: float, fade_s: float, start_pos: float):
