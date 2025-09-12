@@ -29,6 +29,7 @@ TimeManager="*res://DayNightSystem/TimeManager.gd"
 JobBoard="*res://FarmerNPC/Singleton/job_board.gd"
 ItemDatabase="*res://addons/augusts_item_system/item_database.gd"
 NotificationSystem="*res://UI/NotificationUI/NotificationSystem.gd"
+AudioManager="*res://addons/augusts_audio_manager/AudioManager.gd"
 
 [debug]
 
@@ -49,7 +50,7 @@ project/assembly_name="3D_survival"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/augusts_item_system/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/augusts_audio_manager/plugin.cfg", "res://addons/augusts_item_system/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [file_customization]
 
