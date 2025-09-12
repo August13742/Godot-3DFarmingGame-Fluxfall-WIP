@@ -30,6 +30,9 @@ JobBoard="*res://FarmerNPC/Singleton/job_board.gd"
 ItemDatabase="*res://addons/augusts_item_system/item_database.gd"
 NotificationSystem="*res://UI/NotificationUI/NotificationSystem.gd"
 AudioManager="*res://addons/augusts_audio_manager/AudioManager.gd"
+NPCEventSystem="*res://FarmerNPC/Job/NPCEventSystem.gd"
+NPCTaskProcessor="*res://FarmerNPC/Job/TaskProcessor.gd"
+NPCJobBoard="*res://FarmerNPC/Job/JobBoard.gd"
 
 [debug]
 
