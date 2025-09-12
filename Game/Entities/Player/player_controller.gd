@@ -36,7 +36,6 @@ func _ready():
 func _physics_process(delta):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	state_machine.update(delta)
-	print(animation_player.get_root_motion_position())
 
 
 var active_item_id: StringName = &""

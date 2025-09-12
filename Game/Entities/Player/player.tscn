@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bk08dm8dcokkj" path="res://Game/Entities/Player/player_controller.gd" id="1_ulv0d"]
 [ext_resource type="PackedScene" uid="uid://fmd6u3cipjbb" path="res://Game/Entities/Player/StateMachine/state_machine.tscn" id="2_5028t"]
-[ext_resource type="Resource" uid="uid://c3le5xsf0mwrp" path="res://Resources/Audio/SFX_resource/Playlist/footstep_grass/footstep_grass1.tres" id="2_yptuu"]
+[ext_resource type="Resource" uid="uid://c3le5xsf0mwrp" path="res://_Resources/Audio/SFX_resource/Playlist/footstep_grass/footstep_grass1.tres" id="2_yptuu"]
 [ext_resource type="PackedScene" uid="uid://dcdc52sg22fux" path="res://CropSystem/hoe.tscn" id="4_q62hb"]
 [ext_resource type="Script" uid="uid://6el3nq2lfoqx" path="res://Game/Entities/Player/interaction_ray_cast.gd" id="4_ulv0d"]
 [ext_resource type="Script" uid="uid://bkcls2qk618ib" path="res://Game/Entities/Player/force_vector_ray.gd" id="5_70t3k"]

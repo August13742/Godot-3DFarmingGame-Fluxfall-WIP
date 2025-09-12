@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm61nq1l7oqsg"]
+[gd_scene load_steps=7 format=3 uid="uid://cm61nq1l7oqsg"]
 
 [ext_resource type="Texture2D" uid="uid://cfw2sa6eqs1bu" path="res://UI/Assets/panel_minimal.png" id="1_l18a3"]
 [ext_resource type="Script" uid="uid://bhr218uni17u7" path="res://UI/NotificationUI/item_toast.gd" id="1_mf73n"]
+[ext_resource type="Resource" uid="uid://b1god3qlpbu2e" path="res://_Resources/Audio/SFX_resource/Playlist/UI_toast/item_toast.tres" id="2_cds26"]
 
 [sub_resource type="Gradient" id="Gradient_mf73n"]
 interpolation_mode = 2
@@ -21,6 +22,7 @@ offset_right = 199.0
 offset_bottom = 64.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_31lke")
 script = ExtResource("1_mf73n")
+sfx_playlist = ExtResource("2_cds26")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
