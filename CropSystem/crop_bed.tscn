@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b0f5pkoncrqki"]
+[gd_scene load_steps=14 format=4 uid="uid://b0f5pkoncrqki"]
 
 [ext_resource type="Script" uid="uid://ht1miujgnfxk" path="res://CropSystem/crop.gd" id="2_64rtf"]
 [ext_resource type="Script" uid="uid://bpnfkt34xkabq" path="res://CropSystem/crop_component.gd" id="3_rrrv5"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d44meequbbvu" path="res://CropSystem/billboard_plants.tscn" id="4_3ghvx"]
 [ext_resource type="Shader" uid="uid://bj6xhasqh07b7" path="res://CropSystem/billboard_plants_shader.gdshader" id="6_j5n5o"]
 [ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="7_fpqqt"]
+[ext_resource type="PackedScene" uid="uid://dcj4in1safdu8" path="res://FarmerNPC/Job/JobEmitterComponent.tscn" id="7_j5n5o"]
+[ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://FarmerNPC/Job/JobData.gd" id="8_06pmw"]
+[ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://FarmerNPC/Job/JobTask/JobTaskResource.gd" id="9_e686v"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3ghvx"]
 _surfaces = [{
@@ -33,11 +36,18 @@ shader_parameter/alpha_threshold = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_uy331"]
 size = Vector3(2.75, 0.2, 2)
 
+[sub_resource type="Resource" id="Resource_h8adj"]
+script = ExtResource("8_06pmw")
+metadata/_custom_type_script = "uid://ce6773gmqrtm6"
+
 [node name="CropBed" type="Area3D" groups=["crop_beds"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_64rtf")
+actual_stages = null
 stages_for_calculation = 400
+growth_chance = null
+always_hydrated = null
 prompt = "Plant Seed"
 metadata/_custom_type_script = "uid://bcnixc518q8ix"
 
@@ -69,6 +79,19 @@ collision_mask = 0
 [node name="CropBedCollision2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3628061, -3)
 shape = SubResource("BoxShape3D_uy331")
+
+[node name="PlantingJobEmitter" parent="." instance=ExtResource("7_j5n5o")]
+job_template = SubResource("Resource_h8adj")
+trigger_signal = &"state_changed"
+activation_value = &"empty"
+
+[node name="HarvestingJobEmitter" parent="." instance=ExtResource("7_j5n5o")]
+trigger_signal = &"state_changed"
+activation_value = &"harvestable"
+
+[node name="WateringJobEmitter" parent="." instance=ExtResource("7_j5n5o")]
+trigger_signal = &"hydration_changed"
+activation_value = false
 
 [editable path="CropBedModel"]
 [editable path="CropComponent/BillboardPlants"]

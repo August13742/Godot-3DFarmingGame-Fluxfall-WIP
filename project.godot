@@ -31,8 +31,8 @@ ItemDatabase="*res://addons/augusts_item_system/item_database.gd"
 NotificationSystem="*res://UI/NotificationUI/NotificationSystem.gd"
 AudioManager="*res://addons/augusts_audio_manager/AudioManager.gd"
 NPCEventSystem="*res://FarmerNPC/Job/NPCEventSystem.gd"
-NPCTaskProcessor="*res://FarmerNPC/Job/TaskProcessor.gd"
-NPCJobBoard="*res://FarmerNPC/Job/JobBoard.gd"
+NPCTaskProcessor="*res://FarmerNPC/Job/NPCTaskProcessor.gd"
+NPCJobBoard="*res://FarmerNPC/Job/NPCJobBoard.gd"
 
 [debug]
 
@@ -50,6 +50,11 @@ window/size/viewport_height=1080
 [dotnet]
 
 project/assembly_name="3D_survival"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
 
 [editor_plugins]
 

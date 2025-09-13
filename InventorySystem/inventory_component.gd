@@ -85,32 +85,35 @@ func add_item(item_id: StringName, amount: int = 1) -> int:
 	# If items still remain, the inventory is full.
 	return remaining
 
-## Removes an item from this specific inventory.
-func remove_item(item_id: StringName, amount: int = 1) -> int:
-	var to_remove := amount
-	var removed_count := 0
+## Removes a specific amount of an item.
+## Returns 'true' ONLY if the full amount was successfully removed.
+func remove_item(item_id: StringName, amount: int = 1) -> bool:
+	# First, check if we even have enough to remove.
+	if not has_item(item_id, amount):
+		return false
 
-	# Iterate backwards to handle slot clearing safely if you were modifying the array.
-	# Not strictly necessary here but good practice.
+	var to_remove := amount
+
+	# Iterate backwards to safely handle clearing slots.
 	for i in range(inventory.size() - 1, -1, -1):
 		var slot = inventory[i]
 		if not slot.is_empty() and slot.item_instance.id == item_id:
 			var instance = slot.item_instance
-			var remove_from_stack:int = min(to_remove, instance.count)
+			var remove_from_stack: int = min(to_remove, instance.count)
 
 			instance.count -= remove_from_stack
 			to_remove -= remove_from_stack
-			removed_count += remove_from_stack
 
 			if instance.count <= 0:
-				slot.clear() # Sets instance to null.
+				slot.clear()
 
 			update_inventory(slot)
 
 			if to_remove == 0:
-				break
+				break # We've removed everything we need to.
 
-	return removed_count # Return how many were actually removed.
+	# If to_remove is 0, the operation was a complete success.
+	return to_remove == 0
 
 func get_item_count(item_id: StringName) -> int:
 	var total_count := 0
@@ -119,13 +122,22 @@ func get_item_count(item_id: StringName) -> int:
 			total_count += slot.item_instance.count
 	return total_count
 
+## Checks if the inventory contains at least a certain amount of an item.
+func has_item(item_id: StringName, amount: int = 1) -> bool:
+	return get_item_count(item_id) >= amount
+
 func update_inventory(slot:InventorySlot):
 	EventSystem.emit_INV_item_pickup_successful(slot)
 
-func get_first_item_with_capability(capability_script) -> ItemInstance:
+func get_first_item_with_capability(capability_script:Script) -> ItemInstance:
+	var items_with_capability: Dictionary = ItemDatabase.get_all_with_capability(capability_script)
+
+	if items_with_capability.is_empty():
+		return null
+
 	for slot in inventory:
 		if not slot.is_empty():
-			var item_template = ItemDatabase.get_item_by_id(slot.item_instance.id)
-			if item_template and item_template.has_capability(capability_script):
-				return slot.item_instance # Found one.
-	return null # No item with this capability was found.
+			if items_with_capability.has(slot.item_instance.id):
+				return slot.item_instance # Found the first match.
+
+	return null

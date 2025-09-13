@@ -1,8 +1,7 @@
-extends ICropState
-class_name CropGrowingState
+class_name CropGrowingState extends ICropState
 
-	
-	
+
+
 func on_growth_tick() -> void:
 	if not crop_bed.hydrated:
 		return # Or add withering logic

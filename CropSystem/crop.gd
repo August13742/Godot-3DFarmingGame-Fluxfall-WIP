@@ -12,11 +12,15 @@ class_name CropBed
 @export var always_hydrated: bool = false
 
 # --- State Data (managed by states, stored here) ---
+signal hydration_changed(is_hydrated: bool)
 var hydrated: bool = false:
 	set(value):
+		if hydrated == value: return
 		hydrated = value
 		if always_hydrated:
 			hydrated = true
+		hydration_changed.emit(hydrated)
+
 var crop_resource: BillboardPlantResource
 var current_stage: Stage = Stage.Seed
 var current_calculation_stage: int = 0
@@ -27,13 +31,11 @@ var stages_per_visual_change: int
 @onready var crop_bed_model: CropBedModel = %CropBedModel
 @onready var crop_component: Node3D = %CropComponent
 @onready var crop: BillboardPlant = crop_component.billboard_plants
-# --- DELETED REFERENCES ---
-# @onready var harvest_collision: CollisionShape3D = crop_component.harvest_collision
-# @onready var hydration_component: HydrationComponent = %HydrationComponent
 #endregion
 
 enum Stage { Seed, Stage1, Stage2, Stage3, Harvestable }
 var machine: CropStateMachine
+signal state_changed(state_name: StringName)
 
 func _ready() -> void:
 	@warning_ignore("integer_division")
@@ -41,18 +43,49 @@ func _ready() -> void:
 
 	machine = CropStateMachine.new()
 	machine.initialise(self)
-
+	machine.state_changed.connect(state_changed.emit)
 	# Connect signals once. They will be delegated to the machine.
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
+	if always_hydrated:
+		hydrated = true
+
 
 #region Public API (for Player/NPCs)
-func plant(seed_resource: BillboardPlantResource) -> void:
+func plant(target_inventory:InventoryComponent) -> void:
+	target_inventory.get_first_item_with_capability()
 	machine.on_plant(seed_resource)
 
-func harvest() -> void:
-	machine.on_harvest()
+func is_harvestable()->bool:
+	return machine.current_state is CropHarvestableState
+
+func hydrate() -> bool:
+	if hydrated: return false
+
+	self.hydrated = true
+	crop_bed_model.update_dirt_appearance(true)
+	machine.on_hydrate()
+	return true
+
+
+func harvest(target_inventory: InventoryComponent) -> bool:
+	if not is_instance_valid(target_inventory): return false
+	if not "harvest_yield_id" in crop_resource:
+		push_error("Crop resource '%s' is missing harvest_yield_id." % crop_resource.resource_path)
+		return false
+
+	var yield_id = crop_resource.harvest_yield_id
+	var yield_amount = crop_resource.get("harvest_yield_amount")
+
+	var remaining = target_inventory.add_item(yield_id, yield_amount)
+
+	if remaining == 0:
+		machine.on_harvest()
+		return true # Harvest was successful
+	else:
+		print("Inventory is full, cannot harvest.")
+		return false # Harvest failed
 #endregion
 
 #region Signal Handlers (delegated to machine)
@@ -145,7 +178,6 @@ func _inventory_has_seeds(inventory: InventoryComponent) -> bool:
 
 #region Interaction
 func start_interaction(source: Node = null) -> void:
-	#print("Interaction started...") # DEBUG
 	if not source or not source.has_method("get_active_item_id"): return
 
 	var inventory: InventoryComponent = InventoryManager.get_inventory(source)
@@ -153,24 +185,26 @@ func start_interaction(source: Node = null) -> void:
 
 	var active_item_id: StringName = source.get_active_item_id()
 	var active_item_template: ItemResource = ItemDatabase.get_item_by_id(active_item_id)
-	#print("...Source: %s, Active Item ID: '%s'" % [source.name, active_item_id]) # DEBUG
 
+	# --- Player-specific logic ---
 	if active_item_template:
-		#print("...Active item template is valid: %s" % active_item_template.id) # DEBUG
+		# Check for tool-based actions first
 		if active_item_template.has_capability(WateringCapability):
-			_try_to_hydrate()
+			self.hydrate() # Call the new, clean API method
 			return
 		elif active_item_template.has_capability(SeedCapability) and machine.current_state is CropEmptyState:
-			#print("...Attempting to plant.") # DEBUG
-			_try_to_plant(inventory, active_item_template)
+			var seed_cap: SeedCapability = active_item_template.get_capability(SeedCapability)
+			if seed_cap and seed_cap.plant_resource:
+				self.plant(seed_cap.plant_resource)
+				inventory.remove_item(active_item_template.id, 1) # Still need to remove the seed
 			return
 
-	# Priority 2: If no specific tool was used, check for default contextual actions.
+	# Check for context-based actions if no tool action was taken
 	if machine.current_state is CropHarvestableState:
-		#print("...Attempting to harvest.") # DEBUG
-		_try_to_harvest(inventory)
+		self.harvest(inventory)
 		return
-	#print("...No valid action found.")
+
+
 # --- Private Helper for Planting ---
 func _try_to_plant(inventory: InventoryComponent, seed_template: ItemResource):
 	var seed_cap: SeedCapability = seed_template.get_capability(SeedCapability)
