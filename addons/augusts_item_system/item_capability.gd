@@ -1,2 +1,1 @@
-extends Resource
-class_name ItemCapability
+@abstract class_name ItemCapability extends Resource

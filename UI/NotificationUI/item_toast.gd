@@ -16,9 +16,8 @@ func start(text:String, icon:Texture2D, hold_s:float):
 	item_icon.texture = icon
 	message_label.text = text
 	_play(in_ms, hold_s, out_ms)
-	
-	if AudioManager:
-		AudioManager.play_sfx_random(sfx_playlist,sfx_volume_multiplier)
+
+	AudioManager.play_sfx_random(sfx_playlist,sfx_volume_multiplier)
 
 func _play(in_d:float, hold:float, out_d:float) -> void:
 	modulate.a = 0.0

@@ -137,7 +137,7 @@
 [ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="135_i1xbi"]
 [ext_resource type="Texture2D" uid="uid://doc7pta1n3v4m" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="136_d7hgg"]
 [ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="137_g7p8p"]
-[ext_resource type="Script" uid="uid://vu0v4c2tn30a" path="res://FarmerNPC/farm_sensor.gd" id="138_x6kdt"]
+[ext_resource type="PackedScene" uid="uid://xmcx5xkq3gkl" path="res://ThirdPersonObserverCamera.tscn" id="138_x6kdt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hox20"]
 size = Vector2(750, 750)
@@ -238,7 +238,9 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 [node name="Island" type="Node"]
 script = ExtResource("1_fo3st")
 
-[node name="SingletonParamManager" parent="." instance=ExtResource("1_n55d4")]
+[node name="SingletonParamManager" parent="." node_paths=PackedStringArray("main_camera", "follow_cam") instance=ExtResource("1_n55d4")]
+main_camera = NodePath("../MainCamera/SpringArm3D/Camera3D")
+follow_cam = NodePath("../ThirdPersonObserverCamera")
 
 [node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
@@ -277,6 +279,7 @@ navigation_mesh = SubResource("NavigationMesh_x6kdt")
 data_directory = "res://Terrain3D_Data"
 material = SubResource("Terrain3DMaterial_88s1a")
 assets = SubResource("Terrain3DAssets_wdtrn")
+collision_mode = 4
 collision_mask = 0
 top_level = true
 metadata/_edit_lock_ = true
@@ -1452,9 +1455,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
-[node name="FarmSensor" type="Node" parent="."]
-script = ExtResource("138_x6kdt")
-
 [node name="FarmWorkers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.95425)
 
@@ -1462,107 +1462,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.9542
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.465369)
 
 [node name="FarmWorkerFemale" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, -0.17146397)
 
-[node name="FarmWorkerFemale11" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale12" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale13" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale14" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale15" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale16" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale17" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale18" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale19" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 15.500528)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="Node3D2" type="Node3D" parent="FarmWorkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0264034)
-
-[node name="FarmWorkerFemale20" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale2" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale3" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale4" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale5" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale6" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale7" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale8" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale9" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
-
-[node name="FarmWorkerFemale10" parent="FarmWorkers/Node3D2" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0, 4.398409)
-speed = 3.5
-rotation_speed = 5.0
+[node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("138_x6kdt")]
+target = NodePath("../FarmWorkers/Node3D/FarmWorkerFemale")
 
 [editable path="StellarBodyPivot"]
 [editable path="MainCamera"]

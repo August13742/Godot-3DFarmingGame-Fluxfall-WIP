@@ -2,7 +2,7 @@
 
 My second game ever(or maybe not a game, just game systems), currently under development. (Made Public for Internship / Job Application)
 
-Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk. 
+Think of it as Harvestella + Rune Factory: Guardians of Azuma + Frostpunk.
 
 ## What's here:
 ### Farming Automation with Helper NPCs (blackboard + Utility Scoring Task Allocation)

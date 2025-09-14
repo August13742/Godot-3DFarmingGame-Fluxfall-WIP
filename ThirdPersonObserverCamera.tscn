@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://xmcx5xkq3gkl"]
+
+[ext_resource type="Script" uid="uid://d1ssg4e8co2ih" path="res://ThirdPersonObserverCamera.gd" id="1_xyevv"]
+
+[node name="ThirdPersonObserverCamera" type="Node3D"]
+script = ExtResource("1_xyevv")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]

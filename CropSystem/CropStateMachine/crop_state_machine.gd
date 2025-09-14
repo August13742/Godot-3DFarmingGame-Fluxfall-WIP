@@ -1,9 +1,10 @@
-extends RefCounted
-class_name CropStateMachine
+class_name CropStateMachine extends RefCounted
 
 var context: CropBed
 var current_state: ICropState
 var states: Dictionary = {}
+
+signal state_changed(state_name: StringName)
 
 func initialise(ctx: CropBed) -> void:
 	self.context = ctx
@@ -26,6 +27,7 @@ func change_state(state_key: StringName) -> void:
 	if current_state:
 		current_state.exit()
 	current_state = states[state_key]
+	state_changed.emit(state_key)
 	current_state.enter()
 
 # --- Delegate all events to the current state ---

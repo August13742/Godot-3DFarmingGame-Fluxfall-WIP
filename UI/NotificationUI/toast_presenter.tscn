@@ -8,6 +8,6 @@ anchors_preset = 0
 script = ExtResource("1_3fdi0")
 
 [node name="ToastContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0

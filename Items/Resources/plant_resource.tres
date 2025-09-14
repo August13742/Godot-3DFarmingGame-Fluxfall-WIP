@@ -9,3 +9,4 @@ script = ExtResource("3_i2cka")
 id = &"plant"
 display_name = "Plant"
 icon = ExtResource("1_v7u3t")
+description = null

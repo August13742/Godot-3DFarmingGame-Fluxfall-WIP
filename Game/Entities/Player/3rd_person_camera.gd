@@ -1,5 +1,5 @@
 extends Node3D
-class_name ThirdPersonCamera
+class_name ThirdPersonARPGCamera
 
 var mouse_sensitivity:float = 0.35
 @onready var camera:Camera3D = $%Camera3D
@@ -58,6 +58,7 @@ func look_around(relative:Vector2,_delta:float=1):
 var direction_to_look_at:Vector3 = Vector3.ZERO
 func _physics_process(_delta: float) -> void:
 
+	if !camera.current:return
 	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-_delta * 20))
 	look_around(smoothed_mouse_delta, _delta)
 	raw_mouse_delta = Vector2.ZERO
@@ -76,9 +77,7 @@ func _physics_process(_delta: float) -> void:
 		target_entity.skin.rotation.y = lerp_angle(current_visual_yaw, target_visual_yaw, angular_velocity * _delta)
 		rotate_root_towards_cursor(direction_to_look_at,_delta)
 
-	# --- Debug Drawing
-	if debug_raycast:
-		pass
+
 
 
 func rotate_root_towards_cursor(to_target:Vector3,_delta:float):

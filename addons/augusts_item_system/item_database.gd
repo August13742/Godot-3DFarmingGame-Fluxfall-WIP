@@ -3,7 +3,7 @@ extends Node
 # Singleton Item Database, managed by the Item System Plugin.
 
 # --- Configuration ---
-# These paths are now read from Project Settings to make the plugin portable.
+# These paths are read from Project Settings to make the plugin portable.
 var source_directory: String
 var catalogue_save_path: String
 var handlers_directory: String
@@ -190,10 +190,16 @@ func _save_catalogue_resource():
 	catalogue.items_by_id = items_by_id
 
 	var serializable_caps := {}
+	var capabilities_by_name = {}
 	for script_key in capabilities_by_type:
 		var path_key = script_key.resource_path
 		serializable_caps[path_key] = capabilities_by_type[script_key]
-	catalogue.capabilities_by_script_path = serializable_caps
+		var cap_name = script_key.get_global_name().replace("Capability","")
+		capabilities_by_name[cap_name] = capabilities_by_type[script_key]
+
+		
+	catalogue.capabilities_by_type_path = serializable_caps
+	catalogue.capabilities_by_name = capabilities_by_name
 
 	DirAccess.make_dir_recursive_absolute(catalogue_save_path.get_base_dir())
 
@@ -208,12 +214,12 @@ func _save_catalogue_resource():
 func get_item_by_id(id: StringName) -> ItemResource:
 	return items_by_id.get(id, null)
 
-func get_capability_for_item(item_id: StringName, capability_script: Script) -> ItemCapability:
+func get_capability_resource_for_item(item_id: StringName, capability_script: Script) -> ItemCapability:
 	if capabilities_by_type.has(capability_script):
 		return capabilities_by_type[capability_script].get(item_id, null)
 	return null
 
-func get_all_with_capability(capability_script: Script) -> Dictionary:
-	return capabilities_by_type.get(capability_script, {})
+func get_all_items_with_capability(capability_class_name: Script) -> Dictionary:
+	return capabilities_by_type.get(capability_class_name, {})
 
 #endregion

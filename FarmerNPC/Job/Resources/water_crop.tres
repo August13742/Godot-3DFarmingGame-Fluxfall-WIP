@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="JobData" load_steps=12 format=3 uid="uid://ct1y1x6urgtnv"]
+
+[ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://FarmerNPC/Job/JobData.gd" id="1_8k6km"]
+[ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://FarmerNPC/Job/ItemRequirement.gd" id="1_rq4du"]
+[ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://FarmerNPC/Job/JobTask/JobTaskResource.gd" id="2_m6fls"]
+[ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://Items/Resources/Watering/watering_can_resource.tres" id="2_xw4yl"]
+[ext_resource type="Script" uid="uid://bdtxh3l2xk33l" path="res://FarmerNPC/Job/JobTask/TaskEquipTool.gd" id="3_eel32"]
+[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://FarmerNPC/Job/JobTask/TaskMoveTo.gd" id="4_kvrqb"]
+[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://FarmerNPC/Job/JobTask/TaskInteract.gd" id="5_kvrqb"]
+
+[sub_resource type="Resource" id="Resource_ht63f"]
+script = ExtResource("1_rq4du")
+type = 1
+is_consumed = false
+example_item = ExtResource("2_xw4yl")
+metadata/_custom_type_script = "uid://dxi7c76mtkntj"
+
+[sub_resource type="Resource" id="Resource_kvrqb"]
+script = ExtResource("3_eel32")
+tool_id = &"watering_can"
+metadata/_custom_type_script = "uid://bdtxh3l2xk33l"
+
+[sub_resource type="Resource" id="Resource_xw4yl"]
+script = ExtResource("4_kvrqb")
+metadata/_custom_type_script = "uid://b3bb1b1fnw1gh"
+
+[sub_resource type="Resource" id="Resource_rq4du"]
+script = ExtResource("5_kvrqb")
+method_to_call = &"hydrate"
+metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
+
+[resource]
+script = ExtResource("1_8k6km")
+priority = 30
+item_requirements = Array[ExtResource("1_rq4du")]([SubResource("Resource_ht63f")])
+task_list = Array[ExtResource("2_m6fls")]([SubResource("Resource_kvrqb"), SubResource("Resource_xw4yl"), SubResource("Resource_rq4du")])
+metadata/_custom_type_script = "uid://ce6773gmqrtm6"
