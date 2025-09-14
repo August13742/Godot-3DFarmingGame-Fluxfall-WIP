@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=9 format=3 uid="uid://cjqib3gqi3dwq"]
 
-[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_pergx"]
-[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="2_8gjq0"]
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/src/item_capability.gd" id="1_pergx"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/src/item_resource.gd" id="2_8gjq0"]
 [ext_resource type="Resource" uid="uid://dkkc66nhl0nwn" path="res://CropSystem/WheatAssets/wheat_resource.tres" id="2_evtr8"]
 [ext_resource type="Script" uid="uid://de8cj314mun1f" path="res://Items/_ItemCapabilities/seed_capability.gd" id="3_dtsxi"]
 [ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/_ItemCapabilities/crafting_capability.gd" id="4_dtsxi"]

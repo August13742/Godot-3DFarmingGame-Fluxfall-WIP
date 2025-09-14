@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://d2k6g5xn2cpdj" path="res://Items/Resources/Seeds/tomato_seed_resource.tres" id="13_uxj2b"]
 [ext_resource type="Resource" uid="uid://cjqib3gqi3dwq" path="res://Items/Resources/Seeds/wheat_seed_resource.tres" id="14_tgva1"]
 [ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://Items/Resources/Watering/watering_can_resource.tres" id="15_vdxjv"]
-[ext_resource type="Script" uid="uid://c76ecor5naqet" path="res://addons/augusts_item_system/item_catalogue.gd" id="16_hk4lf"]
+[ext_resource type="Script" uid="uid://c76ecor5naqet" path="res://addons/augusts_item_system/src/item_catalogue.gd" id="16_hk4lf"]
 
 [sub_resource type="Resource" id="Resource_ky0nh"]
 script = ExtResource("1_00018")
