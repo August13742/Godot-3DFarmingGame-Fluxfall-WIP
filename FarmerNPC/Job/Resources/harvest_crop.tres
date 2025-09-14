@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="JobData" load_steps=9 format=3 uid="uid://nobg630l6vhf"]
+[gd_resource type="Resource" script_class="JobData" load_steps=10 format=3 uid="uid://nobg630l6vhf"]
 
+[ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://FarmerNPC/Job/ItemRequirement.gd" id="1_1qg84"]
 [ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://FarmerNPC/Job/JobData.gd" id="1_pm5g3"]
 [ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://FarmerNPC/Job/JobTask/JobTaskResource.gd" id="2_c5bxk"]
 [ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://FarmerNPC/Job/JobTask/TaskMoveTo.gd" id="3_fxulm"]

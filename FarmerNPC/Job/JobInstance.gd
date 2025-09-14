@@ -12,6 +12,8 @@ var priority:int = 0
 var lock_key: String = ""                 # e.g., "%s|%s" % [template.resource_path, target_path]
 var target_path: NodePath
 var target_pos: Vector3
+
+## &"consume_item", &"item_to_consume", &"amount", &"preflight_passed"
 var payload: Dictionary = {}
 
 var runtime_targets:Dictionary[StringName,Node] # e.g., {&"job_target": CropBed3}

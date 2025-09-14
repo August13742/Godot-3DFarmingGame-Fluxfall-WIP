@@ -44,18 +44,21 @@ func _ready() -> void:
 	machine = CropStateMachine.new()
 	machine.initialise(self)
 	machine.state_changed.connect(state_changed.emit)
+
 	# Connect signals once. They will be delegated to the machine.
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
+	hydration_changed.emit(hydrated)
+	
 	if always_hydrated:
 		hydrated = true
 
 
 #region Public API (for Player/NPCs)
-func plant(target_inventory:InventoryComponent) -> void:
-	target_inventory.get_first_item_with_capability()
+func plant(seed_resource:BillboardPlantResource) -> void:
 	machine.on_plant(seed_resource)
+	pass
 
 func is_harvestable()->bool:
 	return machine.current_state is CropHarvestableState

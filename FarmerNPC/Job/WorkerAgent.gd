@@ -24,15 +24,32 @@ var active_tool_id:StringName = &"empty"
 var skills: Dictionary[StringName,int] = { &"farming": 1} ## placeholder skills
 
 func _ready() -> void:
-	animation_state_machine = animation_tree.get("parameters/playback")
+	animation_state_machine = animation_tree.get("parameters/StateMachine/playback")
 	nav.velocity_computed.connect(_on_velocity_computed)
+
+	# enable RVO
+	nav.avoidance_enabled = true
+	nav.radius = 0.35
+	nav.path_desired_distance = 0.35
+	nav.target_desired_distance = 0.60
+	nav.neighbor_distance = 2.0
+	nav.max_neighbors = 8
+	nav.time_horizon = 1.2
+	nav.avoidance_priority = 0.5
 
 	inventory = InventoryManager.get_inventory(self)
 	NPCJobBoard.register_idle_agent(self)
 	NPCEventSystem.job_assigned.connect(_on_job_assigned)
 	NPCEventSystem.job_finished.connect(_on_job_finished)
+	NPCEventSystem.job_task_completed.connect(_on_task_completed)
+	_add_debug_items.call_deferred()
 
 
+func _add_debug_items()->void:
+	inventory.add_item(&"tomato_seed",99)
+	inventory.add_item(&"watering_can",1)
+	inventory.add_item(&"wheat_seed",99)
+	
 func move_to(target_position: Vector3) -> void:
 	var map_rid = get_world_3d().navigation_map
 	var safe_target = NavigationServer3D.map_get_closest_point(map_rid, target_position)
@@ -50,7 +67,6 @@ func _physics_process(delta: float) -> void:
 	if !is_moving:
 		nav.set_velocity(Vector3.ZERO)
 		return
-
 
 	# stuck detection
 	if global_position.distance_squared_to(_last_pos) < 0.001:
@@ -88,10 +104,12 @@ func _physics_process(delta: float) -> void:
 		visuals.rotation.y = lerp_angle(visuals.rotation.y, target_angle, delta * rotation_speed)
 
 
-func _on_velocity_computed(safe_velocity:Vector3) -> void:
-	velocity = safe_velocity
-	if !is_on_floor():
-		velocity.y -= 9.8 * get_physics_process_delta_time()
+func _on_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity.x = safe_velocity.x
+	velocity.z = safe_velocity.z
+	if not is_on_floor():
+		velocity.y -= ProjectSettings.get_setting(
+			"physics/3d/default_gravity") * get_physics_process_delta_time()
 	move_and_slide()
 
 func _on_job_assigned(job:JobInstance,agent_id) -> void:

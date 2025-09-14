@@ -29,7 +29,14 @@ func get_inventory(target: Node) -> InventoryComponent:
 	var target_id = target.get_instance_id()
 	return inventories.get(target_id, null)
 
-
+## Returns an array of all inventories that match a given category.
+func get_inventories_by_category(category_to_find: InventoryComponent.Category) -> Array[InventoryComponent]:
+	var results: Array[InventoryComponent] = []
+	for inventory in inventories.values():
+		if inventory.category == category_to_find:
+			results.append(inventory)
+	return results
+	
 ## Callback to clean up the dictionary when an inventory owner is freed.
 func _on_target_exiting(target_id: int):
 	if inventories.has(target_id):

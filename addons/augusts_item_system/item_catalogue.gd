@@ -14,3 +14,5 @@ class_name ItemCatalogue
 ## All registered capabilities. The top-level key is the script's file path (String).
 ## The value is another Dictionary where keys are item IDs and values are the capability resources.
 @export var capabilities_by_script_path: Dictionary = {}
+
+@export var capabilities_by_name:Dictionary = {}

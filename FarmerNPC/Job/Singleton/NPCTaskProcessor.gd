@@ -28,7 +28,6 @@ func _execute_move_to(_task: JobTask_MoveTo, agent: WorkerAgent, job: JobInstanc
 	agent.move_to(target_pos)
 	# _complete is handled by agent
 
-# --- Instantaneous task with a return value ---
 func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInstance) -> void:
 	var target_node := get_node_or_null(job.target_path)
 	var validation_method: StringName = task.validation_method
@@ -40,7 +39,12 @@ func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInsta
 		_complete(job.unique_id, agent.worker_id, false)
 
 func _execute_use_item(task: JobTask_UseItem, agent: WorkerAgent, job: JobInstance) -> void:
-	var was_successful:bool = agent.inventory.remove_item(task.item_id,task.amount)
+	if &"" == job.payload.get(&"consume_item",&""):
+		push_error("This Job is should not include Task: UseItem")
+		return
+	var item_id_to_use: StringName = job.payload.get(&"item_to_consume")
+	
+	var was_successful: bool = agent.inventory.remove_item(item_id_to_use, job.payload.get(&"amount"))
 
 	if was_successful and task.animation_to_play:
 		agent.play_action_animation(task.animation_to_play)

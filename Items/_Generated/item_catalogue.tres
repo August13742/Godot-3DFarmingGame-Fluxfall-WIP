@@ -90,3 +90,18 @@ capabilities_by_script_path = {
 &"watering_can": SubResource("Resource_u6q2h")
 }
 }
+capabilities_by_name = {
+"Crafting": {
+&"pickaxe": SubResource("Resource_ky0nh"),
+&"rope": SubResource("Resource_pva4j"),
+&"tomato_seed": SubResource("Resource_u3qjr"),
+&"wheat_seed": SubResource("Resource_wbrda")
+},
+"Seed": {
+&"tomato_seed": SubResource("Resource_rf3jr"),
+&"wheat_seed": SubResource("Resource_0uqgm")
+},
+"Watering": {
+&"watering_can": SubResource("Resource_u6q2h")
+}
+}

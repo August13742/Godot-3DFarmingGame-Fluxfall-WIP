@@ -7,9 +7,18 @@ extends Node
 @export_range( 1, 365, 1 ) var day_of_year : int = 1
 @export_range(1,7200,1) var time_scale:int = 60
 
+@export_category("GameManager")
+@export var main_camera:Camera3D
+@export var follow_cam:ThirdPersonObserverCamera
+
+
 func _enter_tree() -> void:
 	TimeManager.day_time = day_time
 	TimeManager.day_of_year = day_of_year
 	TimeManager.time_scale = time_scale
 
 	self.queue_free()
+
+func _ready() -> void:
+	GameManager.main_camera = main_camera
+	GameManager.follow_cam = follow_cam
