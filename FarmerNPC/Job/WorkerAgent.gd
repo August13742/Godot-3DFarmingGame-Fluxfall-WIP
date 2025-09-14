@@ -6,7 +6,7 @@ class_name WorkerAgent extends CharacterBody3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @export var speed := 3.5
 @export var rotation_speed := 5.0
-@export var worker_id := randi()
+@export var worker_id := get_instance_id()
 @export var max_stuck_time_tolerance:float = 2.0
 
 var animation_state_machine: AnimationNodeStateMachinePlayback
@@ -22,7 +22,7 @@ var inventory: InventoryComponent
 var active_tool_id:StringName = &"empty"
 
 var skills: Dictionary[StringName,int] = { &"farming": 1} ## placeholder skills
-
+var move_eps :float = max(0.01, speed * 0.05) # 5% of 1s travel
 func _ready() -> void:
 	animation_state_machine = animation_tree.get("parameters/StateMachine/playback")
 	nav.velocity_computed.connect(_on_velocity_computed)
@@ -69,8 +69,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# stuck detection
-	if global_position.distance_squared_to(_last_pos) < 0.001:
-		_stuck_time += delta
+	if global_position.distance_to(_last_pos) < move_eps: _stuck_time += delta
 	else: _stuck_time = 0
 
 	_last_pos = global_position

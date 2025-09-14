@@ -39,8 +39,9 @@ func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInsta
 		_complete(job.unique_id, agent.worker_id, false)
 
 func _execute_use_item(task: JobTask_UseItem, agent: WorkerAgent, job: JobInstance) -> void:
-	if &"" == job.payload.get(&"consume_item",&""):
-		push_error("This Job is should not include Task: UseItem")
+	if not job.payload.get(&"consume_item", false):
+		push_error("UseItem present but consume_item=false or missing")
+		_complete(job.unique_id, agent.worker_id, false)
 		return
 	var item_id_to_use: StringName = job.payload.get(&"item_to_consume")
 	

@@ -47,6 +47,9 @@ func _on_target_exiting(target_id: int):
 		print("Unregistered inventory for target ID: %s" % target_id)
 
 func swap_items(source_inv, source_idx: int, target_inv, target_idx: int):
+	if source_idx < 0 or source_idx >= source_inv.inventory.size(): return
+	if target_idx < 0 or target_idx >= target_inv.inventory.size(): return
+	if source_inv.inventory[source_idx] == null or target_inv.inventory[target_idx] == null: return
 	if not source_inv or not target_inv:
 		print("tried to swap but inv is null")
 		return

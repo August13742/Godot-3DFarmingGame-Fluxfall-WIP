@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://nobg630l6vhf" path="res://FarmerNPC/Job/Resources/harvest_crop.tres" id="9_h8adj"]
 [ext_resource type="Resource" uid="uid://ct1y1x6urgtnv" path="res://FarmerNPC/Job/Resources/water_crop.tres" id="10_q7k5c"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h8adj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_e686v"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAA="),
@@ -59,7 +59,7 @@ script = ExtResource("3_rrrv5")
 
 [node name="ImposterMesh" parent="CropComponent/BillboardPlants/Visuals" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00045609474, -0.0011228919, 0.0008109808)
-mesh = SubResource("ArrayMesh_h8adj")
+mesh = SubResource("ArrayMesh_e686v")
 surface_material_override/0 = SubResource("ShaderMaterial_e686v")
 
 [node name="CropBedCollision" type="CollisionShape3D" parent="."]

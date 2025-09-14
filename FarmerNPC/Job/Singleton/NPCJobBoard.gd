@@ -28,7 +28,7 @@ func register_idle_agent(agent:WorkerAgent):
 ## On success, returns a payload Dictionary with context (e.g., which item to use).
 ## On failure, returns empty.
 func _check_agent_requirements(agent: WorkerAgent, template: JobData) -> Dictionary:
-	var payload := {} # This will store the context for the JobInstance
+	var payload := {&"consume_item":false} # This will store the context for the JobInstance
 
 	# --- Skill Check ---
 	for skill_name in template.required_skills:
@@ -132,7 +132,7 @@ func _assign_job_to_agent(job:JobInstance,agent:WorkerAgent, payload:Dictionary)
 
 func _try_to_assign_jobs() -> void:
 	if _pending_jobs.is_empty() or _idle_agents.is_empty(): return
-	_pending_jobs.sort_custom(func(a,b): return a.priority > b.priority) # asc sort
+	_pending_jobs.sort_custom(func(a,b): return a.priority > b.priority) # dsc sort
 
 	var jobs_to_remove = []
 	for job in _pending_jobs:
