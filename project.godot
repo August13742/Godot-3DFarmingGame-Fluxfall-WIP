@@ -29,9 +29,9 @@ TimeManager="*res://DayNightSystem/TimeManager.gd"
 ItemDatabase="*res://addons/augusts_item_system/src/item_database.gd"
 NotificationSystem="*res://UI/NotificationUI/NotificationSystem.gd"
 AudioManager="*res://addons/augusts_audio_manager/AudioManager.gd"
-NPCEventSystem="*res://FarmerNPC/Job/Singleton/NPCEventSystem.gd"
-NPCTaskProcessor="*res://FarmerNPC/Job/Singleton/NPCTaskProcessor.gd"
-NPCJobBoard="*res://FarmerNPC/Job/Singleton/NPCJobBoard.gd"
+NPCEventSystem="*res://AgentSystem/Job/Singleton/NPCEventSystem.gd"
+NPCTaskProcessor="*res://AgentSystem/Job/Singleton/NPCTaskProcessor.gd"
+NPCJobBoard="*res://AgentSystem/Job/Singleton/NPCJobBoard.gd"
 GameManager="*res://Managers/GameManager.gd"
 
 [debug]

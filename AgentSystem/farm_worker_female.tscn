@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=4 uid="uid://cumhep3ueypvu"]
 
-[ext_resource type="Script" uid="uid://nn1gegdjbrm8" path="res://FarmerNPC/Job/WorkerAgent.gd" id="1_r4xtb"]
+[ext_resource type="Script" uid="uid://nn1gegdjbrm8" path="res://AgentSystem/Job/WorkerAgent.gd" id="1_r4xtb"]
 [ext_resource type="PackedScene" uid="uid://ds4jsprk6qhrw" path="res://InventorySystem/inventory_component.tscn" id="3_7k5tn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqm58"]

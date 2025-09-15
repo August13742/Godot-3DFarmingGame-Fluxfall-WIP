@@ -128,7 +128,7 @@
 [ext_resource type="PackedScene" uid="uid://cunx4bcjyhuck" path="res://Assets/House_6.fbx" id="129_n55d4"]
 [ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="130_hstgi"]
-[ext_resource type="PackedScene" uid="uid://cumhep3ueypvu" path="res://FarmerNPC/farm_worker_female.tscn" id="131_n55d4"]
+[ext_resource type="PackedScene" uid="uid://cumhep3ueypvu" path="res://AgentSystem/farm_worker_female.tscn" id="131_n55d4"]
 [ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="131_x6kdt"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
 [ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="132_iwxxf"]

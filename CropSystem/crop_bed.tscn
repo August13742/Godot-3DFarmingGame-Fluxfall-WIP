@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://d44meequbbvu" path="res://CropSystem/billboard_plants.tscn" id="4_3ghvx"]
 [ext_resource type="Shader" uid="uid://bj6xhasqh07b7" path="res://CropSystem/billboard_plants_shader.gdshader" id="6_j5n5o"]
 [ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="7_fpqqt"]
-[ext_resource type="PackedScene" uid="uid://dcj4in1safdu8" path="res://FarmerNPC/Job/JobEmitterComponent.tscn" id="7_j5n5o"]
-[ext_resource type="Resource" uid="uid://xvr1trfj0r15" path="res://FarmerNPC/Job/Resources/plant_seed.tres" id="8_e686v"]
-[ext_resource type="Resource" uid="uid://nobg630l6vhf" path="res://FarmerNPC/Job/Resources/harvest_crop.tres" id="9_h8adj"]
-[ext_resource type="Resource" uid="uid://ct1y1x6urgtnv" path="res://FarmerNPC/Job/Resources/water_crop.tres" id="10_q7k5c"]
+[ext_resource type="PackedScene" uid="uid://dcj4in1safdu8" path="res://AgentSystem/Job/JobEmitterComponent.tscn" id="7_j5n5o"]
+[ext_resource type="Resource" uid="uid://xvr1trfj0r15" path="res://AgentSystem/Job/Resources/plant_seed.tres" id="8_e686v"]
+[ext_resource type="Resource" uid="uid://nobg630l6vhf" path="res://AgentSystem/Job/Resources/harvest_crop.tres" id="9_h8adj"]
+[ext_resource type="Resource" uid="uid://ct1y1x6urgtnv" path="res://AgentSystem/Job/Resources/water_crop.tres" id="10_q7k5c"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e686v"]
 _surfaces = [{
