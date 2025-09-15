@@ -17,3 +17,7 @@ signal job_task_completed(job_instance_id: int, agent_id: int, success: bool)
 ## emitted by NPCJobBoard, to WorkerAgent that did the job
 @warning_ignore("unused_signal")
 signal job_finished(job_instance_id: int, success: bool)
+
+## TODO: this currently is not called, because most tasks are instantaneous so no useful info
+@warning_ignore("unused_signal")
+signal job_task_started(job_id:int, agent_id:int, task_index:int, task_type:int, task_name:String)

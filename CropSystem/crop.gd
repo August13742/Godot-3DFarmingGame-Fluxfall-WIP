@@ -55,12 +55,12 @@ func _ready() -> void:
 		hydrated = true
 
 #region Public API (for Agent)
-func agent_hydrate(ctx: ActionContext) -> ActionResult:
+func agent_hydrate(_ctx: ActionContext) -> ActionResult:
 	var r := ActionResult.new()
 	if hydrate():
-		# Optional: if water is actually consumed
-		if ctx.item_template and ctx.item_template.has_capability(WateringCapability):
-			r.consume = { &"item_id": ctx.item_id, &"amount": 1 }
+		## Optional: if water is actually consumed
+		#if ctx.item_template and ctx.item_template.has_capability(WateringCapability):
+			#r.consume = { &"item_id": _ctx.item_id, &"amount": 1 }
 		r.ok = true
 	return r
 

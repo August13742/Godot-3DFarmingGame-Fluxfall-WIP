@@ -20,3 +20,23 @@ var runtime_targets:Dictionary[StringName,Node] # e.g., {&"job_target": CropBed3
 var assigned_agent_id:int = -1
 var current_task_index:int = 0
 var status: Status = Status.Pending
+
+#region Debug UI Helpers
+func binding_summary() -> String:
+	var parts: Array[String] = []
+	var bindings: Dictionary = payload.get("bindings", {})
+	for k in bindings.keys():
+		var b: Dictionary = bindings[k]
+		var s := "%s:%s×%d%s" % [
+			String(k),
+			String(b.get(&"item_id", &"")),
+			int(b.get(&"amount", 1)),
+			"(cons)" if b.get(&"consumed", false) else ""
+		]
+		parts.append(s)
+	return ", ".join(parts)
+
+func template_name() -> String:
+	return template.resource_path.get_file() if template and template.resource_path else "<none>"
+
+#endregion

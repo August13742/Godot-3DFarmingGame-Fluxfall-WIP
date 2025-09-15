@@ -31,7 +31,7 @@ func _execute_move_to(_task: JobTask_MoveTo, agent: WorkerAgent, job: JobInstanc
 func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInstance) -> void:
 	var target_node := get_node_or_null(job.target_path)
 	var validation_method: StringName = task.validation_method
-
+	
 	if is_instance_valid(target_node) and target_node.has_method(validation_method):
 		var is_valid: bool = target_node.call(validation_method)
 		_complete(job.unique_id, agent.worker_id, is_valid)
@@ -43,6 +43,7 @@ func _execute_use_item(task: JobTask_UseItem, agent: WorkerAgent, job: JobInstan
 	## WARNING currently no job should use this, not before item handler implementation
 	var item_id: StringName = job.payload.get(&"item_to_consume", &"")
 	var amount := int(job.payload.get(&"amount", 1))
+	
 	if item_id == &"" or amount <= 0:
 		_complete(job.unique_id, agent.worker_id, false); return
 

@@ -1,15 +1,26 @@
 extends Node
 ## Singleton NPCJobBoard
 
+
+signal job_lists_changed
+
+enum AgentStatus { Idle, Active, Unknown }
+
 ## periodically try to assign pending jobs
 @export var job_assignment_attempt_interval:float = 5.0 
 var _job_templates: Dictionary[String,JobData] = {} ## lazy caches jobs to avoid constant disk lookup
+
 var _pending_jobs:Array[JobInstance] = []
-var _active_jobs:Dictionary[int,JobInstance] = {} # uid:JInst
-var _idle_agents:Dictionary[int,WorkerAgent] = {} #workerID:reference
+var _active_jobs:Dictionary[int,JobInstance] = {}           # job_id -> JobInstance
+var _idle_agents:Dictionary[int,WorkerAgent] = {}           # worker_id -> agent
+var _all_agents:Dictionary[int,WorkerAgent] = {}            # worker_id -> agent
+var _agent_jobs:Dictionary[int,int] = {}                    # worker_id -> job_id
+
 var _locks: Dictionary = {}                        # lock_key:String -> job_id:int
 
-var _next_job_id: int = 0 # jobInstance UID counter, practically impossible to overflow
+
+
+var _next_job_id: int = 0 # jobInstance UID counter, practically impossible to overflow (int is 8 bit in gd)
 var internal_timer:float = 0
 func _ready() -> void:
 	NPCEventSystem.job_opportunity_created.connect(_on_job_opportunity_created)
@@ -20,9 +31,19 @@ func _process(delta: float) -> void:
 		internal_timer = 0
 		_try_to_assign_jobs()
 		
-func register_idle_agent(agent:WorkerAgent):
+func register_idle_agent(agent: WorkerAgent) -> void:
+	_all_agents[agent.worker_id] = agent
 	_idle_agents[agent.worker_id] = agent
+	_agent_jobs.erase(agent.worker_id)   # no longer on a job
+	job_lists_changed.emit()
 	_try_to_assign_jobs()
+
+func unregister_agent(agent: WorkerAgent) -> void:
+	_idle_agents.erase(agent.worker_id)
+	_all_agents.erase(agent.worker_id)
+	_agent_jobs.erase(agent.worker_id)
+	job_lists_changed.emit()
+
 
 ## Checks if an agent meets a job's requirements.
 ## On success, returns a payload Dictionary with context (e.g., which item to use).
@@ -128,6 +149,8 @@ func _on_job_opportunity_created(params: Dictionary) -> void:
 	if _locks.has(job.lock_key): return
 	if _has_duplicate_pending(job): return
 	_pending_jobs.append(job)
+	
+	job_lists_changed.emit()
 
 func _assign_job_to_agent(job:JobInstance,agent:WorkerAgent, payload:Dictionary)->void:
 	if _locks.get(job.lock_key, -1) != job.unique_id:
@@ -141,8 +164,10 @@ func _assign_job_to_agent(job:JobInstance,agent:WorkerAgent, payload:Dictionary)
 	_pending_jobs.erase(job)
 	_active_jobs[job.unique_id] = job
 	_idle_agents.erase(agent.worker_id)
+	_agent_jobs[agent.worker_id] = job.unique_id
 
 	NPCEventSystem.job_assigned.emit(job, agent.worker_id)
+	job_lists_changed.emit()
 
 func _try_to_assign_jobs() -> void:
 	if _pending_jobs.is_empty() or _idle_agents.is_empty(): return
@@ -195,4 +220,59 @@ func finish_job(job_id:int, success:bool):
 		job.status = JobInstance.Status.Complete if success else JobInstance.Status.Failed
 		_active_jobs.erase(job_id)
 		_release_lock(job)
+		_agent_jobs.erase(job.assigned_agent_id)
+		
 		NPCEventSystem.job_finished.emit(job_id, success)
+		job_lists_changed.emit()
+		
+#region Query API
+func get_pending_jobs() -> Array[JobInstance]: return _pending_jobs
+func get_active_jobs()  -> Array[JobInstance]: return _active_jobs.values()
+func get_idle_agents()  -> Array[WorkerAgent]: return _idle_agents.values()
+func get_all_agents()   -> Array[WorkerAgent]: return _all_agents.values()
+
+# Always return from _all_agents. You were returning only idle agents before.
+func get_agent(worker_id:int) -> WorkerAgent:
+	return _all_agents.get(worker_id, null)
+
+func get_agent_status(worker_id:int) -> int:
+	if _idle_agents.has(worker_id): return AgentStatus.Idle
+	if _agent_jobs.has(worker_id):  return AgentStatus.Active
+	return AgentStatus.Unknown
+
+func get_agent_job(worker_id:int) -> int:
+	return _agent_jobs.get(worker_id, -1)
+
+#endregion
+
+#region Debug Helpers
+func debug_requeue(job_id:int) -> bool:
+	var j: JobInstance = _active_jobs.get(job_id)
+	if j == null: return false
+	_release_lock(j)
+	j.status = JobInstance.Status.Pending
+	j.assigned_agent_id = -1
+	j.current_task_index = 0
+	_pending_jobs.append(j)
+	_active_jobs.erase(job_id)
+	job_lists_changed.emit()
+	return true
+
+func debug_cancel(job_id:int) -> bool:
+	# Try active
+	var j: JobInstance = _active_jobs.get(job_id)
+	if j:
+		_active_jobs.erase(job_id)
+		_release_lock(j)
+		job_lists_changed.emit()
+		return true
+	# Try pending
+	for i in _pending_jobs.size():
+		if _pending_jobs[i].unique_id == job_id:
+			_release_lock(_pending_jobs[i])
+			_pending_jobs.remove_at(i)
+			job_lists_changed.emit()
+			return true
+	return false
+
+#endregion

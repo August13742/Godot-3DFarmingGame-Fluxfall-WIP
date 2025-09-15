@@ -46,9 +46,13 @@ func _ready() -> void:
 var smoothed_mouse_delta := Vector2.ZERO
 var raw_mouse_delta := Vector2.ZERO
 
-func _input(event:InputEvent):
+
+func _input(event: InputEvent) -> void:
+	if GameManager.is_ui_blocking():
+		return
 	if event is InputEventMouseMotion:
 		raw_mouse_delta += event.relative
+
 
 func look_around(relative:Vector2,_delta:float=1):
 	rotation.y += -relative.x * mouse_sensitivity * _delta
@@ -57,8 +61,18 @@ func look_around(relative:Vector2,_delta:float=1):
 
 var direction_to_look_at:Vector3 = Vector3.ZERO
 func _physics_process(_delta: float) -> void:
-
 	if !camera.current:return
+	
+	# Always track position to player
+	position = target_entity.position
+	position.y = target_entity.position.y + y_tracking_offset
+
+	if GameManager.is_ui_blocking():
+		# Clear pending deltas so we don't jump when UI closes
+		raw_mouse_delta = Vector2.ZERO
+		smoothed_mouse_delta = Vector2.ZERO
+		return
+		
 	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-_delta * 20))
 	look_around(smoothed_mouse_delta, _delta)
 	raw_mouse_delta = Vector2.ZERO
