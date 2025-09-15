@@ -128,7 +128,7 @@
 [ext_resource type="PackedScene" uid="uid://cunx4bcjyhuck" path="res://Assets/House_6.fbx" id="129_n55d4"]
 [ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="130_hstgi"]
-[ext_resource type="PackedScene" uid="uid://cumhep3ueypvu" path="res://FarmerNPC/farm_worker_female.tscn" id="131_n55d4"]
+[ext_resource type="PackedScene" uid="uid://cumhep3ueypvu" path="res://AgentSystem/farm_worker_female.tscn" id="131_n55d4"]
 [ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="131_x6kdt"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
 [ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="132_iwxxf"]
@@ -239,6 +239,7 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." node_paths=PackedStringArray("main_camera", "follow_cam") instance=ExtResource("1_n55d4")]
+time_scale = 3600
 main_camera = NodePath("../MainCamera/SpringArm3D/Camera3D")
 follow_cam = NodePath("../ThirdPersonObserverCamera")
 
@@ -695,189 +696,351 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.0787
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Batch2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.656944, 0, 0.2882309)
@@ -887,189 +1050,351 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.0787
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Batch3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.037888, 0, 33.09024)
@@ -1079,189 +1404,351 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.0787
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Batch4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.037888, 0, 0.37882233)
@@ -1271,189 +1758,351 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.0787
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
 [node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
+actual_stages = null
+growth_chance = null
+always_hydrated = null
 
 [node name="FarmWorkers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.95425)
@@ -1463,6 +2112,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.465369)
 
 [node name="FarmWorkerFemale" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, -0.17146397)
+
+[node name="FarmWorkerFemale2" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, -6.705489)
+
+[node name="FarmWorkerFemale3" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 2.665535)
+
+[node name="FarmWorkerFemale4" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 5.152589)
+
+[node name="FarmWorkerFemale5" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
 
 [node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("138_x6kdt")]
 target = NodePath("../FarmWorkers/Node3D/FarmWorkerFemale")

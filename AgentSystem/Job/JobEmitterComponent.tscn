@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcj4in1safdu8"]
+
+[ext_resource type="Script" uid="uid://b1rtfr7kqwegg" path="res://AgentSystem/Job/JobEmitterComponent.gd" id="1_ydvne"]
+
+[node name="JobEmitterComponent" type="Node"]
+script = ExtResource("1_ydvne")

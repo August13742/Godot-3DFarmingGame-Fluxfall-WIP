@@ -55,10 +55,10 @@ func _input(event):
 	state_machine.handle_input(event)
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		match(Input.mouse_mode):
-			Input.MOUSE_MODE_VISIBLE:
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			Input.MOUSE_MODE_CAPTURED:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_cancel"):
+		#match(Input.mouse_mode):
+			#Input.MOUSE_MODE_VISIBLE:
+				#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			#Input.MOUSE_MODE_CAPTURED:
+				#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

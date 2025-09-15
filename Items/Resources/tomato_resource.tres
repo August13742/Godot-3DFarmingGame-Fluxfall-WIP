@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://76vc4sqid3bk"]
 
-[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/item_capability.gd" id="1_7qmnw"]
+[ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/src/item_capability.gd" id="1_7qmnw"]
 [ext_resource type="Texture2D" uid="uid://dk5oohr7lgy1q" path="res://Assets/tomato_icon.png" id="1_udx8b"]
-[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/item_resource.gd" id="3_y24pb"]
+[ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/src/item_resource.gd" id="3_y24pb"]
 
 [resource]
 script = ExtResource("3_y24pb")

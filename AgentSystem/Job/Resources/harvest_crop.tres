@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="JobData" load_steps=10 format=3 uid="uid://nobg630l6vhf"]
+
+[ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://AgentSystem/Job/ItemRequirement.gd" id="1_1qg84"]
+[ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://AgentSystem/Job/JobData.gd" id="1_pm5g3"]
+[ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://AgentSystem/Job/JobTask/JobTaskResource.gd" id="2_c5bxk"]
+[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/TaskMoveTo.gd" id="3_fxulm"]
+[ext_resource type="Script" uid="uid://3fk6k4crrb3s" path="res://AgentSystem/Job/JobTask/TaskValidate.gd" id="4_1qg84"]
+[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/TaskInteract.gd" id="5_fxulm"]
+
+[sub_resource type="Resource" id="Resource_24hac"]
+script = ExtResource("3_fxulm")
+metadata/_custom_type_script = "uid://b3bb1b1fnw1gh"
+
+[sub_resource type="Resource" id="Resource_xktt5"]
+script = ExtResource("4_1qg84")
+method_to_call = &"is_harvestable"
+metadata/_custom_type_script = "uid://3fk6k4crrb3s"
+
+[sub_resource type="Resource" id="Resource_1qg84"]
+script = ExtResource("5_fxulm")
+method_to_call = &"harvest"
+metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
+
+[resource]
+script = ExtResource("1_pm5g3")
+priority = 80
+task_list = Array[ExtResource("2_c5bxk")]([SubResource("Resource_24hac"), SubResource("Resource_xktt5"), SubResource("Resource_1qg84")])
+metadata/_custom_type_script = "uid://ce6773gmqrtm6"

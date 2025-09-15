@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://d44meequbbvu" path="res://CropSystem/billboard_plants.tscn" id="4_3ghvx"]
 [ext_resource type="Shader" uid="uid://bj6xhasqh07b7" path="res://CropSystem/billboard_plants_shader.gdshader" id="6_j5n5o"]
 [ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="7_fpqqt"]
-[ext_resource type="PackedScene" uid="uid://dcj4in1safdu8" path="res://FarmerNPC/Job/JobEmitterComponent.tscn" id="7_j5n5o"]
-[ext_resource type="Resource" uid="uid://xvr1trfj0r15" path="res://FarmerNPC/Job/Resources/plant_seed.tres" id="8_e686v"]
-[ext_resource type="Resource" uid="uid://nobg630l6vhf" path="res://FarmerNPC/Job/Resources/harvest_crop.tres" id="9_h8adj"]
-[ext_resource type="Resource" uid="uid://ct1y1x6urgtnv" path="res://FarmerNPC/Job/Resources/water_crop.tres" id="10_q7k5c"]
+[ext_resource type="PackedScene" uid="uid://dcj4in1safdu8" path="res://AgentSystem/Job/JobEmitterComponent.tscn" id="7_j5n5o"]
+[ext_resource type="Resource" uid="uid://xvr1trfj0r15" path="res://AgentSystem/Job/Resources/plant_seed.tres" id="8_e686v"]
+[ext_resource type="Resource" uid="uid://nobg630l6vhf" path="res://AgentSystem/Job/Resources/harvest_crop.tres" id="9_h8adj"]
+[ext_resource type="Resource" uid="uid://ct1y1x6urgtnv" path="res://AgentSystem/Job/Resources/water_crop.tres" id="10_q7k5c"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h8adj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_e686v"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAAAAAAAAAAAAAAA="),
@@ -59,7 +59,7 @@ script = ExtResource("3_rrrv5")
 
 [node name="ImposterMesh" parent="CropComponent/BillboardPlants/Visuals" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00045609474, -0.0011228919, 0.0008109808)
-mesh = SubResource("ArrayMesh_h8adj")
+mesh = SubResource("ArrayMesh_e686v")
 surface_material_override/0 = SubResource("ShaderMaterial_e686v")
 
 [node name="CropBedCollision" type="CollisionShape3D" parent="."]
@@ -86,8 +86,9 @@ activation_value = &"harvestable"
 
 [node name="WateringJobEmitter" parent="." instance=ExtResource("7_j5n5o")]
 job_template = ExtResource("10_q7k5c")
-trigger_signal = &"hydration_changed"
-activation_value = false
+trigger_signal = &"needs_water_changed"
+activation_value = true
+validation_method = &"can_be_watered"
 
 [editable path="CropBedModel"]
 [editable path="CropComponent/BillboardPlants"]

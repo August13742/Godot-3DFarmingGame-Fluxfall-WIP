@@ -14,3 +14,5 @@ func on_plant(new_crop_resource: BillboardPlantResource) -> void:
 		crop_bed.crop_resource = new_crop_resource
 		crop_bed.crop_component.crop_resource = new_crop_resource
 		machine.change_state(&"planted")
+	else:
+		printerr("Plant Attempted with Invalid Resource")

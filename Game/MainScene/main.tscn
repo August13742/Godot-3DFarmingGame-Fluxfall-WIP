@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmpehjugcnqvw"]
+[gd_scene load_steps=7 format=3 uid="uid://cmpehjugcnqvw"]
 
 [ext_resource type="Script" uid="uid://14ahspcs02nm" path="res://Game/MainScene/stage_controller.gd" id="1_ypbn1"]
-[ext_resource type="Script" uid="uid://c861adxenmhwu" path="res://Game/MainScene/ui_layer.gd" id="2_ypbn1"]
+[ext_resource type="Script" uid="uid://kkiskqhn4dey" path="res://Game/MainScene/HudController.gd" id="2_hox20"]
+[ext_resource type="PackedScene" uid="uid://i7ly6o5htn5o" path="res://AgentSystem/Job/DebugInterface/JobBoardInterface.tscn" id="5_hox20"]
 [ext_resource type="PackedScene" uid="uid://bin5550f2bxh0" path="res://UI/NotificationUI/NotificationUI.tscn" id="5_kcaes"]
 [ext_resource type="PackedScene" uid="uid://7tvgd0t26wxq" path="res://UI/HUD/hud.tscn" id="9_n8j1b"]
 [ext_resource type="Script" uid="uid://dfs47o0tniw4t" path="res://Managers/bulletin_controller.gd" id="10_fw86m"]
@@ -13,9 +14,9 @@ script = ExtResource("1_ypbn1")
 
 [node name="UILayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
 process_mode = 3
-script = ExtResource("2_ypbn1")
 
 [node name="HUDController" type="Node" parent="UILayer"]
+script = ExtResource("2_hox20")
 
 [node name="HUD" parent="UILayer/HUDController" instance=ExtResource("9_n8j1b")]
 
@@ -23,3 +24,6 @@ script = ExtResource("2_ypbn1")
 script = ExtResource("10_fw86m")
 
 [node name="NotificationUI" parent="UILayer" instance=ExtResource("5_kcaes")]
+
+[node name="DebugTaskboard" parent="UILayer" instance=ExtResource("5_hox20")]
+visible = false

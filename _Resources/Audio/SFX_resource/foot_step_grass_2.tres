@@ -7,4 +7,5 @@
 script = ExtResource("1_l132x")
 event_name = &"footstep"
 stream = ExtResource("2_1jqmg")
+volume_linear = 0.8
 metadata/_custom_type_script = "uid://dflujhnkuiakc"

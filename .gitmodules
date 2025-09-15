@@ -1,0 +1,8 @@
+[submodule "addons/augusts_audio_manager"]
+	path = addons/augusts_audio_manager
+	url = https://github.com/August13742/augusts_audio_manager_Godot.git
+	branch = main
+[submodule "addons/augusts_item_system"]
+	path = addons/augusts_item_system
+	url = https://github.com/August13742/augusts_item_system_Godot.git
+	branch = main
