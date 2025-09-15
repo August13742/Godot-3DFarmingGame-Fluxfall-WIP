@@ -30,7 +30,7 @@ var _opportunity_posted := false
 
 func _ready() -> void:
 	if not owner.has_signal(_trigger_signal):
-		push_error("Parent of JobEmitterComponent must have defined 'trigger_signal' signal.")
+		push_error("JobEmitterComponent: owner missing signal '%s'." % String(_trigger_signal))
 		return
 
 	owner.connect(_trigger_signal,_on_trigger_signal_received)
