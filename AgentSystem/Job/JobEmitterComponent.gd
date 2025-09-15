@@ -30,7 +30,12 @@ func _on_trigger_signal_received(...args)->void:
 
 	var received_value = args[argument_index]
 	var condition_met:bool = false
-
+	# Perform type check before comparison for magnitude operators
+	if condition == Condition.GREATER_THAN or condition == Condition.LESS_THAN:
+		if typeof(received_value) != typeof(activation_value):
+			push_warning("JobEmitterComponent: Type mismatch for magnitude comparison.")
+			return # Abort comparison to prevent crash
+			
 	match condition:
 		Condition.EQUALS:
 			condition_met = (received_value == activation_value)

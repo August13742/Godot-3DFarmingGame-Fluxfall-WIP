@@ -31,6 +31,7 @@ var stages_per_visual_change: int
 @onready var crop_bed_model: CropBedModel = %CropBedModel
 @onready var crop_component: Node3D = %CropComponent
 @onready var crop: BillboardPlant = crop_component.billboard_plants
+var _crop_material: ShaderMaterial
 #endregion
 
 enum Stage { Seed, Stage1, Stage2, Stage3, Harvestable }
@@ -40,7 +41,9 @@ signal state_changed(state_name: StringName)
 func _ready() -> void:
 	@warning_ignore("integer_division")
 	stages_per_visual_change = max(1, floori(stages_for_calculation / max(1, actual_stages)))
-
+	
+	_setup_unique_material()
+	
 	machine = CropStateMachine.new()
 	machine.initialise(self)
 	machine.state_changed.connect(state_changed.emit)
@@ -49,10 +52,45 @@ func _ready() -> void:
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
-	hydration_changed.emit(hydrated)
 	
 	if always_hydrated:
 		hydrated = true
+		
+	call_deferred("_emit_initial_sync")
+	
+func _emit_initial_sync() -> void:
+
+	state_changed.emit(_current_state_key())
+	hydration_changed.emit(hydrated)
+
+func _current_state_key() -> StringName:
+	if machine == null or machine.current_state == null:
+		return &""
+	match machine.current_state:
+		CropEmptyState:       return &"empty"
+		CropPlantedState:     return &"planted"
+		CropGrowingState:     return &"growing"
+		CropHarvestableState: return &"harvestable"
+	return &""
+
+func _setup_unique_material()->void:
+	var mesh_ins:MeshInstance3D = crop.imposter_mesh
+	if not mesh_ins:
+		push_error("Crop billboard is missing its MeshInstance3D."); return
+		
+	var base_mat: Material = mesh_ins.get_surface_override_material(0)
+	if base_mat and base_mat.resource_local_to_scene:
+		# Already unique, probably because it was saved with the scene.
+		_crop_material = base_mat as ShaderMaterial
+	elif base_mat:
+		# It's a shared resource, duplicate it once.
+		_crop_material = base_mat.duplicate() as ShaderMaterial
+	else:
+		# No material exists, create new
+		_crop_material = ShaderMaterial.new()
+		_crop_material.shader = preload("uid://bj6xhasqh07b7")
+
+	mesh_ins.set_surface_override_material(0, _crop_material)
 
 #region Public API (for Agent)
 func agent_hydrate(_ctx: ActionContext) -> ActionResult:
@@ -144,30 +182,15 @@ func _reset_hydration_on_day_changed():
 
 #region Utility Functions (callable by states)
 func apply_billboard_stage(plant_res: BillboardPlantResource, stage: int) -> void:
-
 	if not plant_res.has_stage_texture(stage): return
+	if not is_instance_valid(plant_res) or not is_instance_valid(_crop_material): return
 
-	if not is_instance_valid(plant_res) or not is_instance_valid(crop):
-		return
+	var p: Dictionary = plant_res.get_stage_params(stage)
+	_crop_material.set_shader_parameter(&"albedo_tex", plant_res.textures[stage])
+	_crop_material.set_shader_parameter(&"uv_rect", p["uv_rect"])
+	_crop_material.set_shader_parameter(&"scale_factor", p["scale_factor"])
+	_crop_material.set_shader_parameter(&"vertical_offset", p["vertical_offset"])
 
-	var mesh_ins = crop.imposter_mesh
-	if not mesh_ins: return
-	var p := plant_res.get_stage_params(stage)
-	var mat := mesh_ins.get_active_material(0)
-
-	if not (mat is ShaderMaterial):
-		mat = ShaderMaterial.new()
-		mat.shader = preload("uid://bj6xhasqh07b7")
-		mesh_ins.set_surface_override_material(0, mat)
-
-	if not mat.resource_local_to_scene:
-		mat = mat.duplicate(true)
-		mesh_ins.set_surface_override_material(0, mat)
-
-	mat.set_shader_parameter("albedo_tex", plant_res.textures[stage])
-	mat.set_shader_parameter("uv_rect", p["uv_rect"])
-	mat.set_shader_parameter("scale_factor", p["scale_factor"])
-	mat.set_shader_parameter("vertical_offset", p["vertical_offset"])
 
 func update_prompt(source: Node = null) -> void:
 	var current_prompt = ""
@@ -239,35 +262,4 @@ func start_interaction(source: Node = null) -> void:
 		self.harvest(inventory)
 		return
 
-
-# --- Private Helper for Planting ---
-func _try_to_plant(inventory: InventoryComponent, seed_template: ItemResource):
-	var seed_cap: SeedCapability = seed_template.get_capability(SeedCapability)
-	if not seed_cap or not seed_cap.plant_resource:
-		push_error("Seed item %s has a faulty SeedCapability." % seed_template.id)
-		return
-
-	var plant_res = seed_cap.plant_resource
-	machine.on_plant(plant_res)
-
-	if not machine.current_state is CropEmptyState:
-		inventory.remove_item(seed_template.id, 1)
-
-
-# --- Private Helper for Harvesting ---
-func _try_to_harvest(inventory: InventoryComponent):
-	if not "harvest_yield_id" in crop_resource:
-		push_error("Crop resource '%s' is missing harvest_yield_id." % crop_resource.resource_path)
-		return
-
-	var yield_id = crop_resource.harvest_yield_id
-	var yield_amount = crop_resource.get("harvest_yield_amount")
-	if yield_amount == null: yield_amount = 1
-
-	var remaining = inventory.add_item(yield_id, yield_amount)
-
-	if remaining == 0:
-		machine.on_harvest()
-	else:
-		print("Inventory is full, cannot harvest.")
 #endregion
