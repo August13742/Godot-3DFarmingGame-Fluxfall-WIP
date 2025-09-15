@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="JobData" load_steps=12 format=3 uid="uid://xvr1trfj0r15"]
+[gd_resource type="Resource" script_class="JobData" load_steps=10 format=3 uid="uid://xvr1trfj0r15"]
 
 [ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://AgentSystem/Job/ItemRequirement.gd" id="1_ld55y"]
 [ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://AgentSystem/Job/JobData.gd" id="1_tnwsf"]
 [ext_resource type="Resource" uid="uid://d2k6g5xn2cpdj" path="res://Items/Resources/Seeds/tomato_seed_resource.tres" id="2_3s3ih"]
 [ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://AgentSystem/Job/JobTask/JobTaskResource.gd" id="2_a2ilg"]
-[ext_resource type="Script" uid="uid://d3l0bo2lvg4g2" path="res://AgentSystem/Job/JobTask/TaskUseItem.gd" id="3_tnwsf"]
 [ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/TaskMoveTo.gd" id="4_3s3ih"]
 [ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/TaskInteract.gd" id="5_as48c"]
 
 [sub_resource type="Resource" id="Resource_ph0l8"]
 script = ExtResource("1_ld55y")
 type = 1
+binding_key = &"seed"
 example_item = ExtResource("2_3s3ih")
 capability_desired = 0
 metadata/_custom_type_script = "uid://dxi7c76mtkntj"
@@ -21,17 +21,12 @@ metadata/_custom_type_script = "uid://b3bb1b1fnw1gh"
 
 [sub_resource type="Resource" id="Resource_3s3ih"]
 script = ExtResource("5_as48c")
-method_to_call = &"plant"
-pass_agent_inventory = true
+method_to_call = &"act_plant"
 metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
-
-[sub_resource type="Resource" id="Resource_a2ilg"]
-script = ExtResource("3_tnwsf")
-metadata/_custom_type_script = "uid://d3l0bo2lvg4g2"
 
 [resource]
 script = ExtResource("1_tnwsf")
 priority = 50
 item_requirements = Array[ExtResource("1_ld55y")]([SubResource("Resource_ph0l8")])
-task_list = Array[ExtResource("2_a2ilg")]([SubResource("Resource_ld55y"), SubResource("Resource_3s3ih"), SubResource("Resource_a2ilg")])
+task_list = Array[ExtResource("2_a2ilg")]([SubResource("Resource_ld55y"), SubResource("Resource_3s3ih")])
 metadata/_custom_type_script = "uid://ce6773gmqrtm6"

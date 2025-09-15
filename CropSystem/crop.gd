@@ -54,8 +54,40 @@ func _ready() -> void:
 	if always_hydrated:
 		hydrated = true
 
+#region Public API (for Agent)
+func agent_hydrate(ctx: ActionContext) -> ActionResult:
+	var r := ActionResult.new()
+	if hydrate():
+		# Optional: if water is actually consumed
+		if ctx.item_template and ctx.item_template.has_capability(WateringCapability):
+			r.consume = { &"item_id": ctx.item_id, &"amount": 1 }
+		r.ok = true
+	return r
 
-#region Public API (for Player/NPCs)
+func agent_plant(ctx: ActionContext) -> ActionResult:
+	var r := ActionResult.new()
+	var t := ctx.item_template
+	if not t or not t.has_capability(SeedCapability):
+		return r
+
+	if not (machine.current_state is CropEmptyState):
+		return r
+
+	var seed_cap: SeedCapability = t.get_capability(SeedCapability)
+	if seed_cap and seed_cap.plant_resource:
+		machine.on_plant(seed_cap.plant_resource)
+		r.ok = true
+		r.consume = { &"item_id": t.id, &"amount": 1 }
+	return r
+
+func agent_harvest(ctx: ActionContext) -> ActionResult:
+	var r := ActionResult.new()
+	r.ok = harvest(ctx.inventory)
+	return r
+	
+#endregion
+
+#region Public API (for Player)
 func plant(seed_resource:BillboardPlantResource) -> void:
 	machine.on_plant(seed_resource)
 	pass

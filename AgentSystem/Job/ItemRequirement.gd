@@ -27,7 +27,7 @@ enum Type { SPECIFIC_ITEM, BY_CAPABILITY }
 
 @export_range(1, 999, 1) var amount: int = 1
 @export var is_consumed: bool = true
-
+@export var binding_key: StringName = &""  # e.g. &"seed", &"water"
 # --- INTERNAL STATE (Backing Fields) ---
 var _item: ItemResource
 var _example_item: ItemResource

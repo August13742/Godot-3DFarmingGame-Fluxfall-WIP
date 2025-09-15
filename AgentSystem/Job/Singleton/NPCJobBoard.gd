@@ -28,47 +28,61 @@ func register_idle_agent(agent:WorkerAgent):
 ## On success, returns a payload Dictionary with context (e.g., which item to use).
 ## On failure, returns empty.
 func _check_agent_requirements(agent: WorkerAgent, template: JobData) -> Dictionary:
-	var payload := {&"consume_item":false} # This will store the context for the JobInstance
+	var payload := {&"bindings": {}, &"preflight_passed": false}
 
 	# --- Skill Check ---
 	for skill_name in template.required_skills:
-		var required_level = template.required_skills[skill_name]
-		var agent_level = agent.skills.get(skill_name, 0)
-		if agent_level < required_level:
+		if agent.skills.get(skill_name, 0) < template.required_skills[skill_name]:
 			return {} # FAILED: Skill level too low.
 
 	# --- Item Requirement Check ---
-	for req in template.item_requirements:
-		var item_id_to_use: StringName
-		
+	var cap_script: Script
+	var choice_id: StringName
+	
+	for req: ItemRequirement in template.item_requirements:
+		var key: StringName = req.binding_key
+		if key == &"":
+			# No binding requested. Just gate-check.
+			match req.type:
+				ItemRequirement.Type.SPECIFIC_ITEM:
+					if not agent.inventory.has_item(req.required_item_id(), req.amount):
+						return {}
+				ItemRequirement.Type.BY_CAPABILITY:
+					cap_script = req.required_capability_script()
+					if not cap_script: return {}
+					var inst = agent.inventory.get_first_item_with_capability(cap_script)
+					if not inst or inst.count < req.amount: return {}
+			continue
+
+		# Binding requested: choose concrete item id
 		match req.type:
 			ItemRequirement.Type.SPECIFIC_ITEM:
-				var requested_item_id:StringName = req.required_item_id()
-				if not agent.inventory.has_item(requested_item_id, req.amount):
-					return {} # FAILED: Lacks specific item.
-				item_id_to_use = requested_item_id
-
+				choice_id = req.required_item_id()
+				if not agent.inventory.has_item(choice_id, req.amount):
+					return {}
 			ItemRequirement.Type.BY_CAPABILITY:
-				var cap_script = req.required_capability_script()
-				if not cap_script:
-					return {} # FAILED: Invalid capability name.
-				
-				var item_instance = agent.inventory.get_first_item_with_capability(cap_script)
-				if not item_instance or item_instance.count < req.amount:
-					return {} # FAILED: Lacks an item with this capability.
-				
-				item_id_to_use = item_instance.id
-		
-		# SUCCESS: If this item is a consumable, add it to the payload
-		# so the UseItem task knows which concrete item to remove.
-		if req.is_consumed:
-			# We create a payload key based on the requirement's capability or item ID.
-			payload[&"consume_item"] = true
-			payload[&"item_to_consume"] = item_id_to_use
-			payload[&"amount"] = req.amount
-	payload[&"preflight_passed"] = true
+				cap_script = req.required_capability_script()
+				if not cap_script: return {}
+				var inst = agent.inventory.get_first_item_with_capability(cap_script)
+				if not inst or inst.count < req.amount:
+					return {}
+				choice_id = inst.id
+
+		payload.bindings[key] = {
+			&"item_id": choice_id,
+			&"amount": req.amount,
+			&"consumed": req.is_consumed,
+			&"capability_script": cap_script
+		}
+
+	payload.preflight_passed = true
 	return payload # SUCCESS: All requirements met.
-	
+""" return example
+{
+  "seed": { item_id="tomato_seed", amount=1, consumed=true, capability_script=SeedCapability },
+  "water": { item_id="watering_can", amount=1, consumed=false, capability_script=WateringCapability }
+}
+"""
 
 
 func _generate_new_uid() -> int:
