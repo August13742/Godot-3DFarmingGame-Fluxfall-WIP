@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://swovt0ujchnj"]
+
+[ext_resource type="Script" uid="uid://bibnnh2asng7r" path="res://addons/augusts_utilities/src/CallableSelector/CallableSelectorDialogue.gd" id="1_5psit"]
+
+[node name="CallableSelectorDialogue" type="ConfirmationDialog"]
+oversampling_override = 1.0
+size = Vector2i(500, 700)
+visible = true
+script = ExtResource("1_5psit")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="CustomTab" type="Control" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="CustomList" type="ItemList" parent="TabContainer/CustomTab"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="BuiltinTab" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BuiltinList" type="ItemList" parent="TabContainer/BuiltinTab"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24

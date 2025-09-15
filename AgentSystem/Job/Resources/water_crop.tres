@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
 
 [resource]
 script = ExtResource("1_8k6km")
-priority = 30
+priority = 55
 item_requirements = Array[ExtResource("1_rq4du")]([SubResource("Resource_ht63f")])
 task_list = Array[ExtResource("2_m6fls")]([SubResource("Resource_kvrqb"), SubResource("Resource_xw4yl"), SubResource("Resource_rq4du")])
 metadata/_custom_type_script = "uid://ce6773gmqrtm6"

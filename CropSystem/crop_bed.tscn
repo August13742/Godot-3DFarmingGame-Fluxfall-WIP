@@ -86,8 +86,9 @@ activation_value = &"harvestable"
 
 [node name="WateringJobEmitter" parent="." instance=ExtResource("7_j5n5o")]
 job_template = ExtResource("10_q7k5c")
-trigger_signal = &"hydration_changed"
+trigger_signal = &"request_hydration"
 activation_value = false
+validation_method = &"can_be_watered"
 
 [editable path="CropBedModel"]
 [editable path="CropComponent/BillboardPlants"]

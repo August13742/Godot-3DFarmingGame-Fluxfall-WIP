@@ -10,21 +10,23 @@ class_name CropBed
 @export var growth_chance: float = 0.75
 ## For debugging: forces the bed to always be hydrated.
 @export var always_hydrated: bool = false
-
+@export var job_repost_interval:float = 5.0
 # --- State Data (managed by states, stored here) ---
-signal hydration_changed(is_hydrated: bool)
+signal request_hydration(is_hydrated: bool)
 var hydrated: bool = false:
 	set(value):
+		request_hydration.emit(hydrated)
 		if hydrated == value: return
 		hydrated = value
 		if always_hydrated:
 			hydrated = true
-		hydration_changed.emit(hydrated)
 
 var crop_resource: BillboardPlantResource
 var current_stage: Stage = Stage.Seed
 var current_calculation_stage: int = 0
 var stages_per_visual_change: int
+
+
 #endregion
 
 #region Node References
@@ -36,6 +38,7 @@ var _crop_material: ShaderMaterial
 
 enum Stage { Seed, Stage1, Stage2, Stage3, Harvestable }
 var machine: CropStateMachine
+var current_state_name: StringName = &""
 signal state_changed(state_name: StringName)
 
 func _ready() -> void:
@@ -45,13 +48,9 @@ func _ready() -> void:
 	_setup_unique_material()
 	
 	machine = CropStateMachine.new()
+	machine.state_changed.connect(_on_state_changed)
 	machine.initialise(self)
-	machine.state_changed.connect(state_changed.emit)
-
-	# Connect signals once. They will be delegated to the machine.
-	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
-	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
-
+	
 	
 	if always_hydrated:
 		hydrated = true
@@ -59,20 +58,22 @@ func _ready() -> void:
 	call_deferred("_emit_initial_sync")
 	
 func _emit_initial_sync() -> void:
+	await get_tree().process_frame
+	
+	
+	state_changed.emit(current_state_name)
+	request_hydration.emit(hydrated)
+	
+	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
+	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
 
-	state_changed.emit(_current_state_key())
-	hydration_changed.emit(hydrated)
 
-func _current_state_key() -> StringName:
-	if machine == null or machine.current_state == null:
-		return &""
-	match machine.current_state:
-		CropEmptyState:       return &"empty"
-		CropPlantedState:     return &"planted"
-		CropGrowingState:     return &"growing"
-		CropHarvestableState: return &"harvestable"
-	return &""
-
+func _on_state_changed(new_state_name: StringName) -> void:
+	self.current_state_name = new_state_name
+	if new_state_name == &"growing":
+		request_hydration.emit(hydrated)
+	state_changed.emit(current_state_name)
+	
 func _setup_unique_material()->void:
 	var mesh_ins:MeshInstance3D = crop.imposter_mesh
 	if not mesh_ins:
@@ -123,6 +124,10 @@ func agent_harvest(ctx: ActionContext) -> ActionResult:
 	r.ok = harvest(ctx.inventory)
 	return r
 	
+## Returns true if the crop bed is in a state that requires water.
+func can_be_watered() -> bool:
+	# A crop bed only needs water if it's not empty.
+	return not (machine.current_state is CropEmptyState)
 #endregion
 
 #region Public API (for Player)

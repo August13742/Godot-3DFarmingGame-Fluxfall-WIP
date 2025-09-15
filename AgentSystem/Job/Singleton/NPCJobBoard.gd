@@ -36,7 +36,7 @@ func register_idle_agent(agent: WorkerAgent) -> void:
 	_idle_agents[agent.worker_id] = agent
 	_agent_jobs.erase(agent.worker_id)   # no longer on a job
 	job_lists_changed.emit()
-	_try_to_assign_jobs()
+	call_deferred("_try_to_assign_jobs")
 
 func unregister_agent(agent: WorkerAgent) -> void:
 	_idle_agents.erase(agent.worker_id)

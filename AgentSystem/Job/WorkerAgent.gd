@@ -38,11 +38,14 @@ func _ready() -> void:
 	nav.avoidance_priority = 0.5
 
 	inventory = InventoryManager.get_inventory(self)
+	_add_debug_items()
+	
+	await get_tree().process_frame
 	NPCJobBoard.register_idle_agent(self)
 	NPCEventSystem.job_assigned.connect(_on_job_assigned)
 	NPCEventSystem.job_finished.connect(_on_job_finished)
 	NPCEventSystem.job_task_completed.connect(_on_task_completed)
-	_add_debug_items.call_deferred()
+	
 
 
 func _add_debug_items()->void:

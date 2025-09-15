@@ -46,6 +46,7 @@ alignment = 2
 
 [node name="AutoRefresh" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+button_pressed = true
 text = "Auto Refresh"
 
 [node name="FocusBtn" type="Button" parent="VBoxContainer/HBoxContainer"]

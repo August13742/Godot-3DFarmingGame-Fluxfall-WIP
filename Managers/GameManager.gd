@@ -9,7 +9,7 @@ var player_menu_scene: CanvasItem
 
 var _debug_visible := false
 var ui_layer: CanvasLayer
-
+var hud_node: Control
 var _ui_modals := {}   # tag -> true
 
 func _enter_tree() -> void:
@@ -17,6 +17,8 @@ func _enter_tree() -> void:
 	
 func _ready() -> void:
 	ui_layer = get_tree().get_first_node_in_group(&"ui_layer")
+	var hud_controller:Node = ui_layer.find_child("HUDController")
+	hud_node = hud_controller.get_child(0)
 	debug_board = ui_layer.find_child("DebugTaskboard")
 	if is_instance_valid(debug_board):
 		debug_board.focus_camera = Callable(self, "focus_camera")
@@ -88,12 +90,14 @@ func _use_main_camera() -> void:
 		main_camera.current = true
 	if follow_cam:
 		follow_cam.enable(false)
+	hud_node.visible = true
 	_apply_ui_block_state()
 
 func _use_follow_camera() -> void:
 	if follow_cam and follow_cam.camera:
 		follow_cam.enable(true)
 		follow_cam.camera.current = true
+		hud_node.visible = false
 	_apply_ui_block_state()
 
 func _toggle_debug() -> void:

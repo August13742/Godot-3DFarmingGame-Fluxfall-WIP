@@ -21,7 +21,8 @@ metadata/_custom_type_script = "uid://b3bb1b1fnw1gh"
 
 [sub_resource type="Resource" id="Resource_3s3ih"]
 script = ExtResource("5_as48c")
-method_to_call = &"act_plant"
+method_to_call = &"agent_plant"
+required_binding = &"seed"
 metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
 
 [resource]

@@ -239,6 +239,7 @@ texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_
 script = ExtResource("1_fo3st")
 
 [node name="SingletonParamManager" parent="." node_paths=PackedStringArray("main_camera", "follow_cam") instance=ExtResource("1_n55d4")]
+time_scale = 3600
 main_camera = NodePath("../MainCamera/SpringArm3D/Camera3D")
 follow_cam = NodePath("../ThirdPersonObserverCamera")
 

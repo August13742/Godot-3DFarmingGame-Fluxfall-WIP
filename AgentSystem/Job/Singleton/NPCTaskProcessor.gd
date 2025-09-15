@@ -72,7 +72,9 @@ func _execute_equip_tool(task: JobTask_EquipTool, agent: WorkerAgent, job: JobIn
 func _execute_interact(task: JobTask_Interact, agent: WorkerAgent, job: JobInstance) -> void:
 	var target := get_node_or_null(job.target_path)
 	if not is_instance_valid(target) or not target.has_method(task.method_to_call):
-		_complete(job.unique_id, agent.worker_id, false); return
+		_complete(job.unique_id, agent.worker_id, false)
+		printerr("Tried to execute Interact but Target Or Method to Call not Valid")
+		return
 		
 	if task.animation_to_play: 
 		agent.play_action_animation(task.animation_to_play)
