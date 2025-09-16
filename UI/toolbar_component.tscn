@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdmnttvqtliwk"]
 
-[ext_resource type="Script" uid="uid://dtxxuh7y8tcma" path="res://toolbar_component.gd" id="1_nnixs"]
+[ext_resource type="Script" uid="uid://dtxxuh7y8tcma" path="res://UI/toolbar_component.gd" id="1_nnixs"]
 
 [node name="ToolbarComponent" type="Node"]
 script = ExtResource("1_nnixs")
