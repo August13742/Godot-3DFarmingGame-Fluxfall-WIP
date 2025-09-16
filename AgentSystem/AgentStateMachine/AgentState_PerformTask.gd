@@ -20,7 +20,6 @@ func enter(payload: Dictionary = {}) -> void:
 
 
 func _on_task_finished(ok: bool) -> void:
-	print("timer ends",ok)
 	if machine.current_state != self:
 		return
 		

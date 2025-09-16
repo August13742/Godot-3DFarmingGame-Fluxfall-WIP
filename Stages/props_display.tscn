@@ -1475,6 +1475,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
 [node name="WorkerAgent5" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
 
+[node name="Node3D2" type="Node3D" parent="FarmWorkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5401402, 0, 6.465369)
+
+[node name="WorkerAgent" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
+
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
+
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
+
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
+
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
+
+[node name="Node3D3" type="Node3D" parent="FarmWorkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.308447, 0, 6.465369)
+
+[node name="WorkerAgent" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
+
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
+
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
+
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
+
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
+
 [node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("138_x6kdt")]
 target = NodePath("../FarmWorkers/Node3D/WorkerAgent")
 

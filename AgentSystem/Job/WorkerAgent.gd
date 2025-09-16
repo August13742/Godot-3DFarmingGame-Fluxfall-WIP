@@ -118,7 +118,7 @@ func _on_task_completed(job_id: int, agent_id: int, ok: bool) -> void:
 #region Animation Audio Link
 
 func _on_foot_down()->void:
-	AudioManager.play_sfx_playlist(footstep_sfx_moving,.1)
+	AudioManager.play_sfx_playlist_at_node3D(footstep_sfx_moving,self,1 )
 
 		
 #endregion
