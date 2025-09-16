@@ -15,7 +15,7 @@ class_name PlayerController
 @onready var visuals := $VisualControl
 @onready var skin := $VisualControl/Mannequin
 
-@onready var state_machine := $StateMachine
+@onready var state_machine: PlayerStateMachine = $StateMachine
 @export var state_machine_debug:bool = false
 @onready var animation_player: AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
 
@@ -23,22 +23,23 @@ class_name PlayerController
 
 @onready var head:Node3D = $VisualControl/Mannequin/Head
 @onready var right_hand:Node3D = %RightHand
+@onready var left_hand:Node3D = %LeftHand
 
 @onready var toolbar: ToolbarComponent = $ToolbarComponent
 @export_category("Audio")
 @export var footstep_sfx_playlist:SFXPlaylistResource
 
 var current_input_direction:Vector2 = Vector2.ZERO
+var active_item_id: StringName = &""
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _physics_process(delta):
+func _physics_process(_delta:float):
 	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	state_machine.update(delta)
 
 
-var active_item_id: StringName = &""
+
 #region Diamond Tool Bar API
 func get_active_item_id() -> StringName:
 	var active_item: ItemInstance = toolbar.get_active_item()
@@ -51,14 +52,3 @@ func get_active_item_id() -> StringName:
 func _on_foot_down()->void:
 	AudioManager.play_sfx_random(footstep_sfx_playlist,.3)
 #endregion
-func _input(event):
-	state_machine.handle_input(event)
-
-
-#func _unhandled_key_input(event: InputEvent) -> void:
-	#if event.is_action_pressed("ui_cancel"):
-		#match(Input.mouse_mode):
-			#Input.MOUSE_MODE_VISIBLE:
-				#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			#Input.MOUSE_MODE_CAPTURED:
-				#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

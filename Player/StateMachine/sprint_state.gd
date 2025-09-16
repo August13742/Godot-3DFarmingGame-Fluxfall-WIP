@@ -1,32 +1,30 @@
-extends State
-class_name SprintState
+class_name PlayerState_Sprint extends PlayerStateBase
 
-func enter():
-	state_machine_animator.travel(&"Sprint")
-	if root_entity.state_machine_debug:
-		print("[Debug/States]: Entering SPRINT")
+func enter() -> void:
+	if animator:
+		animator.travel(&"Sprint")
 
-func update(delta):
-	var input_dir:Vector2 = root_entity.current_input_direction
+func update(delta: float) -> void:
+	var pc: PlayerController = root as PlayerController
+	var input_dir: Vector2 = pc.current_input_direction
+	if input_dir.length() == 0.0:
+		machine.change_state(PlayerStateMachine.StateKey.Idle); return
+	if not Input.is_action_pressed("sprint"):
+		machine.change_state(PlayerStateMachine.StateKey.Walk); return
+	if not root.is_on_floor():
+		machine.change_state(PlayerStateMachine.StateKey.Airborne); return
 
-	if input_dir.length() == 0:
-		owner.change_state(StateMachine.Idle)
-		return
+	var accel: float = pc.ground_acceleration
+	var speed: float = pc.sprint_speed
+	var dir3: Vector3 = root.transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
+	root.velocity.x = move_toward(root.velocity.x, dir3.x * speed, accel * delta)
+	root.velocity.z = move_toward(root.velocity.z, dir3.z * speed, accel * delta)
+	root.velocity.y = -0.01
+	root.move_and_slide()
 
-	if !Input.is_action_pressed("sprint"):
-		owner.change_state(StateMachine.Walk)
-		return
+func exit() -> void:
+	pass
 
-	if !root_entity.is_on_floor():
-		owner.change_state(StateMachine.Airbourne)
-		return
-
-
-	var accel:float = root_entity.ground_acceleration
-	var speed:float = root_entity.sprint_speed
-	var direction:Vector3 = root_entity.transform.basis * Vector3(input_dir.x, 0, input_dir.y)
-	root_entity.velocity.x = move_toward(root_entity.velocity.x, direction.x * speed, accel * delta)
-	root_entity.velocity.z = move_toward(root_entity.velocity.z, direction.z * speed, accel * delta)
-
-	root_entity.velocity.y = -0.01
-	root_entity.move_and_slide()
+func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump") and can_jump():
+		jump()

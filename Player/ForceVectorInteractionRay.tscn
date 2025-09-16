@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4bbn2rt7hok5"]
+
+[ext_resource type="Script" uid="uid://cssvpv7eq7dla" path="res://Player/head_ray_manager.gd" id="1_4mfas"]
+[ext_resource type="Script" uid="uid://bkcls2qk618ib" path="res://Player/force_vector_ray.gd" id="2_loy1b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_unle2"]
+radius = 0.1
+height = 100.0
+
+[node name="ForceVectorRayManager" type="Node3D"]
+script = ExtResource("1_4mfas")
+
+[node name="ForceVector" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_unle2")
+target_position = Vector3(0, 50, 0)
+max_results = 1
+collision_mask = 4
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0.99215686, 1)
+script = ExtResource("2_loy1b")

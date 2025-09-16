@@ -1,13 +1,8 @@
-extends Node3D
-class_name HeadRayManager
+class_name HeadRayManager extends Node3D
 
 @onready var force_vector_ray:ShapeCast3D = $ForceVector
-@onready var interaction_ray:RayCast3D = $InteractionRayCast
 var force_enabled:bool = true
-
+var item_collection_pivot:Node3D
 
 func _physics_process(_delta: float) -> void:
-	if force_vector_ray.enabled:
-		force_vector_ray.check_interaction()
-	else:
-		interaction_ray.check_interaction()
+	force_vector_ray.check_interaction()

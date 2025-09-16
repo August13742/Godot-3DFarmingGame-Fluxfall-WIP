@@ -1,28 +1,24 @@
-extends State
-class_name IdleState
+class_name PlayerState_Idle extends PlayerStateBase
 
+func enter() -> void:
+	root.velocity.x = 0.0
+	root.velocity.z = 0.0
+	if animator:
+		animator.travel(&"Idle")
 
-func enter():
-
-	root_entity.velocity.x = 0
-	root_entity.velocity.z = 0
-	state_machine_animator.travel(&"Idle")
-
-
-
-func update(_delta:float):
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	if input_dir.length() > 0:
+func update(_delta: float) -> void:
+	var input_dir: Vector2 = (root as PlayerController).current_input_direction
+	if not root.is_on_floor():
+		machine.change_state(PlayerStateMachine.StateKey.Airborne); return
+	if input_dir.length() > 0.0:
 		if Input.is_action_pressed("sprint"):
-
-			owner.change_state(StateMachine.Sprint)
+			machine.change_state(PlayerStateMachine.StateKey.Sprint)
 		else:
-			owner.change_state(StateMachine.Walk)
-	if !root_entity.is_on_floor():
-		owner.change_state(StateMachine.Airbourne)
+			machine.change_state(PlayerStateMachine.StateKey.Walk)
 
+func exit() -> void:
+	pass
 
-
-
-
-func exit(): pass
+func handle_input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump") and can_jump():
+		jump()

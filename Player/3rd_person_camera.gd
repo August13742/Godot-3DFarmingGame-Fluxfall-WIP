@@ -1,146 +1,141 @@
 extends Node3D
 class_name ThirdPersonARPGCamera
 
-var mouse_sensitivity:float = 0.35
-@onready var camera:Camera3D = $%Camera3D
-@onready var target_entity:Node3D = get_tree().get_first_node_in_group("player")
+## Mouse and Camera Orbit
+@export_range(0.01, 1.0, 0.01) var mouse_sensitivity_percent: float = 1.0:
+	set(value):
+		mouse_sensitivity_percent = value
+		mouse_sensitivity = BASE_MOUSE_SENSITIVITY * mouse_sensitivity_percent
 
+const BASE_MOUSE_SENSITIVITY: float = 0.35
+var mouse_sensitivity: float = 0.35
 
-@export_range(0.01,1,0.01) var mouse_sensitivity_percent = 1 :
-	set(num):
-		mouse_sensitivity_percent = num
-		mouse_sensitivity *= num
-		mouse_sensitivity = clampf(mouse_sensitivity,0.0035,0.35)
+@export var angular_velocity: float = 4.0
+@export var camera_acceleration_smoothing: float = 25.0
 
-@export var angular_velocity = 4
+## Offsets and Positioning
+@export var camera_x_offset: float = 0.0 # How far right/left the camera is from the pivot.
+@export var camera_z_offset: float = 0.0 # How far behind the camera is from the pivot.
+@export var camera_y_offset: float = 0.0 # How high the camera floats above the pivot.
+@export var y_tracking_offset: float = 1.8 # How high the pivot is above the character (e.g., at eye level).
 
-## how to the right or left is the camera
-@export var camera_x_offset:float = 0
-## how far behind is the camera
-@export var camera_z_offset:float = 0
-## how high the camera floats above pivot
-@export var camera_y_offset:float = 0
-## how high pivot is above character, set this so that it's at the eye
-@export var y_tracking_offset:float = 1.8
-@export var max_ray_length:int = 100
-@export var camera_acceleration_smoothing := 25
-@export var debug_raycast:bool = false
+## Interaction and Debugging
+@export var debug_shapecast: bool = false
 
-
-# Variables to store raycast debug data
-var ray_origin_debug: Vector3 = Vector3.ZERO
-var ray_end_debug: Vector3 = Vector3.ZERO
-var intersection_point_debug: Vector3 = Vector3.ZERO
-var look_direction_debug: Vector3 = Vector3.ZERO
+# --- Scene Node References ---
+@onready var camera: Camera3D = %Camera3D
+@onready var interaction_shapecast: ShapeCast3D = %InteractionShapeCast 
+@onready var target_entity: CharacterBody3D = get_tree().get_first_node_in_group("player") as CharacterBody3D
+@onready var target_entity_head:Node3D = target_entity.head
+@onready var target_entity_skin:Node3D = target_entity.skin
+# --- Internal State ---
+var _raw_mouse_delta: Vector2 = Vector2.ZERO
+var _smoothed_mouse_delta: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	$SpringArm3D.position += Vector3(camera_x_offset,camera_y_offset,camera_z_offset)
-
+	$SpringArm3D.position = Vector3(camera_x_offset, camera_y_offset, camera_z_offset)
+	
+	# Attempt to pull configuration from the target entity.
 	if "angular_velocity" in target_entity:
-		angular_velocity = target_entity.angular_velocity
+		angular_velocity = target_entity.get("angular_velocity")
 	if "mouse_sensitivity_percent" in target_entity:
-		mouse_sensitivity_percent = target_entity.mouse_sensitivity_percent
+		mouse_sensitivity_percent = target_entity.get("mouse_sensitivity_percent")
 
+func get_aim_target() -> Dictionary:
+	interaction_shapecast.force_shapecast_update()
+	if interaction_shapecast.is_colliding():
+		return {
+			"collider": interaction_shapecast.get_collider(0),
+			"point": interaction_shapecast.get_collision_point(0)
+		}
+	return {"collider": null, "point": interaction_shapecast.to_global(interaction_shapecast.target_position)}
 
-var smoothed_mouse_delta := Vector2.ZERO
-var raw_mouse_delta := Vector2.ZERO
-
-
+	
 func _input(event: InputEvent) -> void:
 	if GameManager.is_ui_blocking():
 		return
 	if event is InputEventMouseMotion:
-		raw_mouse_delta += event.relative
+		_raw_mouse_delta += event.relative
 
 
-func look_around(relative:Vector2,_delta:float=1):
-	rotation.y += -relative.x * mouse_sensitivity * _delta
-	rotation.x += -relative.y * mouse_sensitivity * _delta
-	rotation_degrees.x = clampf(rotation_degrees.x,-70,75)
+func _physics_process(delta: float) -> void:
+	if not camera.current or not is_instance_valid(target_entity):
+		return
 
-var direction_to_look_at:Vector3 = Vector3.ZERO
-func _physics_process(_delta: float) -> void:
-	if !camera.current:return
+	global_position = target_entity.global_position + Vector3.UP * y_tracking_offset
 	
-	# Always track position to player
-	position = target_entity.position
-	position.y = target_entity.position.y + y_tracking_offset
-
 	if GameManager.is_ui_blocking():
-		# Clear pending deltas so we don't jump when UI closes
-		raw_mouse_delta = Vector2.ZERO
-		smoothed_mouse_delta = Vector2.ZERO
+		# Prevent camera jump when UI closes by clearing pending input
+		_raw_mouse_delta = Vector2.ZERO
+		_smoothed_mouse_delta = Vector2.ZERO
+		return
+
+	var smoothing_factor: float = 1.0 - exp(-delta * camera_acceleration_smoothing)
+	_smoothed_mouse_delta = _smoothed_mouse_delta.lerp(_raw_mouse_delta, smoothing_factor)
+	_apply_camera_orbit(_smoothed_mouse_delta, delta)
+	_raw_mouse_delta = Vector2.ZERO
+
+	# Get the 3D aim data for head tracking and potential interactions.
+	var aim_data: Dictionary = get_aim_target()
+	var look_at_point: Vector3 = aim_data.point
+	
+	# The head should always track the 3D cursor's world position.
+	_rotate_head(look_at_point)
+
+	# --- Player Rotation Logic ---
+	# player root and skin only rotate if player is actively moving
+	var horizontal_velocity: Vector2 = Vector2(target_entity.velocity.x, target_entity.velocity.z)
+	if horizontal_velocity.length_squared() > 0.01:
+		# Create a stable, 2D planar direction from the camera's transform.
+		var look_direction_planar: Vector3 = -camera.global_transform.basis.z
+		look_direction_planar.y = 0
+		
+		# Only rotate if the vector is valid
+		if look_direction_planar.length_squared() > 0.001:
+			look_direction_planar = look_direction_planar.normalized()
+			_rotate_player_root(look_direction_planar, delta)
+		
+		_rotate_player_skin(delta)
+	
+
+func _apply_camera_orbit(relative: Vector2, delta: float) -> void:
+	# Applies mouse movement to the camera pivot's rotation
+	rotation.y += -relative.x * mouse_sensitivity * delta
+	rotation.x += -relative.y * mouse_sensitivity * delta
+	rotation_degrees.x = clampf(rotation_degrees.x, -70.0, 75.0)
+
+
+
+func _rotate_head(target_point: Vector3) -> void:
+	# Rotates the player's head node to look at a specific world-space point.
+	if not is_instance_valid(target_entity_head):
+		return
+	
+	# Avoid gimbal lock when looking straight up or down.
+	var direction_to_target: Vector3 = (target_point - target_entity_head.global_position).normalized()
+	if abs(direction_to_target.dot(Vector3.UP)) > 0.999:
+		return
+
+	target_entity_head.look_at(target_point, Vector3.UP)
+
+
+func _rotate_player_root(look_direction: Vector3, delta: float) -> void:
+	if look_direction == Vector3.ZERO:
+		return
+
+	var target_rotation_y: float = atan2(-look_direction.x, -look_direction.z)
+	target_entity.rotation.y = lerp_angle(target_entity.rotation.y, target_rotation_y, angular_velocity * delta)
+
+
+func _rotate_player_skin(delta: float) -> void:
+	# Rotates the visual mesh (skin) to face the direction of player input.
+	if not is_instance_valid(target_entity_skin):
 		return
 		
-	smoothed_mouse_delta = smoothed_mouse_delta.lerp(raw_mouse_delta, 1 - exp(-_delta * 20))
-	look_around(smoothed_mouse_delta, _delta)
-	raw_mouse_delta = Vector2.ZERO
-
-	position = target_entity.position
-	position.y = target_entity.position.y + y_tracking_offset
-
-	direction_to_look_at = get_lookat_direction()
-	rotate_head_ray(direction_to_look_at,_delta)
-
-	if target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Walk] \
-	|| target_entity.state_machine.current_state == target_entity.state_machine.states[StateMachine.Sprint]:
-		var current_input:Vector2 = target_entity.current_input_direction
-		var current_visual_yaw:float = target_entity.skin.rotation.y
-		var target_visual_yaw:float = atan2(-current_input.x,-current_input.y)
-		target_entity.skin.rotation.y = lerp_angle(current_visual_yaw, target_visual_yaw, angular_velocity * _delta)
-		rotate_root_towards_cursor(direction_to_look_at,_delta)
-
-
-
-
-func rotate_root_towards_cursor(to_target:Vector3,_delta:float):
-	if to_target == Vector3.ZERO:
+	var current_input: Vector2 = target_entity.get(&"current_input_direction")
+	if current_input.length_squared() < 0.01:
 		return
 
-	var target_rotation:float = atan2(-to_target.x, -to_target.z) ## = atan2(-z,x) + pi/2, since model default 90 (facing -z, 0 rad is +X)
-	var current_rotation:Vector3 = target_entity.rotation
-
-	target_entity.rotation.y = lerp_angle(current_rotation.y, target_rotation, angular_velocity * _delta)
-
-func get_lookat_direction() -> Vector3:
-	var screen_center = get_viewport().get_visible_rect().size / 2
-	var ray_origin:Vector3 = camera.project_ray_origin(screen_center)
-	var ray_direction:Vector3 = camera.project_ray_normal(screen_center)
-
-	# Store for debugging
-	ray_origin_debug = ray_origin
-	ray_end_debug = ray_origin + ray_direction * max_ray_length
-
-	if ray_direction.y == 0:
-		return Vector3.ZERO
-
-	var intersection := ray_origin + ray_direction * max_ray_length
-
-	# Store for debugging
-	intersection_point_debug = intersection
-
-	var to_target:Vector3 = intersection - target_entity.global_position
-
-	if Vector3(to_target.x, 0, to_target.z).length_squared() < 0.005:
-		look_direction_debug = Vector3.ZERO # Ensure debug variable is also reset
-		return Vector3.ZERO
-
-	look_direction_debug = to_target # Store for debugging
-
-	return to_target
-
-
-
-
-
-func rotate_head_ray(to_target: Vector3, _delta: float):
-	var ray = target_entity.head
-	var target = target_entity.global_position + to_target
-
-	var direction = target - ray.global_position
-
-	if abs(direction.normalized().dot(Vector3.UP)) > 0.999:
-		return
-
-	ray.look_at(target, Vector3.UP)
+	var target_visual_yaw: float = atan2(-current_input.x, -current_input.y)
+	target_entity_skin.rotation.y = lerp_angle(target_entity_skin.rotation.y, target_visual_yaw, angular_velocity * delta)

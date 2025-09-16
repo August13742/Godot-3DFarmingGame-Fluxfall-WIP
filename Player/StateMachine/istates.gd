@@ -1,42 +1,23 @@
-class_name State
-## enter, update, exit(delta), handle_input(event)
-extends Node
+@abstract class_name PlayerStateBase extends RefCounted
 
-#var blocked_actions: Set[String] = {}
-var root_entity:Node3D
-var state_machine_animator:AnimationNodeStateMachinePlayback
+var machine: PlayerStateMachine
+var root: CharacterBody3D
+var animator: AnimationNodeStateMachinePlayback
 
-func enter():
-	pass
+func init(p_machine: PlayerStateMachine, p_root: CharacterBody3D, p_animator: AnimationNodeStateMachinePlayback) -> PlayerStateBase:
+	machine = p_machine
+	root = p_root
+	animator = p_animator
+	return self
 
-func update(_delta: float):
-	pass
-
-func exit():
-	pass
-
-func handle_input(_event: InputEvent):
-	if _event.is_action_pressed("jump"):
-		if can_jump():
-			jump()
-
-
+@abstract func enter() -> void
+@abstract func update(delta: float) -> void
+@abstract func exit() -> void
+@abstract func handle_input(event: InputEvent) -> void
 
 func can_jump() -> bool:
-	return true  # default: all states can jump
+	return true
 
-#func handle_input(event: InputEvent) -> void:
-	#if event is InputEventAction and not blocked_actions.has(event.action):
-		#match event.action:
-			#"jump":
-				#jump()
-			#StateMachine.Sprint:
-				#start_sprint()
-
-func jump():
-	root_entity.velocity.y = root_entity.jump_force
-	root_entity.state_machine.change_state(StateMachine.Airbourne)
-
-func set_root(entity: Node3D) -> void:
-	root_entity = entity
-	state_machine_animator = root_entity.state_machine_animator
+func jump() -> void:
+	root.velocity.y = (root as PlayerController).jump_force
+	machine.change_state(PlayerStateMachine.StateKey.Airborne)
