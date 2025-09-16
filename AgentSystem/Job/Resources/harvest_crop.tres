@@ -18,11 +18,12 @@ metadata/_custom_type_script = "uid://3fk6k4crrb3s"
 
 [sub_resource type="Resource" id="Resource_1qg84"]
 script = ExtResource("5_fxulm")
-method_to_call = &"harvest"
+method_to_call = &"agent_harvest"
 metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
 
 [resource]
 script = ExtResource("1_pm5g3")
 priority = 80
+is_persistent = true
 task_list = Array[ExtResource("2_c5bxk")]([SubResource("Resource_24hac"), SubResource("Resource_xktt5"), SubResource("Resource_1qg84")])
 metadata/_custom_type_script = "uid://ce6773gmqrtm6"

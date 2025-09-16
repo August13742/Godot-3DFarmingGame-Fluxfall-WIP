@@ -8,6 +8,9 @@ enum AgentStatus { Idle, Active, Unknown }
 
 ## periodically try to assign pending jobs
 @export var job_assignment_attempt_interval:float = 5.0 
+## The base time to wait before re-posting a failed job.
+@export var job_retry_delay: float = 5.0
+
 var _job_templates: Dictionary[String,JobData] = {} ## lazy caches jobs to avoid constant disk lookup
 
 var _pending_jobs:Array[JobInstance] = []
@@ -52,8 +55,8 @@ func _check_agent_requirements(agent: WorkerAgent, template: JobData) -> Diction
 	var payload := {&"bindings": {}, &"preflight_passed": false}
 
 	# --- Skill Check ---
-	for skill_name in template.required_skills:
-		if agent.skills.get(skill_name, 0) < template.required_skills[skill_name]:
+	for skill_name in template.skill_requirements:
+		if agent.skills.get(skill_name, 0) < template.skill_requirements[skill_name]:
 			return {} # FAILED: Skill level too low.
 
 	# --- Item Requirement Check ---
@@ -206,7 +209,7 @@ func _find_best_agent_for_job(job:JobInstance)->Dictionary:
 		var distance_sq:float= agent.global_position.distance_squared_to(job.target_pos)
 		if distance_sq < 0.01: distance_sq = 0.01 # avoid /0
 
-		# urgent task prefers clostest agent. TODO: add more scoring
+		# urgent task prefers clostest agent. TODO: Spatial Partitioning + Auction? Scoring
 		var score = (job.priority ** 2) / distance_sq
 		if score > best_score:
 			best_score = score
@@ -214,24 +217,68 @@ func _find_best_agent_for_job(job:JobInstance)->Dictionary:
 			best_payload = requirement_payload
 	return { "agent": best_agent, "payload": best_payload }
 
-func finish_job(job_id:int, success:bool):
-	var job:JobInstance = _active_jobs.get(job_id)
-	if job:
-		job.status = JobInstance.Status.Complete if success else JobInstance.Status.Failed
-		_active_jobs.erase(job_id)
-		_release_lock(job)
-		_agent_jobs.erase(job.assigned_agent_id)
+func finish_job(job_id: int, success: bool):
+	var job: JobInstance = _active_jobs.get(job_id)
+	if not job: return
+
+	# Always clean up the agent's state immediately.
+	var agent_id: int = job.assigned_agent_id
+	_agent_jobs.erase(agent_id)
+
+	# Remove the job from the active list and release its lock.
+	_active_jobs.erase(job_id)
+	_release_lock(job)
+
+
+	# Emit the signal immediately on success OR failure.
+	# This ensures the agent is always released back to the idle pool.
+	NPCEventSystem.job_finished.emit(job_id, success)
+	
+	# handle re-queuing if the job failed
+	if not success:
+		job.retry_count += 1
+
+		if job.template.is_persistent:
+			var backoff_delay: float = job_retry_delay * pow(2, job.retry_count - 1)
+			_requeue_job_with_delay(job, backoff_delay)
 		
-		NPCEventSystem.job_finished.emit(job_id, success)
-		job_lists_changed.emit()
-		
+		elif job.retry_count < job.max_retries:
+			_requeue_job_with_delay(job, job_retry_delay)
+			
+		else:
+			print_debug("Job %d (%s) permanently failed after %d retries.
+			" % [job.unique_id, job.template_name(), job.retry_count])
+	
+	job_lists_changed.emit()
+	
+## Creates a timer to re-post a failed job after a specified delay.
+func _requeue_job_with_delay(job: JobInstance, delay: float) -> void:
+	print_debug("Re-queuing job %d in %.1f seconds. (Attempt %d)" % [job.unique_id, delay, job.retry_count])
+	var timer := Timer.new()
+	timer.wait_time = delay
+	timer.one_shot = true
+	timer.timeout.connect(_on_requeue_timer_timeout.bind(job))
+	add_child(timer)
+	timer.start()
+
+## Called when the re-queue timer finishes.
+func _on_requeue_timer_timeout(job: JobInstance) -> void:
+	# Reset the job's state for a fresh attempt by a new agent
+	job.status = JobInstance.Status.Pending
+	job.assigned_agent_id = -1
+	job.current_task_index = 0
+	
+	# Add back to the pending list
+	_pending_jobs.append(job)
+	job_lists_changed.emit()
+	print_debug("Job %d has been re-added to the pending queue." % job.unique_id)
+	
 #region Query API
 func get_pending_jobs() -> Array[JobInstance]: return _pending_jobs
 func get_active_jobs()  -> Array[JobInstance]: return _active_jobs.values()
 func get_idle_agents()  -> Array[WorkerAgent]: return _idle_agents.values()
 func get_all_agents()   -> Array[WorkerAgent]: return _all_agents.values()
 
-# Always return from _all_agents. You were returning only idle agents before.
 func get_agent(worker_id:int) -> WorkerAgent:
 	return _all_agents.get(worker_id, null)
 

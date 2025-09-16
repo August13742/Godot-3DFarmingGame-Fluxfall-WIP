@@ -1,9 +1,8 @@
 @tool
-extends Resource
-class_name BillboardPlantResource
+class_name BillboardPlantResource extends Resource
 
-@export var harvest_yield_id: StringName
-@export var harvest_yield_amount:int = 3
+@export var loot_table: LootTable
+
 @export var textures:Dictionary[CropBed.Stage,CompressedTexture2D] = {
 	CropBed.Stage.Seed:null,
 	CropBed.Stage.Stage1:null,

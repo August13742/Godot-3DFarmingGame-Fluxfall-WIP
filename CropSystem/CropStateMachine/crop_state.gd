@@ -1,4 +1,4 @@
-class_name ICropState extends RefCounted
+@abstract class_name ICropState extends RefCounted
 
 var machine: CropStateMachine
 var crop_bed: CropBed

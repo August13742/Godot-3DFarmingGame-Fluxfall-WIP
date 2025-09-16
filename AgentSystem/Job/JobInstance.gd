@@ -21,6 +21,9 @@ var assigned_agent_id:int = -1
 var current_task_index:int = 0
 var status: Status = Status.Pending
 
+var max_retries: int = 3
+var retry_count: int = 0
+
 #region Debug UI Helpers
 func binding_summary() -> String:
 	var parts: Array[String] = []

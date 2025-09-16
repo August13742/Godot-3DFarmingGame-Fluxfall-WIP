@@ -7,7 +7,7 @@ class_name WorkerAgent extends CharacterBody3D
 @export var speed := 3.5
 @export var rotation_speed := 5.0
 @export var worker_id := get_instance_id()
-@export var max_stuck_time_tolerance:float = 2.0
+@export var max_stuck_time_tolerance:float = 10.0
 
 var animation_state_machine: AnimationNodeStateMachinePlayback
 
@@ -16,13 +16,15 @@ var _current_job: JobInstance
 var _state := State.Idle
 var is_moving := false
 var _stuck_time := 0.0
-var _last_pos := Vector3.ZERO
+
+var _move_target_pos := Vector3.ZERO # Store the final destination of the move command
+var _last_distance_to_target := INF # Track progress toward the goal
 
 var inventory: InventoryComponent
 var active_tool_id:StringName = &"empty"
 
 var skills: Dictionary[StringName,int] = { &"farming": 1} ## placeholder skills
-var move_eps :float = max(0.01, speed * 0.05) # 5% of 1s travel
+var move_eps :float = max(0.01, speed * 0.1) # 10% of 1s travel
 func _ready() -> void:
 	animation_state_machine = animation_tree.get("parameters/StateMachine/playback")
 	nav.velocity_computed.connect(_on_velocity_computed)
@@ -32,10 +34,10 @@ func _ready() -> void:
 	nav.radius = 0.35
 	nav.path_desired_distance = 0.35
 	nav.target_desired_distance = 0.60
-	nav.neighbor_distance = 2.0
+	nav.neighbor_distance = 3.0
 	nav.max_neighbors = 8
-	nav.time_horizon = 1.2
-	nav.avoidance_priority = 0.5
+	nav.time_horizon = 1.0
+	nav.avoidance_priority = randf_range(0.4, 0.6)
 
 	inventory = InventoryManager.get_inventory(self)
 	_add_debug_items()
@@ -56,12 +58,14 @@ func _add_debug_items()->void:
 func move_to(target_position: Vector3) -> void:
 	var map_rid = get_world_3d().navigation_map
 	var safe_target = NavigationServer3D.map_get_closest_point(map_rid, target_position)
-
 	nav.set_target_position(safe_target)
+	
+	
+	_move_target_pos = nav.get_final_position() # Get the actual final point on the navmesh
+	_last_distance_to_target = self.global_position.distance_to(_move_target_pos)
+	
 	is_moving = true
-
 	_stuck_time = 0
-	_last_pos = global_position
 
 	if animation_state_machine:
 		animation_state_machine.travel("Move")
@@ -69,16 +73,26 @@ func move_to(target_position: Vector3) -> void:
 func _physics_process(delta: float) -> void:
 	if !is_moving:
 		nav.set_velocity(Vector3.ZERO)
+		if animation_state_machine:
+			animation_state_machine.travel("Idle")
 		return
 
 	# stuck detection
-	if global_position.distance_to(_last_pos) < move_eps: _stuck_time += delta
-	else: _stuck_time = 0
-
-	_last_pos = global_position
+	var current_distance_to_target: float = self.global_position.distance_to(_move_target_pos)
+	
+	# If no progress (or moved slightly away), increment stuck timer.
+	# move_eps prevents tiny backward RVO adjustments from triggering the timer
+	if current_distance_to_target >= _last_distance_to_target - move_eps:
+		_stuck_time += delta
+	else:
+		# Progress was made
+		_stuck_time = 0
+	
+	_last_distance_to_target = current_distance_to_target
 
 	if _stuck_time > max_stuck_time_tolerance:
 		# task failed
+		print_debug("AGENT %d FAILED JOB %d: Stuck at %s" % [worker_id, _current_job.unique_id, global_position])
 		is_moving = false
 		nav.set_velocity(Vector3.ZERO)
 		_on_task_completed(_current_job.unique_id, self.worker_id,false)
