@@ -1,4 +1,5 @@
-[English (README.md)](README.md) ｜ **日本語 (README.ja.md)**
+https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
+
 
 # Fluxfall（WIP）— システム技術概要
 
@@ -8,6 +9,7 @@
 * **エンジン:** Godot 4.5
 * **ライセンス:** MIT（`LICENSE` を参照）
 
+[🇦🇺 English](README.md) | [🇯🇵 日本語](README.ja.md)
 ---
 
 ## 目次
