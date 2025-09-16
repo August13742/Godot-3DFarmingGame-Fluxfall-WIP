@@ -1,6 +1,6 @@
 https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
 
-# Fluxfall (WIP) — Systems Showcase
+# Fluxfall (WIP) — Systems Showcase (16.09.2025 Snapshot)
 
 > **Disclaimer**
 > I’m a programmer, not a game designer. This repository is a collection of modular game systems, editor tooling, and engine integration experiments. The gameplay loop is intentionally incomplete.
@@ -13,22 +13,25 @@ https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
 
 ## Contents
 
-1. [Project Overview](#project-overview)
-2. [Architecture at a Glance](#architecture-at-a-glance)
-3. [Core Systems](#core-systems)
-   * [Agent System](#agent-system)
-   * [Items, Inventory, Crafting](#items-inventory-crafting)
-   * [Crop System](#crop-system)
-   * [Player & Camera](#player--camera)
-   * [Day/Night & Time](#daynight--time)
-   * [Audio](#audio)
-   * [UI & Debug](#ui--debug)
-4. [Editor Tooling](#editor-tooling)
-5. [Addons (`addons/augusts_*`)](#addons-augusts)
-6. [Project Layout](#project-layout)
-7. [Build & Run](#build--run)
-8. [Roadmap](#roadmap)
-9. [Notes for Reviewers](#notes-for-reviewers)
+- [Fluxfall (WIP) — Systems Showcase (16.09.2025 Snapshot)](#fluxfall-wip--systems-showcase-16092025-snapshot)
+  - [🇦🇺 English | 🇯🇵 日本語](#-english---日本語)
+  - [Contents](#contents)
+  - [Project Overview](#project-overview)
+  - [Architecture at a Glance](#architecture-at-a-glance)
+  - [Core Systems](#core-systems)
+    - [Agent System](#agent-system)
+    - [Items, Inventory, Crafting](#items-inventory-crafting)
+    - [Crop System](#crop-system)
+    - [Player \& Camera](#player--camera)
+    - [Day/Night \& Time](#daynight--time)
+    - [Audio](#audio)
+    - [UI \& Debug](#ui--debug)
+  - [Editor Tooling](#editor-tooling)
+  - [Addons (`addons/augusts`)](#addons-addonsaugusts)
+  - [Project Layout](#project-layout)
+  - [Build \& Run](#build--run)
+  - [Roadmap](#roadmap)
+  - [Notes for Reviewers](#notes-for-reviewers)
 
 ---
 

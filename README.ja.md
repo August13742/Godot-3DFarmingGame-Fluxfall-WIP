@@ -1,7 +1,7 @@
 https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
 
 
-# Fluxfall（WIP）— システム技術概要
+# Fluxfall（WIP）— システム技術概要 (2025.09.16 Snapshot)
 
 > **免責事項**
 > 本リポジトリはゲームデザインではなく, モジュール化されたゲームシステム, エディタ用ツール, エンジン統合の実験集合である. ゲームプレイのループは未実装に近い. 
@@ -14,7 +14,8 @@ https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
 
 ## 目次
 
-- [Fluxfall（WIP）— システム技術概要](#fluxfallwip-システム技術概要)
+- [Fluxfall（WIP）— システム技術概要 (2025.09.16 Snapshot)](#fluxfallwip-システム技術概要-20250916-snapshot)
+  - [🇦🇺 English | 🇯🇵 日本語](#-english---日本語)
   - [目次](#目次)
   - [プロジェクト概要](#プロジェクト概要)
   - [アーキテクチャ概観](#アーキテクチャ概観)
