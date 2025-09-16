@@ -5,11 +5,11 @@ var _stuck_time: float = 0.0
 var _last_distance_to_target: float = INF
 
 func enter(payload: Dictionary = {}) -> void:
-	if not payload.has("target"):
+	if not payload.has(&"target"):
 		push_error("MoveToTarget state entered without a 'target' in payload.")
 		machine.change_state(WorkerAgentStateMachine.StateKey.Idle); return
 
-	_target_pos = payload["target"]
+	_target_pos = payload[&"target"]
 	_stuck_time = 0.0
 	
 	var map_rid: RID = agent.get_world_3d().navigation_map
@@ -20,7 +20,7 @@ func enter(payload: Dictionary = {}) -> void:
 	_last_distance_to_target = agent.global_position.distance_to(final_pos)
 
 	agent.is_moving = true
-	animator.travel("Move")
+	animator.travel(&"Move")
 
 func update(delta: float) -> void:
 	if agent.nav.is_navigation_finished():

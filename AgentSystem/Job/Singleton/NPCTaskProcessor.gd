@@ -12,11 +12,13 @@ var _task_runners:Dictionary[JobTask.Type,Callable]= {
 	JobTask.Type.Animate: _execute_animate,
 }
 
-
+func _ready() -> void:
+	print(_task_runners)
 ## _execute_[taskname] template
 func execute_task(task: JobTask, agent: WorkerAgent, job: JobInstance) -> void:
 	var function: Callable = _task_runners.get(task.type, Callable())
 	if function.is_valid():
+		print(function)
 		function.call(task, agent, job)
 
 func _complete(job_id:int, agent_id:int, ok:bool=true)->void:
@@ -124,7 +126,7 @@ func _execute_interact(task: JobTask_Interact, agent: WorkerAgent, job: JobInsta
 		var fallback:Dictionary = job.payload.get(&"bindings",{}).get(task.required_binding,{})
 		if fallback.get(&"consumed",false):
 			ok = agent.inventory.remove_item(context.item_id,max(context.amount,1))
-	
+	print("completing ")
 	_complete(job.unique_id,agent.worker_id,ok)
 
 func _execute_animate(task: JobTask_Animate, agent: WorkerAgent, _job: JobInstance) -> void:

@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="JobData" load_steps=12 format=3 uid="uid://ct1y1x6urgtnv"]
+[gd_resource type="Resource" script_class="JobData" load_steps=14 format=3 uid="uid://ct1y1x6urgtnv"]
 
 [ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://AgentSystem/Job/JobData.gd" id="1_8k6km"]
 [ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://AgentSystem/Job/ItemRequirement.gd" id="1_rq4du"]
 [ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://AgentSystem/Job/JobTask/JobTaskResource.gd" id="2_m6fls"]
 [ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://Items/Resources/Watering/watering_can_resource.tres" id="2_xw4yl"]
-[ext_resource type="Script" uid="uid://bdtxh3l2xk33l" path="res://AgentSystem/Job/JobTask/Task_EquipTool.gd" id="3_eel32"]
-[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/Task_MoveTo.gd" id="4_kvrqb"]
-[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/Task_Interact.gd" id="5_kvrqb"]
+[ext_resource type="Script" uid="uid://bdtxh3l2xk33l" path="res://AgentSystem/Job/JobTask/Task_EquipTool.gd" id="5_t8jgq"]
+[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/Task_MoveTo.gd" id="6_i4gvp"]
+[ext_resource type="Script" uid="uid://nbhgdk4yly7n" path="res://AgentSystem/Job/JobTask/Task_Animate.gd" id="7_p6rdb"]
+[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/Task_Interact.gd" id="8_q1k20"]
 
 [sub_resource type="Resource" id="Resource_ht63f"]
 script = ExtResource("1_rq4du")
@@ -17,16 +18,22 @@ example_item = ExtResource("2_xw4yl")
 metadata/_custom_type_script = "uid://dxi7c76mtkntj"
 
 [sub_resource type="Resource" id="Resource_kvrqb"]
-script = ExtResource("3_eel32")
+script = ExtResource("5_t8jgq")
 tool_id = &"watering_can"
 metadata/_custom_type_script = "uid://bdtxh3l2xk33l"
 
 [sub_resource type="Resource" id="Resource_xw4yl"]
-script = ExtResource("4_kvrqb")
+script = ExtResource("6_i4gvp")
 metadata/_custom_type_script = "uid://b3bb1b1fnw1gh"
 
+[sub_resource type="Resource" id="Resource_lulqp"]
+script = ExtResource("7_p6rdb")
+animation_to_play = &"Interact"
+duration = 5.0
+metadata/_custom_type_script = "uid://nbhgdk4yly7n"
+
 [sub_resource type="Resource" id="Resource_rq4du"]
-script = ExtResource("5_kvrqb")
+script = ExtResource("8_q1k20")
 method_to_call = &"agent_hydrate"
 required_binding = &"water"
 metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
@@ -36,5 +43,5 @@ script = ExtResource("1_8k6km")
 priority = 55
 is_persistent = true
 item_requirements = Array[ExtResource("1_rq4du")]([SubResource("Resource_ht63f")])
-task_list = Array[ExtResource("2_m6fls")]([SubResource("Resource_kvrqb"), SubResource("Resource_xw4yl"), SubResource("Resource_rq4du")])
+task_list = Array[ExtResource("2_m6fls")]([SubResource("Resource_kvrqb"), SubResource("Resource_xw4yl"), SubResource("Resource_lulqp"), SubResource("Resource_rq4du")])
 metadata/_custom_type_script = "uid://ce6773gmqrtm6"

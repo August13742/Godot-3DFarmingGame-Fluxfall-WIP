@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnvqj1iwe6kev"]
+
+[ext_resource type="Script" uid="uid://bncq72m73ojae" path="res://AgentSystem/AgentStateMachine/WorkerAgentStateMachine.gd" id="1_ncd3p"]
+
+[node name="AgentStateMachine" type="Node"]
+script = ExtResource("1_ncd3p")

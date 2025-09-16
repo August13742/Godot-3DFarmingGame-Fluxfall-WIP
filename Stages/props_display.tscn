@@ -128,7 +128,6 @@
 [ext_resource type="PackedScene" uid="uid://cunx4bcjyhuck" path="res://Assets/House_6.fbx" id="129_n55d4"]
 [ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
 [ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="130_hstgi"]
-[ext_resource type="PackedScene" uid="uid://cumhep3ueypvu" path="res://AgentSystem/farm_worker_female.tscn" id="131_n55d4"]
 [ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="131_x6kdt"]
 [ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
 [ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="132_iwxxf"]
@@ -137,6 +136,7 @@
 [ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="135_i1xbi"]
 [ext_resource type="Texture2D" uid="uid://doc7pta1n3v4m" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="136_d7hgg"]
 [ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="137_g7p8p"]
+[ext_resource type="PackedScene" uid="uid://ciuak5sa6q3d5" path="res://WorkerAgent.tscn" id="137_x6kdt"]
 [ext_resource type="PackedScene" uid="uid://xmcx5xkq3gkl" path="res://ThirdPersonObserverCamera.tscn" id="138_x6kdt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hox20"]
@@ -1461,38 +1461,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.9542
 [node name="Node3D" type="Node3D" parent="FarmWorkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.465369)
 
-[node name="FarmWorkerFemale" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, -0.17146397)
+[node name="WorkerAgent" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 
-[node name="FarmWorkerFemale2" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, -6.705489)
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
 
-[node name="FarmWorkerFemale3" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 2.665535)
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
 
-[node name="FarmWorkerFemale4" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 5.152589)
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
 
-[node name="FarmWorkerFemale5" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
-
-[node name="FarmWorkerFemale6" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
-
-[node name="FarmWorkerFemale7" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
-
-[node name="FarmWorkerFemale8" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
-
-[node name="FarmWorkerFemale9" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
-
-[node name="FarmWorkerFemale10" parent="FarmWorkers/Node3D" instance=ExtResource("131_n55d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2324152, 0.13554907, 12.197867)
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
 
 [node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("138_x6kdt")]
-target = NodePath("../FarmWorkers/Node3D/FarmWorkerFemale")
+target = NodePath("../FarmWorkers/Node3D/WorkerAgent")
 
 [editable path="StellarBodyPivot"]
 [editable path="MainCamera"]

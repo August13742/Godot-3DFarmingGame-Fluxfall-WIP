@@ -2,14 +2,15 @@ class_name WorkerAgent extends CharacterBody3D
 
 
 @onready var visuals: Node3D = $Visuals
-@onready var nav: NavigationAgent3D = $NavigationAgent3D
+@onready var nav: NavigationAgent3D = %NavigationAgent3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: WorkerAgentStateMachine = $WorkerAgentStateMachine
 
+@export var footstep_sfx_moving:SFXPlaylistResource
 @export var speed := 3.5
 @export var rotation_speed := 5.0
 @export var worker_id := get_instance_id()
-@export var max_stuck_time_tolerance:float = 10.0
+@export var max_stuck_time_tolerance:float = 30
 
 
 var _current_job: JobInstance
@@ -40,8 +41,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	NPCJobBoard.register_idle_agent(self)
 	NPCEventSystem.job_assigned.connect(_on_job_assigned)
-
-
+	NPCEventSystem.job_finished.connect(_on_job_finished)
+	NPCEventSystem.job_task_completed.connect(_on_task_completed)
+	
 func _add_debug_items()->void:
 	inventory.add_item(&"tomato_seed",99)
 	inventory.add_item(&"watering_can",1)
@@ -72,22 +74,32 @@ func _on_job_finished(job_id: int, _success: bool) -> void:
 
 
 func _execute_current_task() -> void:
+	if _current_job.current_task_index >= _current_job.template.task_list.size():
+		NPCJobBoard.finish_job(_current_job.unique_id, true)
+		return
+
 	var task_data: JobTask = _current_job.template.task_list[_current_job.current_task_index]
 	
-	# Example of dispatching tasks to states
 	match task_data.type:
 		JobTask.Type.MoveTo:
-			var payload: Dictionary = {"target": task_data.target_position}
+			var payload: Dictionary = {&"target": _current_job.target_pos}
 			state_machine.change_state(WorkerAgentStateMachine.StateKey.Moving, payload)
+
 		JobTask.Type.Animate:
-			var payload: Dictionary = {
-				"animation_name": task_data.animation_name,
-				"duration": task_data.duration
-			}
-			state_machine.change_state(WorkerAgentStateMachine.StateKey.PerformingTask, payload)
+			var anim_task: JobTask_Animate = task_data as JobTask_Animate
+			if anim_task:
+				var payload: Dictionary = {
+					&"animation_to_play": anim_task.animation_to_play,
+					&"duration": anim_task.duration
+				}
+				state_machine.change_state(WorkerAgentStateMachine.StateKey.PerformingTask, payload)
+			else:
+				# Failsafe if casting fails
+				_on_task_completed(_current_job.unique_id, worker_id, false)
+
+		# --- INSTANT TASKS ---
 		_:
-			push_warning("Unhandled task type: %s" % task_data.type)
-			_on_task_completed(_current_job.unique_id, worker_id, false)
+			NPCTaskProcessor.execute_task(task_data, self, _current_job)
 			
 
 func _on_task_completed(job_id: int, agent_id: int, ok: bool) -> void:
@@ -102,3 +114,11 @@ func _on_task_completed(job_id: int, agent_id: int, ok: bool) -> void:
 		NPCJobBoard.finish_job(job_id, true)
 	else:
 		_execute_current_task()
+		
+#region Animation Audio Link
+
+func _on_foot_down()->void:
+	AudioManager.play_sfx_playlist(footstep_sfx_moving,.1)
+
+		
+#endregion

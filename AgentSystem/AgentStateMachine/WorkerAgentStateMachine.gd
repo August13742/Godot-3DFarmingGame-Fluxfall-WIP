@@ -6,12 +6,12 @@ var current_state: AgentStateBase
 var states: Dictionary = {}
 
 @onready var agent: WorkerAgent = owner as WorkerAgent
-@onready var animator: AnimationNodeStateMachinePlayback = %AnimationTree.get("parameters/StateMachine/playback")
+@onready var animator: AnimationNodeStateMachinePlayback = %AnimationTree.get(&"parameters/StateMachine/playback")
 
 func _ready() -> void:
 	_construct_states()
 	# Initial state is Idle
-	change_state(StateKey.Idle)
+	call_deferred(&"change_state",StateKey.Idle)
 
 func _physics_process(delta: float) -> void:
 	if current_state:
