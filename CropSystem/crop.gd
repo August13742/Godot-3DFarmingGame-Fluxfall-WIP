@@ -109,17 +109,20 @@ func agent_hydrate(_ctx: ActionContext) -> ActionResult:
 	return r
 
 func agent_plant(ctx: ActionContext) -> ActionResult:
-	var r := ActionResult.new()
-	var t := ctx.item_template
+	var r :ActionResult= ActionResult.new()
+	var t :ItemResource= ctx.item_template
 	if not t or not t.has_capability(SeedCapability):
+		print_debug("AGENT_PLANT FAIL: Context item is not a valid seed.")
 		return r
 
+	#print_debug("Agent attempting to plant. Current state is: %s" % String(current_state_name))
 	if not (machine.current_state is CropEmptyState):
+		print_debug("AGENT_PLANT FAIL: Crop bed is not in Empty state.")
 		return r
 
 	var seed_cap: SeedCapability = t.get_capability(SeedCapability)
 	if seed_cap and seed_cap.plant_resource:
-		machine.on_plant(seed_cap.plant_resource)
+		plant(seed_cap.plant_resource)
 		r.ok = true
 		r.consume = { &"item_id": t.id, &"amount": 1 }
 	return r
@@ -137,8 +140,8 @@ func can_be_watered() -> bool:
 
 #region Public API (for Player)
 func plant(seed_resource:BillboardPlantResource) -> void:
+	print("plant successful")
 	machine.on_plant(seed_resource)
-	pass
 
 func is_harvestable()->bool:
 	return machine.current_state is CropHarvestableState

@@ -30,7 +30,12 @@ func _execute_move_to(_task: JobTask_MoveTo, agent: WorkerAgent, job: JobInstanc
 
 func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInstance) -> void:
 	var target_node := get_node_or_null(job.target_path)
-	var validation_method: StringName = task.validation_method
+	if not is_instance_valid(target_node) or not target_node.has_method(task.method_to_call):
+		_complete(job.unique_id, agent.worker_id, false)
+		printerr("Tried to execute Interact but Target Or Method to Call not Valid")
+		return
+		
+	var validation_method: StringName = task.method_to_call
 	
 	if is_instance_valid(target_node) and target_node.has_method(validation_method):
 		var is_valid: bool = target_node.call(validation_method)

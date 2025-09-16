@@ -69,6 +69,8 @@ func move_to(target_position: Vector3) -> void:
 func _physics_process(delta: float) -> void:
 	if !is_moving:
 		nav.set_velocity(Vector3.ZERO)
+		if animation_state_machine:
+			animation_state_machine.travel("Idle")
 		return
 
 	# stuck detection
@@ -79,6 +81,7 @@ func _physics_process(delta: float) -> void:
 
 	if _stuck_time > max_stuck_time_tolerance:
 		# task failed
+		print_debug("AGENT %d FAILED JOB %d: Stuck at %s" % [worker_id, _current_job.unique_id, global_position])
 		is_moving = false
 		nav.set_velocity(Vector3.ZERO)
 		_on_task_completed(_current_job.unique_id, self.worker_id,false)
