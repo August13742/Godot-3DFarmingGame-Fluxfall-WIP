@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://cti7ltbtm4uvt"
 [resource]
 script = ExtResource("1_tnwsf")
 priority = 50
+is_persistent = true
 item_requirements = Array[ExtResource("1_ld55y")]([SubResource("Resource_ph0l8")])
 task_list = Array[ExtResource("2_a2ilg")]([SubResource("Resource_ld55y"), SubResource("Resource_3s3ih")])
 metadata/_custom_type_script = "uid://ce6773gmqrtm6"

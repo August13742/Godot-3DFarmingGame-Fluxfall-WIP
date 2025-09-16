@@ -1415,8 +1415,5 @@ inventory_size = 20
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Visuals/FarmerFemale")
-libraries = {
-&"": SubResource("AnimationLibrary_hu0k3")
-}
 tree_root = SubResource("AnimationNodeBlendTree_ck1rf")
 anim_player = NodePath("../Visuals/FarmerFemale/AnimationPlayer")

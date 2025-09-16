@@ -7,7 +7,7 @@ class_name WorkerAgent extends CharacterBody3D
 @export var speed := 3.5
 @export var rotation_speed := 5.0
 @export var worker_id := get_instance_id()
-@export var max_stuck_time_tolerance:float = 2.0
+@export var max_stuck_time_tolerance:float = 10.0
 
 var animation_state_machine: AnimationNodeStateMachinePlayback
 

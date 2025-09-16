@@ -301,19 +301,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24594, 0.120700836, 10.882
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80675, 0.12070131, 11.24)
 
 [node name="Birch_42" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("11_6ontf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3422, 0.12070131, 8.26314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.904594, 0.12070131, 8.26314)
 
 [node name="Birch_52" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("12_vgmn3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.803568, 0.4285779, 21.5601)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.323374, 0.4285779, 21.5601)
 
 [node name="Bush_Common2" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("13_nn42n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0404, 0.23469305, 31.649595)
 
 [node name="Bush_Large2" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("14_h28ac")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0751, 0.4183011, 28.273779)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.822756, 0.4183011, 31.941923)
 
 [node name="Bush_Large_Flowers3" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("15_288yr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6233, 0.418303, 29.59299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.02069, 0.418303, 31.77385)
 
 [node name="Bush_Long_12" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("16_qb73o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.29314, 0.402359, 15.6725)
@@ -322,7 +322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.29314, 0.402359, 15.6725)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6336, 0.4006362, 7.3950768)
 
 [node name="CherryBlossom_12" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("18_yw2k5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.1783, 0.21066189, 6.7265778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.350914, -0.097194195, 15.504513)
 
 [node name="CherryBlossom_22" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("19_n55d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0031, -0.0972147, -17.999722)
@@ -332,10 +332,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.429169, -0.0972147, -21.60
 metadata/_edit_group_ = true
 
 [node name="CherryBlossom_42" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("21_2q52e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9025, 0.490918, 32.7279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.462889, 0.18302965, 32.7279)
 
 [node name="CherryBlossom_52" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("22_mi2sr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7219, 1.11087, 39.5237)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.907642, -0.0972147, 44.765434)
 
 [node name="Clover_12" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("23_ja8rm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30189, -0.08929801, 18.4235)
