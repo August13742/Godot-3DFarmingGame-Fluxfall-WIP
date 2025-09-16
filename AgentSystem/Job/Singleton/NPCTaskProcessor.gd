@@ -9,8 +9,8 @@ var _task_runners:Dictionary[JobTask.Type,Callable]= {
 	JobTask.Type.UseItem: _execute_use_item,
 	JobTask.Type.EquipTool: _execute_equip_tool,
 	JobTask.Type.Interact: _execute_interact,
+	JobTask.Type.Animate: _execute_animate,
 }
-
 
 ## _execute_[taskname] template
 func execute_task(task: JobTask, agent: WorkerAgent, job: JobInstance) -> void:
@@ -123,8 +123,9 @@ func _execute_interact(task: JobTask_Interact, agent: WorkerAgent, job: JobInsta
 		var fallback:Dictionary = job.payload.get(&"bindings",{}).get(task.required_binding,{})
 		if fallback.get(&"consumed",false):
 			ok = agent.inventory.remove_item(context.item_id,max(context.amount,1))
-	
 	_complete(job.unique_id,agent.worker_id,ok)
 
-
+func _execute_animate(task: JobTask_Animate, agent: WorkerAgent, _job: JobInstance) -> void:
+	agent.play_action_animation(task.animation_to_play, task.duration)
+	# _complete is called by the state machine
 #endregion

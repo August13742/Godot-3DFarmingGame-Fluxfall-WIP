@@ -1,0 +1,59 @@
+extends CharacterBody3D
+class_name PlayerController
+
+@export var angular_velocity:= 8
+@export var normal_speed := 10.0
+@export var sprint_speed := 15.0
+@export var air_acceleration := 5.0
+@export var ground_acceleration := 60.0
+@export var jump_force := 5.0
+@export var gravity := 9.8
+@export var terminal_fall_velocity := -30.0
+
+@export_range(0.01,1,0.01) var mouse_sensitivity_percent = 0.8
+
+@onready var visuals := $VisualControl
+@onready var skin := $VisualControl/Mannequin
+
+@onready var state_machine: PlayerStateMachine = $StateMachine
+@export var state_machine_debug:bool = false
+@onready var animation_player: AnimationPlayer = $VisualControl/Mannequin/AnimationPlayer
+
+@onready var state_machine_animator:AnimationNodeStateMachinePlayback= %AnimationTree.get("parameters/Locomotion/playback")
+
+@onready var head:Node3D = $VisualControl/Mannequin/Head
+@onready var right_hand:Node3D = %RightHand
+@onready var left_hand:Node3D = %LeftHand
+
+@onready var toolbar: ToolbarComponent = $ToolbarComponent
+@export_category("Audio")
+@export var footstep_sfx_walking:SFXPlaylistResource
+@export var footstep_sfx_running:SFXPlaylistResource
+var current_input_direction:Vector2 = Vector2.ZERO
+var active_item_id: StringName = &""
+
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _physics_process(_delta:float):
+	current_input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+
+
+
+#region Diamond Tool Bar API
+func get_active_item_id() -> StringName:
+	var active_item: ItemInstance = toolbar.get_active_item()
+	if active_item:
+		return active_item.id
+	return &"" # bare hands
+#endregion
+
+#region Animation Audio Link
+
+func _on_foot_down()->void:
+	if state_machine.current_state is PlayerState_Walk:
+		AudioManager.play_sfx_playlist(footstep_sfx_walking,.3)
+	elif state_machine.current_state is PlayerState_Sprint:
+		AudioManager.play_sfx_playlist(footstep_sfx_running,.3)
+		
+#endregion

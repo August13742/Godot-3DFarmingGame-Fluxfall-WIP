@@ -5,13 +5,13 @@
 [ext_resource type="AudioStream" uid="uid://c2x1eo40qajbq" path="res://Assets/Audio/SFX/UI/notification/Pop sounds 3.wav" id="3_34jcp"]
 [ext_resource type="AudioStream" uid="uid://blbiqp6p2d817" path="res://Assets/Audio/SFX/UI/notification/Pop sounds 4.wav" id="4_j2vjf"]
 
-[sub_resource type="Resource" id="Resource_fmcbu"]
+[sub_resource type="Resource" id="Resource_klubq"]
 script = ExtResource("2_1qlwn")
 event_name = &"item_toast"
 stream = ExtResource("3_34jcp")
 metadata/_custom_type_script = "uid://dflujhnkuiakc"
 
-[sub_resource type="Resource" id="Resource_ekv31"]
+[sub_resource type="Resource" id="Resource_1qlwn"]
 script = ExtResource("2_1qlwn")
 event_name = &"item_toast"
 stream = ExtResource("4_j2vjf")
@@ -19,5 +19,5 @@ metadata/_custom_type_script = "uid://dflujhnkuiakc"
 
 [resource]
 script = ExtResource("1_klubq")
-sfx_resources = Array[ExtResource("2_1qlwn")]([SubResource("Resource_fmcbu"), SubResource("Resource_ekv31")])
+tracks = Array[ExtResource("2_1qlwn")]([SubResource("Resource_klubq"), SubResource("Resource_1qlwn")])
 metadata/_custom_type_script = "uid://cgp1ebg1amn38"

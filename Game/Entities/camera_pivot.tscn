@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkpgqhu8go28h"]
+[gd_scene load_steps=3 format=3 uid="uid://bkpgqhu8go28h"]
 
-[ext_resource type="Script" uid="uid://548p4hcvhqk0" path="res://Game/Entities/Player/3rd_person_camera.gd" id="1_t5kuf"]
+[ext_resource type="Script" uid="uid://548p4hcvhqk0" path="res://Player/3rd_person_camera.gd" id="1_t5kuf"]
 
-[node name="CameraPivot" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hoxuh"]
+radius = 0.05
+height = 10.0
+
+[node name="ThirdPersonARPGCamera" type="Node3D" groups=["player_camera"]]
 script = ExtResource("1_t5kuf")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -10,3 +14,13 @@ spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 unique_name_in_owner = true
+
+[node name="InteractionShapeCast" type="ShapeCast3D" parent="SpringArm3D/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_hoxuh")
+target_position = Vector3(0, 5, 0)
+max_results = 1
+collision_mask = 4
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0.99215686, 1)

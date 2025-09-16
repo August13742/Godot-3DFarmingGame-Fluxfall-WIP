@@ -11,7 +11,7 @@ var _debug_visible := false
 var ui_layer: CanvasLayer
 var hud_node: Control
 var _ui_modals := {}   # tag -> true
-
+var crosshair_ui:Control
 func _enter_tree() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	
@@ -19,6 +19,8 @@ func _ready() -> void:
 	ui_layer = get_tree().get_first_node_in_group(&"ui_layer")
 	var hud_controller:Node = ui_layer.find_child("HUDController")
 	hud_node = hud_controller.get_child(0)
+	crosshair_ui = hud_node.find_child("Crosshair")
+	
 	debug_board = ui_layer.find_child("DebugTaskboard")
 	if is_instance_valid(debug_board):
 		debug_board.focus_camera = Callable(self, "focus_camera")
@@ -108,7 +110,12 @@ func _toggle_debug() -> void:
 		_begin_ui_modal("debug")
 	else:
 		_end_ui_modal("debug")
-
+func set_reticle_obstructed(is_action_obstructed:bool)->void:
+	if is_action_obstructed:
+		crosshair_ui.modulate = Color.DARK_RED
+	else:
+		crosshair_ui.modulate = Color.WHITE
+		
 # --- UI gate helpers ---
 func _begin_ui_modal(tag: String) -> void:
 	_ui_modals[tag] = true
