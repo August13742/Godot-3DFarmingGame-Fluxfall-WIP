@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="SFXPlaylistResource" load_steps=13 format=3 uid="uid://be3pttf5bmicp"]
+
+[ext_resource type="Script" uid="uid://cgp1ebg1amn38" path="res://addons/augusts_audio_manager/resource_scripts/sfx_playlist_resource.gd" id="1_jiv4x"]
+[ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="2_pf5qr"]
+[ext_resource type="AudioStream" uid="uid://s754sov7bjnw" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 1.wav" id="3_88woe"]
+[ext_resource type="AudioStream" uid="uid://cr4vk3bm2nrxa" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 2.wav" id="4_4hdaf"]
+[ext_resource type="AudioStream" uid="uid://b2l6mnmwdrc5y" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 3.wav" id="5_1f1am"]
+[ext_resource type="AudioStream" uid="uid://dodhekn5nqb8j" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 4.wav" id="6_uwlnm"]
+[ext_resource type="AudioStream" uid="uid://bvfpo53k4wyo1" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 5.wav" id="7_fbmqh"]
+
+[sub_resource type="Resource" id="Resource_88woe"]
+script = ExtResource("2_pf5qr")
+event_name = &"grass_run"
+stream = ExtResource("3_88woe")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[sub_resource type="Resource" id="Resource_4hdaf"]
+script = ExtResource("2_pf5qr")
+event_name = &"grass_run"
+stream = ExtResource("4_4hdaf")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[sub_resource type="Resource" id="Resource_1f1am"]
+script = ExtResource("2_pf5qr")
+event_name = &"grass_run"
+stream = ExtResource("5_1f1am")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[sub_resource type="Resource" id="Resource_uwlnm"]
+script = ExtResource("2_pf5qr")
+event_name = &"grass_run"
+stream = ExtResource("6_uwlnm")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[sub_resource type="Resource" id="Resource_fbmqh"]
+script = ExtResource("2_pf5qr")
+event_name = &"grass_run"
+stream = ExtResource("7_fbmqh")
+metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[resource]
+script = ExtResource("1_jiv4x")
+tracks = Array[ExtResource("2_pf5qr")]([SubResource("Resource_88woe"), SubResource("Resource_4hdaf"), SubResource("Resource_1f1am"), SubResource("Resource_uwlnm"), SubResource("Resource_fbmqh")])
+metadata/_custom_type_script = "uid://cgp1ebg1amn38"

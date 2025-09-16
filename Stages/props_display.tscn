@@ -270,10 +270,6 @@ spring_length = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.232345, 0, 0)
 h_offset = 0.5
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="MainCamera/SpringArm3D/Camera3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.232345, 0, 0)
-radius = 5.094
-
 [node name="Terrain3DTerrain" type="Node3D" parent="."]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Terrain3DTerrain"]

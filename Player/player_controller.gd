@@ -27,8 +27,8 @@ class_name PlayerController
 
 @onready var toolbar: ToolbarComponent = $ToolbarComponent
 @export_category("Audio")
-@export var footstep_sfx_playlist:SFXPlaylistResource
-
+@export var footstep_sfx_walking:SFXPlaylistResource
+@export var footstep_sfx_running:SFXPlaylistResource
 var current_input_direction:Vector2 = Vector2.ZERO
 var active_item_id: StringName = &""
 
@@ -49,6 +49,11 @@ func get_active_item_id() -> StringName:
 #endregion
 
 #region Animation Audio Link
+
 func _on_foot_down()->void:
-	AudioManager.play_sfx_random(footstep_sfx_playlist,.3)
+	if state_machine.current_state is PlayerState_Walk:
+		AudioManager.play_sfx_playlist(footstep_sfx_walking,.3)
+	elif state_machine.current_state is PlayerState_Sprint:
+		AudioManager.play_sfx_playlist(footstep_sfx_running,.3)
+		
 #endregion
