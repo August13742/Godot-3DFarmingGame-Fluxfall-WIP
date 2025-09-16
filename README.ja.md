@@ -1,5 +1,4 @@
-https://github.com/user-attachments/assets/858c84e9-b3ea-44e4-80ae-b7aabe0cfaa6
-
+https://github.com/user-attachments/assets/b58662d5-b049-41d7-b72f-06d5dd804e22
 
 # Fluxfall（WIP）— システム技術概要 (2025.09.16 Snapshot)
 
