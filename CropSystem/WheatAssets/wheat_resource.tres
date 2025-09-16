@@ -1,14 +1,40 @@
-[gd_resource type="Resource" script_class="BillboardPlantResource" load_steps=7 format=3 uid="uid://dkkc66nhl0nwn"]
+[gd_resource type="Resource" script_class="BillboardPlantResource" load_steps=12 format=3 uid="uid://dkkc66nhl0nwn"]
 
 [ext_resource type="Script" uid="uid://clnxvwrwrc84d" path="res://CropSystem/billboard_plant_resource.gd" id="1_3wjkq"]
+[ext_resource type="Script" uid="uid://bgmgqqwo62kc3" path="res://addons/augusts_item_system/src/LootSystem/LootDrop.gd" id="1_r2878"]
 [ext_resource type="Texture2D" uid="uid://b1xdakiac3f7f" path="res://CropSystem/WheatAssets/wheat_harvestable.png" id="1_yqpmh"]
+[ext_resource type="Script" uid="uid://cay3bwapco2q" path="res://addons/augusts_item_system/src/LootSystem/LootTable.gd" id="2_bbe80"]
 [ext_resource type="Texture2D" uid="uid://duq30oo7oy1ik" path="res://CropSystem/WheatAssets/wheat_seed.png" id="3_e1d0t"]
 [ext_resource type="Texture2D" uid="uid://c0pyeeres3v5e" path="res://CropSystem/WheatAssets/wheat_1.png" id="4_r2878"]
 [ext_resource type="Texture2D" uid="uid://ddml6rt6b43qb" path="res://CropSystem/WheatAssets/wheat_2.png" id="5_bbe80"]
 [ext_resource type="Texture2D" uid="uid://cgt6asoie2w62" path="res://CropSystem/WheatAssets/wheat_3.png" id="6_liroo"]
 
+[sub_resource type="Resource" id="Resource_liroo"]
+script = ExtResource("1_r2878")
+drop_type = 1
+item_id = &"wheat"
+min_amount = 3
+max_amount = 6
+weight = 10.0
+metadata/_custom_type_script = "uid://bgmgqqwo62kc3"
+
+[sub_resource type="Resource" id="Resource_hyrcu"]
+script = ExtResource("1_r2878")
+drop_type = 1
+item_id = &"wheat_seed"
+max_amount = 3
+weight = 3.0
+metadata/_custom_type_script = "uid://bgmgqqwo62kc3"
+
+[sub_resource type="Resource" id="Resource_wynmq"]
+script = ExtResource("2_bbe80")
+weighted_drops = Array[ExtResource("1_r2878")]([SubResource("Resource_liroo"), SubResource("Resource_hyrcu")])
+num_weighted_rolls = 3
+metadata/_custom_type_script = "uid://cay3bwapco2q"
+
 [resource]
 script = ExtResource("1_3wjkq")
+loot_table = SubResource("Resource_wynmq")
 textures = Dictionary[int, CompressedTexture2D]({
 0: ExtResource("3_e1d0t"),
 1: ExtResource("4_r2878"),
@@ -24,7 +50,7 @@ uv_rect_by_stage = {
 4: Rect2(0.3232422, 0.15527344, 0.3701172, 0.7050781)
 }
 scale_factors_by_stage = {
-0: 0.23628219484882418,
+0: 0.23628219484882415,
 1: 0.780515117581187,
 2: 0.8297872340425532,
 3: 1.0,

@@ -1,5 +1,4 @@
-extends Interactable
-class_name CropBed
+class_name CropBed extends Interactable
 
 #region Data & Properties
 ## How many visual stages the crop has.
@@ -140,7 +139,6 @@ func can_be_watered() -> bool:
 
 #region Public API (for Player)
 func plant(seed_resource:BillboardPlantResource) -> void:
-	print("plant successful")
 	machine.on_plant(seed_resource)
 
 func is_harvestable()->bool:
@@ -155,22 +153,24 @@ func hydrate() -> bool:
 
 
 func harvest(target_inventory: InventoryComponent) -> bool:
-	if not is_instance_valid(target_inventory): return false
-	if not "harvest_yield_id" in crop_resource:
-		push_error("Crop resource '%s' is missing harvest_yield_id." % crop_resource.resource_path)
+	if not is_instance_valid(target_inventory):
+		return false
+	if not is_instance_valid(crop_resource):
 		return false
 
-	var yield_id = crop_resource.harvest_yield_id
-	var yield_amount = crop_resource.get("harvest_yield_amount")
+	if is_instance_valid(crop_resource.loot_table):
+		var drops: Array[ItemInstance] = crop_resource.loot_table.roll_loot()
+		var all_added: bool = true
+		for it: ItemInstance in drops:
+			var remaining: int = target_inventory.add_item(it.id, it.count)
+			if remaining > 0:
+				all_added = false
+		if all_added:
+			machine.on_harvest()
+			return true
+		print("Inventory is full, cannot harvest fully.")
+	return false
 
-	var remaining = target_inventory.add_item(yield_id, yield_amount)
-
-	if remaining == 0:
-		machine.on_harvest()
-		return true # Harvest was successful
-	else:
-		print("Inventory is full, cannot harvest.")
-		return false # Harvest failed
 #endregion
 
 #region Signal Handlers (delegated to machine)
