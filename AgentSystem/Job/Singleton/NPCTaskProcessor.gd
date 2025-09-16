@@ -9,6 +9,7 @@ var _task_runners:Dictionary[JobTask.Type,Callable]= {
 	JobTask.Type.UseItem: _execute_use_item,
 	JobTask.Type.EquipTool: _execute_equip_tool,
 	JobTask.Type.Interact: _execute_interact,
+	JobTask.Type.Animate: _execute_animate,
 }
 
 
@@ -126,5 +127,7 @@ func _execute_interact(task: JobTask_Interact, agent: WorkerAgent, job: JobInsta
 	
 	_complete(job.unique_id,agent.worker_id,ok)
 
-
+func _execute_animate(task: JobTask_Animate, agent: WorkerAgent, _job: JobInstance) -> void:
+	agent.play_action_animation(task.animation_to_play, task.duration)
+	# _complete is called by the state machine
 #endregion

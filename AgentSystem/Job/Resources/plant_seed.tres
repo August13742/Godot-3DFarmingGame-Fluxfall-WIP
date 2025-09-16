@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://ce6773gmqrtm6" path="res://AgentSystem/Job/JobData.gd" id="1_tnwsf"]
 [ext_resource type="Resource" uid="uid://d2k6g5xn2cpdj" path="res://Items/Resources/Seeds/tomato_seed_resource.tres" id="2_3s3ih"]
 [ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://AgentSystem/Job/JobTask/JobTaskResource.gd" id="2_a2ilg"]
-[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/TaskMoveTo.gd" id="4_3s3ih"]
-[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/TaskInteract.gd" id="5_as48c"]
+[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/Task_MoveTo.gd" id="4_3s3ih"]
+[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/Task_Interact.gd" id="5_as48c"]
 
 [sub_resource type="Resource" id="Resource_ph0l8"]
 script = ExtResource("1_ld55y")

@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dxi7c76mtkntj" path="res://AgentSystem/Job/ItemRequirement.gd" id="1_rq4du"]
 [ext_resource type="Script" uid="uid://bi1t6mhdtc3lr" path="res://AgentSystem/Job/JobTask/JobTaskResource.gd" id="2_m6fls"]
 [ext_resource type="Resource" uid="uid://deunxenvooidu" path="res://Items/Resources/Watering/watering_can_resource.tres" id="2_xw4yl"]
-[ext_resource type="Script" uid="uid://bdtxh3l2xk33l" path="res://AgentSystem/Job/JobTask/TaskEquipTool.gd" id="3_eel32"]
-[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/TaskMoveTo.gd" id="4_kvrqb"]
-[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/TaskInteract.gd" id="5_kvrqb"]
+[ext_resource type="Script" uid="uid://bdtxh3l2xk33l" path="res://AgentSystem/Job/JobTask/Task_EquipTool.gd" id="3_eel32"]
+[ext_resource type="Script" uid="uid://b3bb1b1fnw1gh" path="res://AgentSystem/Job/JobTask/Task_MoveTo.gd" id="4_kvrqb"]
+[ext_resource type="Script" uid="uid://cti7ltbtm4uvt" path="res://AgentSystem/Job/JobTask/Task_Interact.gd" id="5_kvrqb"]
 
 [sub_resource type="Resource" id="Resource_ht63f"]
 script = ExtResource("1_rq4du")

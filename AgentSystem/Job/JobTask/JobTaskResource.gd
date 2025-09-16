@@ -6,5 +6,6 @@ enum Type{
 	UseItem,
 	EquipTool,
 	Interact,
+	Animate,
 }
 var type:Type
