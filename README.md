@@ -46,7 +46,7 @@ Fluxfall is a 3D farming-sim tech playground focused on:
 * **Third-person ARPG camera** with aim queries and interaction controller.
 * **Robust editor tooling** to accelerate authoring and QA.
 
-This project prioritizes **clean seams between systems** and **data-driven authoring** over content breadth.
+This project prioritises **clean seams between systems** and **data-driven authoring** over content breadth.
 
 ---
 
@@ -90,11 +90,11 @@ utility(job, agent) = w_d * f_distance(agent, job)
 ```
 
 
-* Treat as cost (lower is better) or invert/normalize as needed.
+* Treat as cost (lower is better) or invert/normalise as needed.
 * Context handles hydration criticality, harvest spoil windows, etc.
 
 **Job Lifecycle**
-
+Definition: All jobs are borken down into tasks (MoveTo, Validate, Interact, Animate)
 1. **Opportunity posted** by emitter or manager.
 2. **Discovery** via board query (TODO: filtered by spatial cell).
 3. **Reservation** with token + TTL to avoid races and thrash.
