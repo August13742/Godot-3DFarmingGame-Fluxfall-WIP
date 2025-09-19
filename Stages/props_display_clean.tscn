@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dptyxxs3uol81"]
+[gd_scene load_steps=39 format=3 uid="uid://btvjowxht2eqb"]
 
 [ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_1urph"]
 [ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://Game/singleton_param_manager.tscn" id="2_06g1x"]
