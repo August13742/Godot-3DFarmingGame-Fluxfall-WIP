@@ -20,7 +20,6 @@ metadata/_custom_type_script = "uid://3fk6k4crrb3s"
 [sub_resource type="Resource" id="Resource_bcjfx"]
 script = ExtResource("6_uubu7")
 animation_to_play = &"Interact_Ground"
-duration = 5.0
 metadata/_custom_type_script = "uid://nbhgdk4yly7n"
 
 [sub_resource type="Resource" id="Resource_1qg84"]

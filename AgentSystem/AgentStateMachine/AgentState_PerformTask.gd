@@ -24,5 +24,4 @@ func _on_task_finished(ok: bool) -> void:
 		return
 		
 	if agent._current_job:
-		printt(agent._current_job.unique_id, agent.worker_id, ok)
 		agent._on_task_completed(agent._current_job.unique_id, agent.worker_id, ok)
