@@ -62,13 +62,13 @@ func _ready() -> void:
 	# External events
 	EventSystem.CROP_growth_tick_emitted.connect(_on_growth_tick_emitted)
 	EventSystem.GAME_NEW_DAY.connect(_reset_hydration_on_day_changed)
-	
+
 func _emit_initial_sync() -> void:
 	await get_tree().process_frame
 	state_changed.emit(current_state_name)
 	hydration_changed.emit(hydrated)
 	needs_water_changed.emit(not hydrated)
-	
+
 
 func _on_state_changed(new_state_name: StringName) -> void:
 	current_state_name = new_state_name
@@ -76,13 +76,13 @@ func _on_state_changed(new_state_name: StringName) -> void:
 	if new_state_name == &"planted" or new_state_name == &"growing":
 		needs_water_changed.emit(not hydrated)
 	state_changed.emit(current_state_name)
-	
-	
+
+
 func _setup_unique_material()->void:
 	var mesh_ins:MeshInstance3D = crop.imposter_mesh
 	if not mesh_ins:
 		push_error("Crop billboard is missing its MeshInstance3D."); return
-		
+
 	var base_mat: Material = mesh_ins.get_surface_override_material(0)
 	if base_mat and base_mat.resource_local_to_scene:
 		# Already unique, probably because it was saved with the scene.
@@ -130,7 +130,7 @@ func agent_harvest(ctx: ActionContext) -> ActionResult:
 	var r := ActionResult.new()
 	r.ok = harvest(ctx.inventory)
 	return r
-	
+
 ## Returns true if the crop bed is in a state that requires water.
 func can_be_watered() -> bool:
 	# A crop bed only needs water if it's not empty.

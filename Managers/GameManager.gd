@@ -14,13 +14,13 @@ var _ui_modals := {}   # tag -> true
 var crosshair_ui:Control
 func _enter_tree() -> void:
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
-	
+
 func _ready() -> void:
 	ui_layer = get_tree().get_first_node_in_group(&"ui_layer")
 	var hud_controller:Node = ui_layer.find_child("HUDController")
 	hud_node = hud_controller.get_child(0)
 	crosshair_ui = hud_node.find_child("Crosshair")
-	
+
 	debug_board = ui_layer.find_child("DebugTaskboard")
 	if is_instance_valid(debug_board):
 		debug_board.focus_camera = Callable(self, "focus_camera")
@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("force_show_cursor"):
 		# When the key is released, let the main state function determine the correct mode
 		_apply_ui_block_state()
-		
+
 	if event.is_action_pressed("set_camera_1"):
 		_use_main_camera()
 	elif event.is_action_pressed("set_camera_2"):
@@ -65,16 +65,16 @@ func _input(event: InputEvent) -> void:
 			if is_instance_valid(player_menu_scene):
 				player_menu_scene.queue_free()
 				player_menu_scene = null
-			
+
 			# Close debug menu if it's open
 			if _debug_visible:
 				_debug_visible = false
 				if is_instance_valid(debug_board):
 					debug_board.visible = false
-			
+
 			_ui_modals.clear()
 			get_tree().paused = false
-			
+
 			# Re-evaluate the UI and mouse state
 			_apply_ui_block_state()
 
@@ -115,7 +115,7 @@ func set_reticle_obstructed(is_action_obstructed:bool)->void:
 		crosshair_ui.modulate = Color.DARK_RED
 	else:
 		crosshair_ui.modulate = Color.WHITE
-		
+
 # --- UI gate helpers ---
 func _begin_ui_modal(tag: String) -> void:
 	_ui_modals[tag] = true
