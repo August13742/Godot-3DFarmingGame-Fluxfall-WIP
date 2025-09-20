@@ -7,7 +7,7 @@ enum Keys {
 
 const STAGE_PATH:= {
 	Keys.Island:"uid://37ea3gb4pcdi",
-	Keys.Test:"uid://dptyxxs3uol81"
+	Keys.Test:"res://Stages/props_display_clean.tscn"
 }
 
 static func get_stage(key:Keys)->Node:
