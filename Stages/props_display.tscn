@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://btq0tng1rb183"]
+[gd_scene load_steps=35 format=3 uid="uid://cjnhanlw5kn5k"]
 
 [ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_fo3st"]
 [ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://Game/singleton_param_manager.tscn" id="1_n55d4"]
@@ -81,8 +81,8 @@ world_background = 0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_8ekew"]
 name = "Grass"
-scene_file = ExtResource("9_x6eig")
-material_override = ExtResource("8_r8f6d")
+scene_file = ExtResource("131_x6kdt")
+material_override = ExtResource("130_hstgi")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
@@ -111,51 +111,51 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_nnh03"]
 name = "Dirt"
 albedo_color = Color(0.52, 0.52, 0.52, 1)
-albedo_texture = ExtResource("10_4gr75")
-normal_texture = ExtResource("11_o5f0w")
+albedo_texture = ExtResource("132_iwxxf")
+normal_texture = ExtResource("133_lrhjx")
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_gth70"]
 name = "Grass"
 id = 1
-albedo_texture = ExtResource("12_hg65b")
-normal_texture = ExtResource("13_enth3")
+albedo_texture = ExtResource("134_c86qy")
+normal_texture = ExtResource("135_i1xbi")
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_etj82"]
 name = "Rock"
 id = 2
-albedo_texture = ExtResource("14_ei7st")
-normal_texture = ExtResource("15_exlnb")
+albedo_texture = ExtResource("136_d7hgg")
+normal_texture = ExtResource("137_g7p8p")
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_wdtrn"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_8ekew"), SubResource("Terrain3DMeshAsset_fao1t")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_nnh03"), SubResource("Terrain3DTextureAsset_gth70"), SubResource("Terrain3DTextureAsset_etj82")])
 
 [node name="Island" type="Node"]
-script = ExtResource("1_1urph")
+script = ExtResource("1_fo3st")
 
-[node name="SingletonParamManager" parent="." node_paths=PackedStringArray("main_camera", "follow_cam") instance=ExtResource("2_06g1x")]
+[node name="SingletonParamManager" parent="." node_paths=PackedStringArray("main_camera", "follow_cam") instance=ExtResource("1_n55d4")]
 time_scale = 3600
 main_camera = NodePath("../MainCamera/SpringArm3D/Camera3D")
 follow_cam = NodePath("../ThirdPersonObserverCamera")
 
-[node name="StellarBodyPivot" parent="." instance=ExtResource("3_td5h0")]
+[node name="StellarBodyPivot" parent="." instance=ExtResource("129_yw2k5")]
 
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26759, -6.6492805, 1.78723)
 layers = 2
-material_override = ExtResource("4_ngpkt")
+material_override = ExtResource("2_nn42n")
 mesh = SubResource("PlaneMesh_hox20")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("5_0156u")]
+[node name="Player" parent="." instance=ExtResource("2_ifwko")]
 transform = Transform3D(-0.9999999, 0, 0.00048867066, 0, 1, 0, -0.00048867066, 0, -0.9999999, 4.385433, 4.9661355, -14.214718)
 normal_speed = 1.5
 sprint_speed = 3.0
 
-[node name="InteractableTemplate" parent="." instance=ExtResource("6_lf4w1")]
+[node name="InteractableTemplate" parent="." instance=ExtResource("3_obi5q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.96436, 5.0999875, -11.765766)
 
-[node name="MainCamera" parent="." instance=ExtResource("7_77lm3")]
+[node name="MainCamera" parent="." instance=ExtResource("3_i4xcx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6.265)
 
 [node name="SpringArm3D" parent="MainCamera" index="0"]
@@ -182,37 +182,37 @@ metadata/_edit_lock_ = true
 [node name="Interactables" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.332806, 0.56373405)
 
-[node name="PickuppablePlant2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("20_cpgts")]
+[node name="PickuppablePlant2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29874, 2.9148512, -16.826696)
 
-[node name="PickuppablePlant3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("20_cpgts")]
+[node name="PickuppablePlant3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3429427, 2.9625068, -13.940466)
 
-[node name="PickuppablePlant4" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("20_cpgts")]
+[node name="PickuppablePlant4" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.814172, 2.9396138, -12.603548)
 
-[node name="PickuppablePlant" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("20_cpgts")]
+[node name="PickuppablePlant" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("6_nd6yq")]
 transform = Transform3D(0.999993, 0, -0.00368264, 0, 1, 0, 0.00368264, 0, 0.999993, -0.889578, 2.7528336, -14.282537)
 
-[node name="PickuppableStone2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("21_syupe")]
+[node name="PickuppableStone2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.40681, 2.7206225, -14.185217)
 
-[node name="PickuppableStone3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("21_syupe")]
+[node name="PickuppableStone3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 3.22871, 2.878913, -24.850456)
 
-[node name="PickuppableStone4" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("21_syupe")]
+[node name="PickuppableStone4" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(0.688063, 0, 0.725651, 0, 1, 0, -0.725651, 0, 0.688063, 2.2769318, 2.8603258, -13.938454)
 
-[node name="PickuppableStone" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("21_syupe")]
+[node name="PickuppableStone" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("7_rbk52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.72059, -13.588147)
 
-[node name="PickuppableStick2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("22_py50g")]
+[node name="PickuppableStick2" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("8_scymu")]
 transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.898448, 2.717165, -15.361446)
 
-[node name="PickuppableStick3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("22_py50g")]
+[node name="PickuppableStick3" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("8_scymu")]
 transform = Transform3D(0.574391, 0, 0.818581, 0, 1, 0, -0.818581, 0, 0.574391, 0.39488554, 2.8279614, -16.497902)
 
-[node name="PickuppableStick" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("22_py50g")]
+[node name="PickuppableStick" parent="Terrain3DTerrain/NavigationRegion3D/Interactables" instance=ExtResource("8_scymu")]
 transform = Transform3D(0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, 0.671863, -1.96435, 2.7170916, -13.686777)
 
 [node name="CropBeds_Test" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D"]
@@ -223,190 +223,190 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.585886, 0)
 [node name="Node3D" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.07873)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch1/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Batch2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
@@ -415,190 +415,190 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.656944, 0, 0.2882309)
 [node name="Node3D" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.07873)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch2/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Batch3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
@@ -607,190 +607,190 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.037888, 0, 33.09024)
 [node name="Node3D" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.07873)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch3/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Batch4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test"]
@@ -799,190 +799,190 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.037888, 0, 0.37882233)
 [node name="Node3D" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78691, -0.32835293, -9.07873)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9052334, -1.2575254, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9680605, -1.2575254, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.2575254, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.2575254, -5.4759)
 
 [node name="Node3D2" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.9937134, -9.437186)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5921674, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.59216547, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921731, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5921855, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.5922251, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D2" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59220266, -5.4759)
 
 [node name="Node3D3" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35424, -0.97849464, 0.115409374)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.6073837, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.60738516, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.607388, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6074047, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D3" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.6073985, -5.4759)
 
 [node name="Node3D4" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.2589879, 0.20599842)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3268905, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3268905, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D4" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3268905, -5.4759)
 
 [node name="Node3D5" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67271, -0.19450855, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -1.3913698, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -1.3913698, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D5" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -1.3913698, -5.4759)
 
 [node name="Node3D6" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53203, -0.98886585, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, -0.5970125, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.5970125, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, -0.597013, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702444, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D6" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, -0.59702015, -5.4759)
 
 [node name="Node3D7" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5858784, 10.3225)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D7" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D8" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.5309172, 0.104932785)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D8" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="Node3D9" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7333, -1.4868045, -9.566155)
 
-[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -8)
 
-[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed2" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96806, 0, -5.38134)
 
-[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed3" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -5.38134)
 
-[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed4" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90857, 0, -8.02682)
 
-[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed5" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -8.02682)
 
-[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("23_kh0s5")]
+[node name="CropBed6" parent="Terrain3DTerrain/NavigationRegion3D/CropBeds_Test/Batch4/Node3D9" instance=ExtResource("132_fo3st")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87007, 0, -5.4759)
 
 [node name="FarmWorkers" type="Node3D" parent="."]
@@ -991,55 +991,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.206875, 4.864296, -16.9542
 [node name="Node3D" type="Node3D" parent="FarmWorkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.465369)
 
-[node name="WorkerAgent" parent="FarmWorkers/Node3D" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 
-[node name="WorkerAgent2" parent="FarmWorkers/Node3D" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
 
-[node name="WorkerAgent3" parent="FarmWorkers/Node3D" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
 
-[node name="WorkerAgent4" parent="FarmWorkers/Node3D" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
 
-[node name="WorkerAgent5" parent="FarmWorkers/Node3D" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
 
 [node name="Node3D2" type="Node3D" parent="FarmWorkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5401402, 0, 6.465369)
 
-[node name="WorkerAgent" parent="FarmWorkers/Node3D2" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
 
-[node name="WorkerAgent2" parent="FarmWorkers/Node3D2" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
 
-[node name="WorkerAgent3" parent="FarmWorkers/Node3D2" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
 
-[node name="WorkerAgent4" parent="FarmWorkers/Node3D2" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
 
-[node name="WorkerAgent5" parent="FarmWorkers/Node3D2" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D2" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
 
 [node name="Node3D3" type="Node3D" parent="FarmWorkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.308447, 0, 6.465369)
 
-[node name="WorkerAgent" parent="FarmWorkers/Node3D3" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
 
-[node name="WorkerAgent2" parent="FarmWorkers/Node3D3" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent2" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.834937)
 
-[node name="WorkerAgent3" parent="FarmWorkers/Node3D3" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent3" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774508, 0, 9.432953)
 
-[node name="WorkerAgent4" parent="FarmWorkers/Node3D3" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent4" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.431105, 0, 9.072546)
 
-[node name="WorkerAgent5" parent="FarmWorkers/Node3D3" instance=ExtResource("24_31qxb")]
+[node name="WorkerAgent5" parent="FarmWorkers/Node3D3" instance=ExtResource("137_x6kdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.153156)
 
-[node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("25_n70re")]
+[node name="ThirdPersonObserverCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("138_x6kdt")]
 target = NodePath("../FarmWorkers/Node3D/WorkerAgent")
 
 [editable path="StellarBodyPivot"]

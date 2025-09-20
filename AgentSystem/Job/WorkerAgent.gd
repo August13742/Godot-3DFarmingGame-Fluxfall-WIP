@@ -30,9 +30,9 @@ func _ready() -> void:
 	nav.radius = 0.35
 	nav.path_desired_distance = 0.35
 	nav.target_desired_distance = 0.60
-	nav.neighbor_distance = 8.0
+	nav.neighbor_distance = 3.0
 	nav.max_neighbors = 8
-	nav.time_horizon = 1.5
+	nav.time_horizon = 1.0
 	nav.avoidance_priority = randf_range(0.4, 0.6)
 
 	inventory = InventoryManager.get_inventory(self)

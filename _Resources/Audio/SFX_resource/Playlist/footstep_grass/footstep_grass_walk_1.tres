@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cgp1ebg1amn38" path="res://addons/augusts_audio_manager/resource_scripts/sfx_playlist_resource.gd" id="1_pdtjs"]
 [ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="2_8e4ak"]
-[ext_resource type="AudioStream" uid="uid://b6ngi4eww2nk5" path="res://Assets/Audio/SFX/footstep_grass/Grass footstep 9.wav" id="3_y80io"]
-[ext_resource type="AudioStream" uid="uid://4ydvcr4hsw8x" path="res://Assets/Audio/SFX/footstep_grass/Grass footstep 10.wav" id="4_7bfnw"]
+[ext_resource type="AudioStream" uid="uid://bs0186b07njm0" path="res://Assets/Audio/SFX/footstep_grass/Grass footstep 9.wav" id="3_y80io"]
+[ext_resource type="AudioStream" uid="uid://dfl6tplrfmpqt" path="res://Assets/Audio/SFX/footstep_grass/Grass footstep 10.wav" id="4_7bfnw"]
 
 [sub_resource type="Resource" id="Resource_pdtjs"]
 script = ExtResource("2_8e4ak")
