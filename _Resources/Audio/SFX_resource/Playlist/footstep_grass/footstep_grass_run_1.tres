@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cgp1ebg1amn38" path="res://addons/augusts_audio_manager/resource_scripts/sfx_playlist_resource.gd" id="1_jiv4x"]
 [ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="2_pf5qr"]
-[ext_resource type="AudioStream" uid="uid://s754sov7bjnw" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 1.wav" id="3_88woe"]
-[ext_resource type="AudioStream" uid="uid://cr4vk3bm2nrxa" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 2.wav" id="4_4hdaf"]
-[ext_resource type="AudioStream" uid="uid://b2l6mnmwdrc5y" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 3.wav" id="5_1f1am"]
-[ext_resource type="AudioStream" uid="uid://dodhekn5nqb8j" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 4.wav" id="6_uwlnm"]
-[ext_resource type="AudioStream" uid="uid://bvfpo53k4wyo1" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 5.wav" id="7_fbmqh"]
+[ext_resource type="AudioStream" uid="uid://btghqns886wld" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 1.wav" id="3_88woe"]
+[ext_resource type="AudioStream" uid="uid://l8cfymndt6cy" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 2.wav" id="4_4hdaf"]
+[ext_resource type="AudioStream" uid="uid://d4g643eqa2ntr" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 3.wav" id="5_1f1am"]
+[ext_resource type="AudioStream" uid="uid://bal7ho1h1vdex" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 4.wav" id="6_uwlnm"]
+[ext_resource type="AudioStream" uid="uid://dpaan0silttle" path="res://Assets/Audio/SFX/footstep_grass/running/Heavy (Running)  Grass footsteps 5.wav" id="7_fbmqh"]
 
 [sub_resource type="Resource" id="Resource_88woe"]
 script = ExtResource("2_pf5qr")

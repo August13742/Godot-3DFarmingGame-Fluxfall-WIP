@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://duk3u8alhl1xl" path="res://CropSystem/TomatoAssets/tomato_resource.tres" id="2_rrolh"]
 [ext_resource type="Script" uid="uid://de8cj314mun1f" path="res://Items/_ItemCapabilities/seed_capability.gd" id="3_g3ljl"]
 [ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/_ItemCapabilities/crafting_capability.gd" id="4_g3ljl"]
-[ext_resource type="Texture2D" uid="uid://5dutjrksv0co" path="res://Assets/textures/tomato_seed.png" id="4_u3qjr"]
+[ext_resource type="Texture2D" uid="uid://bqwrp5gnlmagu" path="res://Assets/textures/tomato_seed.png" id="4_u3qjr"]
 
 [sub_resource type="Resource" id="Resource_rf3jr"]
 script = ExtResource("3_g3ljl")

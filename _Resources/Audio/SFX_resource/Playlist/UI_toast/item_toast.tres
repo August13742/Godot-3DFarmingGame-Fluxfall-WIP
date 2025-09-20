@@ -2,19 +2,23 @@
 
 [ext_resource type="Script" uid="uid://cgp1ebg1amn38" path="res://addons/augusts_audio_manager/resource_scripts/sfx_playlist_resource.gd" id="1_klubq"]
 [ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="2_1qlwn"]
-[ext_resource type="AudioStream" uid="uid://c2x1eo40qajbq" path="res://Assets/Audio/SFX/UI/notification/Pop sounds 3.wav" id="3_34jcp"]
-[ext_resource type="AudioStream" uid="uid://blbiqp6p2d817" path="res://Assets/Audio/SFX/UI/notification/Pop sounds 4.wav" id="4_j2vjf"]
+
+[sub_resource type="Resource" id="Resource_vn7gi"]
+metadata/__load_path__ = "res://Assets/Audio/SFX/UI/notification/Pop sounds 3.wav"
 
 [sub_resource type="Resource" id="Resource_klubq"]
 script = ExtResource("2_1qlwn")
 event_name = &"item_toast"
-stream = ExtResource("3_34jcp")
+stream = SubResource("Resource_vn7gi")
 metadata/_custom_type_script = "uid://dflujhnkuiakc"
+
+[sub_resource type="Resource" id="Resource_p7gys"]
+metadata/__load_path__ = "res://Assets/Audio/SFX/UI/notification/Pop sounds 4.wav"
 
 [sub_resource type="Resource" id="Resource_1qlwn"]
 script = ExtResource("2_1qlwn")
 event_name = &"item_toast"
-stream = ExtResource("4_j2vjf")
+stream = SubResource("Resource_p7gys")
 metadata/_custom_type_script = "uid://dflujhnkuiakc"
 
 [resource]

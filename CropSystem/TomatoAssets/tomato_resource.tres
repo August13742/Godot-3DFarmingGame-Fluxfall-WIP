@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://clnxvwrwrc84d" path="res://CropSystem/billboard_plant_resource.gd" id="1_0radq"]
 [ext_resource type="Script" uid="uid://bgmgqqwo62kc3" path="res://addons/augusts_item_system/src/LootSystem/LootDrop.gd" id="1_xkggq"]
-[ext_resource type="Texture2D" uid="uid://bgqgqh1vvyjem" path="res://CropSystem/TomatoAssets/tomato_seed.png" id="2_pcs0c"]
+[ext_resource type="Texture2D" uid="uid://btlpe41n8qph8" path="res://CropSystem/TomatoAssets/tomato_seed.png" id="2_pcs0c"]
 [ext_resource type="Script" uid="uid://cay3bwapco2q" path="res://addons/augusts_item_system/src/LootSystem/LootTable.gd" id="2_yoc6u"]
-[ext_resource type="Texture2D" uid="uid://bt65bgujducff" path="res://CropSystem/TomatoAssets/tomato_1.png" id="3_xoaus"]
-[ext_resource type="Texture2D" uid="uid://be8kgfcoji32" path="res://CropSystem/TomatoAssets/tomato_2.png" id="4_xkggq"]
-[ext_resource type="Texture2D" uid="uid://wkr56a3o0nlb" path="res://CropSystem/TomatoAssets/tomato_3.png" id="5_yoc6u"]
-[ext_resource type="Texture2D" uid="uid://dnbnklyai6ydd" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="6_j2wst"]
+[ext_resource type="Texture2D" uid="uid://cuend41a6abuh" path="res://CropSystem/TomatoAssets/tomato_1.png" id="3_xoaus"]
+[ext_resource type="Texture2D" uid="uid://dgnnwt3ilw6ua" path="res://CropSystem/TomatoAssets/tomato_2.png" id="4_xkggq"]
+[ext_resource type="Texture2D" uid="uid://do2nkf6kwemym" path="res://CropSystem/TomatoAssets/tomato_3.png" id="5_yoc6u"]
+[ext_resource type="Texture2D" uid="uid://db3xxp8ovu20x" path="res://CropSystem/TomatoAssets/tomato_harvestable.png" id="6_j2wst"]
 
 [sub_resource type="Resource" id="Resource_j2wst"]
 script = ExtResource("1_xkggq")
