@@ -17,4 +17,3 @@ mono_crash.*.json
 
 /[Aa]ssets/Models
 addons/terrain_3d/bin/~libterrain.windows.debug.x86_64.dll
-*.import

@@ -1,30 +1,26 @@
-[gd_scene load_steps=39 format=3 uid="uid://btvjowxht2eqb"]
+[gd_scene load_steps=35 format=3 uid="uid://cjnhanlw5kn5k"]
 
-[ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_1urph"]
-[ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://Game/singleton_param_manager.tscn" id="2_06g1x"]
-[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="3_td5h0"]
-[ext_resource type="Material" uid="uid://cr8yf6r3utjih" path="res://Shaders/water/water_mat.tres" id="4_ngpkt"]
-[ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Player/player.tscn" id="5_0156u"]
-[ext_resource type="PackedScene" uid="uid://ce7x24023mjjs" path="res://Interactables/interactable_crafting_table.tscn" id="6_lf4w1"]
-[ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="7_77lm3"]
-[ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="8_r8f6d"]
-[ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="9_x6eig"]
-[ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="10_4gr75"]
-[ext_resource type="Texture2D" uid="uid://ba1vjpgsbjua7" path="res://Terrain_Materials/Dirt/Ground048_normal_roughness.dds" id="11_o5f0w"]
-[ext_resource type="Texture2D" uid="uid://dll5d1vyoxju0" path="res://Terrain_Materials/Grass/Grass005_alb_ht.dds" id="12_hg65b"]
-[ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="13_enth3"]
-[ext_resource type="Texture2D" uid="uid://doc7pta1n3v4m" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="14_ei7st"]
-[ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="15_exlnb"]
-[ext_resource type="PackedScene" uid="uid://bpacbdkmsf8k7" path="res://Game/EnvironmentProps/bush_large_flowers_2.tscn" id="16_43t8w"]
-[ext_resource type="PackedScene" uid="uid://becbt2x1mr2ro" path="res://Game/EnvironmentProps/birch_1.tscn" id="17_p2cuo"]
-[ext_resource type="PackedScene" uid="uid://cguifwdmpcs8s" path="res://Assets/House_1.fbx" id="18_dk7uv"]
-[ext_resource type="PackedScene" uid="uid://cunx4bcjyhuck" path="res://Assets/House_6.fbx" id="19_0e2q5"]
-[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Interactables/Pickuppable/pickuppable_plant.tscn" id="20_cpgts"]
-[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Interactables/Pickuppable/pickuppable_stone.tscn" id="21_syupe"]
-[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Interactables/Pickuppable/pickuppable_stick.tscn" id="22_py50g"]
-[ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="23_kh0s5"]
-[ext_resource type="PackedScene" uid="uid://ciuak5sa6q3d5" path="res://WorkerAgent.tscn" id="24_31qxb"]
-[ext_resource type="PackedScene" uid="uid://xmcx5xkq3gkl" path="res://ThirdPersonObserverCamera.tscn" id="25_n70re"]
+[ext_resource type="Script" uid="uid://cwcdrudgi0du0" path="res://Stages/props_display.gd" id="1_fo3st"]
+[ext_resource type="PackedScene" uid="uid://cdx24tp2iaxsg" path="res://Game/singleton_param_manager.tscn" id="1_n55d4"]
+[ext_resource type="PackedScene" uid="uid://bs70xfn55ex4t" path="res://Player/player.tscn" id="2_ifwko"]
+[ext_resource type="Material" uid="uid://cr8yf6r3utjih" path="res://Shaders/water/water_mat.tres" id="2_nn42n"]
+[ext_resource type="PackedScene" uid="uid://bkpgqhu8go28h" path="res://Game/Entities/camera_pivot.tscn" id="3_i4xcx"]
+[ext_resource type="PackedScene" uid="uid://ce7x24023mjjs" path="res://Interactables/interactable_crafting_table.tscn" id="3_obi5q"]
+[ext_resource type="PackedScene" uid="uid://co12d6uowlfjy" path="res://Interactables/Pickuppable/pickuppable_plant.tscn" id="6_nd6yq"]
+[ext_resource type="PackedScene" uid="uid://cw0ufxjm5rsv7" path="res://Interactables/Pickuppable/pickuppable_stone.tscn" id="7_rbk52"]
+[ext_resource type="PackedScene" uid="uid://cl7fwbpso8ks5" path="res://Interactables/Pickuppable/pickuppable_stick.tscn" id="8_scymu"]
+[ext_resource type="PackedScene" uid="uid://gqd858l1d1ha" path="res://DayNightSystem/stellar_body_pivot.tscn" id="129_yw2k5"]
+[ext_resource type="Material" uid="uid://bm3i4ub665khr" path="res://Shaders/Grass/grass_shader_material.tres" id="130_hstgi"]
+[ext_resource type="PackedScene" uid="uid://rsy6jpv53yey" path="res://Shaders/Grass/grass.glb" id="131_x6kdt"]
+[ext_resource type="PackedScene" uid="uid://b0f5pkoncrqki" path="res://CropSystem/crop_bed.tscn" id="132_fo3st"]
+[ext_resource type="Texture2D" uid="uid://tk4t38kf71u1" path="res://Terrain_Materials/Dirt/Ground048_albedo_height.dds" id="132_iwxxf"]
+[ext_resource type="Texture2D" uid="uid://ba1vjpgsbjua7" path="res://Terrain_Materials/Dirt/Ground048_normal_roughness.dds" id="133_lrhjx"]
+[ext_resource type="Texture2D" uid="uid://dll5d1vyoxju0" path="res://Terrain_Materials/Grass/Grass005_alb_ht.dds" id="134_c86qy"]
+[ext_resource type="Texture2D" uid="uid://dlktkepdil024" path="res://Terrain_Materials/Grass/Grass005_normal_roughness.dds" id="135_i1xbi"]
+[ext_resource type="Texture2D" uid="uid://doc7pta1n3v4m" path="res://Terrain_Materials/Rock/Rock030_albedo_height.dds" id="136_d7hgg"]
+[ext_resource type="Texture2D" uid="uid://7grvonusa1q0" path="res://Terrain_Materials/Rock/Rock030_normal_roughness.dds" id="137_g7p8p"]
+[ext_resource type="PackedScene" uid="uid://ciuak5sa6q3d5" path="res://WorkerAgent.tscn" id="137_x6kdt"]
+[ext_resource type="PackedScene" uid="uid://xmcx5xkq3gkl" path="res://ThirdPersonObserverCamera.tscn" id="138_x6kdt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hox20"]
 size = Vector2(750, 750)
@@ -91,7 +87,7 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gr1n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75i28"]
 transparency = 4
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -107,7 +103,7 @@ id = 1
 generated_type = 1
 height_offset = 0.5
 density = 0.01
-material_override = SubResource("StandardMaterial3D_6gr1n")
+material_override = SubResource("StandardMaterial3D_75i28")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
@@ -182,21 +178,6 @@ collision_mode = 4
 collision_mask = 0
 top_level = true
 metadata/_edit_lock_ = true
-
-[node name="EnvironmentalProps" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.307884, 0)
-
-[node name="Bush_Large_Flowers2" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("16_43t8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.11042595, 9.245023)
-
-[node name="Birch_3" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("17_p2cuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.045756817, 12.489952)
-
-[node name="House_1" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("18_dk7uv")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 21.238737, -0.30802917, -46.57261)
-
-[node name="House_6" parent="Terrain3DTerrain/NavigationRegion3D/EnvironmentalProps" instance=ExtResource("19_0e2q5")]
-transform = Transform3D(0.41300184, 0, 9.991467, 0, 10, 0, -9.991467, 0, 0.41300184, -37.08259, -0.31935406, 16.031532)
 
 [node name="Interactables" type="Node3D" parent="Terrain3DTerrain/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.332806, 0.56373405)
