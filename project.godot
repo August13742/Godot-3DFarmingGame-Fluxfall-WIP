@@ -12,7 +12,7 @@ config_version=5
 
 config/name="3D_survival"
 run/main_scene="uid://cmpehjugcnqvw"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
@@ -26,9 +26,9 @@ database/catalogue_save_path="res://Items/_Generated/item_catalogue.tres"
 EventSystem="*res://Game/EventSystem.gd"
 InventoryManager="*res://InventorySystem/Singleton/inventory_manager.gd"
 TimeManager="*res://DayNightSystem/TimeManager.gd"
-ItemDatabase="*res://addons/augusts_item_system/src/item_database.gd"
+ItemDatabase="*uid://btmg4ewrovehs"
 NotificationSystem="*res://UI/NotificationUI/NotificationSystem.gd"
-AudioManager="*res://addons/augusts_audio_manager/AudioManager.gd"
+AudioManager="*uid://baxdbfpniwqt5"
 NPCEventSystem="*res://AgentSystem/Job/Singleton/NPCEventSystem.gd"
 NPCTaskProcessor="*res://AgentSystem/Job/Singleton/NPCTaskProcessor.gd"
 NPCJobBoard="*res://AgentSystem/Job/Singleton/NPCJobBoard.gd"

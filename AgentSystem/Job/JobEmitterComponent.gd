@@ -47,7 +47,7 @@ func _on_trigger_signal_received(...args)->void:
 		if typeof(received_value) != typeof(activation_value):
 			push_warning("JobEmitterComponent: Type mismatch for magnitude comparison.")
 			return # Abort comparison to prevent crash
-			
+
 	match condition:
 		Condition.EQUALS:
 			condition_met = (received_value == activation_value)
@@ -67,7 +67,7 @@ func _on_trigger_signal_received(...args)->void:
 			else:
 				push_warning("JobEmitterComponent: validation_method '%s' not found on owner." % validation_method)
 				condition_met = false # Treat as failure if method is missing.
-				
+
 	if condition_met and not _opportunity_posted:
 		_post_opportunity()
 	elif not condition_met and _opportunity_posted:

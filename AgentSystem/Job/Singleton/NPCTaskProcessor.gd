@@ -34,9 +34,9 @@ func _execute_validate(task: JobTask_Validate, agent: WorkerAgent, job: JobInsta
 		_complete(job.unique_id, agent.worker_id, false)
 		printerr("Tried to execute Interact but Target Or Method to Call not Valid")
 		return
-		
+
 	var validation_method: StringName = task.method_to_call
-	
+
 	if is_instance_valid(target_node) and target_node.has_method(validation_method):
 		var is_valid: bool = target_node.call(validation_method)
 		_complete(job.unique_id, agent.worker_id, is_valid)
@@ -48,7 +48,7 @@ func _execute_use_item(task: JobTask_UseItem, agent: WorkerAgent, job: JobInstan
 	## WARNING currently no job should use this, not before item handler implementation
 	var item_id: StringName = job.payload.get(&"item_to_consume", &"")
 	var amount := int(job.payload.get(&"amount", 1))
-	
+
 	if item_id == &"" or amount <= 0:
 		_complete(job.unique_id, agent.worker_id, false); return
 
@@ -80,44 +80,44 @@ func _execute_interact(task: JobTask_Interact, agent: WorkerAgent, job: JobInsta
 		_complete(job.unique_id, agent.worker_id, false)
 		printerr("Tried to execute Interact but Target Or Method to Call not Valid")
 		return
-		
-	if task.animation_to_play: 
+
+	if task.animation_to_play:
 		agent.play_action_animation(task.animation_to_play)
-		
+
 	# build context
 	var context:ActionContext = ActionContext.new()
 	context.agent = agent
 	context.inventory = agent.inventory if task.pass_agent_inventory else null
 	context.job = job
-	
+
 	# if action needs bound item, resolve then sanity check
 	if task.required_binding != &"":
 		var bind:Dictionary = job.payload.get(&"bindings",{}).get(task.required_binding,{})
 		if bind.is_empty():
 			_complete(job.unique_id,agent.worker_id,false); return
-			
+
 		context.binding_key = task.required_binding
 		context.item_id = bind.get(&"item_id",&"")
 		context.amount = int(bind.get(&"amount",1))
 		context.capability_script = bind.get(&"capability_script")
 		context.item_template = ItemDatabase.get_item_by_id(context.item_id)
-		
+
 		# verify item still exist (in case item lost during previous tasks)
 		## TODO? if cap requirement, scan for alternative item
 		if not agent.inventory.has_item(context.item_id,max(context.amount,1)):
 			_complete(job.unique_id,agent.worker_id, false); return
-			
+
 	# call target and normalise return
 	var result:ActionResult = ActionResult.from_variant(target.call(task.method_to_call, context))
 	var ok:bool = result.ok
-	
+
 	# if success, consume item
 	if ok and not result.consume.is_empty():
 		var consume_id:StringName = result.consume.get(&"item_id",&"")
 		var consume_amount:int = int(result.consume.get(&"amount",1))
 		if consume_id != &"" and consume_amount >0:
 			ok = agent.inventory.remove_item(consume_id,consume_amount)
-		
+
 	# fallback:req said consumable but target didn't specify consume
 	if ok and task.required_binding != &"" and result.consume.is_empty():
 		var fallback:Dictionary = job.payload.get(&"bindings",{}).get(task.required_binding,{})

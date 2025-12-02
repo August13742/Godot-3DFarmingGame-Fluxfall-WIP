@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=4 format=3 uid="uid://dras1fyas3gah"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=6 format=3 uid="uid://dras1fyas3gah"]
 
 [ext_resource type="Script" uid="uid://st163vlu3h2d" path="res://addons/augusts_item_system/src/item_capability.gd" id="1_qls68"]
 [ext_resource type="Texture2D" uid="uid://brvs63xyheagy" path="res://Assets/textures/item_icons/plant.png" id="1_v7u3t"]
+[ext_resource type="Script" uid="uid://qclmy6o7r0i4" path="res://Items/_ItemCapabilities/crafting_capability.gd" id="2_i2cka"]
 [ext_resource type="Script" uid="uid://b2xj7qh8w38lo" path="res://addons/augusts_item_system/src/item_resource.gd" id="3_i2cka"]
+
+[sub_resource type="Resource" id="Resource_wvojd"]
+script = ExtResource("2_i2cka")
+metadata/_custom_type_script = "uid://qclmy6o7r0i4"
 
 [resource]
 script = ExtResource("3_i2cka")
@@ -10,3 +15,4 @@ id = &"plant"
 display_name = "Plant"
 icon = ExtResource("1_v7u3t")
 description = null
+capabilities = Array[ExtResource("1_qls68")]([SubResource("Resource_wvojd")])

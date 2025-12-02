@@ -11,7 +11,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var aim_data: Dictionary = camera.get_aim_target()
-	
+
 	_update_head_look(aim_data.point)
 	_check_for_interactable(aim_data)
 	_check_action_obstruction(aim_data)
@@ -25,7 +25,7 @@ func _update_head_look(target_point: Vector3) -> void:
 func _check_action_obstruction(aim_data: Dictionary) -> void:
 	var target_point: Vector3 = aim_data.point
 	var intended_collider: Object = aim_data.collider
-	
+
 	# If the camera isn't aiming at anything specific, there's nothing to be obstructed from.
 	# We can treat the path as clear unless the hand-ray hits something very close.
 	if intended_collider == null:
@@ -35,7 +35,7 @@ func _check_action_obstruction(aim_data: Dictionary) -> void:
 
 	var hand_position: Vector3 = player.right_hand.global_position
 	var direction_to_target: Vector3 = (target_point - hand_position).normalized()
-	
+
 	var space_state: PhysicsDirectSpaceState3D = owner.get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.create(hand_position, hand_position + direction_to_target * 100.0)
 	params.exclude = [player]
@@ -78,14 +78,14 @@ func handle_interaction(aim_data: Dictionary) -> void:
 	if collider is Interactable:
 		(collider as Interactable).start_interaction(player)
 		return
-	
+
 	# If not looking at an Interactable, perform the default action (e.g., swing tool).
 	if not is_action_obstructed:
 		# player.perform_action(aim_data.point)
 		print("Performing default action towards: ", aim_data.point)
 	else:
 		print("Action obstructed!")
-		
+
 func _clear_prompt() -> void:
 	if not last_prompt_text.is_empty():
 		last_prompt_text = ""

@@ -62,7 +62,7 @@ func _get_property_list() -> Array:
 				"hint": PROPERTY_HINT_RESOURCE_TYPE, "hint_string": "ItemResource",
 				"usage": PROPERTY_USAGE_DEFAULT, "class_name": "ItemResource"
 			})
-			
+
 			if not _warning_message.is_empty():
 				p.append({
 					"name": "WARNING", "type": TYPE_STRING,
@@ -75,7 +75,7 @@ func _get_property_list() -> Array:
 					"hint": PROPERTY_HINT_ENUM, "hint_string": ",".join(_cap_choices_names),
 					"usage": PROPERTY_USAGE_DEFAULT
 				})
-			
+
 			if _cap_script:
 				p.append({
 					"name": "resolved_capability", "type": TYPE_STRING,
@@ -130,13 +130,13 @@ func _resolve_capability_desired():
 			var s: Script = cap.get_script()
 			_cap_choices_names.append(s.get_global_name())
 			_cap_choices_scripts.append(s)
-			
+
 	if _cap_choices_scripts.is_empty():
 		_warning_message = "ERROR: The provided 'Example Item' has no capabilities."
-		
+
 	elif _cap_choices_scripts.size() == 1:
 		_cap_script = _cap_choices_scripts[0]
 		_cap_choice_idx = 0
-	
+
 	# rebuild Inspector UI based on the new state
 	notify_property_list_changed()

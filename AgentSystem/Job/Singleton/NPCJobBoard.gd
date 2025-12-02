@@ -7,7 +7,7 @@ signal job_lists_changed
 enum AgentStatus { Idle, Active, Unknown }
 
 ## periodically try to assign pending jobs
-@export var job_assignment_attempt_interval:float = 5.0 
+@export var job_assignment_attempt_interval:float = 5.0
 ## The base time to wait before re-posting a failed job.
 @export var job_retry_delay: float = 5.0
 
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	if internal_timer >= job_assignment_attempt_interval:
 		internal_timer = 0
 		_try_to_assign_jobs()
-		
+
 func register_idle_agent(agent: WorkerAgent) -> void:
 	_all_agents[agent.worker_id] = agent
 	_idle_agents[agent.worker_id] = agent
@@ -62,7 +62,7 @@ func _check_agent_requirements(agent: WorkerAgent, template: JobData) -> Diction
 	# --- Item Requirement Check ---
 	var cap_script: Script
 	var choice_id: StringName
-	
+
 	for req: ItemRequirement in template.item_requirements:
 		var key: StringName = req.binding_key
 		if key == &"":
@@ -152,7 +152,7 @@ func _on_job_opportunity_created(params: Dictionary) -> void:
 	if _locks.has(job.lock_key): return
 	if _has_duplicate_pending(job): return
 	_pending_jobs.append(job)
-	
+
 	job_lists_changed.emit()
 
 func _assign_job_to_agent(job:JobInstance,agent:WorkerAgent, payload:Dictionary)->void:
@@ -163,7 +163,7 @@ func _assign_job_to_agent(job:JobInstance,agent:WorkerAgent, payload:Dictionary)
 	job.assigned_agent_id = agent.worker_id
 	job.status = JobInstance.Status.Active
 	job.payload = payload
-	
+
 	_pending_jobs.erase(job)
 	_active_jobs[job.unique_id] = job
 	_idle_agents.erase(agent.worker_id)
@@ -183,7 +183,7 @@ func _try_to_assign_jobs() -> void:
 		var result = _find_best_agent_for_job(job)
 		var agent: WorkerAgent = result.agent
 		var payload: Dictionary = result.payload
-		
+
 		if agent:
 			_acquire_lock(job)
 			_assign_job_to_agent(job,agent, payload)
@@ -202,9 +202,9 @@ func _find_best_agent_for_job(job:JobInstance)->Dictionary:
 
 	for agent in _idle_agents.values():
 		var requirement_payload:Dictionary = _check_agent_requirements(agent, job.template)
-		if requirement_payload.is_empty(): 
+		if requirement_payload.is_empty():
 			continue
-		
+
 
 		var distance_sq:float= agent.global_position.distance_squared_to(job.target_pos)
 		if distance_sq < 0.01: distance_sq = 0.01 # avoid /0
@@ -233,7 +233,7 @@ func finish_job(job_id: int, success: bool):
 	# Emit the signal immediately on success OR failure.
 	# This ensures the agent is always released back to the idle pool.
 	NPCEventSystem.job_finished.emit(job_id, success)
-	
+
 	# handle re-queuing if the job failed
 	if not success:
 		job.retry_count += 1
@@ -241,16 +241,16 @@ func finish_job(job_id: int, success: bool):
 		if job.template.is_persistent:
 			var backoff_delay: float = job_retry_delay * pow(2, job.retry_count - 1)
 			_requeue_job_with_delay(job, backoff_delay)
-		
+
 		elif job.retry_count < job.max_retries:
 			_requeue_job_with_delay(job, job_retry_delay)
-			
+
 		else:
 			print_debug("Job %d (%s) permanently failed after %d retries.
 			" % [job.unique_id, job.template_name(), job.retry_count])
-	
+
 	job_lists_changed.emit()
-	
+
 ## Creates a timer to re-post a failed job after a specified delay.
 func _requeue_job_with_delay(job: JobInstance, delay: float) -> void:
 	print_debug("Re-queuing job %d in %.1f seconds. (Attempt %d)" % [job.unique_id, delay, job.retry_count])
@@ -267,12 +267,12 @@ func _on_requeue_timer_timeout(job: JobInstance) -> void:
 	job.status = JobInstance.Status.Pending
 	job.assigned_agent_id = -1
 	job.current_task_index = 0
-	
+
 	# Add back to the pending list
 	_pending_jobs.append(job)
 	job_lists_changed.emit()
 	print_debug("Job %d has been re-added to the pending queue." % job.unique_id)
-	
+
 #region Query API
 func get_pending_jobs() -> Array[JobInstance]: return _pending_jobs
 func get_active_jobs()  -> Array[JobInstance]: return _active_jobs.values()

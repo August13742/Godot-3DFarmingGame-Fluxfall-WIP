@@ -30,7 +30,7 @@ func _ready() -> void:
 	btn_focus.pressed.connect(_on_focus)
 	btn_requeue.pressed.connect(_on_requeue)
 	btn_cancel.pressed.connect(_on_cancel)
-	
+
 	# Add Agent Inv button to the same toolbar
 	_btn_agent_inv = Button.new()
 	_btn_agent_inv.text = "Agent Inv"
@@ -148,7 +148,7 @@ func _fill_job_row_pending(it: TreeItem, j: JobInstance) -> void:
 		&"type":"job", &"job_id": j.unique_id, &"active": false,
 		&"agent_id": -1, &"target_pos": j.target_pos
 	})
-	
+
 func _fill_job_row_active(it: TreeItem, j: JobInstance) -> void:
 	var status_names = ["Pending","Active","Complete","Failed"]
 	it.set_text(0, str(j.unique_id))
@@ -173,10 +173,10 @@ func _fill_job_row_active(it: TreeItem, j: JobInstance) -> void:
 
 func _fill_agent_row(it: TreeItem, ag: WorkerAgent) -> void:
 	var s := NPCJobBoard.get_agent_status(ag.worker_id)
-	
+
 	var s_txt :String = "Idle" if s == NPCJobBoard.AgentStatus.Idle \
 	else "Active" if s == NPCJobBoard.AgentStatus.Active else "Unknown"
-	
+
 	it.set_text(0, str(ag.worker_id))
 	it.set_text(1, s_txt)
 	it.set_text(2, _format_vector3(ag.global_position))
@@ -184,7 +184,7 @@ func _fill_agent_row(it: TreeItem, ag: WorkerAgent) -> void:
 	it.set_text(3, &"Job " + str(jid) if jid >= 0 else "")
 	it.set_metadata(0, { &"type":&"agent", &"agent_id": ag.worker_id })
 
-	
+
 func _update_toolbar_state() -> void:
 	var inv_ok := false
 	if not _selected_meta.is_empty():
@@ -193,7 +193,7 @@ func _update_toolbar_state() -> void:
 		elif _selected_meta.get(&"type") == &"job" and _selected_meta.get(&"active", false) and _selected_meta.get(&"agent_id", -1) >= 0:
 			inv_ok = true
 	_btn_agent_inv.disabled = not inv_ok
-	
+
 func _on_any_selection_changed() -> void:
 	_selected_meta = _get_selected_meta()
 	_last_selection = _last_selection if _selected_meta.is_empty() else _selected_meta.duplicate(true)
@@ -222,7 +222,7 @@ func _restore_selection(prev: Dictionary) -> void:
 	if ok:
 		_selected_meta = _get_selected_meta()
 		_update_toolbar_state()
-		
+
 func _select_job_in_tree(tree: Tree, job_id: int) -> bool:
 	return _select_by_predicate(tree, func(item: TreeItem) -> bool:
 		var md: Variant = item.get_metadata(0)
@@ -262,7 +262,7 @@ func _walk_and_select(tree: Tree, it: TreeItem, pred: Callable) -> bool:
 			return true
 		cur = cur.get_next()
 	return false
-	
+
 func _on_focus() -> void:
 	var meta = _get_selected_meta()
 	if meta.is_empty(): return
@@ -298,7 +298,7 @@ func _on_show_agent_inventory() -> void:
 	if _inv_window and _inv_window.visible:
 		_on_inv_close()
 		return
-		
+
 	if _selected_meta.is_empty(): return
 	var agent_id := -1
 	if _selected_meta.get(&"type") == &"agent":
@@ -398,7 +398,7 @@ func _ensure_inv_window() -> void:
 
 
 	add_child(_inv_window)
-	
+
 func _on_inv_close() -> void:
 	if _inv_window:
 		_inv_window.hide()
