@@ -62,6 +62,9 @@ Fluxfall は 3D 農業シムの技術検証用プロジェクトである. 焦�
 ## コアシステム
 
 ### エージェントシステム
+<img width="1752" height="1125" alt="image" src="https://github.com/user-attachments/assets/46b76b00-2562-45eb-b3ce-6a7929d2cb78" />
+<img width="1055" height="1099" alt="image" src="https://github.com/user-attachments/assets/e5fb28a8-d32b-4484-843a-55ba28da53f5" />
+
 
 エージェントはジョブボードからジョブを発見・予約・実行する. 現状の選択は予約ベース（優先度・距離・スキル）であり, フルのユーティリティスコアリング層は計画中である. 
 
@@ -90,7 +93,7 @@ utility(job, agent) = w_d * f_distance(agent, job)
 * 文脈項は給水の緊急度, 収穫劣化などを扱う. 
 
 **ジョブライフサイクル**
-
+  
 1. エミッタ/マネージャが**機会投稿**. 
 2. **探索**. ボード照会（必要なら空間セルでフィルタ）. 
 3. **予約**. トークン＋TTL で競合とスラッシングを抑制. 
@@ -103,11 +106,11 @@ utility(job, agent) = w_d * f_distance(agent, job)
 * 障害物判定はカメラ/インタラクション系と整合. 
 
 **性能フック（計画/一部実装）**
-
 * **空間分割**. ジョブ/インタラクト対象をグリッドでバケツ分け. 近傍セルのみ照会. 
 * **再評価カデンス**. 照会のスタッガリングと指数バックオフでボード負荷を平準化. 
 * **キャッシュ**. エージェント局所 LRU, およびボード側のケイパビリティ/タグ索引. 
-
+<img width="622" height="1125" alt="image" src="https://github.com/user-attachments/assets/e6c6410c-f76b-4b31-bc4d-e89b658af280" />
+<img width="1065" height="1125" alt="image" src="https://github.com/user-attachments/assets/462ec426-0698-438d-ac94-40cdfabe9808" />
 ### アイテム・インベントリ・クラフティング
 
 **ケイパビリティ基盤**で継承増殖を回避. 
