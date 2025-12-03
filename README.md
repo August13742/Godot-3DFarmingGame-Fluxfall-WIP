@@ -63,6 +63,7 @@ This project prioritises **clean seams between systems** and **data-driven autho
 ## Core Systems
 
 ### Agent System
+<img width="1752" height="1125" alt="image" src="https://github.com/user-attachments/assets/f14c932a-51c0-40e6-b2a9-d80e6f21cb39" />
 
 Autonomous worker NPCs that discover, reserve, and execute jobs from the world. **Current selection is reservation-based** (priority/distance/skill filters); a full utility-scoring layer is planned.
 
