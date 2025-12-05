@@ -34,7 +34,7 @@ namespace CharacterControl
                 if (cmd.VelMode == VelocityMode.Accumulate) totalImpulse += cmd.TargetVelocity;
             }
 
-            PhysicsResult result = new PhysicsResult();
+            PhysicsResult result = new();
             Vector3 currentVel = character.Velocity;
 
             // 3. resolve velocity
