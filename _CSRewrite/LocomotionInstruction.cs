@@ -1,69 +1,74 @@
 using Godot;
-namespace HFSM
+using System;
+namespace CharacterControl
 {
-    public struct LocomotionInstruction
+#region Locomotion Definitions
+    [Flags] public enum AxisMask { None = 0, X = 1, Y = 2, Z = 4, XZ = 5, XYZ = 7 }
+    public enum FacingMode 
+    { 
+        Keep,           // Don't touch rotation
+        FaceMovement,   // Rotate towards Velocity (Standard locomotion)
+        FaceTarget,     // Rotate towards a specific Node3D (Combat lock-on)
+        FacePosition,   // Rotate towards a specific Vector3 (Mouse aim/Skillshot)
+    }
+    public enum VelocityMode
     {
-        public enum VelocityType { None, SetImmediate, Dampen }
-        public enum FacingType { Keep, FaceMovement, FaceTarget, FaceExplicit }
-        
-        [Flags] public enum AxisMask { None = 0, X = 1, Y = 2, Z = 4, XZ = 5, XYZ = 7 }
-        public enum Priority{LOW=0,ACTION=100,HIGH=200,STUN=500}
+        None,           // Apply nothing (Standard friction applies)
+        SetImmediate,   // Hard override (Teleport/Snap)
+        Dampen,         // Smooth stop (Friction)
+        Accumulate      // Additive (Knockback/Explosions)
+    }
+    public static class AnimationChannel
+    {
+        public const int Locomotion = 0;
+        public const int Action = 1;
+        public const int Reaction = 2; //hitstun
+        public const int Cinematic = 3;
+        public const int Count = 4; // tootal size
+    }
+#endregion
+public record struct LocomotionInstruction
+{
+    public int Priority           { get; init; }
+    public VelocityMode VelMode   { get; init; }
+    public Vector3 TargetVelocity { get; init; }
+    public AxisMask DampenAxis    { get; init; }
+    public float DampenHalfLife   { get; init; }
+    public bool IgnoreGravity     { get; init; }
 
-        // Data
-        public int Priority;
-        public bool LockMovement;
-        public bool IgnoreGravity;
-        
-        // Physics
-        public Vector3 AddImpulse; // Additive (Frame specific)
-        public bool ImpulseRelativeToFacing;
-        
-        // Velocity Overrides
-        public VelocityType VelocityCommand;
-        public Vector3 VelocityTarget;
-        public float VelocityDampingHalfLife;
-        public AxisMask VelocityDampenAxis;
-        
-        // Facing
-        public FacingType FacingPolicy;
-        public Vector3 ExplicitFacingDirection;
-        public bool ReverseFacing;
-        
-        // One-shot logic handling (State resets this, Arbiter consumes it)
-        public bool FacingOneShot; 
+    public FacingMode Facing          { get; init; }
+    public Vector3? ExplicitFacingPos { get; init; }
+    public Node3D TargetNode          { get; init; }
 
-        public float MaxSpeedScale;
+    public bool LockMovement { get; init; }
+    public float SpeedScale  { get; init; }
 
-        // Default Constructor Helper
-        public static LocomotionInstruction Default()
-        {
-            return new LocomotionInstruction
-            {
-                Priority = PRIORITY_LOW,
-                MaxSpeedScale = 1.0f,
-                VelocityDampingHalfLife = 0.12f,
-                VelocityDampenAxis = AxisMask.XZ,
-                ImpulseRelativeToFacing = true
-            };
-        }
+    public LocomotionInstruction(int priority, VelocityMode velMode = VelocityMode.None)
+    {
+        Priority = priority;
+        VelMode = velMode;
+        TargetVelocity = Vector3.Zero;
+        DampenAxis = AxisMask.XZ;
+        DampenHalfLife = 0.1f;
+        IgnoreGravity = false;
+        Facing = FacingMode.FaceMovement;
+        ExplicitFacingPos = null;
+        TargetNode = null;
+        LockMovement = false;
+        SpeedScale = 1.0f;
     }
 
-    // 2. Locomotion Input (The "Resolved" result)
-    public struct LocomotionInput
-    {
-        public bool AllowMovement;
-        public Vector3 TotalImpulse;
-        
-        // Velocity Resolution
-        public LocomotionInstruction.VelocityType VelocityCommand;
-        public Vector3 VelocityTarget;
-        public float VelocityDampingHalfLife;
-        public LocomotionInstruction.AxisMask VelocityDampenAxis;
-        public bool IgnoreGravity;
-        
-        // Facing Resolution
-        public LocomotionInstruction.FacingType FacingPolicy;
-        public Vector3 ExplicitFacingDirection;
-        public bool ReverseFacing;
-    }
+    public LocomotionInstruction WithVelocity(Vector3 v)
+        => this with { TargetVelocity = v };
+
+    public LocomotionInstruction WithImpulse(Vector3 v)
+        => this with { TargetVelocity = v, VelMode = VelocityMode.Accumulate };
+
+    public LocomotionInstruction WithFacingPos(Vector3 pos)
+        => this with { Facing = FacingMode.FacePosition, ExplicitFacingPos = pos };
+
+    public LocomotionInstruction WithFacingTarget(Node3D target)
+        => this with { Facing = FacingMode.FaceTarget, TargetNode = target };
+}
+
 }

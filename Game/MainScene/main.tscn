@@ -8,28 +8,28 @@
 [ext_resource type="PackedScene" uid="uid://7tvgd0t26wxq" path="res://UI/HUD/hud.tscn" id="9_n8j1b"]
 [ext_resource type="Script" uid="uid://dfs47o0tniw4t" path="res://Managers/bulletin_controller.gd" id="10_fw86m"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=442272866]
 
-[node name="StageController" type="Node" parent="."]
+[node name="StageController" type="Node" parent="." unique_id=309634909]
 script = ExtResource("1_ypbn1")
 
-[node name="UILayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=2042414717 groups=["ui_layer"]]
 process_mode = 3
 
-[node name="HUDController" type="Node" parent="UILayer"]
+[node name="HUDController" type="Node" parent="UILayer" unique_id=711252184]
 script = ExtResource("2_hox20")
 
-[node name="HUD" parent="UILayer/HUDController" instance=ExtResource("9_n8j1b")]
+[node name="HUD" parent="UILayer/HUDController" unique_id=911997768 instance=ExtResource("9_n8j1b")]
 
-[node name="BulletinController" type="Node" parent="UILayer"]
+[node name="BulletinController" type="Node" parent="UILayer" unique_id=1206521214]
 script = ExtResource("10_fw86m")
 
-[node name="NotificationUI" parent="UILayer" instance=ExtResource("5_kcaes")]
+[node name="NotificationUI" parent="UILayer" unique_id=148855535 instance=ExtResource("5_kcaes")]
 
-[node name="DebugTaskboard" parent="UILayer" instance=ExtResource("5_hox20")]
+[node name="DebugTaskboard" parent="UILayer" unique_id=652186992 instance=ExtResource("5_hox20")]
 visible = false
 
-[node name="Time" parent="UILayer" instance=ExtResource("7_fn7r6")]
+[node name="Time" parent="UILayer" unique_id=983685447 instance=ExtResource("7_fn7r6")]
 anchors_preset = -1
 anchor_left = 0.85
 anchor_top = 0.1
