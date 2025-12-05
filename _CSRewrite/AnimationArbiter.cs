@@ -55,7 +55,7 @@ namespace CharacterControl
             }
 
             // 2. Resolve Sticky Logic
-            // If we are currently playing a sticky animation, we only switch if:
+            // If currently playing a sticky animation, only switch if:
             // A) The sticky animation finished (handled in event)
             // B) The new request is HIGHER priority than the sticky one
             
