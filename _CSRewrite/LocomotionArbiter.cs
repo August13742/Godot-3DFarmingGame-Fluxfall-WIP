@@ -7,90 +7,90 @@ namespace CharacterControl
     {
         public struct PhysicsResult
         {
-            public Vector3 Velocity;
-            public float TargetRotationY; //z,x rotation rarely matters
+            // The "Winner's" desired velocity state
+            public Vector3 TargetVelocity;
+            public VelocityMode VelMode;
+            public bool IgnoreGravity;
+            
+            // If the winner provides specific tuning (e.g. ice, slow-motion), else 0
+            public float CustomDamping; 
+
+            // Sum of all one-shot forces this frame
+            public Vector3 AccumulatedImpulse;
+
+            // Rotation
+            public float TargetRotationY;
             public bool ApplyRotation;
         }
-        private const int PRIORITY_THRESHOLD_LOCK = 100;
-        
+
         public static PhysicsResult Resolve(
-        HFSMCharacter3D character, LocomotionInstruction actionCmd, List<LocomotionInstruction> statusCmd, double delta )
+            HFSMCharacter3D character, 
+            LocomotionInstruction actionCmd, 
+            List<LocomotionInstruction> statusCmds)
         {
+            // 1. Determine Winner
             var winner = actionCmd;
-            // Status effects (Knockbacks) usually win if they have high priority (Stun)
-            // Or they just add forces. Let's assume StatusCmds are purely additive forces 
-            // OR high-priority overrides (like being frozen).
-            foreach (var cmd in statusCmd)
+            foreach (var cmd in statusCmds)
             {
                 if (cmd.Priority > winner.Priority) winner = cmd;
             }
-            // 2. Accumulate Forces (Impulses)
-            // We accumulate impulses from ALL commands, not just the winner, 
-            // to ensure a Recoil doesn't cancel out a Knockback entirely.
+
+            // 2. Accumulate Impulses (From everyone, even losers)
             Vector3 totalImpulse = Vector3.Zero;
             if (actionCmd.VelMode == VelocityMode.Accumulate) totalImpulse += actionCmd.TargetVelocity;
-            foreach (var cmd in statusCmd)
+            foreach (var cmd in statusCmds)
             {
                 if (cmd.VelMode == VelocityMode.Accumulate) totalImpulse += cmd.TargetVelocity;
             }
 
-            PhysicsResult result = new();
-            Vector3 currentVel = character.Velocity;
-
-            // 3. resolve velocity
-            if (winner.VelMode == VelocityMode.Dampen)
+            PhysicsResult result = new PhysicsResult
             {
-                // simple exponential decay
-                float alpha = Mathf.Clamp(1.0f - Mathf.Pow(0.5f, (float)delta / winner.DampenHalfLife),0f,1f);
-                result.Velocity = currentVel.Lerp(winner.TargetVelocity, alpha);
-            }
-            else
-            {
-                //default: preserve momentum
-                result.Velocity = currentVel;
-            }
+                TargetVelocity = winner.TargetVelocity,
+                VelMode = winner.VelMode,
+                IgnoreGravity = winner.IgnoreGravity,
+                CustomDamping = winner.DampenHalfLife, // Pass through
+                AccumulatedImpulse = totalImpulse,
+                ApplyRotation = false,
+                TargetRotationY = character.Rotation.Y
+            };
 
-            //add accumulated impulse
-            result.Velocity += totalImpulse;
-
-            // gravity
-            if (!winner.IgnoreGravity)
-            {
-                result.Velocity.Y -= (float)delta * character.Gravity;
-            }
-            // 4. Resolve Rotation
-            result.ApplyRotation = false;
-            result.TargetRotationY = character.Rotation.Y;
+            // 3. Resolve Rotation Target
             switch (winner.Facing)
             {
                 case FacingMode.FaceMovement:
-                    //only rotate if moving significantly
-                    Vector3 flatVel = new(result.Velocity.X, 0, result.Velocity.Z);
+                    // We check the Character's CURRENT velocity for rotation to look natural
+                    Vector3 flatVel = new Vector3(character.Velocity.X, 0, character.Velocity.Z);
+                    // Or check Input Intent if Velocity is zero (snappier turn-on-spot)
+                    if (flatVel.LengthSquared() < 0.1f) 
+                        flatVel = character.InputInterface.WorldMovementIntent;
+
                     if (flatVel.LengthSquared() > 0.1f)
                     {
                         result.TargetRotationY = Mathf.Atan2(flatVel.X, flatVel.Z);
                         result.ApplyRotation = true;
                     }
                     break;
+
                 case FacingMode.FaceTarget:
-                    if (winner.TargetNode != null && GodotObject.IsInstanceValid(winner.TargetNode))
+                    if (GodotObject.IsInstanceValid(winner.TargetNode))
                     {
                         Vector3 diff = winner.TargetNode.GlobalPosition - character.GlobalPosition;
                         result.TargetRotationY = Mathf.Atan2(diff.X, diff.Z);
                         result.ApplyRotation = true;
                     }
                     break;
+
                 case FacingMode.FacePosition:
                     if (winner.ExplicitFacingPos.HasValue)
                     {
                         Vector3 diff = winner.ExplicitFacingPos.Value - character.GlobalPosition;
-                        result.TargetRotationY = Mathf.Atan2(diff.X,diff.Z);
+                        result.TargetRotationY = Mathf.Atan2(diff.X, diff.Z);
                         result.ApplyRotation = true;
                     }
                     break;
             }
-            return result;
 
+            return result;
         }
     }
 }

@@ -29,52 +29,40 @@ namespace CharacterControl
 #endregion
 public record struct LocomotionInstruction
 {
-    public byte Priority           { get; init; }
-    public VelocityMode VelMode   { get; init; }
+    public byte Priority { get; init; }
+    public VelocityMode VelMode { get; init; }
     public Vector3 TargetVelocity { get; init; }
-    public AxisMask DampenAxis    { get; init; }
-    public float DampenHalfLife   { get; init; }
-    public bool IgnoreGravity     { get; init; }
+    
+    // If > 0, overrides Blackboard acceleration settings.
+    // If 0, Blackboard defaults are used.
+    public float DampenHalfLife { get; init; } 
+    
+    public bool IgnoreGravity { get; init; }
 
-    public FacingMode Facing          { get; init; }
+    public FacingMode Facing { get; init; }
     public Vector3? ExplicitFacingPos { get; init; }
-    public Node3D TargetNode          { get; init; }
-
-    public bool LockMovement { get; init; }
-    public float SpeedScale  { get; init; }
+    public Node3D TargetNode { get; init; }
 
     public LocomotionInstruction(byte priority, VelocityMode velMode = VelocityMode.None)
     {
         Priority = priority;
         VelMode = velMode;
         TargetVelocity = Vector3.Zero;
-        DampenAxis = AxisMask.XZ;
-        DampenHalfLife = 0.1f;
+        DampenHalfLife = 0f; // Default: Let blackboard decide
         IgnoreGravity = false;
         Facing = FacingMode.FaceMovement;
         ExplicitFacingPos = null;
         TargetNode = null;
-        LockMovement = false;
-        SpeedScale = 1.0f;
     }
 
         // --- Velocity helpers ---
-        public LocomotionInstruction WithVelocity(Vector3 v)
-            => this with { TargetVelocity = v };
-
-        public LocomotionInstruction WithImpulse(Vector3 v)
-            => this with { TargetVelocity = v, VelMode = VelocityMode.Accumulate };
-
-        // --- Facing helpers ---
-        public LocomotionInstruction WithFacingMode(FacingMode mode)
-            => this with { Facing = mode };
-
-        /// <summary>
-        /// Set explicit facing position without changing Facing mode.
-        /// User of the instruction should ignore this unless Facing == FacePosition.
-        /// </summary>
-        public LocomotionInstruction WithFacingPos(Vector3 pos)
-            => this with { ExplicitFacingPos = pos };
+        public LocomotionInstruction WithVelocity(Vector3 v) => this with { TargetVelocity = v };
+        public LocomotionInstruction WithImpulse(Vector3 v) => this with { TargetVelocity = v, VelMode = VelocityMode.Accumulate };
+        public LocomotionInstruction WithFacingMode(FacingMode mode) => this with { Facing = mode };
+        public LocomotionInstruction WithFacingPos(Vector3 pos) => this with { ExplicitFacingPos = pos };
+        
+        // Helper to override smooth time (e.g. for icy surfaces)
+        public LocomotionInstruction WithCustomDamping(float time) => this with { DampenHalfLife = time };
 
         public LocomotionInstruction WithFacingTarget(Node3D target)
             => this with { Facing = FacingMode.FaceTarget, TargetNode = target };

@@ -7,7 +7,7 @@ namespace CharacterControl
         public override void Enter()
         {
             Parent?.Enter();
-            Agent.AnimArbiter.Request(AnimationChannel.Locomotion, "Run", 1.0f);
+            Agent.AnimArbiter.Request(AnimationChannel.Locomotion, "Walk", 1.0f);
         }
 
         public override void Update(double delta)
@@ -31,10 +31,12 @@ namespace CharacterControl
 
         public override LocomotionInstruction GetLocomotionInstruction()
         {
-            // Standard Movement
-            return new LocomotionInstruction(0, VelocityMode.Dampen)
+            // Priority 1
+            // Target: Input * Speed
+            // Damping: 0 (Use Blackboard default Accel/Decel)
+            return new LocomotionInstruction(1, VelocityMode.Dampen)
                 .WithVelocity(Agent.InputInterface.WorldMovementIntent * Agent.MoveSpeed)
-                .WithFacingMode(FacingMode.FaceMovement); // Default facing
+                .WithFacingMode(FacingMode.FaceMovement);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CharacterControl{
             // or ensure this node is a sibling of the character, not a child.
             TopLevel = true; 
             
-            Input.MouseMode = Input.MouseModeEnum.Captured;
+            // Input.MouseMode = Input.MouseModeEnum.Captured;
             
             // Initialise based on current rotation
             Vector3 rot = RotationDegrees;

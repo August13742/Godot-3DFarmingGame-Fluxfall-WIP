@@ -6,15 +6,16 @@ namespace CharacterControl
     {
         [Export] public HFSMCharacter3D Character {get; private set;}
         [Export] public Camera3D _camera; // Assign camera
+        [Export] public Vector2 RawInput{get;private set;} // Assign camera
 
         public override void _PhysicsProcess(double delta)
         {
             Character.InputInterface.Reset();
 
             // 1. Get Raw Input
-            Vector2 rawInput = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
+            RawInput = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
             
-            if (rawInput.LengthSquared() > 0.01f)
+            if (RawInput.LengthSquared() > 0.01f)
             {
                 // 2. Camera Relative Math
                 Vector3 camForward = _camera.GlobalBasis.Z;
@@ -23,7 +24,7 @@ namespace CharacterControl
                 camForward.Y = 0; camForward = camForward.Normalized();
                 camRight.Y = 0; camRight = camRight.Normalized();
 
-                Vector3 worldIntent = (camForward * rawInput.Y) + (camRight * rawInput.X);
+                Vector3 worldIntent = (camForward * RawInput.Y) + (camRight * RawInput.X);
                 
                 // 3. Feed the Interface
                 Character.InputInterface.WorldMovementIntent = worldIntent;

@@ -28,8 +28,8 @@ namespace CharacterControl
 
         public override LocomotionInstruction GetLocomotionInstruction()
         {
-            // Apply Friction (Stop)
-            return new LocomotionInstruction(0, VelocityMode.Dampen)
+            // Apply Friction
+            return new LocomotionInstruction(1, VelocityMode.Dampen)
                 .WithVelocity(Vector3.Zero)
                 .WithFacingMode(FacingMode.Keep);
         }

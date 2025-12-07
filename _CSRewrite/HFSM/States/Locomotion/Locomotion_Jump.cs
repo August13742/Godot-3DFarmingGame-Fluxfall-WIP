@@ -17,9 +17,11 @@ namespace CharacterControl
 
         public override LocomotionInstruction GetLocomotionInstruction()
         {
-            // Priority 10 to override any ground friction
+            // Priority 10
+            // Impulse: Up * Force
+            // Mode: Accumulate (Added immediately in Blackboard, independent of Dampen)
             return new LocomotionInstruction(10, VelocityMode.Accumulate)
-                .WithImpulse(Vector3.Up * 8.0f); // Jump Force
+                .WithImpulse(Vector3.Up * 8.0f);
         }
     }
 }

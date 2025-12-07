@@ -20,6 +20,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_8xx5u")
 
 [node name="Player" parent="." unique_id=97532344 instance=ExtResource("1_8l4e4")]
+DebugMode = true
 
 [node name="ThirdPersonARPGCamera" parent="." unique_id=1482323388 instance=ExtResource("2_8xx5u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.278061, 1.264508)
