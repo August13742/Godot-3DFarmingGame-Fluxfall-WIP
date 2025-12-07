@@ -13,7 +13,7 @@ namespace CharacterControl
         }
         private const int PRIORITY_THRESHOLD_LOCK = 100;
         
-        public PhysicsResult Resolve(
+        public static PhysicsResult Resolve(
         HFSMCharacter3D character, LocomotionInstruction actionCmd, List<LocomotionInstruction> statusCmd, double delta )
         {
             var winner = actionCmd;

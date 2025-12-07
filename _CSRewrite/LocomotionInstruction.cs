@@ -24,12 +24,12 @@ namespace CharacterControl
         public const int Action = 1;
         public const int Reaction = 2; //hitstun
         public const int Cinematic = 3;
-        public const int Count = 4; // tootal size
+        public const int Count = 4; // total size
     }
 #endregion
 public record struct LocomotionInstruction
 {
-    public int Priority           { get; init; }
+    public byte Priority           { get; init; }
     public VelocityMode VelMode   { get; init; }
     public Vector3 TargetVelocity { get; init; }
     public AxisMask DampenAxis    { get; init; }
@@ -43,7 +43,7 @@ public record struct LocomotionInstruction
     public bool LockMovement { get; init; }
     public float SpeedScale  { get; init; }
 
-    public LocomotionInstruction(int priority, VelocityMode velMode = VelocityMode.None)
+    public LocomotionInstruction(byte priority, VelocityMode velMode = VelocityMode.None)
     {
         Priority = priority;
         VelMode = velMode;
@@ -58,17 +58,26 @@ public record struct LocomotionInstruction
         SpeedScale = 1.0f;
     }
 
-    public LocomotionInstruction WithVelocity(Vector3 v)
-        => this with { TargetVelocity = v };
+        // --- Velocity helpers ---
+        public LocomotionInstruction WithVelocity(Vector3 v)
+            => this with { TargetVelocity = v };
 
-    public LocomotionInstruction WithImpulse(Vector3 v)
-        => this with { TargetVelocity = v, VelMode = VelocityMode.Accumulate };
+        public LocomotionInstruction WithImpulse(Vector3 v)
+            => this with { TargetVelocity = v, VelMode = VelocityMode.Accumulate };
 
-    public LocomotionInstruction WithFacingPos(Vector3 pos)
-        => this with { Facing = FacingMode.FacePosition, ExplicitFacingPos = pos };
+        // --- Facing helpers ---
+        public LocomotionInstruction WithFacingMode(FacingMode mode)
+            => this with { Facing = mode };
 
-    public LocomotionInstruction WithFacingTarget(Node3D target)
-        => this with { Facing = FacingMode.FaceTarget, TargetNode = target };
+        /// <summary>
+        /// Set explicit facing position without changing Facing mode.
+        /// User of the instruction should ignore this unless Facing == FacePosition.
+        /// </summary>
+        public LocomotionInstruction WithFacingPos(Vector3 pos)
+            => this with { ExplicitFacingPos = pos };
+
+        public LocomotionInstruction WithFacingTarget(Node3D target)
+            => this with { Facing = FacingMode.FaceTarget, TargetNode = target };
 }
 
 }

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dkjky5fjvv7qg"]
+
+[ext_resource type="PackedScene" uid="uid://btwam7sm4us4k" path="res://Assets/meshes/meshes.glb" id="1_1kgkn"]
+[ext_resource type="PackedScene" uid="uid://bq3q33vvc34pe" path="res://_CSRewrite/HFSM/HFSMPlayer.tscn" id="1_8l4e4"]
+[ext_resource type="PackedScene" uid="uid://coemnxjpj3wvu" path="res://_CSRewrite/HFSM/ThirdPersonArpgCameraCS.tscn" id="2_8xx5u"]
+[ext_resource type="Script" uid="uid://bjsibolgsr686" path="res://_CSRewrite/PlayerInputController.cs" id="4_gg1tu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xx5u"]
+size = Vector3(50, 0.5, 50)
+
+[node name="Node3D" type="Node3D" unique_id=670687103]
+
+[node name="meshes" parent="." unique_id=364537100 instance=ExtResource("1_1kgkn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="meshes" unique_id=627231116]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="meshes/StaticBody3D" unique_id=597198913]
+shape = SubResource("BoxShape3D_8xx5u")
+
+[node name="Player" parent="." unique_id=97532344 instance=ExtResource("1_8l4e4")]
+
+[node name="ThirdPersonARPGCamera" parent="." unique_id=1482323388 instance=ExtResource("2_8xx5u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.278061, 1.264508)
+
+[node name="InputHandler" type="Node" parent="." unique_id=1986886726 node_paths=PackedStringArray("Character", "_camera")]
+script = ExtResource("4_gg1tu")
+Character = NodePath("../Player")
+_camera = NodePath("../ThirdPersonARPGCamera/SpringArm3D/Camera3D")
+
+[editable path="ThirdPersonARPGCamera"]

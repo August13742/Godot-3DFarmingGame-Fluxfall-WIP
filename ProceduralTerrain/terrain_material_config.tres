@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TerrainMaterialConfig" load_steps=15 format=3 uid="uid://talvqn2yl87u"]
+[gd_resource type="Resource" script_class="TerrainMaterialConfig" format=3 uid="uid://talvqn2yl87u"]
 
 [ext_resource type="Script" uid="uid://dbfeixqqssq10" path="res://ProceduralTerrain/terrain_material_config.gd" id="1_xjh0m"]
 [ext_resource type="Script" uid="uid://5h6sjqk2g2xa" path="res://ProceduralTerrain/terrain_material.gd" id="2_hn1rs"]

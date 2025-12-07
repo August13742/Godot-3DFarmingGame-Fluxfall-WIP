@@ -7,7 +7,9 @@ namespace CharacterControl
     {
         protected HFSM<T> Machine;
         protected T Agent;
-        public HFSMState<T> Parent;
+        
+        // Public so we can assign it during setup
+        public HFSMState<T> Parent { get; set; } 
 
         public virtual void Initialise(HFSM<T> machine, T agent, HFSMState<T> parent = null)
         {
@@ -15,24 +17,25 @@ namespace CharacterControl
             Agent = agent;
             Parent = parent;
         }
+
         public virtual void Enter() { }
         public virtual void Exit() { }
         public virtual void Update(double delta) { }
         public virtual void PhysicsUpdate(double delta) { }
 
-        // Returns true if the event was consumed
+        // Event Handling: Recursive Bubble Up
         public virtual bool HandleEvent(ActionEvent evt) 
         {
+            // If I don't handle it, ask my parent.
             return Parent?.HandleEvent(evt) ?? false;
         }
 
-        // Default: Ask the parent, or return a "Do Nothing" instruction
         public virtual LocomotionInstruction GetLocomotionInstruction()
         {
             return Parent?.GetLocomotionInstruction() ?? new LocomotionInstruction(0);
         }
-
     }
+
     public class HFSM<T>(T agent, string name = "HFSM") where T: class
     {
         private readonly Dictionary<Type, HFSMState<T>>  _states = new();
@@ -50,10 +53,12 @@ namespace CharacterControl
         public void AddState(HFSMState<T> state, Type parentType = null)
         {
             HFSMState<T> parent = null;
-            if (parentType != null && _states.TryGetValue(parentType, out var _parent))
+            if (parentType != null && _states.TryGetValue(parentType, out var p))
             {
-                parent = _parent;
+                parent = p;
             }
+            
+            // Link the instances together
             state.Initialise(this, Agent, parent);
             _states[state.GetType()] = state;
         }
