@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SFXPlaylistResource" load_steps=7 format=3 uid="uid://b1god3qlpbu2e"]
+[gd_resource type="Resource" script_class="SFXPlaylistResource" format=3 uid="uid://b1god3qlpbu2e"]
 
 [ext_resource type="Script" uid="uid://cgp1ebg1amn38" path="res://addons/augusts_audio_manager/resource_scripts/sfx_playlist_resource.gd" id="1_klubq"]
 [ext_resource type="Script" uid="uid://dflujhnkuiakc" path="res://addons/augusts_audio_manager/resource_scripts/sfx_resource.gd" id="2_1qlwn"]

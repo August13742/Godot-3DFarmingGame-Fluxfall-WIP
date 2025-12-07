@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 database/source_directory="res://Items/Resources"
 database/catalogue_save_path="res://Items/_Generated/item_catalogue.tres"
+database/handlers_directory="res://Items/Handlers"
 
 [autoload]
 
