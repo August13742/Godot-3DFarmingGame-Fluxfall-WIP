@@ -143,13 +143,6 @@ utility(job, agent) = w_d * f_distance(agent, job)
 * 中央の時間シングルトンがゲーム内分と時間倍率を提供. 
 * 作物/エージェントはティックを購読. 睡眠/停止は時間倍率で表現. 
 
-### オーディオ
-
-* `SFXResource` がストリーム, 線形音量, ピッチ, ループを抽象化. 
-* 3D 一発再生ヘルパで `AudioStreamPlayer3D` を生成. 減衰方式を選択. 
-* `default_bus_layout.tres` による基本ミキシング. 
-
-
 ### UI・デバッグ
 
 * **Debug Taskboard**. ジョブキューとエージェントを可視化. フォーカス, 再キュー, キャンセル操作. 
